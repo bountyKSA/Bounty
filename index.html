@@ -293,6 +293,19 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
 .region-card.coming-soon b{color:#b28b43}
 .region-card.coming-soon:disabled{pointer-events:none}
 
+
+.merchant-invite{padding:18px 0 28px;background:#fffdf9}
+.merchant-invite-inner{display:flex;align-items:center;gap:20px;padding:22px 26px;border:1px solid #eadfe5;border-radius:20px;background:linear-gradient(110deg,#f8edf1,#f4f6e9);box-shadow:0 7px 22px rgba(70,55,45,.06)}
+.merchant-invite-icon{width:58px;height:58px;flex:0 0 58px;display:grid;place-items:center;border-radius:17px;background:#fff;font-size:30px}
+.merchant-invite-copy{flex:1}
+.merchant-invite-copy>span{font-size:12px;font-weight:700;color:#985a78}
+.merchant-invite-copy h2{margin:2px 0 4px;font-size:21px;color:#173f33}
+.merchant-invite-copy p{margin:0;color:#65756c;font-size:13px}
+.merchant-invite-inner>button{border:0;border-radius:24px;background:#985a78;color:#fff;padding:11px 21px;font-family:inherit;font-weight:700;white-space:nowrap}
+.merchant-invite-inner>button:hover{background:#7e4561}
+#merchantModal .modal-box{width:min(680px,100%)}
+@media(max-width:620px){.merchant-invite-inner{align-items:flex-start;flex-wrap:wrap;padding:17px}.merchant-invite-icon{width:45px;height:45px;flex-basis:45px;font-size:24px}.merchant-invite-copy{flex:1 1 calc(100% - 65px)}.merchant-invite-copy h2{font-size:17px}.merchant-invite-copy p{font-size:12px}.merchant-invite-inner>button{width:100%}}
+
 </style>
 </head>
 <body>
@@ -305,7 +318,6 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
         <a href="#blog" aria-label="التنبيهات">♧</a>
         <a href="#featured" aria-label="المفضلة">♡</a>
         <a href="#about" aria-label="حسابي">♙</a>
-        <a class="merchant-pill" href="mailto:bounty.ksa@outlook.com?subject=%D8%B7%D9%84%D8%A8%20%D8%A7%D9%84%D8%A7%D9%86%D8%B6%D9%85%D8%A7%D9%85%20%D9%83%D8%AA%D8%A7%D8%AC%D8%B1">انضم كتاجر</a>
       </div>
       <a class="brand brand-center" href="#home" aria-label="باونتي الرئيسية">
         <img src="images/logo.png" alt="Bounty باونتي - دليلك للحياة الصحية">
@@ -419,6 +431,14 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
   </div>
 </section>
 
+<section class="merchant-invite" id="merchantJoin">
+ <div class="wrap merchant-invite-inner">
+  <div class="merchant-invite-icon">🌿</div>
+  <div class="merchant-invite-copy"><span>لأصحاب المشاريع والمتاجر</span><h2>هل ترغب بالانضمام إلى باونتي كتاجر؟</h2><p>قدّم طلبك، وسيراجع فريق باونتي بيانات نشاطك قبل اعتماده وإضافته إلى الدليل.</p></div>
+  <button type="button" onclick="openMerchantForm()">قدّم طلب الانضمام ←</button>
+ </div>
+</section>
+
 <section class="visual-new">
   <div class="wrap">
     <div class="visual-section-title"><h2>جديدنا في باونتي <span>✧</span></h2><a href="#directory">عرض المزيد ←</a></div>
@@ -479,7 +499,7 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
  </div>
 </section>
 
-<div class="wrap"><div class="join"><div><h2>هل لديك نشاط أو منتج مميز؟</h2><p>انضم إلى دليل باونتي وعرّف الباحثين عن الخيارات الصحية بنشاطك.</p></div><a href="#addActivity" onclick="openAddActivity(event)">أضف نشاطك</a></div></div>
+<div class="wrap"><div class="join"><div><h2>هل لديك نشاط ترغب بإضافته للدليل؟</h2><p>يمكنك إرسال بيانات نشاطك لإضافته إلى دليل باونتي.</p></div><a href="#addActivity" onclick="openAddActivity(event)">أضف نشاطًا للدليل</a></div></div>
 </main>
 
 <footer>
@@ -493,6 +513,25 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
 <div class="modal" id="regionModal"><div class="modal-box" style="text-align:center"><div style="font-size:48px">🌿</div><h3 id="regionModalTitle" style="color:var(--brand);margin:5px 0 8px"></h3><p id="regionModalText" style="color:var(--muted);margin:0 0 18px"></p><button class="search-button" onclick="document.getElementById('regionModal').classList.remove('open')">بانتظاركم قريبًا</button></div></div>
 <div class="modal" id="articleModal"><div class="modal-box"><div class="modal-head"><h3 id="articleTitle"></h3><button class="close" onclick="closeArticle()">✕</button></div><div id="articleText" style="color:var(--muted);padding-top:12px"></div><p class="search-note">المحتوى توعوي عام ولا يُعد بديلاً عن استشارة مختص، خصوصاً عند اتباع نظام غذائي علاجي أو وجود حالة صحية.</p></div></div>
 <div class="modal" id="listingModal"><div class="modal-box"><div class="modal-head"><h3 id="listingTitle"></h3><button class="close" onclick="closeListing()">✕</button></div><div id="listingDetails" style="color:var(--muted);padding-top:12px"></div></div></div>
+<div class="modal" id="merchantModal"><div class="modal-box">
+ <div class="modal-head"><h3>طلب الانضمام كتاجر إلى باونتي</h3><button class="close" type="button" onclick="closeMerchantForm()">✕</button></div>
+ <p class="form-hint">عبّئ البيانات التالية. سيصل طلبك إلى فريق باونتي للمراجعة، ولن يظهر نشاطك في الدليل إلا بعد الموافقة.</p>
+ <form id="merchantForm" onsubmit="submitMerchantRequest(event)">
+  <div class="form-grid">
+   <div class="form-field"><label for="merchantName">اسم المتجر أو النشاط *</label><input id="merchantName" name="store_name" required minlength="2" maxlength="120" placeholder="اسم المتجر أو المشروع"></div>
+   <div class="form-field"><label for="merchantOwner">اسم صاحب النشاط *</label><input id="merchantOwner" name="owner_name" required minlength="2" maxlength="120" placeholder="الاسم الكامل"></div>
+   <div class="form-field"><label for="merchantType">نوع النشاط *</label><select id="merchantType" name="type" required><option value="">اختر التصنيف</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option><option>أخرى</option></select></div>
+   <div class="form-field"><label for="merchantCity">المدينة *</label><input id="merchantCity" name="city" required minlength="2" maxlength="100" placeholder="اكتب اسم المدينة"></div>
+   <div class="form-field"><label for="merchantPhone">رقم التواصل *</label><input id="merchantPhone" name="phone" type="tel" required maxlength="30" placeholder="05xxxxxxxx"></div>
+   <div class="form-field"><label for="merchantEmail">البريد الإلكتروني *</label><input id="merchantEmail" name="email" type="email" required maxlength="180" placeholder="name@example.com"></div>
+   <div class="form-field full"><label for="merchantWebsite">الموقع الإلكتروني أو رابط المتجر</label><input id="merchantWebsite" name="website" type="url" maxlength="300" placeholder="https://"></div>
+   <div class="form-field full"><label for="merchantDescription">نبذة عن النشاط *</label><textarea id="merchantDescription" name="description" required minlength="10" maxlength="700" placeholder="عرّفنا بمتجرك والمنتجات أو الخدمات التي تقدمها..."></textarea></div>
+  </div>
+  <div class="form-actions"><button class="search-button" id="merchantSubmit" type="submit">إرسال طلب الانضمام</button><button class="reset" type="button" onclick="closeMerchantForm()">إلغاء</button></div>
+  <p class="form-hint">حالة الطلب بعد الإرسال: بانتظار المراجعة. سيتم التواصل معك بعد اتخاذ القرار.</p>
+ </form>
+</div></div>
+
 <div class="modal" id="addActivity"><div class="modal-box">
  <div class="modal-head"><h3>إضافة نشاط إلى دليل باونتي</h3><button class="close" onclick="closeAddActivity()">✕</button></div>
  <p class="form-hint">أدخل بيانات نشاطك، وسيظهر في دليل المنطقة التي تختارها بعد الإرسال.</p>
@@ -540,14 +579,12 @@ function setupRegions(){
 function renderRegionCards(){
  const grid=document.getElementById('regionGrid');
  if(!grid)return;
- const enabledRegions=['الرياض','القصيم'];
  grid.innerHTML=REGIONS.map(r=>{
-  const count=listings.filter(x=>x.region===r.name).length;
-  const isEnabled=enabledRegions.includes(r.name);
-  const canExplore=isEnabled&&count>0;
-  const subtitle=!isEnabled?'ترقبونا قريباً':(count?`يوجد ${count} جهة في الدليل`:'الدليل قيد التجهيز في منطقتكم');
-  const action=canExplore?'استكشف الدليل ←':'ترقبونا قريباً';
-  return `<button class="region-card ${canExplore?'active':'coming-soon'}" ${canExplore?`onclick="openRegion('${r.name}',true)"`:'type="button" disabled aria-disabled="true"'}>
+  const isAvailable=['الرياض','القصيم'].includes(r.name);
+  const count=isAvailable?listings.filter(x=>x.region===r.name).length:0;
+  const subtitle=!isAvailable?'قريبًا في منطقتكم':(count?`يوجد ${count} جهة في الدليل`:'لا توجد أنشطة مضافة بعد');
+  const action=!isAvailable?'ترقبونا قريباً':(count?'استكشف الدليل ←':'أضف أول نشاط ←');
+  return `<button class="region-card ${isAvailable&&count?'active':''} ${!isAvailable?'coming-soon':''}" ${isAvailable?(count?`onclick="openRegion('${r.name}',true)"`:'type="button" onclick="openAddActivity()"'):'type="button" disabled aria-disabled="true"'}>
    <span>${r.emoji}</span><strong>منطقة ${r.name}</strong>
    <small>${subtitle}</small><b>${action}</b>
   </button>`;
@@ -611,6 +648,24 @@ async function loadActivities(){
   listings=[...fromDatabase,...seedListings];
   renderListings();
  }catch(error){console.error('تعذر تحميل الأنشطة من Supabase:',error);}
+}
+function openMerchantForm(){document.getElementById('merchantModal').classList.add('open');}
+function closeMerchantForm(){document.getElementById('merchantModal').classList.remove('open');}
+async function submitMerchantRequest(event){
+ event.preventDefault();
+ const form=document.getElementById('merchantForm');
+ const button=document.getElementById('merchantSubmit');
+ const values=Object.fromEntries(new FormData(form).entries());
+ const payload={store_name:values.store_name.trim(),owner_name:values.owner_name.trim(),type:values.type,city:values.city.trim(),phone:values.phone.trim(),email:values.email.trim(),website:values.website.trim()||null,description:values.description.trim(),status:'pending'};
+ button.disabled=true;button.textContent='جارٍ إرسال الطلب...';
+ try{
+  const {error}=await supabaseClient.from('merchant_requests').insert(payload);
+  if(error)throw error;
+  form.reset();closeMerchantForm();toast('وصل طلبك بنجاح، وهو الآن بانتظار المراجعة 🌿');
+ }catch(error){
+  console.error('تعذر إرسال طلب التاجر:',error);
+  toast('تعذر إرسال الطلب. تأكدي من إنشاء جدول merchant_requests في Supabase.');
+ }finally{button.disabled=false;button.textContent='إرسال طلب الانضمام';}
 }
 function openAddActivity(event){if(event)event.preventDefault();document.getElementById('addActivity').classList.add('open');}
 function closeAddActivity(){document.getElementById('addActivity').classList.remove('open');}
