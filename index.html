@@ -133,6 +133,10 @@ footer{background:#123f34;color:#fff;padding:35px 0 18px;margin-top:65px}
 @media(max-width:580px){.region-grid{grid-template-columns:repeat(2,1fr)}.region-card{min-height:135px;padding:13px}}
 @media(max-width:900px){nav{display:none}.menu{display:block}.category-grid{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr}.listing-grid,.blog-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:580px){.nav{min-height:76px}.brand img{width:175px;height:70px}.nav-cta{display:none}.hero{padding:43px 0}.hero-lead{font-size:15px}.search-line{gap:4px}.search-line input{font-size:14px}.search-button{padding:11px 15px}.quick-links{gap:4px}.quick-links a{font-size:12px}.category-grid,.listing-grid,.blog-grid,.footer-grid{grid-template-columns:1fr}.directory-tools{grid-template-columns:1fr}.section-title{font-size:26px}section{padding:50px 0}.join{display:block}.join a{display:inline-block;margin-top:15px}}
+
+/* إزالة أيقونات/أزرار سلة التسوق إن أضافها قالب خارجي */
+a[href*="/cart"], a[href*="cart.html"], a[aria-label*="cart" i], button[aria-label*="cart" i], [data-testid*="cart" i], .cart-icon, .shopping-cart { display:none !important; }
+
 </style>
 </head>
 <body>
@@ -179,7 +183,7 @@ footer{background:#123f34;color:#fff;padding:35px 0 18px;margin-top:65px}
   <div class="section-head"><div class="section-kicker">تصفح حسب اهتمامك</div><h2 class="section-title">تصنيفات الدليل</h2><p class="section-desc">وصل بسرعة إلى نوع المنتجات أو الجهات التي تبحث عنها.</p></div>
   <div class="category-grid">
    <article class="category" onclick="categorySearch('مزارع')"><div class="cat-icon">🌱</div><h3>المزارع</h3><p>منتجات زراعية ومحاصيل محلية.</p></article>
-   <article class="category" onclick="categorySearch('متاجر')"><div class="cat-icon">🛒</div><h3>متاجر الأغذية الصحية</h3><p>منتجات غذائية ومكونات متنوعة.</p></article>
+   <article class="category" onclick="categorySearch('متاجر')"><div class="cat-icon">🏪</div><h3>متاجر الأغذية الصحية</h3><p>منتجات غذائية ومكونات متنوعة.</p></article>
    <article class="category" onclick="categorySearch('مخابز')"><div class="cat-icon">🥖</div><h3>المخابز</h3><p>مخبوزات وخيارات تناسب تفضيلات مختلفة.</p></article>
    <article class="category" onclick="categorySearch('مطاعم ومقاهٍ')"><div class="cat-icon">🥗</div><h3>المطاعم والمقاهي</h3><p>أماكن تقدم أطباقاً ومشروبات متنوعة.</p></article>
    <article class="category" onclick="categorySearch('أسر منتجة')"><div class="cat-icon">🧺</div><h3>الأسر المنتجة</h3><p>منتجات ومشاريع محلية منزلية.</p></article>
@@ -271,6 +275,7 @@ footer{background:#123f34;color:#fff;padding:35px 0 18px;margin-top:65px}
    <div class="form-field"><label for="activityType">نوع النشاط *</label><select id="activityType" name="type" required><option value="">اختر التصنيف</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option></select></div>
    <div class="form-field"><label for="activityRegion">المنطقة *</label><select id="activityRegion" name="region" required><option value="">اختر المنطقة</option><option>الرياض</option><option>القصيم</option><option>مكة المكرمة</option><option>المدينة المنورة</option><option>المنطقة الشرقية</option><option>عسير</option><option>تبوك</option><option>حائل</option><option>الحدود الشمالية</option><option>جازان</option><option>نجران</option><option>الباحة</option><option>الجوف</option></select></div>
    <div class="form-field"><label for="activityPhone">رقم التواصل</label><input id="activityPhone" name="phone" type="tel" maxlength="30" placeholder="05xxxxxxxx"></div>
+   <div class="form-field full"><label for="activityAddress">عنوان النشاط أو موقعه *</label><input id="activityAddress" name="address" type="text" autocomplete="street-address" required minlength="3" maxlength="250" placeholder="اكتب المدينة والحي أو الصق رابط موقع Google Maps"><small style="color:var(--muted);font-size:11px">هذا الحقل مطلوب لحفظ النشاط في الدليل.</small></div>
    <div class="form-field full"><label for="activityDescription">وصف النشاط *</label><textarea id="activityDescription" name="description" required minlength="5" maxlength="700" placeholder="اكتب وصفًا مختصرًا للنشاط والخدمات أو المنتجات..."></textarea></div>
    <div class="form-field"><label for="activityTags">كلمات مفتاحية</label><input id="activityTags" name="tags" maxlength="250" placeholder="مثال: منتجات طبيعية، كيتو"></div>
    <div class="form-field"><label for="activityWebsite">الموقع الإلكتروني أو رابط التواصل</label><input id="activityWebsite" name="website" type="url" maxlength="300" placeholder="https://"></div>
@@ -315,15 +320,15 @@ function renderListings(){
  const q=document.getElementById('directorySearch').value.trim().toLowerCase();
  const region=document.getElementById('regionFilter').value;
  const type=document.getElementById('typeFilter').value;
- const rows=listings.filter(x=>(!q||(x.name+x.desc+x.tags+x.type+x.region).toLowerCase().includes(q))&&(!region||x.region===region)&&(!type||x.type===type));
+ const rows=listings.filter(x=>(!q||(x.name+x.desc+x.tags+x.type+x.region+(x.address||'')).toLowerCase().includes(q))&&(!region||x.region===region)&&(!type||x.type===type));
  document.getElementById('resultCount').textContent=`${rows.length} جهة في الدليل`;
  document.getElementById('listingGrid').innerHTML=rows.length?rows.map(x=>`<article class="listing"><div class="listing-art">${escapeHTML(x.emoji||'🌿')}</div><div class="listing-body"><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.desc)}</p><div class="listing-meta"><span>📍 ${escapeHTML(x.region)}</span><span>▣ ${escapeHTML(x.type)}</span></div><button class="detail-btn" onclick="showListing('${escapeHTML(x.id)}')">عرض التفاصيل ←</button></div></article>`).join(''):'<div class="empty">لم نعثر على نتيجة مطابقة حالياً. جرّب كلمة أخرى أو تصفح التصنيفات.</div>';
 }
 async function loadActivities(){
  try{
-  const {data,error}=await supabaseClient.from('activities').select('id,name,type,region,phone,description,tags,website,created_at').order('created_at',{ascending:false});
+  const {data,error}=await supabaseClient.from('activities').select('id,name,type,region,phone,address,description,tags,website,created_at').order('created_at',{ascending:false});
   if(error) throw error;
-  const fromDatabase=(data||[]).map(row=>({id:'db_'+row.id,name:row.name,type:row.type,region:row.region,phone:row.phone||'',desc:row.description||'',tags:row.tags||'',website:row.website||'',address:row.website||'—',emoji:'🌿'}));
+  const fromDatabase=(data||[]).map(row=>({id:'db_'+row.id,name:row.name,type:row.type,region:row.region,phone:row.phone||'',desc:row.description||'',tags:row.tags||'',website:row.website||'',address:row.address||'',emoji:'🌿'}));
   listings=[...fromDatabase,...listings.filter(x=>!String(x.id).startsWith('db_'))];
   renderListings();
  }catch(error){console.error('تعذر تحميل الأنشطة من Supabase:',error);}
@@ -335,7 +340,9 @@ async function submitActivity(event){
  const form=document.getElementById('activityForm');
  const button=document.getElementById('activitySubmit');
  const values=Object.fromEntries(new FormData(form).entries());
- const payload={name:values.name.trim(),type:values.type,region:values.region,phone:values.phone.trim()||null,description:values.description.trim(),tags:values.tags.trim()||null,website:values.website.trim()||null};
+ const address=(values.address||'').trim();
+ if(address.length<3){toast('أضيفي عنوان النشاط أو رابط موقعه أولاً.');document.getElementById('activityAddress').focus();return;}
+ const payload={name:values.name.trim(),type:values.type,region:values.region,phone:values.phone.trim()||null,address,description:values.description.trim(),tags:values.tags.trim()||null,website:values.website.trim()||null};
  button.disabled=true;button.textContent='جارٍ الإرسال...';
  try{
   const {error}=await supabaseClient.from('activities').insert(payload);
