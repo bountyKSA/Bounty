@@ -200,23 +200,9 @@ a[href*="/cart"], a[href*="cart.html"], a[aria-label*="cart" i], button[aria-lab
   <div class="section-head">
    <div class="section-kicker">باونتي في المملكة</div>
    <h2 class="section-title">اكتشف الخيارات حسب المنطقة</h2>
-   <p class="section-desc">نغطي المملكة خطوة بخطوة. الدليل متاح حاليًا في الرياض والقصيم، وبقية المناطق قريبًا.</p>
+   <p class="section-desc">اختر منطقتك لاستعراض الأنشطة المسجلة فيها. تتحدث أعداد الجهات تلقائيًا عند إضافة نشاط جديد.</p>
   </div>
-  <div class="region-grid">
-   <button class="region-card active" onclick="openRegion('الرياض',true)"><span>🏙️</span><strong>منطقة الرياض</strong><small>تصفح الجهات المتاحة</small><b>استكشف الدليل ←</b></button>
-   <button class="region-card active" onclick="openRegion('القصيم',true)"><span>🌴</span><strong>منطقة القصيم</strong><small>تصفح الجهات المتاحة</small><b>استكشف الدليل ←</b></button>
-   <button class="region-card" onclick="openRegion('مكة المكرمة')"><span>🕋</span><strong>منطقة مكة المكرمة</strong><small>الدليل قيد التجهيز في منطقتكم</small><b>ترقّبونا قريبًا</b></button>
-   <button class="region-card" onclick="openRegion('المدينة المنورة')"><span>🌿</span><strong>منطقة المدينة المنورة</strong><small>الدليل قيد التجهيز في منطقتكم</small><b>ترقّبونا قريبًا</b></button>
-   <button class="region-card" onclick="openRegion('المنطقة الشرقية')"><span>🌊</span><strong>المنطقة الشرقية</strong><small>الدليل قيد التجهيز في منطقتكم</small><b>ترقّبونا قريبًا</b></button>
-   <button class="region-card" onclick="openRegion('عسير')"><span>⛰️</span><strong>منطقة عسير</strong><small>الدليل قيد التجهيز في منطقتكم</small><b>ترقّبونا قريبًا</b></button>
-   <button class="region-card" onclick="openRegion('تبوك')"><span>🏜️</span><strong>منطقة تبوك</strong><small>الدليل قيد التجهيز في منطقتكم</small><b>ترقّبونا قريبًا</b></button>
-   <button class="region-card" onclick="openRegion('حائل')"><span>🌾</span><strong>منطقة حائل</strong><small>الدليل قيد التجهيز في منطقتكم</small><b>ترقّبونا قريبًا</b></button>
-   <button class="region-card" onclick="openRegion('الحدود الشمالية')"><span>❄️</span><strong>منطقة الحدود الشمالية</strong><small>الدليل قيد التجهيز في منطقتكم</small><b>ترقّبونا قريبًا</b></button>
-   <button class="region-card" onclick="openRegion('جازان')"><span>🌴</span><strong>منطقة جازان</strong><small>الدليل قيد التجهيز في منطقتكم</small><b>ترقّبونا قريبًا</b></button>
-   <button class="region-card" onclick="openRegion('نجران')"><span>🌵</span><strong>منطقة نجران</strong><small>الدليل قيد التجهيز في منطقتكم</small><b>ترقّبونا قريبًا</b></button>
-   <button class="region-card" onclick="openRegion('الباحة')"><span>🌳</span><strong>منطقة الباحة</strong><small>الدليل قيد التجهيز في منطقتكم</small><b>ترقّبونا قريبًا</b></button>
-   <button class="region-card" onclick="openRegion('الجوف')"><span>🌱</span><strong>منطقة الجوف</strong><small>الدليل قيد التجهيز في منطقتكم</small><b>ترقّبونا قريبًا</b></button>
-  </div>
+  <div class="region-grid" id="regionGrid"></div>
  </div>
 </section>
 
@@ -225,7 +211,7 @@ a[href*="/cart"], a[href*="cart.html"], a[aria-label*="cart" i], button[aria-lab
   <div class="section-head"><div class="section-kicker">دليل باونتي</div><h2 class="section-title">اكتشف الدليل</h2><p class="section-desc">ابحث بين الجهات والمنتجات، وصفِّ النتائج حسب نوع النشاط والمنطقة.</p></div>
   <div class="directory-tools">
    <input id="directorySearch" type="search" placeholder="اسم منتج، متجر، كيتو..." oninput="renderListings()">
-   <select id="regionFilter" onchange="renderListings()"><option value="">كل المناطق</option><option>الرياض</option><option>القصيم</option></select>
+   <select id="regionFilter" onchange="renderListings()"><option value="">كل المناطق</option></select>
    <select id="typeFilter" onchange="renderListings()"><option value="">كل التصنيفات</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option></select>
    <button class="reset" onclick="clearSearch()">مسح البحث</button>
   </div>
@@ -268,7 +254,7 @@ a[href*="/cart"], a[href*="cart.html"], a[aria-label*="cart" i], button[aria-lab
 <div class="modal" id="listingModal"><div class="modal-box"><div class="modal-head"><h3 id="listingTitle"></h3><button class="close" onclick="closeListing()">✕</button></div><div id="listingDetails" style="color:var(--muted);padding-top:12px"></div></div></div>
 <div class="modal" id="addActivity"><div class="modal-box">
  <div class="modal-head"><h3>إضافة نشاط إلى دليل باونتي</h3><button class="close" onclick="closeAddActivity()">✕</button></div>
- <p class="form-hint">أدخل بيانات نشاطك، وستتم إضافته إلى الدليل بعد الإرسال.</p>
+ <p class="form-hint">أدخل بيانات نشاطك، وسيظهر في دليل المنطقة التي تختارها بعد الإرسال.</p>
  <form id="activityForm" onsubmit="submitActivity(event)">
   <div class="form-grid">
    <div class="form-field"><label for="activityName">اسم النشاط *</label><input id="activityName" name="name" required minlength="2" maxlength="120" placeholder="اسم المتجر أو النشاط"></div>
@@ -291,27 +277,49 @@ a[href*="/cart"], a[href*="cart.html"], a[aria-label*="cart" i], button[aria-lab
 const SUPABASE_URL='https://ikwmjhedttsnutkvdjmu.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_359DzNNCBvFtFp3HaLZmBA_JQ9DFt5L';
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
-let listings=[
+const seedListings=[
  {id:1,name:"متجر حلزونة الإلكتروني",type:"متاجر",region:"الرياض",desc:"متجر إلكتروني متخصص في المنتجات الطبيعية، ويوفر الدقيق والمنتجات الغذائية والمكملات ومنتجات العناية الشخصية.",tags:"منتجات طبيعية دقيق أغذية مكملات كيتو",emoji:"🐌",phone:"0506517579",address:"متجر إلكتروني"},
  {id:2,name:"معصرة السيف رويال",type:"متاجر",region:"الرياض",desc:"زيوت طبيعية خام، معصورة على البارد، مع معلومات عن المنتج وطريقة استخراجه.",tags:"زيت زيتون زيوت طبيعية عصرة باردة",emoji:"🫒",phone:"0501006340",address:"الرياض، الدائري الشرقي، مخرج 10"}
 ];
+let listings=[...seedListings];
+
+const REGIONS=[
+ {name:'الرياض',emoji:'🏙️'},{name:'القصيم',emoji:'🌴'},
+ {name:'مكة المكرمة',emoji:'🕋'},{name:'المدينة المنورة',emoji:'🌿'},
+ {name:'المنطقة الشرقية',emoji:'🌊'},{name:'عسير',emoji:'⛰️'},
+ {name:'تبوك',emoji:'🏜️'},{name:'حائل',emoji:'🌾'},
+ {name:'الحدود الشمالية',emoji:'❄️'},{name:'جازان',emoji:'🌴'},
+ {name:'نجران',emoji:'🌵'},{name:'الباحة',emoji:'🌳'},{name:'الجوف',emoji:'🌱'}
+];
+function setupRegions(){
+ const filter=document.getElementById('regionFilter');
+ REGIONS.forEach(r=>filter.add(new Option(r.name,r.name)));
+ renderRegionCards();
+}
+function renderRegionCards(){
+ const grid=document.getElementById('regionGrid');
+ if(!grid)return;
+ grid.innerHTML=REGIONS.map(r=>{
+  const count=listings.filter(x=>x.region===r.name).length;
+  const subtitle=count?`يوجد ${count} جهة في الدليل`:'لا توجد أنشطة مضافة بعد';
+  const action=count?'استكشف الدليل ←':'أضف أول نشاط ←';
+  return `<button class="region-card ${count?'active':''}" onclick="openRegion('${r.name}',true)">
+   <span>${r.emoji}</span><strong>منطقة ${r.name}</strong>
+   <small>${subtitle}</small><b>${action}</b>
+  </button>`;
+ }).join('');
+}
 const articles=[
  {title:"ما هو نظام الكيتو؟ وما المنتجات التي يبحث عنها متبعوه؟",text:"نظام الكيتو نمط غذائي يعتمد على تقليل الكربوهيدرات بدرجة كبيرة وزيادة الاعتماد على الدهون، مع تناول كمية مناسبة من البروتين. عند البحث عن منتجات تناسب هذا النمط، من المهم قراءة الملصق الغذائي والتحقق من كمية الكربوهيدرات في الحصة الواحدة، والانتباه إلى أحجام الحصص والمكونات. لا يعني وصف المنتج بأنه «كيتو» أنه مناسب للجميع؛ فاختيار النظام الغذائي يعتمد على الحالة الصحية والاحتياجات الفردية، ومن الأفضل استشارة مختص قبل البدء."},
  {title:"كيف تقرأ بطاقة المنتج الغذائي؟",text:"ابدأ بحجم الحصة، ثم راجع السعرات والمكونات والعناصر الغذائية. اقرأ قائمة المكونات بترتيب تنازلي حسب الوزن، وانتبه للسكريات المضافة ومعلومات الحساسية. قارن المنتجات على أساس حجم الحصة نفسه، ولا تعتمد على الواجهة الأمامية للعبوة وحدها."},
  {title:"من أين أبدأ عند اختيار زيت الزيتون؟",text:"اقرأ بيانات العبوة وتاريخ الإنتاج وبلد المنشأ وطريقة الحفظ. احفظ الزيت بعيداً عن الضوء والحرارة، وتحقق من سلامة العبوة ومصدرها. قد تختلف الجودة والخصائص بين المنتجات، لذلك تساعدك المعلومات الواضحة على المقارنة."}
 ];
-function openRegion(name,isAvailable=false){
- if(isAvailable){
-  document.getElementById('regionFilter').value=name;
-  document.getElementById('directorySearch').value='';
-  document.getElementById('typeFilter').value='';
-  renderListings();
-  document.getElementById('directory').scrollIntoView({behavior:'smooth'});
-  return;
- }
- document.getElementById('regionModalTitle').textContent=`منطقة ${name}`;
- document.getElementById('regionModalText').textContent=`نعمل حاليًا على تجهيز دليل باونتي في ${name}. ترقّبونا قريبًا لاكتشاف المزيد من الخيارات والجهات الصحية في منطقتكم.`;
- document.getElementById('regionModal').classList.add('open');
+function openRegion(name,isAvailable=true){
+ document.getElementById('regionFilter').value=name;
+ document.getElementById('directorySearch').value='';
+ document.getElementById('typeFilter').value='';
+ renderListings();
+ document.getElementById('directory').scrollIntoView({behavior:'smooth'});
 }
 function escapeHTML(value){
  return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -322,6 +330,7 @@ function renderListings(){
  const type=document.getElementById('typeFilter').value;
  const rows=listings.filter(x=>(!q||(x.name+x.desc+x.tags+x.type+x.region+(x.address||'')).toLowerCase().includes(q))&&(!region||x.region===region)&&(!type||x.type===type));
  document.getElementById('resultCount').textContent=`${rows.length} جهة في الدليل`;
+  renderRegionCards();
  document.getElementById('listingGrid').innerHTML=rows.length?rows.map(x=>`<article class="listing"><div class="listing-art">${escapeHTML(x.emoji||'🌿')}</div><div class="listing-body"><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.desc)}</p><div class="listing-meta"><span>📍 ${escapeHTML(x.region)}</span><span>▣ ${escapeHTML(x.type)}</span></div><button class="detail-btn" onclick="showListing('${escapeHTML(x.id)}')">عرض التفاصيل ←</button></div></article>`).join(''):'<div class="empty">لم نعثر على نتيجة مطابقة حالياً. جرّب كلمة أخرى أو تصفح التصنيفات.</div>';
 }
 async function loadActivities(){
@@ -329,7 +338,7 @@ async function loadActivities(){
   const {data,error}=await supabaseClient.from('activities').select('id,name,type,region,phone,address,description,tags,website,created_at').order('created_at',{ascending:false});
   if(error) throw error;
   const fromDatabase=(data||[]).map(row=>({id:'db_'+row.id,name:row.name,type:row.type,region:row.region,phone:row.phone||'',desc:row.description||'',tags:row.tags||'',website:row.website||'',address:row.address||'',emoji:'🌿'}));
-  listings=[...fromDatabase,...listings.filter(x=>!String(x.id).startsWith('db_'))];
+  listings=[...fromDatabase,...seedListings];
   renderListings();
  }catch(error){console.error('تعذر تحميل الأنشطة من Supabase:',error);}
 }
