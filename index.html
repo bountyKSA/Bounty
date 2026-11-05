@@ -110,6 +110,15 @@ footer{background:#123f34;color:#fff;padding:35px 0 18px;margin-top:65px}
 .modal-head h3{color:var(--brand);margin:0}.close{border:0;background:#edf4ef;border-radius:8px;padding:7px 11px}
 .toast{position:fixed;bottom:20px;left:20px;background:var(--brand);color:#fff;padding:12px 18px;border-radius:10px;opacity:0;transition:.2s;z-index:60}
 .toast.show{opacity:1}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-field{display:flex;flex-direction:column;gap:5px}
+.form-field.full{grid-column:1/-1}
+.form-field label{font-size:13px;font-weight:700;color:var(--ink)}
+.form-field input,.form-field select,.form-field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:#fff;color:var(--ink);outline-color:var(--brand2)}
+.form-field textarea{min-height:95px;resize:vertical}
+.form-actions{display:flex;gap:10px;align-items:center;margin-top:16px}
+.form-hint{font-size:12px;color:var(--muted);margin:10px 0 0}
+@media(max-width:580px){.form-grid{grid-template-columns:1fr}.form-field.full{grid-column:auto}}
 
 .region-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
 .region-card{border:1px solid var(--line);background:#fff;border-radius:15px;padding:17px;text-align:right;display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-height:145px;transition:.2s;color:var(--ink)}
@@ -239,7 +248,7 @@ footer{background:#123f34;color:#fff;padding:35px 0 18px;margin-top:65px}
  </div>
 </section>
 
-<div class="wrap"><div class="join"><div><h2>هل لديك نشاط أو منتج مميز؟</h2><p>انضم إلى دليل باونتي وعرّف الباحثين عن الخيارات الصحية بنشاطك.</p></div><a href="mailto:bounty.ksa@outlook.com?subject=طلب%20إضافة%20نشاط%20إلى%20باونتي">أضف نشاطك</a></div></div>
+<div class="wrap"><div class="join"><div><h2>هل لديك نشاط أو منتج مميز؟</h2><p>انضم إلى دليل باونتي وعرّف الباحثين عن الخيارات الصحية بنشاطك.</p></div><a href="#addActivity" onclick="openAddActivity(event)">أضف نشاطك</a></div></div>
 </main>
 
 <footer>
@@ -253,10 +262,31 @@ footer{background:#123f34;color:#fff;padding:35px 0 18px;margin-top:65px}
 <div class="modal" id="regionModal"><div class="modal-box" style="text-align:center"><div style="font-size:48px">🌿</div><h3 id="regionModalTitle" style="color:var(--brand);margin:5px 0 8px"></h3><p id="regionModalText" style="color:var(--muted);margin:0 0 18px"></p><button class="search-button" onclick="document.getElementById('regionModal').classList.remove('open')">بانتظاركم قريبًا</button></div></div>
 <div class="modal" id="articleModal"><div class="modal-box"><div class="modal-head"><h3 id="articleTitle"></h3><button class="close" onclick="closeArticle()">✕</button></div><div id="articleText" style="color:var(--muted);padding-top:12px"></div><p class="search-note">المحتوى توعوي عام ولا يُعد بديلاً عن استشارة مختص، خصوصاً عند اتباع نظام غذائي علاجي أو وجود حالة صحية.</p></div></div>
 <div class="modal" id="listingModal"><div class="modal-box"><div class="modal-head"><h3 id="listingTitle"></h3><button class="close" onclick="closeListing()">✕</button></div><div id="listingDetails" style="color:var(--muted);padding-top:12px"></div></div></div>
+<div class="modal" id="addActivity"><div class="modal-box">
+ <div class="modal-head"><h3>إضافة نشاط إلى دليل باونتي</h3><button class="close" onclick="closeAddActivity()">✕</button></div>
+ <p class="form-hint">أدخل بيانات نشاطك، وستتم إضافته إلى الدليل بعد الإرسال.</p>
+ <form id="activityForm" onsubmit="submitActivity(event)">
+  <div class="form-grid">
+   <div class="form-field"><label for="activityName">اسم النشاط *</label><input id="activityName" name="name" required minlength="2" maxlength="120" placeholder="اسم المتجر أو النشاط"></div>
+   <div class="form-field"><label for="activityType">نوع النشاط *</label><select id="activityType" name="type" required><option value="">اختر التصنيف</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option></select></div>
+   <div class="form-field"><label for="activityRegion">المنطقة *</label><select id="activityRegion" name="region" required><option value="">اختر المنطقة</option><option>الرياض</option><option>القصيم</option><option>مكة المكرمة</option><option>المدينة المنورة</option><option>المنطقة الشرقية</option><option>عسير</option><option>تبوك</option><option>حائل</option><option>الحدود الشمالية</option><option>جازان</option><option>نجران</option><option>الباحة</option><option>الجوف</option></select></div>
+   <div class="form-field"><label for="activityPhone">رقم التواصل</label><input id="activityPhone" name="phone" type="tel" maxlength="30" placeholder="05xxxxxxxx"></div>
+   <div class="form-field full"><label for="activityDescription">وصف النشاط *</label><textarea id="activityDescription" name="description" required minlength="5" maxlength="700" placeholder="اكتب وصفًا مختصرًا للنشاط والخدمات أو المنتجات..."></textarea></div>
+   <div class="form-field"><label for="activityTags">كلمات مفتاحية</label><input id="activityTags" name="tags" maxlength="250" placeholder="مثال: منتجات طبيعية، كيتو"></div>
+   <div class="form-field"><label for="activityWebsite">الموقع الإلكتروني أو رابط التواصل</label><input id="activityWebsite" name="website" type="url" maxlength="300" placeholder="https://"></div>
+  </div>
+  <div class="form-actions"><button class="search-button" id="activitySubmit" type="submit">إرسال النشاط</button><button class="reset" type="button" onclick="closeAddActivity()">إلغاء</button></div>
+  <p class="form-hint">إرسال البيانات يعني موافقتك على عرض بيانات النشاط في دليل باونتي.</p>
+ </form>
+</div></div>
 <div class="toast" id="toast"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const listings=[
+const SUPABASE_URL='https://ikwmjhedttsnutkvdjmu.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_359DzNNCBvFtFp3HaLZmBA_JQ9DFt5L';
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+let listings=[
  {id:1,name:"متجر حلزونة الإلكتروني",type:"متاجر",region:"الرياض",desc:"متجر إلكتروني متخصص في المنتجات الطبيعية، ويوفر الدقيق والمنتجات الغذائية والمكملات ومنتجات العناية الشخصية.",tags:"منتجات طبيعية دقيق أغذية مكملات كيتو",emoji:"🐌",phone:"0506517579",address:"متجر إلكتروني"},
  {id:2,name:"معصرة السيف رويال",type:"متاجر",region:"الرياض",desc:"زيوت طبيعية خام، معصورة على البارد، مع معلومات عن المنتج وطريقة استخراجه.",tags:"زيت زيتون زيوت طبيعية عصرة باردة",emoji:"🫒",phone:"0501006340",address:"الرياض، الدائري الشرقي، مخرج 10"}
 ];
@@ -278,13 +308,44 @@ function openRegion(name,isAvailable=false){
  document.getElementById('regionModalText').textContent=`نعمل حاليًا على تجهيز دليل باونتي في ${name}. ترقّبونا قريبًا لاكتشاف المزيد من الخيارات والجهات الصحية في منطقتكم.`;
  document.getElementById('regionModal').classList.add('open');
 }
+function escapeHTML(value){
+ return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
 function renderListings(){
  const q=document.getElementById('directorySearch').value.trim().toLowerCase();
  const region=document.getElementById('regionFilter').value;
  const type=document.getElementById('typeFilter').value;
  const rows=listings.filter(x=>(!q||(x.name+x.desc+x.tags+x.type+x.region).toLowerCase().includes(q))&&(!region||x.region===region)&&(!type||x.type===type));
  document.getElementById('resultCount').textContent=`${rows.length} جهة في الدليل`;
- document.getElementById('listingGrid').innerHTML=rows.length?rows.map(x=>`<article class="listing"><div class="listing-art">${x.emoji}</div><div class="listing-body"><h3>${x.name}</h3><p>${x.desc}</p><div class="listing-meta"><span>📍 ${x.region}</span><span>▣ ${x.type}</span></div><button class="detail-btn" onclick="showListing(${x.id})">عرض التفاصيل ←</button></div></article>`).join(''):'<div class="empty">لم نعثر على نتيجة مطابقة حالياً. جرّب كلمة أخرى أو تصفح التصنيفات.</div>';
+ document.getElementById('listingGrid').innerHTML=rows.length?rows.map(x=>`<article class="listing"><div class="listing-art">${escapeHTML(x.emoji||'🌿')}</div><div class="listing-body"><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.desc)}</p><div class="listing-meta"><span>📍 ${escapeHTML(x.region)}</span><span>▣ ${escapeHTML(x.type)}</span></div><button class="detail-btn" onclick="showListing('${escapeHTML(x.id)}')">عرض التفاصيل ←</button></div></article>`).join(''):'<div class="empty">لم نعثر على نتيجة مطابقة حالياً. جرّب كلمة أخرى أو تصفح التصنيفات.</div>';
+}
+async function loadActivities(){
+ try{
+  const {data,error}=await supabaseClient.from('activities').select('id,name,type,region,phone,description,tags,website,created_at').order('created_at',{ascending:false});
+  if(error) throw error;
+  const fromDatabase=(data||[]).map(row=>({id:'db_'+row.id,name:row.name,type:row.type,region:row.region,phone:row.phone||'',desc:row.description||'',tags:row.tags||'',website:row.website||'',address:row.website||'—',emoji:'🌿'}));
+  listings=[...fromDatabase,...listings.filter(x=>!String(x.id).startsWith('db_'))];
+  renderListings();
+ }catch(error){console.error('تعذر تحميل الأنشطة من Supabase:',error);}
+}
+function openAddActivity(event){if(event)event.preventDefault();document.getElementById('addActivity').classList.add('open');}
+function closeAddActivity(){document.getElementById('addActivity').classList.remove('open');}
+async function submitActivity(event){
+ event.preventDefault();
+ const form=document.getElementById('activityForm');
+ const button=document.getElementById('activitySubmit');
+ const values=Object.fromEntries(new FormData(form).entries());
+ const payload={name:values.name.trim(),type:values.type,region:values.region,phone:values.phone.trim()||null,description:values.description.trim(),tags:values.tags.trim()||null,website:values.website.trim()||null};
+ button.disabled=true;button.textContent='جارٍ الإرسال...';
+ try{
+  const {error}=await supabaseClient.from('activities').insert(payload);
+  if(error) throw error;
+  form.reset();closeAddActivity();toast('تم إرسال نشاطك بنجاح 🌿');
+  await loadActivities();
+ }catch(error){
+  console.error('تعذر إرسال النشاط:',error);
+  toast(error.message||'تعذر الإرسال. تحقّق من إعدادات قاعدة البيانات.');
+ }finally{button.disabled=false;button.textContent='إرسال النشاط';}
 }
 function searchAll(){document.getElementById('directorySearch').value=document.getElementById('mainSearch').value;document.getElementById('regionFilter').value='';document.getElementById('typeFilter').value='';renderListings();document.getElementById('directory').scrollIntoView({behavior:'smooth'});}
 function searchTerm(term){document.getElementById('mainSearch').value=term;searchAll();}
@@ -292,11 +353,12 @@ function categorySearch(term){document.getElementById('mainSearch').value=term;d
 function clearSearch(){document.getElementById('mainSearch').value='';document.getElementById('directorySearch').value='';document.getElementById('regionFilter').value='';document.getElementById('typeFilter').value='';renderListings();}
 function readArticle(i){document.getElementById('articleTitle').textContent=articles[i].title;document.getElementById('articleText').textContent=articles[i].text;document.getElementById('articleModal').classList.add('open');}
 function closeArticle(){document.getElementById('articleModal').classList.remove('open');}
-function showListing(id){const x=listings.find(v=>v.id===id);document.getElementById('listingTitle').textContent=x.name;document.getElementById('listingDetails').innerHTML=`<p>${x.desc}</p><p><b>التصنيف:</b> ${x.type}</p><p><b>المنطقة:</b> ${x.region}</p><p><b>الموقع:</b> ${x.address}</p><p><b>التواصل:</b> <a style="color:var(--brand)" href="tel:${x.phone}">${x.phone}</a></p>`;document.getElementById('listingModal').classList.add('open');}
+function showListing(id){const x=listings.find(v=>String(v.id)===String(id));if(!x)return;document.getElementById('listingTitle').textContent=x.name;const phone=x.phone?`<p><b>التواصل:</b> <a style="color:var(--brand)" href="tel:${escapeHTML(x.phone)}">${escapeHTML(x.phone)}</a></p>`:'';const website=x.website?`<p><b>الرابط:</b> <a style="color:var(--brand)" href="${escapeHTML(x.website)}" target="_blank" rel="noopener">زيارة الرابط</a></p>`:'';document.getElementById('listingDetails').innerHTML=`<p>${escapeHTML(x.desc)}</p><p><b>التصنيف:</b> ${escapeHTML(x.type)}</p><p><b>المنطقة:</b> ${escapeHTML(x.region)}</p>${x.address?`<p><b>الموقع:</b> ${escapeHTML(x.address)}</p>`:''}${phone}${website}`;document.getElementById('listingModal').classList.add('open');}
 function closeListing(){document.getElementById('listingModal').classList.remove('open');}
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500);}
 document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}));
 renderListings();
+loadActivities();
 </script>
 </body>
 </html>
