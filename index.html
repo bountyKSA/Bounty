@@ -1,139 +1,302 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#294b38">
-<title>BOUNTY | باونتي</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#08745d">
+<meta name="description" content="باونتي دليلك للحياة الصحية. ابحث عن المنتجات والجهات والخيارات الصحية في مكان واحد.">
+<title>باونتي | دليلك للحياة الصحية</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
-:root{--green:#294b38;--green2:#426b50;--sage:#e8eee5;--cream:#faf9f4;--gold:#c99d4b;--ink:#29372e;--muted:#748077;--line:#e5e8df;--white:#fff;--shadow:0 14px 38px #243d2b12}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:88px}body{margin:0;background:var(--cream);color:var(--ink);font-family:'IBM Plex Sans Arabic',Arial,sans-serif;line-height:1.75}a{text-decoration:none;color:inherit}button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{width:min(1160px,92%);margin:auto}
-header{position:sticky;top:0;z-index:20;background:#faf9f4ed;backdrop-filter:blur(13px);border-bottom:1px solid var(--line)}.nav{height:96px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:9px;font-size:25px;font-weight:700;color:var(--green);white-space:nowrap}.brand-icon{width:42px;height:42px;border-radius:13px;background:var(--green);color:white;display:grid;place-items:center;font-size:22px}.brand-logo{width:220px;height:94px;object-fit:contain;object-position:right center;display:block;flex:0 0 auto}nav{display:flex;align-items:center;gap:17px;font-size:13px;color:#59675d}nav a:hover{color:var(--gold)}.nav-tools{display:flex;gap:8px;align-items:center}.cart-btn,.menu-btn{border:1px solid var(--line);background:white;border-radius:10px;padding:8px 12px;color:var(--green)}.menu-btn{display:none}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:0;border-radius:10px;padding:11px 19px;font-weight:700;cursor:pointer;transition:.2s}.btn:hover{transform:translateY(-2px)}.primary{background:var(--green);color:white}.soft{background:transparent;border:1px solid #c8d4c8;color:var(--green)}.gold{background:#e9d7aa;color:var(--green)}
-.hero{padding:70px 0 66px;background:linear-gradient(115deg,#f2f3e9,#e6eee3);overflow:hidden}.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}.kicker{font-size:14px;color:var(--green2);font-weight:700}.hero h1{font-size:clamp(40px,5vw,62px);line-height:1.2;color:var(--green);margin:12px 0 18px}.hero h1 span{color:#b58b43}.hero p{font-size:17px;color:#68766c;max-width:560px;margin:0 0 24px}.hero-actions{display:flex;gap:10px;flex-wrap:wrap}.hero-picture{height:340px;border-radius:28px;background:linear-gradient(140deg,#dce8d8,#f0e7d2);display:grid;place-items:center;position:relative}.hero-picture:before{content:"";position:absolute;width:250px;height:250px;border-radius:50%;background:#fff9;border:1px solid white}.hero-fruit{font-size:112px;position:relative;filter:drop-shadow(0 14px 12px #263c2930)}.float{position:absolute;background:white;border-radius:12px;padding:10px 15px;box-shadow:var(--shadow);font-size:13px;color:var(--green);font-weight:700}.float.top{top:22px;right:22px}.float.bottom{bottom:22px;left:22px}
-.search-area{margin-top:-25px;position:relative;z-index:2}.search-panel{display:grid;grid-template-columns:1.6fr 1fr 1fr auto;gap:9px;padding:14px;background:white;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.search-panel input,.search-panel select{width:100%;min-width:0;border:1px solid #e8ebe5;border-radius:9px;padding:12px;background:#fafbf8;outline-color:#a1b99f}
-section{padding:70px 0}.section-kicker{font-size:13px;color:#a17b36;font-weight:700}.section-title{font-size:32px;color:var(--green);margin:4px 0}.section-desc{color:var(--muted);margin:0}.section-head{margin-bottom:27px}.category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.category{background:white;border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;transition:.2s}.category:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.cat-art{height:135px;display:grid;place-items:center;font-size:60px;background:linear-gradient(135deg,#e4eddf,#f0e8d7)}.category:nth-child(3n+2) .cat-art{background:linear-gradient(135deg,#eee8d9,#e3eee8)}.cat-copy{padding:16px 18px}.cat-copy h3{color:var(--green);margin:0 0 3px;font-size:19px}.cat-copy p{font-size:13px;color:var(--muted);margin:0}
-.region-section{background:#f0f2e9}.region-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.region-card{background:#e3ebdf;border-radius:18px;padding:25px;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:205px}.region-card:nth-child(2){background:#eee8d9}.region-card h3{font-size:27px;color:var(--green);margin:0}.region-card h4{font-size:15px;color:#647267;margin:2px 0 10px}.region-card p{font-size:13px;color:#7a857c;margin:0 0 12px}.region-emoji{font-size:75px}
-.listing-tools{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:9px;margin-bottom:16px}.listing-tools input,.listing-tools select{min-width:0;width:100%;padding:10px;border:1px solid var(--line);background:white;border-radius:9px}.listing-layout{display:grid;grid-template-columns:245px 1fr;gap:18px}.filter-panel{background:white;border:1px solid var(--line);border-radius:14px;padding:17px;height:max-content}.filter-panel h3{margin:0 0 12px;color:var(--green)}.filter-group{border-top:1px solid var(--line);padding:12px 0}.filter-group label{display:block;font-size:13px;color:#5c6b60;margin:5px 0}.filter-group input[type=checkbox]{accent-color:var(--green);margin-left:6px}.filter-group input[type=range]{width:100%;accent-color:var(--green)}.clear{border:0;background:#f1f4ef;color:var(--green);border-radius:8px;padding:8px 12px;width:100%;font-weight:700}.results-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;color:var(--muted);font-size:13px}.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.listing{background:white;border:1px solid var(--line);border-radius:15px;overflow:hidden;transition:.2s}.listing:hover{box-shadow:var(--shadow);transform:translateY(-3px)}.listing-image{height:142px;background:linear-gradient(135deg,#e5eddf,#f1e8d7);display:grid;place-items:center;font-size:62px;position:relative}.listing-image .type{position:absolute;right:11px;top:10px;background:#fff;border-radius:20px;padding:4px 9px;font-size:11px;color:var(--green);font-weight:700}.listing-body{padding:15px}.listing-body h3{font-size:18px;color:var(--green);margin:0}.listing-body p{font-size:13px;color:var(--muted);margin:5px 0 12px;min-height:45px}.listing-meta{display:flex;flex-wrap:wrap;gap:10px;color:#718075;font-size:11px;border-top:1px solid var(--line);padding-top:10px}.listing-actions{display:flex;justify-content:space-between;align-items:center;margin-top:12px}.detail-link{border:0;background:none;color:var(--green2);font-weight:700}.price{color:#a27a35;font-size:12px}.no-results{grid-column:1/-1;text-align:center;padding:35px;background:white;border-radius:14px;color:var(--muted)}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.step{background:white;border:1px solid var(--line);border-radius:14px;padding:20px}.step b{color:#b58a3e}.step h3{color:var(--green);margin:8px 0 4px}.step p{font-size:13px;color:var(--muted);margin:0}
-.trust-section{background:#f0f2e9}.trust-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:35px;align-items:center}.trust-visual{min-height:255px;border-radius:18px;background:linear-gradient(135deg,#dce8d9,#eee7d6);display:grid;place-items:center;font-size:100px}.trust-copy h2{font-size:30px;color:var(--green);margin:4px 0}.trust-copy p{color:var(--muted)}.criteria{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:20px 0}.criterion{background:#fff;border-radius:12px;padding:15px}.criterion b{color:var(--green)}.criterion p{font-size:12px;margin:4px 0 0}
-.page-section{border-top:1px solid var(--line)}.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}.about-card{background:#e8eee5;border-radius:17px;padding:27px}.about-card .big{font-size:62px}.about-card h3{color:var(--green);margin:0}.about-card p{font-size:13px;color:var(--muted)}
-.faq{max-width:850px}.faq details{background:white;border:1px solid var(--line);padding:15px 18px;border-radius:11px;margin:10px 0}.faq summary{cursor:pointer;color:var(--green);font-weight:700}.faq details p{font-size:13px;color:var(--muted);margin-bottom:0}
-.join{background:var(--green);color:white;border-radius:18px;padding:35px;display:flex;align-items:center;justify-content:space-between;gap:20px}.join h2{margin:0;font-size:27px}.join p{color:#d3dfd4;margin:4px 0 0}
-.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:22px}.contact-info,.contact-form{background:white;border:1px solid var(--line);border-radius:15px;padding:22px}.contact-info h3,.contact-form h3{color:var(--green);margin-top:0}.contact-info p{color:var(--muted);font-size:14px}.contact-form label,.business-form label{display:grid;gap:5px;font-size:13px;color:#536257}.contact-form input,.contact-form textarea,.business-form input,.business-form textarea,.business-form select{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;background:#fbfcfa}.contact-form textarea,.business-form textarea{min-height:95px}.contact-form form{display:grid;gap:12px}.consent{display:flex!important;grid-template-columns:auto 1fr;align-items:start;gap:8px!important}
-footer{background:#203a2c;color:white;padding:42px 0 18px;margin-top:65px}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:28px}.footer-grid h3{margin:0 0 8px}.footer-grid h4{margin:0 0 9px}.footer-grid p,.footer-grid a{color:#bdcbbf;font-size:13px}.footer-grid a{display:block;margin:6px 0}.newsletter{display:flex;gap:7px;margin-top:10px}.newsletter input{width:100%;min-width:0;border:0;border-radius:8px;padding:9px}.newsletter button{border:0;background:#e9d7aa;color:var(--green);border-radius:8px;padding:8px 12px}.copyright{border-top:1px solid #ffffff24;margin-top:25px;padding-top:14px;color:#b4c3b7;font-size:12px}
-.modal,.drawer-back{display:none;position:fixed;inset:0;background:#11251bd1;z-index:40;place-items:center;padding:16px}.modal.open,.drawer-back.open{display:grid}.modal-box{background:white;width:min(620px,100%);max-height:90vh;overflow:auto;padding:24px;border-radius:17px}.modal-head{display:flex;justify-content:space-between;align-items:center}.modal-head h3{color:var(--green);margin:0}.close{border:0;background:#edf1eb;border-radius:8px;padding:7px 11px}.business-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}.business-form .full{grid-column:1/-1}.hint{font-size:12px;color:var(--muted)}.drawer-back{place-items:stretch end;padding:0}.drawer{background:white;width:min(390px,90vw);height:100%;padding:23px;box-shadow:var(--shadow)}.drawer h3{color:var(--green)}.empty-cart{text-align:center;padding:65px 10px;color:var(--muted)}.toast{position:fixed;bottom:20px;left:20px;background:var(--green);color:white;padding:12px 18px;border-radius:10px;opacity:0;transition:.25s;z-index:60}.toast.show{opacity:1}
-@media(max-width:930px){nav{display:none}.menu-btn{display:inline-block}.hero-grid{grid-template-columns:1fr}.hero-picture{height:280px}.listing-layout{grid-template-columns:1fr}.filter-panel{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.filter-panel h3,.clear{grid-column:1/-1}.listing-tools{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.nav{height:82px}.brand{font-size:21px}.brand-logo{width:180px;height:78px}.nav-cta{display:none}.hero{padding:48px 0}.hero-picture{height:235px}.hero-fruit{font-size:85px}.search-panel,.listing-tools{grid-template-columns:1fr}.category-grid,.region-grid,.cards,.steps,.trust-grid,.about-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}.filter-panel{grid-template-columns:1fr}.criteria{grid-template-columns:1fr}.join{display:block;padding:25px}.join .btn{margin-top:15px}.business-form{grid-template-columns:1fr}.business-form .full{grid-column:auto}.section-title{font-size:27px}section{padding:52px 0}}
+:root{
+ --brand:#08745d;       /* أخضر شعار Bounty */
+ --brand2:#1d9b78;      /* أخضر الموقع في الشعار */
+ --leaf:#6b9e2e;        /* أخضر الأوراق */
+ --orange:#f3a022;      /* النقطة البرتقالية في الشعار */
+ --ink:#183c32; --muted:#697b73; --cream:#fbfcf8;
+ --pale:#eaf4ef; --line:#e1ebe5; --white:#fff;
+ --shadow:0 14px 38px rgba(8,74,57,.09);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:95px}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'IBM Plex Sans Arabic',Arial,sans-serif;line-height:1.75}
+a{text-decoration:none;color:inherit}button,input,select,textarea{font:inherit}button{cursor:pointer}
+.wrap{width:min(1160px,92%);margin:auto}
+header{position:sticky;top:0;z-index:30;background:#ffffffed;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{min-height:92px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.brand{display:flex;align-items:center;min-width:210px}
+.brand img{width:225px;height:88px;object-fit:contain;object-position:right center;display:block}
+nav{display:flex;align-items:center;gap:22px;font-size:14px;font-weight:600;color:#466258}
+nav a:hover{color:var(--brand2)}
+.nav-cta{background:var(--brand);color:#fff;border-radius:11px;padding:10px 17px;font-weight:700;white-space:nowrap}
+.menu{display:none;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;color:var(--brand)}
+.hero{padding:56px 0 62px;background:linear-gradient(135deg,#f0f7f2 0%,#f9fbf5 55%,#fff5e6 100%);position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:#dceee4;opacity:.6;top:-210px;left:-90px}
+.hero-inner{position:relative;max-width:900px;margin:auto;text-align:center}
+.eyebrow{color:var(--brand2);font-size:14px;font-weight:700;letter-spacing:.2px}
+.hero h1{font-size:clamp(34px,5vw,55px);line-height:1.3;color:var(--ink);margin:10px 0 12px}
+.hero h1 span{color:var(--brand)}
+.hero-lead{font-size:17px;color:var(--muted);max-width:690px;margin:0 auto 27px}
+.search-card{background:#fff;border:1px solid #dce9e1;border-radius:22px;padding:13px;box-shadow:0 18px 45px rgba(8,74,57,.12);max-width:850px;margin:auto}
+.search-line{display:flex;gap:10px;align-items:center}
+.search-icon{font-size:23px;color:var(--brand);padding:0 9px}
+.search-line input{border:0;outline:0;min-width:0;flex:1;padding:13px 4px;font-size:17px;color:var(--ink);background:transparent}
+.search-line input::placeholder{color:#93a39a}
+.search-button{border:0;border-radius:13px;background:var(--brand);color:#fff;font-weight:700;padding:13px 27px;white-space:nowrap}
+.search-button:hover,.nav-cta:hover{background:#075e4c}
+.search-hints{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;margin-top:16px;color:var(--muted);font-size:13px}
+.hint-chip{border:1px solid #dce9e1;background:#fff;color:var(--brand);border-radius:30px;padding:6px 13px;font-size:13px}
+.hint-chip:hover{border-color:var(--orange);background:#fffaf1}
+.search-note{font-size:12px;color:#8a9991;margin-top:11px}
+.quick-links{display:flex;justify-content:center;gap:13px;flex-wrap:wrap;margin-top:27px}
+.quick-links a{font-weight:700;color:var(--brand);padding:8px 14px;border-bottom:2px solid #d9e9df}
+.quick-links a:hover{border-color:var(--orange)}
+section{padding:68px 0}
+.section-head{margin-bottom:25px}
+.section-kicker{font-size:13px;font-weight:700;color:var(--orange)}
+.section-title{font-size:31px;line-height:1.4;color:var(--ink);margin:3px 0 5px}
+.section-desc{color:var(--muted);margin:0;max-width:760px}
+.category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.category{background:#fff;border:1px solid var(--line);border-radius:17px;padding:19px;cursor:pointer;transition:.2s;min-height:166px}
+.category:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#a8cdbb}
+.cat-icon{width:51px;height:51px;border-radius:15px;background:var(--pale);display:grid;place-items:center;font-size:27px;margin-bottom:11px}
+.category h3{margin:0 0 4px;color:var(--brand);font-size:17px}
+.category p{margin:0;color:var(--muted);font-size:12px}
+.directory{background:#f1f7f3}
+.directory-tools{display:grid;grid-template-columns:1.5fr 1fr 1fr auto;gap:9px;margin:20px 0}
+.directory-tools input,.directory-tools select{width:100%;min-width:0;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);outline-color:var(--brand2)}
+.reset{border:1px solid #cbded2;background:#fff;border-radius:10px;color:var(--brand);padding:10px 14px;font-weight:700}
+.results-meta{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:13px;margin:10px 0}
+.listing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.listing{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.listing-art{height:125px;background:linear-gradient(135deg,#e4f1e9,#fff2dd);display:grid;place-items:center;font-size:58px}
+.listing-body{padding:16px}
+.listing-body h3{margin:0;color:var(--brand);font-size:18px}
+.listing-body p{font-size:13px;color:var(--muted);margin:5px 0 12px;min-height:44px}
+.listing-meta{font-size:11px;color:#71857a;border-top:1px solid var(--line);padding-top:10px;display:flex;flex-wrap:wrap;gap:10px}
+.detail-btn{border:0;background:none;color:var(--brand);font-weight:700;padding:10px 0 0}
+.empty{grid-column:1/-1;background:#fff;padding:30px;text-align:center;color:var(--muted);border-radius:14px}
+.blog{background:#fff}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.article{border:1px solid var(--line);border-radius:17px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.article-cover{height:145px;display:grid;place-items:center;font-size:60px;background:linear-gradient(135deg,#e5f1e8,#fff0d8)}
+.article:nth-child(2) .article-cover{background:linear-gradient(135deg,#edf3df,#e2f0ec)}
+.article:nth-child(3) .article-cover{background:linear-gradient(135deg,#fff0df,#e4f1e8)}
+.article-content{padding:17px;display:flex;flex-direction:column;flex:1}
+.article-tag{font-size:11px;color:#a56d0c;font-weight:700}
+.article h3{color:var(--ink);font-size:18px;line-height:1.5;margin:6px 0}
+.article p{font-size:13px;color:var(--muted);margin:0 0 12px}
+.article button{align-self:flex-start;border:0;background:none;color:var(--brand);font-weight:700;padding:4px 0;margin-top:auto}
+.about{background:#f6f8f2}
+.about-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:25px;align-items:center}
+.about-panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px}
+.about-panel h3{color:var(--brand);margin:0 0 8px}
+.about-panel p{color:var(--muted);margin:0}
+.about-mark{background:linear-gradient(145deg,#08745d,#1d9b78);color:#fff;border-radius:18px;padding:28px;text-align:center}
+.about-mark strong{font-size:28px;display:block}
+.about-mark span{color:#eaf8ef;font-size:14px}
+.join{background:var(--brand);color:#fff;border-radius:18px;padding:30px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+.join h2{margin:0;font-size:25px}.join p{margin:4px 0 0;color:#d8eee4}
+.join a{background:var(--orange);color:#263e32;border-radius:10px;padding:11px 18px;font-weight:700;white-space:nowrap}
+footer{background:#123f34;color:#fff;padding:35px 0 18px;margin-top:65px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:25px}
+.footer-grid h3,.footer-grid h4{margin:0 0 9px}
+.footer-grid p,.footer-grid a{font-size:13px;color:#d1e3d9}
+.footer-grid a{display:block;margin:6px 0}
+.copyright{border-top:1px solid #ffffff2b;margin-top:24px;padding-top:13px;color:#c0d5ca;font-size:12px}
+.modal{display:none;position:fixed;inset:0;background:#102a22c9;z-index:50;place-items:center;padding:16px}
+.modal.open{display:grid}.modal-box{width:min(620px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:17px;padding:23px}
+.modal-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.modal-head h3{color:var(--brand);margin:0}.close{border:0;background:#edf4ef;border-radius:8px;padding:7px 11px}
+.toast{position:fixed;bottom:20px;left:20px;background:var(--brand);color:#fff;padding:12px 18px;border-radius:10px;opacity:0;transition:.2s;z-index:60}
+.toast.show{opacity:1}
+
+.region-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.region-card{border:1px solid var(--line);background:#fff;border-radius:15px;padding:17px;text-align:right;display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-height:145px;transition:.2s;color:var(--ink)}
+.region-card>span{font-size:25px;margin-bottom:3px}
+.region-card strong{font-size:15px;color:var(--brand)}
+.region-card small{font-size:11px;color:var(--muted)}
+.region-card b{font-size:12px;color:#a56d0c;margin-top:auto}
+.region-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#a8cdbb}
+.region-card.active{background:linear-gradient(145deg,#f0f8f2,#fff);border-color:#b8d7c5}
+.region-card.active b{color:var(--brand)}
+@media(max-width:900px){.region-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:580px){.region-grid{grid-template-columns:repeat(2,1fr)}.region-card{min-height:135px;padding:13px}}
+@media(max-width:900px){nav{display:none}.menu{display:block}.category-grid{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr}.listing-grid,.blog-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.nav{min-height:76px}.brand img{width:175px;height:70px}.nav-cta{display:none}.hero{padding:43px 0}.hero-lead{font-size:15px}.search-line{gap:4px}.search-line input{font-size:14px}.search-button{padding:11px 15px}.quick-links{gap:4px}.quick-links a{font-size:12px}.category-grid,.listing-grid,.blog-grid,.footer-grid{grid-template-columns:1fr}.directory-tools{grid-template-columns:1fr}.section-title{font-size:26px}section{padding:50px 0}.join{display:block}.join a{display:inline-block;margin-top:15px}}
 </style>
 </head>
 <body>
-<header><div class="wrap nav">
-<a class="brand" href="#home" aria-label="باونتي - الصفحة الرئيسية"><img class="brand-logo" src="images/logo.png" alt="شعار باونتي — دليلك للحياة الصحية"></a>
-<nav>
-<a href="#contact">تواصل معنا</a><a href="#faq">الأسئلة الشائعة</a><a href="#about">عن باونتي</a><a href="#standards">معايير باونتي</a><a href="#add">أضف نشاطك</a><a href="#directory">استكشف الدليل</a><a href="#categories">تصنيفات الدليل</a><a href="#home">الرئيسية</a>
-</nav>
-<div class="nav-tools"><button class="cart-btn" onclick="openCart()">🛒 <span id="cartCount">0</span></button><button class="menu-btn" onclick="notify('استخدمي روابط الأقسام أسفل الصفحة للتنقل')">☰</button><a class="btn primary nav-cta" href="#directory">استكشف الدليل</a></div>
-</div></header>
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="#home" aria-label="باونتي - الرئيسية"><img src="images/logo.png" alt="Bounty باونتي - دليلك للحياة الصحية"></a>
+  <nav>
+   <a href="#directory">اكتشف الدليل</a><a href="#categories">تصنيفات الدليل</a><a href="#blog">المدونة</a><a href="#about">من نحن</a>
+  </nav>
+  <a class="nav-cta" href="#directory">ابدأ البحث</a>
+  <button class="menu" onclick="document.getElementById('mobileLinks').hidden=!document.getElementById('mobileLinks').hidden">☰</button>
+ </div>
+ <div id="mobileLinks" class="wrap" hidden style="padding:0 0 14px;display:flex;gap:17px;flex-wrap:wrap;color:var(--brand);font-size:14px"><a href="#directory">اكتشف الدليل</a><a href="#categories">التصنيفات</a><a href="#blog">المدونة</a><a href="#about">من نحن</a></div>
+</header>
+
 <main id="home">
-<section class="hero"><div class="wrap hero-grid">
-<div><div class="kicker">دليلك للحياة الصحية في السعودية</div><h1>اكتشف خياراتك<br><span>الصحية</span></h1><p>باونتي يجمع المزارع والمتاجر والمخابز والمطاعم والمقاهي والأسر المنتجة في مكان واحد، ويعرض معلوماتها لتسهيل اختيارك.</p><div class="hero-actions"><a class="btn primary" href="#directory">استكشف الدليل ←</a><a class="btn soft" href="#add">أضف نشاطك</a></div></div>
-<div class="hero-picture"><span class="float top">🌱 خيارات محلية في مكان واحد</span><div class="hero-fruit">🥬🥑🍋</div><span class="float bottom">جودة • وعي • اختيار</span></div>
-</div></section>
-<div class="wrap search-area"><div class="search-panel"><input id="heroSearch" placeholder="ابحث عن نشاط أو منتج..." oninput="syncSearch(this.value)"><select id="heroRegion" onchange="syncRegion(this.value)"><option value="">كل المناطق</option><option>القصيم</option><option>الرياض</option></select><select id="heroType" onchange="syncType(this.value)"><option value="">كل الأنشطة</option><option>مزارع</option><option>متاجر</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option></select><button class="btn primary" onclick="goDirectory()">استكشف</button></div></div>
+<!-- الواجهة الرئيسية: البحث هو أول وأوضح عنصر -->
+<section class="hero">
+ <div class="wrap hero-inner">
+  <div class="eyebrow">أهلاً بك في باونتي 🌿</div>
+  <h1>وش تبحث عنه في <span>عالم الصحة؟</span></h1>
+  <p class="hero-lead">ابحث عن نظام الكيتو، منتج غذائي، متجر، مزرعة أو مكان يقدم خيارات تناسب أسلوب حياتك. اكتب ما تحتاجه وسنساعدك في اكتشافه.</p>
+  <div class="search-card">
+   <div class="search-line">
+    <span class="search-icon">⌕</span>
+    <input id="mainSearch" type="search" placeholder="مثلاً: منتجات الكيتو، خبز خالي من الجلوتين، زيت زيتون..." aria-label="ابحث في باونتي" onkeydown="if(event.key==='Enter')searchAll()">
+    <button class="search-button" onclick="searchAll()">ابحث الآن</button>
+   </div>
+  </div>
+  <div class="search-hints"><span>جرّب البحث عن:</span>
+   <button class="hint-chip" onclick="searchTerm('الكيتو')">الكيتو</button>
+   <button class="hint-chip" onclick="searchTerm('خالي من الجلوتين')">خالي من الجلوتين</button>
+   <button class="hint-chip" onclick="searchTerm('زيت الزيتون')">زيت الزيتون</button>
+   <button class="hint-chip" onclick="searchTerm('منتجات عضوية')">منتجات عضوية</button>
+   <button class="hint-chip" onclick="searchTerm('مزارع')">مزارع</button>
+  </div>
+  <div class="search-note">ابحث باسم المنتج أو نوع النظام الغذائي أو اسم المتجر أو النشاط.</div>
+  <div class="quick-links"><a href="#directory">اكتشف الدليل ←</a><a href="#categories">تصفح التصنيفات ←</a><a href="#blog">اقرأ مقالاتنا ←</a></div>
+ </div>
+</section>
 
-<section id="categories"><div class="wrap"><div class="section-head"><div class="section-kicker">تصنيفات الدليل</div><h2 class="section-title">خيارات مرتبة حسب نوع النشاط</h2><p class="section-desc">يضم باونتي مزارع ومتاجر ومخابز ومطاعم ومقاهٍ وأسرًا منتجة ومشاريع منزلية ذات طابع صحي.</p></div>
-<div class="category-grid" id="categoryGrid"></div>
-</div></section>
+<section id="categories">
+ <div class="wrap">
+  <div class="section-head"><div class="section-kicker">تصفح حسب اهتمامك</div><h2 class="section-title">تصنيفات الدليل</h2><p class="section-desc">وصل بسرعة إلى نوع المنتجات أو الجهات التي تبحث عنها.</p></div>
+  <div class="category-grid">
+   <article class="category" onclick="categorySearch('مزارع')"><div class="cat-icon">🌱</div><h3>المزارع</h3><p>منتجات زراعية ومحاصيل محلية.</p></article>
+   <article class="category" onclick="categorySearch('متاجر')"><div class="cat-icon">🛒</div><h3>متاجر الأغذية الصحية</h3><p>منتجات غذائية ومكونات متنوعة.</p></article>
+   <article class="category" onclick="categorySearch('مخابز')"><div class="cat-icon">🥖</div><h3>المخابز</h3><p>مخبوزات وخيارات تناسب تفضيلات مختلفة.</p></article>
+   <article class="category" onclick="categorySearch('مطاعم ومقاهٍ')"><div class="cat-icon">🥗</div><h3>المطاعم والمقاهي</h3><p>أماكن تقدم أطباقاً ومشروبات متنوعة.</p></article>
+   <article class="category" onclick="categorySearch('أسر منتجة')"><div class="cat-icon">🧺</div><h3>الأسر المنتجة</h3><p>منتجات ومشاريع محلية منزلية.</p></article>
+   <article class="category" onclick="categorySearch('مكملات غذائية')"><div class="cat-icon">🍃</div><h3>المكملات الغذائية</h3><p>متاجر ومنتجات المكملات الغذائية.</p></article>
+   <article class="category" onclick="categorySearch('علاج طبيعي')"><div class="cat-icon">🧘</div><h3>مراكز العلاج الطبيعي</h3><p>مراكز التأهيل والعناية الحركية.</p></article>
+   <article class="category" onclick="categorySearch('رياضة')"><div class="cat-icon">🏃</div><h3>الأندية والمراكز الرياضية</h3><p>أماكن الحركة واللياقة البدنية.</p></article>
+  </div>
+ </div>
+</section>
 
-<section class="region-section" id="regions"><div class="wrap"><div class="section-head"><div class="section-kicker">استكشف حسب المنطقة</div><h2 class="section-title">القصيم والرياض</h2><p class="section-desc">نبدأ بالقصيم والرياض، ونتوسع تدريجيًا إلى بقية مناطق المملكة.</p></div>
-<div class="region-grid">
-<div class="region-card"><div><h3>القصيم</h3><h4>مزارع ونخيل وإنتاج محلي</h4><p>اكتشف المزارع والأسر المنتجة وطابع منتجاتها المحلية.</p><button class="btn primary" onclick="setRegion('القصيم')">استكشف القصيم ←</button></div><span class="region-emoji">🌴</span></div>
-<div class="region-card"><div><h3>الرياض</h3><h4>متاجر ومقاهٍ ومطاعم معاصرة</h4><p>تعرف على المتاجر والمقاهي والمطاعم التي تقدم خيارات صحية.</p><button class="btn primary" onclick="setRegion('الرياض')">استكشف الرياض ←</button></div><span class="region-emoji">🏙️</span></div>
-</div></div></section>
 
-<section id="directory"><div class="wrap"><div class="section-head"><div class="section-kicker">دليل الجهات الصحية</div><h2 class="section-title">استكشف الجهات والمنتجات الصحية</h2><p class="section-desc">فرز الجهات المدرجة في الدليل حسب المنطقة ونوع النشاط، مع تفاصيل مختصرة تساعدك على الاختيار والتواصل المباشر.</p></div>
-<div class="listing-tools"><input id="searchInput" placeholder="ما الذي تبحث عنه؟" oninput="renderListings()"><select id="regionFilter" onchange="renderListings()"><option value="">كل المناطق</option><option>القصيم</option><option>الرياض</option></select><select id="typeFilter" onchange="renderListings()"><option value="">كل التصنيفات</option><option>مزارع</option><option>متاجر</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option></select><select id="sortFilter" onchange="renderListings()"><option value="latest">الأحدث أولاً</option><option value="az">الاسم: أ إلى ي</option><option value="za">الاسم: ي إلى أ</option><option value="popular">الأعلى تقييماً</option><option value="random">ترتيب عشوائي</option></select></div>
-<div class="listing-layout"><aside class="filter-panel"><h3>تصفية النتائج</h3><div class="filter-group"><b>التقييم</b><label><input type="checkbox" class="rating-filter" value="5" onchange="renderListings()"> 5 نجوم</label><label><input type="checkbox" class="rating-filter" value="4" onchange="renderListings()"> 4 نجوم فأعلى</label><label><input type="checkbox" class="rating-filter" value="3" onchange="renderListings()"> 3 نجوم فأعلى</label></div><div class="filter-group"><b>نطاق البحث</b><label>المسافة (كم)</label><input id="radius" type="range" min="5" max="100" value="50" oninput="document.getElementById('radiusValue').textContent=this.value+' كم'"><small id="radiusValue">50 كم</small><p class="hint">النطاق للعرض التجريبي؛ لا يتطلب مشاركة موقعك.</p></div><div class="filter-group"><b>نوع الجهة</b><label><input type="checkbox" class="kind-check" value="مزارع" onchange="renderListings()"> مزارع</label><label><input type="checkbox" class="kind-check" value="متاجر" onchange="renderListings()"> متاجر</label><label><input type="checkbox" class="kind-check" value="مخابز" onchange="renderListings()"> مخابز</label><label><input type="checkbox" class="kind-check" value="مطاعم ومقاهٍ" onchange="renderListings()"> مطاعم ومقاهٍ</label><label><input type="checkbox" class="kind-check" value="أسر منتجة" onchange="renderListings()"> أسر منتجة</label></div><button class="clear" onclick="clearFilters()">مسح جميع الفلاتر</button></aside>
-<div><div class="results-top"><span id="resultCount">النتائج</span><span>عرض البطاقات</span></div><div class="cards" id="listingCards"></div></div></div>
-</div></section>
+<section id="regions">
+ <div class="wrap">
+  <div class="section-head">
+   <div class="section-kicker">باونتي في المملكة</div>
+   <h2 class="section-title">اكتشف الخيارات حسب المنطقة</h2>
+   <p class="section-desc">نغطي المملكة خطوة بخطوة. الدليل متاح حاليًا في الرياض والقصيم، وبقية المناطق قريبًا.</p>
+  </div>
+  <div class="region-grid">
+   <button class="region-card active" onclick="openRegion('الرياض',true)"><span>🏙️</span><strong>منطقة الرياض</strong><small>تصفح الجهات المتاحة</small><b>استكشف الدليل ←</b></button>
+   <button class="region-card active" onclick="openRegion('القصيم',true)"><span>🌴</span><strong>منطقة القصيم</strong><small>تصفح الجهات المتاحة</small><b>استكشف الدليل ←</b></button>
+   <button class="region-card" onclick="openRegion('مكة المكرمة')"><span>🕋</span><strong>منطقة مكة المكرمة</strong><small>نعمل على تجهيز الدليل</small><b>قريبًا ✨</b></button>
+   <button class="region-card" onclick="openRegion('المدينة المنورة')"><span>🌿</span><strong>منطقة المدينة المنورة</strong><small>كن بالقرب من جديدنا</small><b>ترقّبونا قريبًا</b></button>
+   <button class="region-card" onclick="openRegion('المنطقة الشرقية')"><span>🌊</span><strong>المنطقة الشرقية</strong><small>نعمل على تجهيز الدليل</small><b>قريبًا ✨</b></button>
+   <button class="region-card" onclick="openRegion('عسير')"><span>⛰️</span><strong>منطقة عسير</strong><small>خيارات صحية قادمة إليكم</small><b>ترقّبونا قريبًا</b></button>
+   <button class="region-card" onclick="openRegion('تبوك')"><span>🏜️</span><strong>منطقة تبوك</strong><small>نعمل على تجهيز الدليل</small><b>قريبًا ✨</b></button>
+   <button class="region-card" onclick="openRegion('حائل')"><span>🌾</span><strong>منطقة حائل</strong><small>كن بالقرب من جديدنا</small><b>ترقّبونا قريبًا</b></button>
+   <button class="region-card" onclick="openRegion('الحدود الشمالية')"><span>❄️</span><strong>منطقة الحدود الشمالية</strong><small>نعمل على تجهيز الدليل</small><b>قريبًا ✨</b></button>
+   <button class="region-card" onclick="openRegion('جازان')"><span>🌴</span><strong>منطقة جازان</strong><small>خيارات صحية قادمة إليكم</small><b>ترقّبونا قريبًا</b></button>
+   <button class="region-card" onclick="openRegion('نجران')"><span>🌵</span><strong>منطقة نجران</strong><small>نعمل على تجهيز الدليل</small><b>قريبًا ✨</b></button>
+   <button class="region-card" onclick="openRegion('الباحة')"><span>🌳</span><strong>منطقة الباحة</strong><small>كن بالقرب من جديدنا</small><b>ترقّبونا قريبًا</b></button>
+   <button class="region-card" onclick="openRegion('الجوف')"><span>🌱</span><strong>منطقة الجوف</strong><small>نعمل على تجهيز الدليل</small><b>قريبًا ✨</b></button>
+  </div>
+ </div>
+</section>
 
-<section><div class="wrap"><div class="section-head"><div class="section-kicker">طريقة الاستخدام</div><h2 class="section-title">ثلاث خطوات للوصول إلى الجهة المناسبة</h2></div><div class="steps">
-<div class="step"><b>01</b><h3>ابحث</h3><p>اكتب اسم الجهة أو المنتج، واختر المنطقة ونوع النشاط.</p></div>
-<div class="step"><b>02</b><h3>اطّلع على التفاصيل</h3><p>تعرّف على معلومات الجهة ونوع منتجاتها وموقعها.</p></div>
-<div class="step"><b>03</b><h3>تواصل مع الجهة</h3><p>استخدم بيانات التواصل المعروضة للتواصل المباشر معها.</p></div>
-</div></div></section>
+<section class="directory" id="directory">
+ <div class="wrap">
+  <div class="section-head"><div class="section-kicker">دليل باونتي</div><h2 class="section-title">اكتشف الدليل</h2><p class="section-desc">ابحث بين الجهات والمنتجات، وصفِّ النتائج حسب نوع النشاط والمنطقة.</p></div>
+  <div class="directory-tools">
+   <input id="directorySearch" type="search" placeholder="اسم منتج، متجر، كيتو..." oninput="renderListings()">
+   <select id="regionFilter" onchange="renderListings()"><option value="">كل المناطق</option><option>الرياض</option><option>القصيم</option></select>
+   <select id="typeFilter" onchange="renderListings()"><option value="">كل التصنيفات</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option></select>
+   <button class="reset" onclick="clearSearch()">مسح البحث</button>
+  </div>
+  <div class="results-meta"><span id="resultCount">الجهات المتاحة</span><span>اختر بطاقة لمعرفة التفاصيل</span></div>
+  <div class="listing-grid" id="listingGrid"></div>
+ </div>
+</section>
 
-<section class="trust-section" id="standards"><div class="wrap trust-grid"><div class="trust-visual">🛡️🌿</div><div class="trust-copy"><div class="section-kicker">التقييم والتحقق</div><h2>نضع الثقة قبل الاختيار</h2><p>يعرض باونتي الجهات والمنتجات المرتبطة بالحياة الصحية بمعايير واضحة تركز على جودة الغذاء وشفافية المعلومات ومصدر كل منتج، دون ادعاءات علاجية أو وعود غير مثبتة.</p><div class="criteria">
-<div class="criterion"><b>01 — مصدر المكونات</b><p>نتحقق من طبيعة المنتجات ومصدرها ومدى ارتباطها بالخيارات الصحية.</p></div>
-<div class="criterion"><b>02 — بيئة التحضير</b><p>نراجع نظافة أماكن الإعداد والتخزين وطريقة العمل بحسب طبيعة النشاط.</p></div>
-<div class="criterion"><b>03 — شفافية البيانات</b><p>نعرض معلومات الجهة بوضوح من الموقع وساعات العمل إلى وصف المنتجات.</p></div>
-<div class="criterion"><b>04 — التواصل المباشر</b><p>نشجع الزائر على التواصل مع الجهة ونتابع الملاحظات لدقة المعلومات.</p></div>
-</div><blockquote>«نبني دليلًا محليًا موثوقًا يخدم المستهلك والمنتج معًا، لأن الثقة تبدأ من معلومات واضحة وجهات نعرف من أين تأتي خياراتها.»<br>— فريق باونتي</blockquote><a class="btn primary" href="#add">سجّل نشاطك وفق المعايير</a></div></div></section>
+<section class="blog" id="blog">
+ <div class="wrap">
+  <div class="section-head"><div class="section-kicker">من مدونة باونتي</div><h2 class="section-title">مقالات وأفكار لحياة صحية</h2><p class="section-desc">مقتطفات مختارة تساعدك على التعرف على الأنظمة الغذائية والمنتجات وطرق الاختيار الواعي.</p></div>
+  <div class="blog-grid">
+   <article class="article"><div class="article-cover">🥑</div><div class="article-content"><span class="article-tag">أنظمة غذائية · 4 دقائق قراءة</span><h3>ما هو نظام الكيتو؟ وما المنتجات التي يبحث عنها متبعوه؟</h3><p>نظرة تمهيدية على فكرة النظام، وأنواع المنتجات التي قد يبحث عنها المهتمون به، مثل بدائل الدقيق والوجبات منخفضة الكربوهيدرات. تختلف الاحتياجات الفردية، لذلك تحقّق من المكونات والملصق الغذائي.</p><button onclick="readArticle(0)">اقرأ المقتطف ←</button></div></article>
+   <article class="article"><div class="article-cover">🌾</div><div class="article-content"><span class="article-tag">دليل المنتجات · 3 دقائق قراءة</span><h3>كيف تقرأ بطاقة المنتج الغذائي؟</h3><p>قبل اختيار أي منتج، تعرّف على قائمة المكونات، وحجم الحصة، والسكريات المضافة، ومعلومات الحساسية. قراءة الملصق تساعدك على مقارنة الخيارات بطريقة أوضح.</p><button onclick="readArticle(1)">اقرأ المقتطف ←</button></div></article>
+   <article class="article"><div class="article-cover">🫒</div><div class="article-content"><span class="article-tag">اختيارات واعية · 3 دقائق قراءة</span><h3>من أين أبدأ عند اختيار زيت الزيتون؟</h3><p>تعرّف على معلومات العبوة، وتاريخ الإنتاج، وطريقة الحفظ، ومصدر المنتج. لا تعتمد على عبارة تسويقية واحدة؛ اجمع المعلومات قبل اتخاذ قرار الشراء.</p><button onclick="readArticle(2)">اقرأ المقتطف ←</button></div></article>
+  </div>
+ </div>
+</section>
 
-<section class="page-section" id="about"><div class="wrap about-grid"><div><div class="section-kicker">قصة باونتي</div><h2 class="section-title">دليل سعودي يجمع خيارات الحياة الصحية في مكان واحد</h2><p class="section-desc">انطلق باونتي ليجمع المزارع والمتاجر والمخابز والمطاعم والمقاهي والمشاريع المنزلية التي تقدم خيارات غذائية واعية، ليجد الزائر ما يناسبه من دون أن يتوه بين أسماء كثيرة.</p><a class="btn primary" href="#directory" style="margin-top:18px">استكشف الدليل ←</a></div><div class="about-card"><div class="big">🌱</div><h3>رؤيتنا</h3><p>نقرّب الخيارات الغذائية الواعية من الناس بشفافية وقرب. نؤمن أن الوصول إلى منتج طبيعي أو متجر موثوق يجب أن يكون سهلاً، ونعرض كل جهة بمعلومات واضحة ونشجع الإنتاج المحلي.</p><h3>المرحلة الحالية</h3><p>نبدأ بالاكتشاف وعرض المعلومات والتواصل، بالبدء من القصيم والرياض. وقد صُممت البنية لتتسع لاحقاً إلى سوق إلكتروني يخدم الخيارات الصحية المحلية في بقية مناطق المملكة.</p></div></div></section>
+<section class="about" id="about">
+ <div class="wrap about-grid">
+  <div><div class="section-kicker">من نحن</div><h2 class="section-title">باونتي… دليلك للحياة الصحية</h2><p class="section-desc">باونتي دليل يساعدك على اكتشاف المنتجات والجهات المرتبطة بالغذاء والخيارات الصحية في مكان واحد. اكتب ما تبحث عنه، تعرّف على المتاجر والمزارع والمخابز والمطاعم وغيرها، ثم تواصل مع الجهة مباشرة. هدفنا تسهيل الوصول إلى المعلومات وتشجيع الاختيار الواعي ودعم الأنشطة المحلية.</p></div>
+  <div class="about-mark"><strong>BOUNTY | باونتي</strong><span>نقرّب لك الخيارات… لتختار بوعي</span></div>
+ </div>
+</section>
 
-<section id="add"><div class="wrap"><div class="section-head"><div class="section-kicker">انضم إلى دليل باونتي</div><h2 class="section-title">عرّف الباحثين عن الخيارات الصحية بنشاطك</h2><p class="section-desc">إذا كنت تملك مزرعة أو متجرًا أو مخبزًا أو مقهى أو مشروعًا منتجًا في القصيم أو الرياض، يمكنك الظهور ضمن دليل باونتي.</p></div>
-<div class="steps" style="margin-bottom:25px"><div class="step"><h3>ظهور متخصص</h3><p>تظهر بطاقتك ضمن التصنيف والمنطقة اللذين يناسبان نشاطك.</p></div><div class="step"><h3>ثقة المستهلكين</h3><p>تعرض معلومات نشاطك بوضوح قبل تواصل الزائر معك.</p></div><div class="step"><h3>ربط مباشر بالعملاء</h3><p>يتواصل الزائر معك مباشرة عبر البيانات المنشورة في بطاقتك.</p></div></div>
-<div class="contact-form"><h3>سجّل بيانات نشاطك</h3><p class="hint">أدخل بيانات نشاطك والمنطقة ونوع المنتجات، وسيراجع فريق باونتي المعلومات قبل الإدراج.</p>
-<form id="businessForm" class="business-form"><label>اسم النشاط أو المسؤول *<input required name="name" placeholder="الاسم"></label><label>البريد الإلكتروني *<input required type="email" name="email" placeholder="name@example.com"></label><label>نوع النشاط *<select required name="type"><option value="">اختر التصنيف</option><option>مزارع</option><option>متاجر</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مراكز العلاج الطبيعي</option><option>الأندية والمراكز الرياضية</option><option>متاجر المكملات الغذائية</option><option>أدوات المطبخ والطهي</option><option>متفرقات</option></select></label><label>المنطقة *<select required name="region"><option value="">اختر المنطقة</option><option>القصيم</option><option>الرياض</option></select></label><label>رقم التواصل<input name="phone" placeholder="05xxxxxxxx"></label><label>رابط الموقع أو الحساب<input name="url" placeholder="https://"></label><label class="full">تفاصيل النشاط والمنتجات<textarea name="message" placeholder="اكتب وصفاً مختصراً عن نشاطك..."></textarea></label><label class="full consent"><input type="checkbox" required> أوافق على استخدام البيانات المقدمة لغرض مراجعة طلب الانضمام والتواصل معي بشأنه.</label><button class="btn primary full" type="submit">إرسال بيانات النشاط</button></form><p class="hint">هذا النموذج يجهز رسالة بريد إلكتروني. لحفظ الطلبات تلقائيًا نحتاج ربطه بخدمة خلفية أو قاعدة بيانات.</p></div></div></section>
-
-<section id="faq" class="page-section"><div class="wrap faq"><div class="section-kicker">مساعدة الزوار</div><h2 class="section-title">الأسئلة الشائعة</h2><p class="section-desc">إجابات واضحة عن دليل باونتي.</p>
-<details open><summary>كيف أستخدم الدليل؟</summary><p>اختر المنطقة ونوع النشاط أو اكتب اسم الجهة، ثم اطّلع على تفاصيلها وتواصل معها مباشرة.</p></details>
-<details><summary>هل التصفح مجاني؟</summary><p>نعم، تصفح الجهات والمنتجات والتفاصيل مجاني بالكامل، دون الحاجة إلى تسجيل.</p></details>
-<details><summary>كيف أضيف نشاطي؟</summary><p>أرسل بيانات نشاطك عبر نموذج الانضمام، وسيراجع فريق باونتي المعلومات قبل نشرها في الدليل.</p></details>
-<details><summary>ما معايير إدراج الجهات؟</summary><p>تشمل مصدر المكونات، وبيئة التحضير، وشفافية البيانات، وإمكانية التواصل المباشر مع الجهة.</p></details>
-<details><summary>هل باونتي متجر إلكتروني؟</summary><p>المرحلة الحالية تركز على الدليل واكتشاف الجهات والتواصل معها، مع قابلية التوسع مستقبلاً إلى سوق إلكتروني.</p></details>
-<div style="margin-top:20px"><b>لم تجد إجابة لسؤالك؟</b> <a href="#contact" style="color:var(--green2);font-weight:700">تواصل معنا للمزيد ←</a></div>
-</div></section>
-
-<section id="contact" class="page-section"><div class="wrap"><div class="section-head"><div class="section-kicker">قنوات مباشرة</div><h2 class="section-title">تواصل مع فريق باونتي</h2><p class="section-desc">للاستفسارات والاقتراحات وطلبات التعاون وملاحظات الزوار حول الأنشطة المدرجة. نقرأ كل رسالة ونحرص على الرد لتحسين تجربة الدليل.</p></div>
-<div class="contact-grid"><div class="contact-info"><h3>يسعدنا تواصلك</h3><p>📧 البريد الإلكتروني</p><a href="mailto:bounty.ksa@outlook.com" style="color:var(--green);font-weight:700">bounty.ksa@outlook.com</a><p>📞 الهاتف المعروض في الموقع الأصلي</p><b dir="ltr">(+1) 23456789</b><p class="hint">يمكن تحديث رقم الهاتف إلى رقم التواصل السعودي المعتمد عند توفره.</p></div>
-<div class="contact-form"><h3>أرسل رسالتك</h3><form id="contactForm"><label>الاسم<input required name="name" placeholder="ما اسمك؟"></label><label>البريد الإلكتروني<input required type="email" name="email" placeholder="بريدك الإلكتروني"></label><label>الرسالة<textarea required name="message" placeholder="اكتب رسالتك هنا..."></textarea></label><label class="consent"><input type="checkbox" required> أوافق على استخدام بياناتي لغرض الرد على طلبي، وقد قرأت سياسة الخصوصية.</label><button class="btn primary" type="submit">إرسال الرسالة</button></form></div></div></div></section>
-<div class="wrap"><div class="join"><div><h2>عرّف الناس بنشاطك</h2><p>انضم إلى دليل باونتي وقرّب خياراتك من الباحثين عنها.</p></div><a class="btn gold" href="#add">أضف نشاطك ←</a></div></div>
+<div class="wrap"><div class="join"><div><h2>هل لديك نشاط أو منتج مميز؟</h2><p>انضم إلى دليل باونتي وعرّف الباحثين عن الخيارات الصحية بنشاطك.</p></div><a href="mailto:bounty.ksa@outlook.com?subject=طلب%20إضافة%20نشاط%20إلى%20باونتي">أضف نشاطك</a></div></div>
 </main>
-<footer><div class="wrap"><div class="footer-grid"><div><h3>🌿 BOUNTY باونتي</h3><p>دليل سعودي يجمع خيارات الحياة الصحية في مكان واحد، ويقرب المستهلك من المزارع والمتاجر والمخابز والمطاعم والمقاهي والأسر المنتجة.</p></div><div><h4>القائمة</h4><a href="#contact">تواصل معنا</a><a href="#faq">الأسئلة الشائعة</a><a href="#about">عن باونتي</a><a href="#standards">معايير باونتي</a><a href="#add">أضف نشاطك</a><a href="#directory">استكشف الدليل</a><a href="#categories">تصنيفات الدليل</a><a href="#home">الرئيسية</a></div><div><h4>تواصل معنا</h4><a href="mailto:bounty.ksa@outlook.com">bounty.ksa@outlook.com</a><p dir="ltr">(+1) 23456789</p><h4>اشترك في النشرة البريدية</h4><form class="newsletter" id="newsForm"><input type="email" required placeholder="بريدك الإلكتروني"><button>اشتراك</button></form></div></div><div class="copyright">© 2026 Bounty — جميع الحقوق محفوظة.</div></div></footer>
 
-<div class="modal" id="detailModal"><div class="modal-box"><div class="modal-head"><h3 id="detailTitle">تفاصيل النشاط</h3><button class="close" onclick="closeDetail()">✕</button></div><div id="detailBody"></div></div></div>
-<div class="drawer-back" id="cartDrawer" onclick="if(event.target.id==='cartDrawer')closeCart()"><div class="drawer"><div class="modal-head"><h3>سلة التسوق (0)</h3><button class="close" onclick="closeCart()">✕</button></div><div class="empty-cart"><div style="font-size:55px">🛒</div><h3>سلة التسوق فارغة</h3><p>باونتي في مرحلته الحالية دليل لاكتشاف الجهات والتواصل معها، ولا تتوفر عمليات شراء أو دفع إلكتروني بعد.</p><button class="btn primary" onclick="closeCart();document.getElementById('directory').scrollIntoView()">العودة إلى الدليل</button></div></div></div>
+<footer>
+ <div class="wrap"><div class="footer-grid">
+  <div><h3>باونتي 🌿</h3><p>دليلك للحياة الصحية. ابحث عن المنتجات والجهات والخيارات التي تناسب احتياجك، واكتشفها في مكان واحد.</p></div>
+  <div><h4>روابط سريعة</h4><a href="#directory">اكتشف الدليل</a><a href="#categories">تصنيفات الدليل</a><a href="#blog">المدونة</a><a href="#about">من نحن</a></div>
+  <div><h4>تواصل معنا</h4><a href="mailto:bounty.ksa@outlook.com">bounty.ksa@outlook.com</a></div>
+ </div><div class="copyright">© 2026 باونتي — جميع الحقوق محفوظة.</div></div>
+</footer>
+
+<div class="modal" id="regionModal"><div class="modal-box" style="text-align:center"><div style="font-size:48px">🌿</div><h3 id="regionModalTitle" style="color:var(--brand);margin:5px 0 8px"></h3><p id="regionModalText" style="color:var(--muted);margin:0 0 18px"></p><button class="search-button" onclick="document.getElementById('regionModal').classList.remove('open')">بانتظاركم قريبًا</button></div></div>
+<div class="modal" id="articleModal"><div class="modal-box"><div class="modal-head"><h3 id="articleTitle"></h3><button class="close" onclick="closeArticle()">✕</button></div><div id="articleText" style="color:var(--muted);padding-top:12px"></div><p class="search-note">المحتوى توعوي عام ولا يُعد بديلاً عن استشارة مختص، خصوصاً عند اتباع نظام غذائي علاجي أو وجود حالة صحية.</p></div></div>
+<div class="modal" id="listingModal"><div class="modal-box"><div class="modal-head"><h3 id="listingTitle"></h3><button class="close" onclick="closeListing()">✕</button></div><div id="listingDetails" style="color:var(--muted);padding-top:12px"></div></div></div>
 <div class="toast" id="toast"></div>
+
 <script>
-const categories=[
-["مزارع","مزارع ومنتجات زراعية","مزارع محلية تعرض منتجاتها الطازجة والموسمية مع معلومات الموقع ونوع الإنتاج.","🌴"],
-["متاجر","متاجر الأغذية الصحية","متاجر تقدم تشكيلة من الأغذية والمكونات الصحية لمطبخك اليومي.","🛒"],
-["مخابز","مخابز بخيارات متنوعة","مخابز تعتمد على مكونات مختارة وطرق إعداد تراعي التفضيلات الغذائية.","🥖"],
-["مطاعم ومقاهٍ","مطاعم ومقاهٍ صحية","أماكن تقدم أطباقاً ومشروبات متوازنة في أجواء معاصرة.","☕"],
-["أسر منتجة","الأسر المنتجة","مشاريع منزلية ومنتجات محلية من إعداد الأسر المنتجة.","🧺"],
-["مراكز العلاج الطبيعي","مراكز العلاج الطبيعي","مراكز متخصصة في خدمات العلاج الطبيعي والتأهيل.","🧘"],
-["الأندية والمراكز الرياضية","الأندية والمراكز الرياضية","أماكن تدعم الحركة والنشاط واللياقة البدنية.","🏃"],
-["متاجر المكملات الغذائية","متاجر المكملات الغذائية","متاجر تعرض منتجات المكملات الغذائية ومعلوماتها.","💊"],
-["أدوات المطبخ والطهي","أدوات المطبخ والطهي","أدوات تساعد على إعداد الطعام وتجهيز الوجبات.","🍳"],
-["متفرقات","متفرقات","أنشطة وخدمات أخرى مرتبطة بنمط الحياة الصحي.","🌿"]
-];
 const listings=[
-{id:1,name:"متجر حلزونة الالكتروني",type:"متاجر",category:"متاجر الأغذية العضوية والطبيعية",region:"الرياض",desc:"حلزونة متجر إلكتروني متخصص في المنتجات الطبيعية، يوفّر الدقيق والمنتجات الغذائية المستوردة والمكملات الغذائية ومنتجات العناية الشخصية.",features:"قائمة بالمنتجات..",phone:"0506517579",address:"موقع إلكتروني سعودي",emoji:"🐌",rating:0,reviews:0,date:"2026-10-31"},
-{id:2,name:"معصرة السيف رويال",type:"متاجر",category:"متاجر الأغذية العضوية والطبيعية",region:"الرياض",desc:"معصرة السيف رويال للزيوت الطبيعية. جميع الزيوت بيور خام عصرة أولى بكر على البارد.",features:"زيوت طبيعية خام ومعصورة على البارد.",phone:"0501006340",address:"الرياض، الدائري الشرقي، مخرج 10",emoji:"🫒",rating:0,reviews:0,date:"2026-10-31"}
+ {id:1,name:"متجر حلزونة الإلكتروني",type:"متاجر",region:"الرياض",desc:"متجر إلكتروني متخصص في المنتجات الطبيعية، ويوفر الدقيق والمنتجات الغذائية والمكملات ومنتجات العناية الشخصية.",tags:"منتجات طبيعية دقيق أغذية مكملات كيتو",emoji:"🐌",phone:"0506517579",address:"متجر إلكتروني"},
+ {id:2,name:"معصرة السيف رويال",type:"متاجر",region:"الرياض",desc:"زيوت طبيعية خام، معصورة على البارد، مع معلومات عن المنتج وطريقة استخراجه.",tags:"زيت زيتون زيوت طبيعية عصرة باردة",emoji:"🫒",phone:"0501006340",address:"الرياض، الدائري الشرقي، مخرج 10"}
 ];
-function buildCategories(){document.getElementById('categoryGrid').innerHTML=categories.slice(0,3).map(c=>`<article class="category" onclick="chooseCategory('${c[0]}')"><div class="cat-art">${c[3]}</div><div class="cat-copy"><h3>${c[0]}</h3><p>${c[2]}</p></div></article>`).join('')}
-function renderListings(){let q=document.getElementById('searchInput').value.trim().toLowerCase(),r=document.getElementById('regionFilter').value,t=document.getElementById('typeFilter').value,sort=document.getElementById('sortFilter').value;let checked=[...document.querySelectorAll('.kind-check:checked')].map(x=>x.value),ratings=[...document.querySelectorAll('.rating-filter:checked')].map(x=>+x.value);
-let rows=listings.filter(x=>(!q||(x.name+x.desc+x.category+x.region).toLowerCase().includes(q))&&(!r||x.region===r)&&(!t||x.type===t||x.category.includes(t))&&(!checked.length||checked.includes(x.type)||checked.includes(x.category))&&(!ratings.length||ratings.some(v=>x.rating>=v)));
-if(sort==='az')rows.sort((a,b)=>a.name.localeCompare(b.name,'ar'));if(sort==='za')rows.sort((a,b)=>b.name.localeCompare(a.name,'ar'));if(sort==='popular')rows.sort((a,b)=>b.rating-a.rating);if(sort==='random')rows.sort(()=>Math.random()-.5);
-document.getElementById('resultCount').textContent=`${rows.length} نتيجة`;document.getElementById('listingCards').innerHTML=rows.length?rows.map(x=>`<article class="listing"><div class="listing-image"><span class="type">${x.type==='متاجر'?'متجر إلكتروني':'مزرعة'}</span>${x.emoji}</div><div class="listing-body"><h3>${x.name}</h3><p>${x.desc}</p><div class="listing-meta"><span>📍 ${x.address}</span><span>☎ ${x.phone}</span><span>★ ${x.rating.toFixed(1)} (${x.reviews})</span></div><div class="listing-actions"><span class="price">${x.category}</span><button class="detail-link" onclick="showDetail(${x.id})">عرض التفاصيل ←</button></div></div></article>`).join(''):'<div class="no-results">لا توجد نتائج مطابقة. جرّب تغيير خيارات البحث أو الفلاتر.</div>'}
-function chooseCategory(t){document.getElementById('typeFilter').value=t;document.getElementById('searchInput').value='';document.getElementById('directory').scrollIntoView();renderListings()}
-function setRegion(r){document.getElementById('regionFilter').value=r;document.getElementById('directory').scrollIntoView();renderListings()}
-function syncSearch(v){document.getElementById('searchInput').value=v;renderListings()}
-function syncRegion(v){document.getElementById('regionFilter').value=v;renderListings()}
-function syncType(v){document.getElementById('typeFilter').value=v;renderListings()}
-function goDirectory(){document.getElementById('directory').scrollIntoView();renderListings()}
-function clearFilters(){['searchInput','regionFilter','typeFilter'].forEach(id=>document.getElementById(id).value='');document.querySelectorAll('input[type=checkbox]').forEach(x=>x.checked=false);document.getElementById('sortFilter').value='latest';renderListings()}
-function showDetail(id){let x=listings.find(z=>z.id===id);document.getElementById('detailTitle').textContent=x.name;document.getElementById('detailBody').innerHTML=`<div style="font-size:65px;text-align:center;background:#eef2e9;border-radius:12px;margin:14px 0">${x.emoji}</div><p>${x.desc}</p><p><b>التصنيف:</b> ${x.category}</p><p><b>الموقع:</b> ${x.address}</p><p><b>رقم التواصل:</b> <a href="tel:${x.phone}" style="color:var(--green)">${x.phone}</a></p><p><b>التقييم:</b> ★ ${x.rating.toFixed(1)} (${x.reviews} تقييم)</p><p><b>الخصائص:</b> ${x.features}</p><hr><h4 style="color:var(--green)">أضف تقييمك</h4><form id="reviewForm"><label>التقييم <select name="rating" required><option value="">اختر</option><option value="5">★★★★★ ممتاز</option><option value="4">★★★★ جيد جدًا</option><option value="3">★★★ جيد</option><option value="2">★★ يحتاج تحسين</option><option value="1">★ ضعيف</option></select></label><label>تعليقك <textarea name="comment" rows="2" style="width:100%;border:1px solid var(--line);border-radius:8px;padding:8px"></textarea></label><button class="btn primary" style="margin-top:10px">إرسال التقييم</button></form><p class="hint">التقييمات في هذه النسخة تجريبية ومحفوظة محليًا فقط عند ربط قاعدة بيانات.</p>`;document.getElementById('detailModal').classList.add('open');document.getElementById('reviewForm').addEventListener('submit',e=>{e.preventDefault();notify('وصل تقييمك التجريبي. يتطلب النشر ربط قاعدة بيانات.');closeDetail()})}
-function closeDetail(){document.getElementById('detailModal').classList.remove('open')}
-function openCart(){document.getElementById('cartDrawer').classList.add('open')}function closeCart(){document.getElementById('cartDrawer').classList.remove('open')}
-function notify(msg){let t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200)}
-function mailForm(id,subject){document.getElementById(id).addEventListener('submit',e=>{e.preventDefault();let d=Object.fromEntries(new FormData(e.target));let body=encodeURIComponent(Object.entries(d).map(([k,v])=>k+': '+v).join('\n'));location.href='mailto:bounty.ksa@outlook.com?subject='+encodeURIComponent(subject)+'&body='+body;notify('تم تجهيز الرسالة في تطبيق البريد')})}
-mailForm('businessForm','طلب انضمام نشاط إلى دليل باونتي');mailForm('contactForm','رسالة تواصل مع فريق باونتي');
-document.getElementById('newsForm').addEventListener('submit',e=>{e.preventDefault();notify('نموذج النشرة يحتاج ربط خدمة بريدية لاستقبال الاشتراكات.')});
-document.getElementById('detailModal').addEventListener('click',e=>{if(e.target.id==='detailModal')closeDetail()});
-buildCategories();renderListings();
+const articles=[
+ {title:"ما هو نظام الكيتو؟ وما المنتجات التي يبحث عنها متبعوه؟",text:"نظام الكيتو نمط غذائي يعتمد على تقليل الكربوهيدرات بدرجة كبيرة وزيادة الاعتماد على الدهون، مع تناول كمية مناسبة من البروتين. عند البحث عن منتجات تناسب هذا النمط، من المهم قراءة الملصق الغذائي والتحقق من كمية الكربوهيدرات في الحصة الواحدة، والانتباه إلى أحجام الحصص والمكونات. لا يعني وصف المنتج بأنه «كيتو» أنه مناسب للجميع؛ فاختيار النظام الغذائي يعتمد على الحالة الصحية والاحتياجات الفردية، ومن الأفضل استشارة مختص قبل البدء."},
+ {title:"كيف تقرأ بطاقة المنتج الغذائي؟",text:"ابدأ بحجم الحصة، ثم راجع السعرات والمكونات والعناصر الغذائية. اقرأ قائمة المكونات بترتيب تنازلي حسب الوزن، وانتبه للسكريات المضافة ومعلومات الحساسية. قارن المنتجات على أساس حجم الحصة نفسه، ولا تعتمد على الواجهة الأمامية للعبوة وحدها."},
+ {title:"من أين أبدأ عند اختيار زيت الزيتون؟",text:"اقرأ بيانات العبوة وتاريخ الإنتاج وبلد المنشأ وطريقة الحفظ. احفظ الزيت بعيداً عن الضوء والحرارة، وتحقق من سلامة العبوة ومصدرها. قد تختلف الجودة والخصائص بين المنتجات، لذلك تساعدك المعلومات الواضحة على المقارنة."}
+];
+function openRegion(name,isAvailable=false){
+ if(isAvailable){
+  document.getElementById('regionFilter').value=name;
+  document.getElementById('directorySearch').value='';
+  document.getElementById('typeFilter').value='';
+  renderListings();
+  document.getElementById('directory').scrollIntoView({behavior:'smooth'});
+  return;
+ }
+ document.getElementById('regionModalTitle').textContent=`منطقة ${name}`;
+ document.getElementById('regionModalText').textContent=`نعمل حاليًا على تجهيز دليل باونتي في ${name}. ترقّبونا قريبًا لاكتشاف المزيد من الخيارات والجهات الصحية في منطقتكم.`;
+ document.getElementById('regionModal').classList.add('open');
+}
+function renderListings(){
+ const q=document.getElementById('directorySearch').value.trim().toLowerCase();
+ const region=document.getElementById('regionFilter').value;
+ const type=document.getElementById('typeFilter').value;
+ const rows=listings.filter(x=>(!q||(x.name+x.desc+x.tags+x.type+x.region).toLowerCase().includes(q))&&(!region||x.region===region)&&(!type||x.type===type));
+ document.getElementById('resultCount').textContent=`${rows.length} جهة في الدليل`;
+ document.getElementById('listingGrid').innerHTML=rows.length?rows.map(x=>`<article class="listing"><div class="listing-art">${x.emoji}</div><div class="listing-body"><h3>${x.name}</h3><p>${x.desc}</p><div class="listing-meta"><span>📍 ${x.region}</span><span>▣ ${x.type}</span></div><button class="detail-btn" onclick="showListing(${x.id})">عرض التفاصيل ←</button></div></article>`).join(''):'<div class="empty">لم نعثر على نتيجة مطابقة حالياً. جرّب كلمة أخرى أو تصفح التصنيفات.</div>';
+}
+function searchAll(){document.getElementById('directorySearch').value=document.getElementById('mainSearch').value;document.getElementById('regionFilter').value='';document.getElementById('typeFilter').value='';renderListings();document.getElementById('directory').scrollIntoView({behavior:'smooth'});}
+function searchTerm(term){document.getElementById('mainSearch').value=term;searchAll();}
+function categorySearch(term){document.getElementById('mainSearch').value=term;document.getElementById('directorySearch').value=term;document.getElementById('regionFilter').value='';document.getElementById('typeFilter').value='';renderListings();document.getElementById('directory').scrollIntoView({behavior:'smooth'});}
+function clearSearch(){document.getElementById('mainSearch').value='';document.getElementById('directorySearch').value='';document.getElementById('regionFilter').value='';document.getElementById('typeFilter').value='';renderListings();}
+function readArticle(i){document.getElementById('articleTitle').textContent=articles[i].title;document.getElementById('articleText').textContent=articles[i].text;document.getElementById('articleModal').classList.add('open');}
+function closeArticle(){document.getElementById('articleModal').classList.remove('open');}
+function showListing(id){const x=listings.find(v=>v.id===id);document.getElementById('listingTitle').textContent=x.name;document.getElementById('listingDetails').innerHTML=`<p>${x.desc}</p><p><b>التصنيف:</b> ${x.type}</p><p><b>المنطقة:</b> ${x.region}</p><p><b>الموقع:</b> ${x.address}</p><p><b>التواصل:</b> <a style="color:var(--brand)" href="tel:${x.phone}">${x.phone}</a></p>`;document.getElementById('listingModal').classList.add('open');}
+function closeListing(){document.getElementById('listingModal').classList.remove('open');}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500);}
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}));
+renderListings();
 </script>
-</body></html>
+</body>
+</html>
