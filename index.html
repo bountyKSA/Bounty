@@ -540,11 +540,14 @@ function setupRegions(){
 function renderRegionCards(){
  const grid=document.getElementById('regionGrid');
  if(!grid)return;
+ const enabledRegions=['الرياض','القصيم'];
  grid.innerHTML=REGIONS.map(r=>{
   const count=listings.filter(x=>x.region===r.name).length;
-  const subtitle=count?`يوجد ${count} جهة في الدليل`:'الدليل قيد التجهيز في منطقتكم';
-  const action=count?'استكشف الدليل ←':'ترقبونا قريباً';
-  return `<button class="region-card ${count?'active coming-soon':''}" ${count?`onclick="openRegion('${r.name}',true)"`:'type="button" disabled aria-disabled="true"'}>
+  const isEnabled=enabledRegions.includes(r.name);
+  const canExplore=isEnabled&&count>0;
+  const subtitle=!isEnabled?'ترقبونا قريباً':(count?`يوجد ${count} جهة في الدليل`:'الدليل قيد التجهيز في منطقتكم');
+  const action=canExplore?'استكشف الدليل ←':'ترقبونا قريباً';
+  return `<button class="region-card ${canExplore?'active':'coming-soon'}" ${canExplore?`onclick="openRegion('${r.name}',true)"`:'type="button" disabled aria-disabled="true"'}>
    <span>${r.emoji}</span><strong>منطقة ${r.name}</strong>
    <small>${subtitle}</small><b>${action}</b>
   </button>`;
