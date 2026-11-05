@@ -287,6 +287,12 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
  .community-inner a{padding:8px 13px;white-space:nowrap;font-size:11px}
 }
 
+
+.region-card.coming-soon{cursor:default;opacity:.82;background:#fff}
+.region-card.coming-soon:hover{transform:none;box-shadow:var(--shadow)}
+.region-card.coming-soon b{color:#b28b43}
+.region-card.coming-soon:disabled{pointer-events:none}
+
 </style>
 </head>
 <body>
@@ -299,7 +305,7 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
         <a href="#blog" aria-label="التنبيهات">♧</a>
         <a href="#featured" aria-label="المفضلة">♡</a>
         <a href="#about" aria-label="حسابي">♙</a>
-        <a class="merchant-pill" href="#addActivity" onclick="openAddActivity(event)">انضم كتاجر</a>
+        <a class="merchant-pill" href="mailto:bounty.ksa@outlook.com?subject=%D8%B7%D9%84%D8%A8%20%D8%A7%D9%84%D8%A7%D9%86%D8%B6%D9%85%D8%A7%D9%85%20%D9%83%D8%AA%D8%A7%D8%AC%D8%B1">انضم كتاجر</a>
       </div>
       <a class="brand brand-center" href="#home" aria-label="باونتي الرئيسية">
         <img src="images/logo.png" alt="Bounty باونتي - دليلك للحياة الصحية">
@@ -396,7 +402,7 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
 <section class="visual-promos">
   <div class="wrap promo-grid">
     <article class="promo-card promo-request">
-      <div><span class="promo-eyebrow">💡 اطلب ما تحتاجه</span><h2>لم تجد المنتج أو الخدمة التي تبحث عنها؟</h2><p>أرسل لنا طلبك وسنساعدك في توفيره.</p><button onclick="openAddActivity(event)">أرسل طلبك ←</button></div>
+      <div><span class="promo-eyebrow">💡 اطلب ما تحتاجه</span><h2>لم تجد المنتج أو الخدمة التي تبحث عنها؟</h2><p>أرسل لنا طلبك وسنساعدك في توفيره.</p><a href="mailto:bounty.ksa@outlook.com?subject=%D8%B7%D9%84%D8%A8%20%D8%AA%D9%88%D9%81%D9%8A%D8%B1%20%D9%85%D9%86%D8%AA%D8%AC%20%D8%A3%D9%88%20%D8%AE%D8%AF%D9%85%D8%A9">أرسل طلبك ←</a></div>
       <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=500&q=85" alt="">
     </article>
     <article class="promo-card promo-stories">
@@ -426,7 +432,7 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
 <section class="visual-community">
   <div class="wrap community-inner">
     <div><h2>انضم إلى مجتمع باونتي</h2><p>اكتشف، تعلّم، وشارك في بناء حياة صحية ومتوازنة.</p></div>
-    <a href="#addActivity" onclick="openAddActivity(event)">انضم الآن ←</a>
+    <a href="mailto:bounty.ksa@outlook.com?subject=%D8%A7%D9%84%D8%A7%D9%86%D8%B6%D9%85%D8%A7%D9%85%20%D8%A5%D9%84%D9%89%20%D9%85%D8%AC%D8%AA%D9%85%D8%B9%20%D8%A8%D8%A7%D9%88%D9%86%D8%AA%D9%8A">انضم الآن ←</a>
   </div>
 </section>
 
@@ -536,9 +542,9 @@ function renderRegionCards(){
  if(!grid)return;
  grid.innerHTML=REGIONS.map(r=>{
   const count=listings.filter(x=>x.region===r.name).length;
-  const subtitle=count?`يوجد ${count} جهة في الدليل`:'لا توجد أنشطة مضافة بعد';
-  const action=count?'استكشف الدليل ←':'أضف أول نشاط ←';
-  return `<button class="region-card ${count?'active':''}" onclick="openRegion('${r.name}',true)">
+  const subtitle=count?`يوجد ${count} جهة في الدليل`:'الدليل قيد التجهيز في منطقتكم';
+  const action=count?'استكشف الدليل ←':'ترقبونا قريباً';
+  return `<button class="region-card ${count?'active coming-soon':''}" ${count?`onclick="openRegion('${r.name}',true)"`:'type="button" disabled aria-disabled="true"'}>
    <span>${r.emoji}</span><strong>منطقة ${r.name}</strong>
    <small>${subtitle}</small><b>${action}</b>
   </button>`;
