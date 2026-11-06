@@ -900,7 +900,6 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
    <p>للاستفسارات والشكاوى والاقتراحات، يسعدنا تواصلك معنا عبر الواتساب أو البريد الإلكتروني.</p>
    <div class="contact-methods">
     <a href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer"><span>واتساب</span><strong>0500633399</strong></a>
-    <a href="tel:+966500633399"><span>رقم التواصل</span><strong>+966 50 063 3399</strong></a>
     <a href="mailto:bounty.ksa@outlook.sa"><span>البريد الإلكتروني</span><strong>bounty.ksa@outlook.sa</strong></a>
    </div>
   </div>
@@ -912,7 +911,7 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 <footer>
  <div class="wrap"><div class="footer-grid">
   <div><h3>باونتي 🌿</h3><p>دليلك للحياة الصحية. ابحث عن المنتجات والجهات والخيارات التي تناسب احتياجك، واكتشفها في مكان واحد.</p></div>
-  <div class="footer-contact"><h4>تواصل معنا</h4><p>للاستفسارات والشكاوى والاقتراحات</p><a href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer">واتساب: 0500633399</a><a href="tel:+966500633399">+966 50 063 3399</a><a href="mailto:bounty.ksa@outlook.sa">bounty.ksa@outlook.sa</a></div>
+  <div class="footer-contact"><h4>تواصل معنا</h4><p>للاستفسارات والشكاوى والاقتراحات</p><a href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer">واتساب: 0500633399</a><a href="mailto:bounty.ksa@outlook.sa">bounty.ksa@outlook.sa</a></div>
  </div><div class="copyright">© 2026 باونتي — جميع الحقوق محفوظة.</div></div>
 </footer>
 
@@ -1148,7 +1147,8 @@ function categorySearch(term){
 function clearSearch(){['mainSearch','directorySearch','regionFilter','typeFilter'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});renderListings();}
 function readArticle(i){document.getElementById('articleTitle').textContent=articles[i].title;document.getElementById('articleText').textContent=articles[i].text;document.getElementById('articleModal').classList.add('open');}
 function closeArticle(){document.getElementById('articleModal').classList.remove('open');}
-function showListing(id){const x=listings.find(v=>String(v.id)===String(id));if(!x)return;document.getElementById('listingTitle').textContent=x.name;const phone=x.phone?`<p><b>التواصل:</b> <a style="color:var(--brand)" href="tel:${escapeHTML(x.phone)}">${escapeHTML(x.phone)}</a></p>`:'';const website=x.website?`<p><b>الموقع الإلكتروني:</b> <a style="color:var(--brand)" href="${escapeHTML(x.website)}" target="_blank" rel="noopener">زيارة الموقع</a></p>`:'';const maps=x.google_maps_url?`<p><b>موقع المتجر:</b> <a style="color:var(--brand)" href="${escapeHTML(x.google_maps_url)}" target="_blank" rel="noopener">عرض على خرائط Google</a></p>`:'';document.getElementById('listingDetails').innerHTML=`<p>${escapeHTML(x.desc)}</p><p><b>التصنيف:</b> ${escapeHTML(x.type)}</p><p><b>المنطقة:</b> ${escapeHTML(x.region)}</p>${x.address?`<p><b>الموقع:</b> ${escapeHTML(x.address)}</p>`:''}${phone}${website}${maps}`;document.getElementById('listingModal').classList.add('open');}
+function toWhatsAppNumber(value){let digits=String(value||'').replace(/\\D/g,'');if(digits.startsWith('00'))digits=digits.slice(2);if(digits.startsWith('0'))digits='966'+digits.slice(1);else if(digits.startsWith('5'))digits='966'+digits;return digits;}
+function showListing(id){const x=listings.find(v=>String(v.id)===String(id));if(!x)return;document.getElementById('listingTitle').textContent=x.name;const waNumber=toWhatsAppNumber(x.phone);const phone=waNumber?`<p><b>التواصل عبر واتساب:</b> <a style="color:var(--brand)" href="https://wa.me/${waNumber}" target="_blank" rel="noopener noreferrer">${escapeHTML(x.phone)}</a></p>`:'';const website=x.website?`<p><b>الموقع الإلكتروني:</b> <a style="color:var(--brand)" href="${escapeHTML(x.website)}" target="_blank" rel="noopener">زيارة الموقع</a></p>`:'';const maps=x.google_maps_url?`<p><b>موقع المتجر:</b> <a style="color:var(--brand)" href="${escapeHTML(x.google_maps_url)}" target="_blank" rel="noopener">عرض على خرائط Google</a></p>`:'';document.getElementById('listingDetails').innerHTML=`<p>${escapeHTML(x.desc)}</p><p><b>التصنيف:</b> ${escapeHTML(x.type)}</p><p><b>المنطقة:</b> ${escapeHTML(x.region)}</p>${x.address?`<p><b>الموقع:</b> ${escapeHTML(x.address)}</p>`:''}${phone}${website}${maps}`;document.getElementById('listingModal').classList.add('open');}
 function closeListing(){document.getElementById('listingModal').classList.remove('open');}
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500);}
 
