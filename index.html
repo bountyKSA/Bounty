@@ -590,7 +590,7 @@ function renderRegionCards(){
   const predefined=REGIONS.find(r=>r.name===name);
   const emoji=predefined?.emoji||'📍';
   const count=listings.filter(x=>(x.region||'').trim()===name).length;
-  const subtitle=count?`يوجد ${count} جهة في الدليل`:'لا توجد أنشطة مضافة بعد';
+  const subtitle=count?`يوجد ${count} جهة في الدليل`:'ترقبونا قريباً';
   const action=count?'استكشف الدليل ←':'أضف أول نشاط ←';
   const safeName=escapeHTML(name).replace(/'/g,'&#39;');
   return `<button class="region-card ${count?'active':''}" type="button" onclick="${count?`openRegion('${safeName}',true)`:'openAddActivity()'}">
