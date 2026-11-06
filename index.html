@@ -332,6 +332,75 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
 .side-menu-inner{justify-content:flex-start!important}
 .brand-center{margin-left:auto!important;margin-right:0!important}
 
+
+.menu-caption{display:none!important}
+
+/* Drawer fixed above all site sections */
+.drawer-backdrop{
+ position:fixed!important;inset:0!important;z-index:99998!important;
+ background:rgba(16,37,29,.58)!important;
+}
+.side-drawer{
+ position:fixed!important;top:0!important;right:0!important;bottom:0!important;
+ height:100vh!important;height:100dvh!important;max-height:100vh!important;
+ width:min(340px,88vw)!important;z-index:99999!important;
+ overflow-y:auto!important;overscroll-behavior:contain!important;
+ background:#fff!important;padding:22px 18px!important;
+ box-sizing:border-box!important;
+}
+.drawer-open .side-drawer{transform:translateX(0)!important}
+.drawer-open .drawer-backdrop{opacity:1!important;visibility:visible!important}
+
+
+/* Simple category buttons in Bounty logo colors */
+.visual-category-grid{
+ display:grid!important;
+ grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ gap:12px!important;
+}
+.visual-category{
+ min-height:46px!important;height:auto!important;
+ border:1px solid #d7e5dc!important;
+ border-radius:10px!important;
+ background:#eef6f1!important;
+ color:#176b58!important;
+ padding:10px 14px!important;
+ box-shadow:0 2px 6px rgba(20,75,60,.06)!important;
+ font-family:inherit!important;
+ font-size:14px!important;
+ font-weight:700!important;
+ line-height:1.4!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ text-align:center!important;
+ transition:background .18s ease,border-color .18s ease,transform .18s ease!important;
+}
+.visual-category:nth-child(4n){background:#f7f5ec!important;border-color:#e9e1c8!important;color:#987a35!important}
+.visual-category:hover{
+ background:#176b58!important;border-color:#176b58!important;color:#fff!important;
+ transform:translateY(-1px)!important;
+}
+.visual-category img{display:none!important}
+.visual-category strong{padding:0!important;font-size:inherit!important}
+.visual-section-title{margin-bottom:18px!important}
+
+/* Compact side hamburger */
+.side-menu-bar{
+ position:fixed!important;left:14px!important;top:125px!important;
+ z-index:99990!important;background:transparent!important;border:0!important;
+}
+.side-menu-inner{min-height:0!important;padding:0!important}
+.side-menu-inner .menu{
+ width:46px!important;height:46px!important;padding:0!important;
+ border-radius:10px!important;font-size:0!important;
+ background:#176b58!important;color:#fff!important;
+ box-shadow:0 3px 12px rgba(20,75,60,.18)!important;
+}
+.side-menu-inner .menu::before{content:"☰";font-size:24px!important;line-height:1}
+@media(max-width:700px){
+ .visual-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .side-menu-bar{left:10px!important;top:115px!important}
+}
+
 </style>
 </head>
 <body>
@@ -347,10 +416,11 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
   <div class="side-menu-bar">
     <div class="wrap side-menu-inner">
       <button class="menu" id="menuToggle" type="button" aria-expanded="false" aria-controls="sideDrawer">☰ الأقسام</button>
-      <span class="menu-caption">تصفحي أقسام باونتي بسهولة</span>
     </div>
   </div>
-  <div class="drawer-backdrop" id="drawerBackdrop" onclick="closeSideMenu()"></div>
+  
+</header>
+<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeSideMenu()"></div>
   <aside class="side-drawer" id="sideDrawer" aria-label="قائمة أقسام الموقع" aria-hidden="true">
     <div class="drawer-head"><strong>أقسام باونتي</strong><button type="button" onclick="closeSideMenu()" aria-label="إغلاق">×</button></div>
     <a href="#home" onclick="showPage('home');return false">⌂ الرئيسية</a>
@@ -362,7 +432,7 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
     <a href="#blog" onclick="showPage('blog');return false">▤ المدونة</a>
     <a href="#about" onclick="showPage('about');return false">ⓘ من نحن والتواصل</a>
   </aside>
-</header>
+
 
 
 <main id="home">
@@ -401,13 +471,14 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
   <div class="wrap">
     <div class="visual-section-title"><h2>تصفح حسب الأقسام <span>♧</span></h2></div>
     <div class="visual-category-grid">
-      <button class="visual-category" onclick="categorySearch('مزارع')"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=500&q=85" alt=""><strong>المزارع<br>والمنتجات المحلية</strong></button>
-      <button class="visual-category" onclick="categorySearch('متاجر')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=85" alt=""><strong>متاجر<br>المنتجات الطبيعية</strong></button>
-      <button class="visual-category" onclick="categorySearch('مخابز')"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=85" alt=""><strong>المخابز<br>الصحية</strong></button>
-      <button class="visual-category" onclick="categorySearch('مطاعم')"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=85" alt=""><strong>المطاعم<br>الصحية</strong></button>
-      <button class="visual-category" onclick="categorySearch('مقاهي')"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=85" alt=""><strong>المقاهي<br>الصحية</strong></button>
-      <button class="visual-category" onclick="categorySearch('علاج طبيعي')"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&q=85" alt=""><strong>مراكز العلاج<br>والعناية</strong></button>
-      <button class="visual-category" onclick="categorySearch('رياضة')"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&q=85" alt=""><strong>الأندية الرياضية<br>ومراكز اللياقة</strong></button>
+      <button class="visual-category" onclick="categorySearch('مزارع')">المزارع والمنتجات المحلية</button>
+      <button class="visual-category" onclick="categorySearch('متاجر')">متاجر المنتجات الطبيعية</button>
+      <button class="visual-category" onclick="categorySearch('مخابز')">المخابز الصحية</button>
+      <button class="visual-category" onclick="categorySearch('مطاعم')">المطاعم الصحية</button>
+      <button class="visual-category" onclick="categorySearch('مقاهي')">المقاهي الصحية</button>
+      <button class="visual-category" onclick="categorySearch('علاج طبيعي')">مراكز العلاج والعناية</button>
+      <button class="visual-category" onclick="categorySearch('رياضة')">الأندية الرياضية ومراكز اللياقة</button>
+      <button class="visual-category" onclick="categorySearch('الكل')">عرض الكل</button>
     </div>
   </div>
 </section>
