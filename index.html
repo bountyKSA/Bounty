@@ -502,6 +502,63 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
  .visual-category strong{font-size:12px!important}
 }
 
+
+
+/* ===== Final Bounty homepage refinements ===== */
+.utility-inner{min-height:82px!important;justify-content:flex-start!important;padding-right:74px!important;padding-left:8px!important}
+.brand-center{order:0!important;margin:0!important;display:flex!important;justify-content:flex-start!important}
+.brand-center img{width:205px!important;height:72px!important;object-position:right center!important}
+.header-sections{display:none!important}
+.side-menu-bar{position:absolute!important;top:15px!important;right:14px!important;left:auto!important;z-index:99990!important;background:transparent!important;border:0!important;padding:0!important}
+.side-menu-inner{min-height:0!important;width:auto!important;margin:0!important}
+.side-menu-inner .menu{width:44px!important;height:44px!important;padding:0!important;border-radius:12px!important;font-size:21px!important;box-shadow:0 4px 12px rgba(8,74,57,.15)!important}
+.main-sections-nav{padding:16px 0 22px!important;background:#fffdf9!important}
+.main-sections-grid{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:10px!important}
+.main-sections-grid a{min-height:48px;display:flex;align-items:center;justify-content:center;gap:7px;padding:9px 10px;border:1px solid #dce8df;border-radius:11px;background:#edf5ef;color:#176b58;font-size:13px;font-weight:700;text-align:center;line-height:1.35;box-shadow:0 2px 7px rgba(20,75,60,.05);transition:.18s}
+.main-sections-grid a span{font-size:16px;color:#71927a}
+.main-sections-grid a:hover{background:#dcece2;border-color:#a9cbb8;transform:translateY(-1px)}
+.visual-category-grid{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:12px!important}
+.visual-category{min-height:0!important;height:auto!important;display:block!important;padding:0 0 10px!important;border:1px solid #e9dfd6!important;border-radius:15px!important;background:#fff!important;color:#173f33!important;overflow:hidden!important;box-shadow:0 3px 10px rgba(60,50,40,.07)!important;text-align:center!important}
+.visual-category img{display:block!important;width:100%!important;height:112px!important;object-fit:cover!important}
+.visual-category strong{display:block!important;padding:9px 5px 0!important;font-size:13px!important;line-height:1.45!important}
+.visual-category:nth-child(4n){background:#fff!important;border-color:#e9dfd6!important;color:#173f33!important}
+.visual-category:hover{background:#fff!important;color:#08745d!important;transform:translateY(-3px)!important}
+.visual-new{padding:10px 0 22px!important}
+.new-banner{background:#fffaf6!important;border:1px solid #eee5dc!important;padding:12px!important}
+.new-mini{position:relative!important;cursor:pointer!important;min-height:62px!important}
+.new-mini img{width:92px!important;height:54px!important;object-fit:cover!important}
+.new-mini .new-label{position:absolute;top:5px;right:5px;background:#985a78;color:#fff;border-radius:10px;padding:1px 6px;font-size:9px;font-weight:700}
+.new-mini b{font-size:11px!important}
+.promo-grid{grid-template-columns:1fr 1fr!important}
+.promo-card{min-height:175px!important}
+.promo-card h2{font-size:17px!important;line-height:1.45!important}
+.promo-card p{font-size:13px!important}
+@media(max-width:900px){.visual-category-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}.main-sections-grid{grid-template-columns:repeat(5,minmax(0,1fr))!important}}
+@media(max-width:650px){
+ .utility-inner{min-height:70px!important;padding-right:66px!important;padding-left:8px!important}
+ .brand-center img{width:155px!important;height:58px!important}
+ .side-menu-bar{top:13px!important;right:10px!important}
+ .main-sections-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+ .main-sections-grid a{font-size:12px!important;min-height:44px!important}
+ .visual-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+ .visual-category img{height:115px!important}
+ .promo-grid{grid-template-columns:1fr!important}
+ .promo-card{min-height:150px!important}
+ .new-banner{display:block!important}
+ .new-banner-copy{margin-bottom:8px!important}
+ .new-mini-row{overflow-x:auto!important}
+ .new-mini{min-width:170px!important}
+}
+
+
+.new-mini{border:0!important;text-align:right!important;font-family:inherit!important;color:inherit!important}
+.new-mini-cta{background:#edf5ef!important;border:1px dashed #9bbda9!important}
+.new-mini-cta b{white-space:normal!important}
+.visual-hero-image{min-height:350px!important;background-position:center 52%!important}
+.visual-hero-content{width:min(1160px,92%)!important}
+.visual-search{margin-top:12px!important}
+@media(min-width:901px){.main-sections-grid{grid-template-columns:repeat(5,minmax(0,1fr))!important}.visual-category-grid{grid-template-columns:repeat(7,minmax(0,1fr))!important}}
+
 </style>
 </head>
 <body>
@@ -509,26 +566,14 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
 <header class="bounty-header">
   <div class="utility-row">
     <div class="wrap utility-inner">
-      <div class="header-sections" aria-label="الأقسام الرئيسية">
-        <a href="#home" onclick="showPage('home');return false">⌂ الرئيسية</a>
-        <a href="#categories" onclick="showPage('categories');return false">▣ المتاجر والتصنيفات</a>
-        <a href="#directory" onclick="showPage('directory');return false">♧ الدليل الشامل</a>
-        <a href="#regions" onclick="showPage('regions');return false">⌖ المناطق</a>
-        <a href="#featured" onclick="showPage('featured');return false">♡ المتاجر المميزة</a>
-        <a href="#merchantJoin" onclick="showPage('merchantJoin');return false">♧ الانضمام كتاجر</a>
-        <a href="#addActivitySection" onclick="showPage('addActivitySection');return false">✧ إضافة نشاط للدليل</a>
-        <a href="#blog" onclick="showPage('blog');return false">▤ المدونة</a>
-        <a href="#about" onclick="showPage('about');return false">ⓘ من نحن</a>
-        <a href="#contactPage" onclick="showPage('contactPage');return false">✉ تواصل معنا</a>
-      </div>
-      <a class="brand brand-center" href="#home" aria-label="باونتي الرئيسية">
+      <a class="brand brand-center" href="#home" aria-label="باونتي الرئيسية" onclick="showPage('home');return false">
         <img src="images/logo.png" alt="Bounty باونتي - دليلك للحياة الصحية">
       </a>
     </div>
   </div>
   <div class="side-menu-bar">
     <div class="wrap side-menu-inner">
-      <button class="menu" id="menuToggle" type="button" aria-expanded="false" aria-controls="sideDrawer">☰ الأقسام</button>
+      <button class="menu" id="menuToggle" type="button" aria-expanded="false" aria-controls="sideDrawer" aria-label="فتح قائمة الأقسام">☰</button>
     </div>
   </div>
   
@@ -563,12 +608,12 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
       </div>
       <div class="visual-search">
         <div class="visual-search-input">
-          <input id="mainSearch" type="search" placeholder="ابحث عن منتج أو متجر أو خدمة..." onkeydown="if(event.key==='Enter')searchAll()">
+          <input id="mainSearch" type="search" placeholder="ابحث عن منتج أو متجر أو خدمة..." autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();searchAll();}">
           <button onclick="searchAll()" aria-label="بحث">⌕</button>
         </div>
         <label class="visual-select"><span>⌖</span><select id="homeRegion"><option value="">جميع المدن</option><option>الرياض</option><option>القصيم</option><option>مكة المكرمة</option><option>المدينة المنورة</option><option>المنطقة الشرقية</option><option>عسير</option><option>تبوك</option><option>حائل</option><option>الحدود الشمالية</option><option>جازان</option><option>نجران</option><option>الباحة</option><option>الجوف</option></select></label>
         <label class="visual-select"><span>▦</span><select id="homeType"><option value="">جميع الأقسام</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option></select></label>
-        <button class="visual-search-submit" onclick="searchAll()">ابدأ البحث</button>
+        <button type="button" class="visual-search-submit" id="homeSearchButton" onclick="searchAll()">ابدأ البحث</button>
       </div>
       <div class="hero-tags">
         <span>الأكثر بحثًا:</span>
@@ -582,25 +627,39 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
   </div>
 </section>
 
+<section class="main-sections-nav" id="mainSectionsNav" aria-label="أقسام باونتي">
+ <div class="wrap">
+  <div class="main-sections-grid">
+   <a href="#home" onclick="showPage('home');return false"><span>⌂</span>الرئيسية</a>
+   <a href="#categories" onclick="showPage('categories');return false"><span>▣</span>المتاجر والتصنيفات</a>
+   <a href="#directory" onclick="showPage('directory');return false"><span>♧</span>الدليل الشامل</a>
+   <a href="#regions" onclick="showPage('regions');return false"><span>⌖</span>المناطق</a>
+   <a href="#featured" onclick="showPage('featured');return false"><span>♡</span>المتاجر المميزة</a>
+   <a href="#merchantJoin" onclick="showPage('merchantJoin');return false"><span>♧</span>الانضمام كتاجر</a>
+   <a href="#addActivitySection" onclick="showPage('addActivitySection');return false"><span>✧</span>إضافة نشاط للدليل</a>
+   <a href="#blog" onclick="showPage('blog');return false"><span>▤</span>المدونة</a>
+   <a href="#about" onclick="showPage('about');return false"><span>ⓘ</span>من نحن</a>
+   <a href="#contactPage" onclick="showPage('contactPage');return false"><span>✉</span>تواصل معنا</a>
+  </div>
+ </div>
+</section>
+
 <section class="visual-categories" id="categories">
   <div class="wrap">
     <div class="visual-section-title"><h2>تصفح حسب الأقسام <span>♧</span></h2></div>
     <div class="visual-category-grid">
-      <button class="visual-category" onclick="showPage('home')"><span>⌂</span><strong>الرئيسية</strong></button>
-      <button class="visual-category" onclick="showPage('categories')"><span>▣</span><strong>المتاجر والتصنيفات</strong></button>
-      <button class="visual-category" onclick="showPage('directory')"><span>♧</span><strong>الدليل الشامل</strong></button>
-      <button class="visual-category" onclick="showPage('regions')"><span>⌖</span><strong>المناطق</strong></button>
-      <button class="visual-category" onclick="showPage('featured')"><span>♡</span><strong>المتاجر المميزة</strong></button>
-      <button class="visual-category" onclick="showPage('merchantJoin')"><span>♧</span><strong>الانضمام كتاجر</strong></button>
-      <button class="visual-category" onclick="showPage('addActivitySection')"><span>✧</span><strong>إضافة نشاط للدليل</strong></button>
-      <button class="visual-category" onclick="showPage('blog')"><span>▤</span><strong>المدونة</strong></button>
-      <button class="visual-category" onclick="showPage('about')"><span>ⓘ</span><strong>من نحن</strong></button>
-      <button class="visual-category" onclick="showPage('contactPage')"><span>✉</span><strong>تواصل معنا</strong></button>
+      <button class="visual-category" onclick="categorySearch('مزارع')"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=500&q=85" alt=""><strong>المزارع<br>والمنتجات المحلية</strong></button>
+      <button class="visual-category" onclick="categorySearch('متاجر')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=85" alt=""><strong>متاجر<br>المنتجات الطبيعية</strong></button>
+      <button class="visual-category" onclick="categorySearch('مخابز')"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=85" alt=""><strong>المخابز<br>الصحية</strong></button>
+      <button class="visual-category" onclick="categorySearch('مطاعم')"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=85" alt=""><strong>المطاعم<br>الصحية</strong></button>
+      <button class="visual-category" onclick="categorySearch('مقاهي')"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=85" alt=""><strong>المقاهي<br>الصحية</strong></button>
+      <button class="visual-category" onclick="categorySearch('علاج طبيعي')"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&q=85" alt=""><strong>مراكز العلاج<br>والعناية</strong></button>
+      <button class="visual-category" onclick="categorySearch('رياضة')"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&q=85" alt=""><strong>الأندية الرياضية<br>ومراكز اللياقة</strong></button>
     </div>
   </div>
 </section>
 
-<section class="visual-benefits">
+<section class="visual-benefits" id="visualBenefits">
   <div class="wrap benefits-row">
     <div><span>✿</span><b>جهات مختارة<br>بعناية</b></div>
     <div><span>♢</span><b>معلومات موثوقة<br>وشفافة</b></div>
@@ -608,15 +667,25 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
   </div>
 </section>
 
-<section class="visual-promos">
+<section class="visual-new" id="visualNew">
+  <div class="wrap">
+    <div class="visual-section-title"><h2>جديدنا في باونتي <span>✧</span></h2><a href="#directory">عرض المزيد ←</a></div>
+    <div class="new-banner">
+      <div class="new-banner-copy"><span>✧</span><div><b>جديدنا في باونتي</b><small>أحدث المتاجر والمنتجات والمقالات</small></div></div>
+      <div class="new-mini-row" id="newListings"></div>
+    </div>
+  </div>
+</section>
+
+<section class="visual-promos" id="visualPromos">
   <div class="wrap promo-grid">
+    <article class="promo-card promo-stories">
+      <div><span class="promo-eyebrow">▶ قصص باونتي</span><h2>تعرّف على أصحاب المشاريع والمزارع</h2><p>والخبراء في اللقاءات الملهمة.</p><a href="#blog" onclick="showPage('blog');return false">شاهد القصص ←</a></div>
+      <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700&q=85" alt="مزرعة ومنتجات محلية">
+    </article>
     <article class="promo-card promo-request">
       <div><span class="promo-eyebrow">💡 اطلب ما تحتاجه</span><h2>لم تجد المنتج أو الخدمة التي تبحث عنها؟</h2><p>أرسل لنا طلبك وسنساعدك في توفيره.</p><a href="mailto:bounty.ksa@outlook.com?subject=%D8%B7%D9%84%D8%A8%20%D8%AA%D9%88%D9%81%D9%8A%D8%B1%20%D9%85%D9%86%D8%AA%D8%AC%20%D8%A3%D9%88%20%D8%AE%D8%AF%D9%85%D8%A9">أرسل طلبك ←</a></div>
-      <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=500&q=85" alt="">
-    </article>
-    <article class="promo-card promo-stories">
-      <div><span class="promo-eyebrow">▶ قصص باونتي</span><h2>تعرّف على أصحاب المشاريع والمزارع</h2><p>والخبراء في القطاعات الصحية.</p><a href="#blog">شاهد القصص ←</a></div>
-      <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=85" alt="">
+      <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=700&q=85" alt="قائمة طعام صحية">
     </article>
   </div>
 </section>
@@ -639,15 +708,7 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
  </div>
 </section>
 
-<section class="visual-new">
-  <div class="wrap">
-    <div class="visual-section-title"><h2>جديدنا في باونتي <span>✧</span></h2><a href="#directory">عرض المزيد ←</a></div>
-    <div class="new-banner">
-      <div class="new-banner-copy"><span>🌿</span><div><b>جديدنا في باونتي</b><small>أحدث المتاجر والمنتجات والخدمات</small></div></div>
-      <div class="new-mini-row" id="newListings"></div>
-    </div>
-  </div>
-</section>
+
 
 <section class="visual-community">
   <div class="wrap community-inner">
@@ -827,10 +888,10 @@ function renderHomeHighlights(){
  const fresh=document.getElementById('newListings');
  if(!featured||!fresh)return;
  const photos=[
-  'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=85',
-  'https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=85',
+  'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=500&q=85',
   'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500&q=85',
-  'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=500&q=85'
+  'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=85',
+  'https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=85'
  ];
  const rows=listings.slice(0,4);
  featured.innerHTML=rows.map((x,i)=>`<article class="visual-product" onclick="showListing('${escapeHTML(x.id)}')">
@@ -841,9 +902,12 @@ function renderHomeHighlights(){
  </article>`).join('');
  const recent=listings.filter(x=>String(x.id).startsWith('db_')).slice(0,3);
  const miniRows=(recent.length?recent:rows.slice(0,3));
- fresh.innerHTML=miniRows.map((x,i)=>`<div class="new-mini" onclick="showListing('${escapeHTML(x.id)}')">
-  <img src="${photos[(i+1)%photos.length]}" alt=""><b>${escapeHTML(x.name)}</b>
- </div>`).join('');
+ fresh.innerHTML=miniRows.map((x,i)=>`<button type="button" class="new-mini" onclick="showListing('${escapeHTML(x.id)}')">
+  <img src="${photos[i%3]}" alt=""><span class="new-label">جديداً</span><b>${escapeHTML(x.name)}</b>
+ </button>`).join('');
+ if(miniRows.length<3){
+  fresh.insertAdjacentHTML('beforeend',`<button type="button" class="new-mini new-mini-cta" onclick="openAddActivity()"><img src="${photos[2]}" alt=""><span class="new-label">مساحتك</span><b>أضف نشاطك الجديد إلى باونتي</b></button>`);
+ }
 }
 
 function openRegion(name,isAvailable=true){
@@ -866,13 +930,16 @@ function renderListings(){
  const rows=listings.filter(x=>{
   const searchable=normalizeSearchText([x.name,x.desc,x.tags,x.type,x.region,x.address,x.website].join(' '));
   const glutenFree=normalizeSearchText([x.tags,x.desc,x.name].join(' '));
-  const queryMatches=!q||searchable.includes(q)||(q.includes('خالي من الجلوتين')&&/(خالي من الجلوتين|بدون جلوتين|gluten free|gluten-free)/.test(glutenFree));
+  const tokens=q.split(/\s+/).filter(Boolean);
+  const glutenQuery=/خالي من الجلوتين|بدون جلوتين|جلوتين|gluten ?free/.test(q);
+  const glutenMatch=glutenQuery&&/(خالي من الجلوتين|بدون جلوتين|جلوتين|gluten ?free|gluten-free)/.test(glutenFree);
+  const queryMatches=!q||searchable.includes(q)||tokens.every(token=>searchable.includes(token))||glutenMatch;
   return queryMatches&&(!region||x.region===region)&&(!type||x.type===type);
  });
  document.getElementById('resultCount').textContent=`${rows.length} جهة في الدليل`;
   renderRegionCards();
  renderHomeHighlights();
- document.getElementById('listingGrid').innerHTML=rows.length?rows.map(x=>`<article class="listing"><div class="listing-art">${escapeHTML(x.emoji||'🌿')}</div><div class="listing-body"><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.desc)}</p><div class="listing-meta"><span>📍 ${escapeHTML(x.region)}</span><span>▣ ${escapeHTML(x.type)}</span></div><button class="detail-btn" onclick="showListing('${escapeHTML(x.id)}')">عرض التفاصيل ←</button></div></article>`).join(''):'<div class="empty">لم نعثر على نتيجة مطابقة حالياً. جرّب كلمة أخرى أو تصفح التصنيفات.</div>';
+ document.getElementById('listingGrid').innerHTML=rows.length?rows.map(x=>`<article class="listing"><div class="listing-art">${escapeHTML(x.emoji||'🌿')}</div><div class="listing-body"><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.desc)}</p><div class="listing-meta"><span>📍 ${escapeHTML(x.region)}</span><span>▣ ${escapeHTML(x.type)}</span></div><button class="detail-btn" onclick="showListing('${escapeHTML(x.id)}')">عرض التفاصيل ←</button></div></article>`).join(''):'<div class="empty">تم تنفيذ البحث، لكن لا توجد جهات مسجلة تطابق هذه الكلمات حالياً. جرّب كلمة أخرى أو غيّر المنطقة أو القسم.</div>';
 }
 async function loadActivities(){
  try{
@@ -923,10 +990,51 @@ async function submitActivity(event){
   toast(error.message||'تعذر الإرسال. تحقّق من إعدادات قاعدة البيانات.');
  }finally{button.disabled=false;button.textContent='إرسال النشاط';}
 }
-function searchAll(){document.getElementById('directorySearch').value=document.getElementById('mainSearch').value;document.getElementById('regionFilter').value=document.getElementById('homeRegion').value;document.getElementById('typeFilter').value=document.getElementById('homeType').value;renderListings();document.getElementById('directory').scrollIntoView({behavior:'smooth'});}
-function searchTerm(term){document.getElementById('mainSearch').value=term;searchAll();}
-function categorySearch(term){document.getElementById('mainSearch').value=term;document.getElementById('directorySearch').value=term;document.getElementById('regionFilter').value='';document.getElementById('typeFilter').value='';renderListings();document.getElementById('directory').scrollIntoView({behavior:'smooth'});}
-function clearSearch(){document.getElementById('mainSearch').value='';document.getElementById('directorySearch').value='';document.getElementById('regionFilter').value='';document.getElementById('typeFilter').value='';renderListings();}
+function searchAll(){
+ const main=document.getElementById('mainSearch');
+ const dir=document.getElementById('directorySearch');
+ const region=document.getElementById('homeRegion');
+ const type=document.getElementById('homeType');
+ const regionFilter=document.getElementById('regionFilter');
+ const typeFilter=document.getElementById('typeFilter');
+ if(!main||!dir||!regionFilter||!typeFilter)return;
+ dir.value=(main.value||'').trim();
+ if(region){
+  const wanted=normalizeSearchText(region.value);
+  const option=[...regionFilter.options].find(o=>normalizeSearchText(o.value)===wanted);
+  regionFilter.value=option?option.value:'';
+ }
+ if(type){
+  const wanted=normalizeSearchText(type.value);
+  const option=[...typeFilter.options].find(o=>normalizeSearchText(o.value)===wanted);
+  typeFilter.value=option?option.value:'';
+ }
+ renderListings();
+ const target=document.getElementById('directory');
+ if(target){
+  target.classList.remove('page-hidden');
+  target.scrollIntoView({behavior:'smooth',block:'start'});
+ }
+}
+function searchTerm(term){
+ const input=document.getElementById('mainSearch');
+ if(input)input.value=term;
+ searchAll();
+}
+function categorySearch(term){
+ const input=document.getElementById('mainSearch');
+ const dir=document.getElementById('directorySearch');
+ const region=document.getElementById('regionFilter');
+ const type=document.getElementById('typeFilter');
+ if(input)input.value=term;
+ if(dir)dir.value=term;
+ if(region)region.value='';
+ if(type)type.value='';
+ renderListings();
+ const target=document.getElementById('directory');
+ if(target){target.classList.remove('page-hidden');target.scrollIntoView({behavior:'smooth',block:'start'});}
+}
+function clearSearch(){['mainSearch','directorySearch','regionFilter','typeFilter'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});renderListings();}
 function readArticle(i){document.getElementById('articleTitle').textContent=articles[i].title;document.getElementById('articleText').textContent=articles[i].text;document.getElementById('articleModal').classList.add('open');}
 function closeArticle(){document.getElementById('articleModal').classList.remove('open');}
 function showListing(id){const x=listings.find(v=>String(v.id)===String(id));if(!x)return;document.getElementById('listingTitle').textContent=x.name;const phone=x.phone?`<p><b>التواصل:</b> <a style="color:var(--brand)" href="tel:${escapeHTML(x.phone)}">${escapeHTML(x.phone)}</a></p>`:'';const website=x.website?`<p><b>الرابط:</b> <a style="color:var(--brand)" href="${escapeHTML(x.website)}" target="_blank" rel="noopener">زيارة الرابط</a></p>`:'';document.getElementById('listingDetails').innerHTML=`<p>${escapeHTML(x.desc)}</p><p><b>التصنيف:</b> ${escapeHTML(x.type)}</p><p><b>المنطقة:</b> ${escapeHTML(x.region)}</p>${x.address?`<p><b>الموقع:</b> ${escapeHTML(x.address)}</p>`:''}${phone}${website}`;document.getElementById('listingModal').classList.add('open');}
@@ -956,9 +1064,7 @@ function showPage(page){
  sections.forEach(section=>section.classList.add('page-hidden'));
  const show=(id)=>{const el=document.getElementById(id);if(el)el.classList.remove('page-hidden');};
  if(page==='home'){
-  show('homeHero');
-  show('categories');
-  show('featured');
+  ['homeHero','mainSectionsNav','categories','visualBenefits','featured','visualNew','visualPromos'].forEach(show);
  }else if(page==='categories'){
   show('categories');
  }else if(page==='featured'){
@@ -989,6 +1095,10 @@ function showPage(page){
 document.getElementById('menuToggle')?.addEventListener('click',openSideMenu);
 
 document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}));
+const homeSearchInput=document.getElementById('mainSearch');
+if(homeSearchInput)homeSearchInput.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();searchAll();}});
+const homeSearchButton=document.getElementById('homeSearchButton');
+if(homeSearchButton)homeSearchButton.addEventListener('click',e=>{e.preventDefault();searchAll();});
 setupRegions();
 renderListings();
 showPage('home');
