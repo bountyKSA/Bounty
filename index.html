@@ -610,6 +610,46 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
  .bounty-header .bounty-social{gap:7px!important}
 }
 
+
+/* Mobile header: hamburger at far right, logo centered, social icons at left */
+@media(max-width:650px){
+  .bounty-header{position:sticky!important;min-height:112px!important}
+  .bounty-header .utility-row{min-height:112px!important}
+  .bounty-header .utility-inner{
+    position:relative!important;min-height:112px!important;height:112px!important;
+    display:flex!important;align-items:center!important;justify-content:flex-start!important;
+    padding:0 12px!important;direction:ltr!important;
+  }
+  .bounty-header .bounty-social{
+    position:relative!important;z-index:2!important;margin:0!important;
+    order:0!important;gap:8px!important;font-size:17px!important;
+  }
+  .bounty-header .brand-center{
+    position:absolute!important;left:50%!important;right:auto!important;top:50%!important;
+    transform:translate(-50%,-50%)!important;order:1!important;
+    width:128px!important;min-width:0!important;max-width:128px!important;
+    margin:0!important;display:flex!important;justify-content:center!important;
+  }
+  .bounty-header .brand-center img{
+    display:block!important;width:128px!important;height:62px!important;
+    max-width:100%!important;object-fit:contain!important;object-position:center!important;
+  }
+  .bounty-header .side-menu-bar{
+    position:absolute!important;top:50%!important;right:10px!important;left:auto!important;
+    transform:translateY(-50%)!important;width:44px!important;height:44px!important;
+    z-index:100001!important;margin:0!important;padding:0!important;
+  }
+  .bounty-header .side-menu-inner{
+    width:44px!important;height:44px!important;min-height:44px!important;
+    margin:0!important;padding:0!important;display:flex!important;
+    align-items:center!important;justify-content:center!important;
+  }
+  .bounty-header .side-menu-inner .menu{
+    display:grid!important;place-items:center!important;width:44px!important;height:44px!important;
+    margin:0!important;padding:0!important;flex:0 0 44px!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -623,12 +663,11 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
         <a href="#" aria-label="تويتر" title="تويتر"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="social-fill" d="M22 5.9a8 8 0 0 1-2.4.7 4.2 4.2 0 0 0 1.8-2.3 8.4 8.4 0 0 1-2.7 1 4.2 4.2 0 0 0-7.2 3.8 12 12 0 0 1-8.7-4.4 4.2 4.2 0 0 0 1.3 5.6 4.1 4.1 0 0 1-1.9-.5v.1a4.2 4.2 0 0 0 3.4 4.1 4.2 4.2 0 0 1-1.9.1 4.2 4.2 0 0 0 3.9 2.9A8.4 8.4 0 0 1 1.4 19a11.9 11.9 0 0 0 6.4 1.9c7.7 0 11.9-6.4 11.9-11.9v-.5A8.5 8.5 0 0 0 22 5.9Z"/></svg></a>
         <a href="#" aria-label="فيسبوك" title="فيسبوك"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="social-fill" d="M13.5 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.8v8h3.4Z"/></svg></a>
       </div>
-
+      <a class="brand brand-center" href="#home" aria-label="باونتي الرئيسية" onclick="showPage('home');return false"><img src="images/logo.png" alt="Bounty باونتي - دليلك للحياة الصحية"></a>
     </div>
   </div>
   <div class="side-menu-bar">
     <div class="wrap side-menu-inner">
-      <a class="brand brand-center" href="#home" aria-label="باونتي الرئيسية" onclick="showPage('home');return false"><img src="images/logo.png" alt="Bounty باونتي - دليلك للحياة الصحية"></a>
       <button class="menu" id="menuToggle" type="button" aria-expanded="false" aria-controls="sideDrawer" aria-label="فتح قائمة الأقسام">☰</button>
     </div>
   </div>
