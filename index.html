@@ -338,7 +338,6 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
         <a href="#directory">♧ <span>الدليل الشامل</span></a>
         <a href="#blog">▤ <span>المدونة</span></a>
         <a href="#regions">♧ <span>جديدنا</span></a>
-        <a href="#about">✧ <span>معايير باونتي</span></a>
         <a href="#categories">♧ <span>الطلب ما تحتاجه</span></a>
         <a href="#about">♙ <span>الاعتماد والشراكات</span></a>
         <a href="#about">♧ <span>من نحن</span></a>
@@ -405,7 +404,6 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
 <section class="visual-benefits">
   <div class="wrap benefits-row">
     <div><span>✿</span><b>جهات مختارة<br>بعناية</b></div>
-    <div><span>▤</span><b>معايير واضحة<br>للاختيار</b></div>
     <div><span>♢</span><b>معلومات موثوقة<br>وشفافة</b></div>
     <div><span>♧</span><b>دعم المشاريع المحلية<br>في جميع المدن</b></div>
   </div>
@@ -539,7 +537,7 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
   <div class="form-grid">
    <div class="form-field"><label for="activityName">اسم النشاط *</label><input id="activityName" name="name" required minlength="2" maxlength="120" placeholder="اسم المتجر أو النشاط"></div>
    <div class="form-field"><label for="activityType">نوع النشاط *</label><select id="activityType" name="type" required><option value="">اختر التصنيف</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option></select></div>
-   <div class="form-field"><label for="activityRegion">المنطقة *</label><select id="activityRegion" name="region" required><option value="">اختر المنطقة</option><option>الرياض</option><option>القصيم</option><option>مكة المكرمة</option><option>المدينة المنورة</option><option>المنطقة الشرقية</option><option>عسير</option><option>تبوك</option><option>حائل</option><option>الحدود الشمالية</option><option>جازان</option><option>نجران</option><option>الباحة</option><option>الجوف</option></select></div>
+   <div class="form-field"><label for="activityRegion">المنطقة أو المدينة *</label><input id="activityRegion" name="region" type="text" required minlength="2" maxlength="100" placeholder="اكتب المنطقة أو المدينة، مثل جدة"></div>
    <div class="form-field"><label for="activityPhone">رقم التواصل</label><input id="activityPhone" name="phone" type="tel" maxlength="30" placeholder="05xxxxxxxx"></div>
    <div class="form-field full"><label for="activityAddress">عنوان النشاط أو موقعه *</label><input id="activityAddress" name="address" type="text" autocomplete="street-address" required minlength="3" maxlength="250" placeholder="اكتب المدينة والحي أو الصق رابط موقع Google Maps"><small style="color:var(--muted);font-size:11px">هذا الحقل مطلوب لحفظ النشاط في الدليل.</small></div>
    <div class="form-field full"><label for="activityDescription">وصف النشاط *</label><textarea id="activityDescription" name="description" required minlength="5" maxlength="700" placeholder="اكتب وصفًا مختصرًا للنشاط والخدمات أو المنتجات..."></textarea></div>
@@ -572,20 +570,31 @@ const REGIONS=[
  {name:'نجران',emoji:'🌵'},{name:'الباحة',emoji:'🌳'},{name:'الجوف',emoji:'🌱'}
 ];
 function setupRegions(){
- const filter=document.getElementById('regionFilter');
- REGIONS.forEach(r=>filter.add(new Option(r.name,r.name)));
+ refreshRegionFilter();
  renderRegionCards();
+}
+function refreshRegionFilter(){
+ const filter=document.getElementById('regionFilter');
+ if(!filter)return;
+ const selected=filter.value;
+ filter.innerHTML='<option value="">كل المناطق</option>';
+ const names=[...new Set([...REGIONS.map(r=>r.name),...listings.map(x=>(x.region||'').trim()).filter(Boolean)])];
+ names.forEach(name=>filter.add(new Option(name,name)));
+ filter.value=names.includes(selected)?selected:'';
 }
 function renderRegionCards(){
  const grid=document.getElementById('regionGrid');
  if(!grid)return;
- grid.innerHTML=REGIONS.map(r=>{
-  const isAvailable=['الرياض','القصيم'].includes(r.name);
-  const count=isAvailable?listings.filter(x=>x.region===r.name).length:0;
-  const subtitle=!isAvailable?'قريبًا في منطقتكم':(count?`يوجد ${count} جهة في الدليل`:'لا توجد أنشطة مضافة بعد');
-  const action=!isAvailable?'ترقبونا قريباً':(count?'استكشف الدليل ←':'أضف أول نشاط ←');
-  return `<button class="region-card ${isAvailable&&count?'active':''} ${!isAvailable?'coming-soon':''}" ${isAvailable?(count?`onclick="openRegion('${r.name}',true)"`:'type="button" onclick="openAddActivity()"'):'type="button" disabled aria-disabled="true"'}>
-   <span>${r.emoji}</span><strong>منطقة ${r.name}</strong>
+ const names=[...new Set([...REGIONS.map(r=>r.name),...listings.map(x=>(x.region||'').trim()).filter(Boolean)])];
+ grid.innerHTML=names.map(name=>{
+  const predefined=REGIONS.find(r=>r.name===name);
+  const emoji=predefined?.emoji||'📍';
+  const count=listings.filter(x=>(x.region||'').trim()===name).length;
+  const subtitle=count?`يوجد ${count} جهة في الدليل`:'لا توجد أنشطة مضافة بعد';
+  const action=count?'استكشف الدليل ←':'أضف أول نشاط ←';
+  const safeName=escapeHTML(name).replace(/'/g,'&#39;');
+  return `<button class="region-card ${count?'active':''}" type="button" onclick="${count?`openRegion('${safeName}',true)`:'openAddActivity()'}">
+   <span>${emoji}</span><strong>${escapeHTML(name)}</strong>
    <small>${subtitle}</small><b>${action}</b>
   </button>`;
  }).join('');
@@ -646,6 +655,7 @@ async function loadActivities(){
   if(error) throw error;
   const fromDatabase=(data||[]).map(row=>({id:'db_'+row.id,name:row.name,type:row.type,region:row.region,phone:row.phone||'',desc:row.description||'',tags:row.tags||'',website:row.website||'',address:row.address||'',emoji:'🌿'}));
   listings=[...fromDatabase,...seedListings];
+  refreshRegionFilter();
   renderListings();
  }catch(error){console.error('تعذر تحميل الأنشطة من Supabase:',error);}
 }
@@ -698,6 +708,7 @@ function showListing(id){const x=listings.find(v=>String(v.id)===String(id));if(
 function closeListing(){document.getElementById('listingModal').classList.remove('open');}
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500);}
 document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}));
+setupRegions();
 renderListings();
 loadActivities();
 </script>
