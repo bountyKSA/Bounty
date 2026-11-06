@@ -29,7 +29,7 @@ header{position:sticky;top:0;z-index:30;background:#ffffffed;backdrop-filter:blu
 nav{display:flex;align-items:center;gap:22px;font-size:14px;font-weight:600;color:#466258}
 nav a:hover{color:var(--brand2)}
 .nav-cta{background:var(--brand);color:#fff;border-radius:11px;padding:10px 17px;font-weight:700;white-space:nowrap}
-.menu{display:none;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;color:var(--brand)}
+.menu{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;color:var(--brand)}
 .hero{padding:56px 0 62px;background:linear-gradient(135deg,#f0f7f2 0%,#f9fbf5 55%,#fff5e6 100%);position:relative;overflow:hidden}
 .hero:before{content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:#dceee4;opacity:.6;top:-210px;left:-90px}
 .hero-inner{position:relative;max-width:900px;margin:auto;text-align:center}
@@ -142,14 +142,14 @@ a[href*="/cart"], a[href*="cart.html"], a[aria-label*="cart" i], button[aria-lab
 body{background:#fffdf9}
 .bounty-header{position:sticky;top:0;z-index:40;background:#fffaf7;border-bottom:1px solid #eee5df;box-shadow:0 2px 12px rgba(65,45,35,.05)}
 .utility-row{border-bottom:1px solid #f0e8e2}
-.utility-inner{min-height:58px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px}
+.utility-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
 .utility-left,.social-mini{display:flex;align-items:center;gap:16px;color:#333;font-size:20px}
 .utility-left a,.social-mini a{color:#333;text-decoration:none}
 .lang-pill{font-size:11px!important;border:1px solid #ddd;border-radius:7px;padding:4px 7px}
 .merchant-pill{background:#985a78;color:#fff!important;border-radius:20px;padding:8px 15px;font-size:12px;font-weight:700}
-.brand-center{justify-self:center}
+.brand-center{order:0;margin-right:0;margin-left:auto}
 .brand-center img{width:185px;height:64px;object-fit:contain}
-.social-mini{justify-content:flex-end}
+.social-mini{justify-content:flex-start;order:1}.utility-left{order:2}
 .main-nav-row{background:#fff}
 .main-nav-inner{min-height:62px;display:flex;align-items:center;justify-content:center}
 .visual-nav{display:flex;align-items:center;justify-content:space-between;width:100%;gap:8px}
@@ -306,6 +306,22 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
 #merchantModal .modal-box{width:min(680px,100%)}
 @media(max-width:620px){.merchant-invite-inner{align-items:flex-start;flex-wrap:wrap;padding:17px}.merchant-invite-icon{width:45px;height:45px;flex-basis:45px;font-size:24px}.merchant-invite-copy{flex:1 1 calc(100% - 65px)}.merchant-invite-copy h2{font-size:17px}.merchant-invite-copy p{font-size:12px}.merchant-invite-inner>button{width:100%}}
 
+
+.side-menu-bar{background:#fff;border-top:1px solid var(--line)}
+.side-menu-inner{min-height:54px;display:flex;align-items:center;gap:14px}
+.side-menu-inner .menu{display:inline-flex;border:0;background:var(--brand);color:#fff;padding:9px 16px;border-radius:11px;font-weight:700}
+.menu-caption{font-size:13px;color:var(--muted)}
+.drawer-backdrop{position:fixed;inset:0;background:#10251dcc;z-index:80;opacity:0;visibility:hidden;transition:.2s}
+.side-drawer{position:fixed;z-index:81;top:0;bottom:0;right:0;width:min(330px,86vw);background:#fff;padding:22px 18px;box-shadow:-15px 0 40px #10251d22;transform:translateX(110%);transition:.25s;display:flex;flex-direction:column;gap:7px;overflow:auto}
+.drawer-open .drawer-backdrop{opacity:1;visibility:visible}
+.drawer-open .side-drawer{transform:translateX(0)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:8px 4px 18px;border-bottom:1px solid var(--line);margin-bottom:8px;color:var(--brand);font-size:19px}
+.drawer-head button{border:0;background:var(--pale);color:var(--brand);border-radius:9px;font-size:25px;width:38px;height:38px}
+.side-drawer>a{display:block;padding:13px 14px;border-radius:11px;color:var(--ink);font-weight:700}
+.side-drawer>a:hover,.side-drawer>a.active{background:var(--pale);color:var(--brand)}
+.page-hidden{display:none!important}
+@media(max-width:650px){.utility-inner{min-height:64px}.brand-center img{width:150px;height:58px}.utility-left{gap:8px}.social-mini{gap:9px}.menu-caption{font-size:12px}}
+
 </style>
 </head>
 <body>
@@ -330,27 +346,24 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
       </div>
     </div>
   </div>
-  <div class="main-nav-row">
-    <div class="wrap main-nav-inner">
-      <nav class="visual-nav">
-        <a class="nav-home" href="#home">⌂ <span>الرئيسية</span></a>
-        <a href="#categories">▣ <span>المتاجر</span></a>
-        <a href="#directory">♧ <span>الدليل الشامل</span></a>
-        <a href="#blog">▤ <span>المدونة</span></a>
-        <a href="#regions">♧ <span>جديدنا</span></a>
-        <a href="#categories">♧ <span>الطلب ما تحتاجه</span></a>
-        <a href="#about">♙ <span>الاعتماد والشراكات</span></a>
-        <a href="#about">♧ <span>من نحن</span></a>
-        <a href="mailto:bounty.ksa@outlook.com">✉ <span>تواصل معنا</span></a>
-      </nav>
-      <button class="menu" onclick="document.getElementById('mobileLinks').hidden=!document.getElementById('mobileLinks').hidden">☰</button>
-    </div>
-    <div id="mobileLinks" class="wrap mobile-links" hidden>
-      <a href="#home">الرئيسية</a><a href="#categories">المتاجر والتصنيفات</a>
-      <a href="#directory">الدليل الشامل</a><a href="#blog">المدونة</a>
-      <a href="#about">من نحن</a><a href="mailto:bounty.ksa@outlook.com">تواصل معنا</a>
+  <div class="side-menu-bar">
+    <div class="wrap side-menu-inner">
+      <button class="menu" id="menuToggle" type="button" aria-expanded="false" aria-controls="sideDrawer">☰ الأقسام</button>
+      <span class="menu-caption">تصفحي أقسام باونتي بسهولة</span>
     </div>
   </div>
+  <div class="drawer-backdrop" id="drawerBackdrop" onclick="closeSideMenu()"></div>
+  <aside class="side-drawer" id="sideDrawer" aria-label="قائمة أقسام الموقع" aria-hidden="true">
+    <div class="drawer-head"><strong>أقسام باونتي</strong><button type="button" onclick="closeSideMenu()" aria-label="إغلاق">×</button></div>
+    <a href="#home" onclick="showPage('home');return false">⌂ الرئيسية</a>
+    <a href="#categories" onclick="showPage('categories');return false">▣ المتاجر والتصنيفات</a>
+    <a href="#directory" onclick="showPage('directory');return false">♧ الدليل الشامل</a>
+    <a href="#regions" onclick="showPage('regions');return false">⌖ المناطق</a>
+    <a href="#featured" onclick="showPage('featured');return false">♡ المتاجر المميزة</a>
+    <a href="#merchantJoin" onclick="showPage('merchantJoin');return false">♧ انضم إلينا كتاجر</a>
+    <a href="#blog" onclick="showPage('blog');return false">▤ المدونة</a>
+    <a href="#about" onclick="showPage('about');return false">ⓘ من نحن والتواصل</a>
+  </aside>
 </header>
 
 
@@ -707,9 +720,53 @@ function closeArticle(){document.getElementById('articleModal').classList.remove
 function showListing(id){const x=listings.find(v=>String(v.id)===String(id));if(!x)return;document.getElementById('listingTitle').textContent=x.name;const phone=x.phone?`<p><b>التواصل:</b> <a style="color:var(--brand)" href="tel:${escapeHTML(x.phone)}">${escapeHTML(x.phone)}</a></p>`:'';const website=x.website?`<p><b>الرابط:</b> <a style="color:var(--brand)" href="${escapeHTML(x.website)}" target="_blank" rel="noopener">زيارة الرابط</a></p>`:'';document.getElementById('listingDetails').innerHTML=`<p>${escapeHTML(x.desc)}</p><p><b>التصنيف:</b> ${escapeHTML(x.type)}</p><p><b>المنطقة:</b> ${escapeHTML(x.region)}</p>${x.address?`<p><b>الموقع:</b> ${escapeHTML(x.address)}</p>`:''}${phone}${website}`;document.getElementById('listingModal').classList.add('open');}
 function closeListing(){document.getElementById('listingModal').classList.remove('open');}
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500);}
+
+function openSideMenu(){
+ document.body.classList.add('drawer-open');
+ document.getElementById('menuToggle')?.setAttribute('aria-expanded','true');
+ document.getElementById('sideDrawer')?.setAttribute('aria-hidden','false');
+}
+function closeSideMenu(){
+ document.body.classList.remove('drawer-open');
+ document.getElementById('menuToggle')?.setAttribute('aria-expanded','false');
+ document.getElementById('sideDrawer')?.setAttribute('aria-hidden','true');
+}
+function showPage(page){
+ closeSideMenu();
+ const main=document.querySelector('main');
+ if(!main)return;
+ const sections=[...main.querySelectorAll(':scope > section')];
+ sections.forEach(section=>section.classList.add('page-hidden'));
+ const show=(selector)=>main.querySelectorAll(selector).forEach(el=>el.classList.remove('page-hidden'));
+ if(page==='home'){
+  show('.visual-hero');
+  show('.visual-benefits');
+  show('.visual-promos');
+ }else if(page==='categories'){
+  show('#categories');
+  show('.visual-benefits');
+ }else if(page==='featured'){
+  show('#featured');
+ }else if(page==='merchantJoin'){
+  show('#merchantJoin');
+ }else if(page==='regions'){
+  show('#regions');
+ }else if(page==='directory'){
+  show('#directory');
+ }else if(page==='blog'){
+  show('#blog');
+ }else if(page==='about'){
+  show('#about');
+ }
+ window.scrollTo({top:0,behavior:'smooth'});
+ document.querySelectorAll('.side-drawer a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+page));
+}
+document.getElementById('menuToggle')?.addEventListener('click',openSideMenu);
+
 document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}));
 setupRegions();
 renderListings();
+showPage('home');
 loadActivities();
 </script>
 </body>
