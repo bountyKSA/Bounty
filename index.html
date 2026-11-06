@@ -401,6 +401,107 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
  .side-menu-bar{left:10px!important;top:115px!important}
 }
 
+
+/* Two clearly separated action sections with independent headings */
+.merchant-invite-section,.add-activity-section{padding:28px 0 34px}
+.merchant-invite-section{background:#fffdf9}
+.add-activity-section{background:#f3f7f2;border-top:1px solid #e2ebe3}
+.action-section-heading{
+ display:flex;align-items:center;gap:13px;margin:0 auto 16px;
+ color:#124b3e;text-align:right;
+}
+.action-section-heading>span{
+ width:42px;height:42px;display:grid;place-items:center;
+ border-radius:12px;background:#e8f2eb;color:#b18b43;font-size:22px;
+}
+.action-section-heading small{display:block;color:#9b8754;font-size:12px;margin-bottom:3px}
+.action-section-heading h2{font-size:22px;line-height:1.4;margin:0;color:#124b3e}
+.merchant-invite-section .merchant-invite{margin:0}
+.add-activity-section .join{margin:0}
+@media(max-width:650px){
+ .merchant-invite-section,.add-activity-section{padding:22px 0}
+ .action-section-heading h2{font-size:19px}
+}
+
+
+/* Independent pages: merchant signup, add activity, about, and contact */
+.contact-page-section{padding:42px 0 60px;background:#fbfcf8;min-height:55vh}
+.contact-page-card{
+ background:#fff;border:1px solid #e1ebe3;border-radius:16px;
+ padding:28px;text-align:right;box-shadow:0 5px 18px rgba(18,75,62,.06);
+}
+.contact-page-card p{color:var(--muted);margin:0 0 14px}
+.contact-page-card a{color:#176b58;font-weight:700;text-decoration:none}
+#merchantJoin,#addActivitySection,#about,#contactPage{min-height:55vh}
+.side-menu-bar{
+ position:fixed!important;top:14px!important;right:14px!important;left:auto!important;
+ z-index:100000!important;background:transparent!important;border:0!important;
+ width:auto!important;padding:0!important;
+}
+.side-menu-inner{min-height:0!important;padding:0!important;justify-content:flex-end!important}
+.side-menu-inner .menu{
+ width:48px!important;height:48px!important;padding:0!important;
+ display:grid!important;place-items:center!important;font-size:0!important;
+ border-radius:12px!important;background:#176b58!important;color:#fff!important;
+ box-shadow:0 4px 14px rgba(18,75,62,.2)!important;
+}
+.side-menu-inner .menu::before{content:"☰";font-size:25px!important;line-height:1}
+@media(max-width:650px){
+ .side-menu-bar{top:10px!important;right:10px!important}
+ .contact-page-card{padding:22px}
+}
+
+
+/* Header category links: separate, readable navigation beside the logo */
+.bounty-header .utility-inner{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ gap:22px!important;min-height:88px!important;
+}
+.header-sections{
+ display:flex!important;align-items:center!important;justify-content:flex-start!important;
+ gap:6px!important;flex:1!important;min-width:0!important;overflow-x:auto!important;flex-wrap:wrap!important;
+ scrollbar-width:thin!important;padding:8px 2px!important;
+}
+.header-sections a{
+ flex:0 0 auto!important;white-space:nowrap!important;text-decoration:none!important;
+ color:#176b58!important;background:#eef5ef!important;border:1px solid #dce9df!important;
+ border-radius:9px!important;padding:9px 12px!important;font-size:11px!important;font-weight:700!important;
+}
+.header-sections a:hover{background:#e1efe6!important;border-color:#9dbfa8!important}
+.bounty-header .brand-center{flex:0 0 190px!important;margin:0!important;order:2!important}
+.bounty-header .brand-center img{width:190px!important;height:78px!important;object-fit:contain!important}
+.bounty-header .side-menu-bar{
+ position:absolute!important;top:18px!important;right:16px!important;left:auto!important;
+ width:auto!important;background:transparent!important;border:0!important;z-index:40!important;
+}
+.bounty-header .side-menu-inner{min-height:0!important;padding:0!important;justify-content:flex-end!important}
+.bounty-header .side-menu-inner .menu{font-size:0!important;width:42px!important;height:42px!important;padding:0!important}
+.bounty-header .side-menu-inner .menu:before{content:"☰";font-size:23px!important}
+.visual-category-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important}
+.visual-category{
+ min-height:58px!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;
+ gap:10px!important;text-align:right!important;padding:12px 16px!important;
+ border:1px solid #dce9df!important;border-radius:10px!important;background:#f1f7f2!important;
+ color:#176b58!important;box-shadow:0 2px 7px rgba(18,75,62,.05)!important;
+}
+.visual-category span{font-size:20px!important;flex:0 0 auto!important}
+.visual-category strong{font-size:14px!important;line-height:1.5!important;padding:0!important}
+.visual-category:hover{background:#e6f1e9!important;border-color:#a8cbb5!important;transform:translateY(-2px)!important}
+@media(max-width:900px){
+ .header-sections{gap:5px!important}
+ .header-sections a{font-size:11px!important;padding:7px 9px!important}
+ .bounty-header .brand-center{flex-basis:150px!important}
+ .bounty-header .brand-center img{width:150px!important}
+}
+@media(max-width:650px){
+ .bounty-header .utility-inner{min-height:70px!important;padding-left:58px!important}
+ .header-sections{display:none!important}
+ .bounty-header .brand-center{margin-right:auto!important;flex-basis:145px!important}
+ .visual-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .visual-category{padding:10px!important}
+ .visual-category strong{font-size:12px!important}
+}
+
 </style>
 </head>
 <body>
@@ -408,6 +509,18 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
 <header class="bounty-header">
   <div class="utility-row">
     <div class="wrap utility-inner">
+      <div class="header-sections" aria-label="الأقسام الرئيسية">
+        <a href="#home" onclick="showPage('home');return false">⌂ الرئيسية</a>
+        <a href="#categories" onclick="showPage('categories');return false">▣ المتاجر والتصنيفات</a>
+        <a href="#directory" onclick="showPage('directory');return false">♧ الدليل الشامل</a>
+        <a href="#regions" onclick="showPage('regions');return false">⌖ المناطق</a>
+        <a href="#featured" onclick="showPage('featured');return false">♡ المتاجر المميزة</a>
+        <a href="#merchantJoin" onclick="showPage('merchantJoin');return false">♧ الانضمام كتاجر</a>
+        <a href="#addActivitySection" onclick="showPage('addActivitySection');return false">✧ إضافة نشاط للدليل</a>
+        <a href="#blog" onclick="showPage('blog');return false">▤ المدونة</a>
+        <a href="#about" onclick="showPage('about');return false">ⓘ من نحن</a>
+        <a href="#contactPage" onclick="showPage('contactPage');return false">✉ تواصل معنا</a>
+      </div>
       <a class="brand brand-center" href="#home" aria-label="باونتي الرئيسية">
         <img src="images/logo.png" alt="Bounty باونتي - دليلك للحياة الصحية">
       </a>
@@ -428,9 +541,11 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
     <a href="#directory" onclick="showPage('directory');return false">♧ الدليل الشامل</a>
     <a href="#regions" onclick="showPage('regions');return false">⌖ المناطق</a>
     <a href="#featured" onclick="showPage('featured');return false">♡ المتاجر المميزة</a>
-    <a href="#merchantJoin" onclick="showPage('merchantJoin');return false">♧ انضم إلينا كتاجر</a>
+    <a href="#merchantJoin" onclick="showPage('merchantJoin');return false">♧ الانضمام كتاجر</a>
+    <a href="#addActivitySection" onclick="showPage('addActivitySection');return false">✧ إضافة نشاط للدليل</a>
     <a href="#blog" onclick="showPage('blog');return false">▤ المدونة</a>
-    <a href="#about" onclick="showPage('about');return false">ⓘ من نحن والتواصل</a>
+    <a href="#about" onclick="showPage('about');return false">ⓘ من نحن</a>
+    <a href="#contactPage" onclick="showPage('contactPage');return false">✉ تواصل معنا</a>
   </aside>
 
 
@@ -471,14 +586,14 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
   <div class="wrap">
     <div class="visual-section-title"><h2>تصفح حسب الأقسام <span>♧</span></h2></div>
     <div class="visual-category-grid">
-      <button class="visual-category" onclick="categorySearch('مزارع')">المزارع والمنتجات المحلية</button>
-      <button class="visual-category" onclick="categorySearch('متاجر')">متاجر المنتجات الطبيعية</button>
-      <button class="visual-category" onclick="categorySearch('مخابز')">المخابز الصحية</button>
-      <button class="visual-category" onclick="categorySearch('مطاعم')">المطاعم الصحية</button>
-      <button class="visual-category" onclick="categorySearch('مقاهي')">المقاهي الصحية</button>
-      <button class="visual-category" onclick="categorySearch('علاج طبيعي')">مراكز العلاج والعناية</button>
-      <button class="visual-category" onclick="categorySearch('رياضة')">الأندية الرياضية ومراكز اللياقة</button>
-      <button class="visual-category" onclick="categorySearch('الكل')">عرض الكل</button>
+      <button class="visual-category" onclick="categorySearch('مزارع')"><span>🌱</span><strong>المزارع والمنتجات المحلية</strong></button>
+      <button class="visual-category" onclick="categorySearch('متاجر')"><span>🛍️</span><strong>متاجر المنتجات الطبيعية</strong></button>
+      <button class="visual-category" onclick="categorySearch('مخابز')"><span>🍞</span><strong>المخابز الصحية</strong></button>
+      <button class="visual-category" onclick="categorySearch('مطاعم')"><span>🥗</span><strong>المطاعم الصحية</strong></button>
+      <button class="visual-category" onclick="categorySearch('مقاهي')"><span>☕</span><strong>المقاهي الصحية</strong></button>
+      <button class="visual-category" onclick="categorySearch('علاج طبيعي')"><span>🧘</span><strong>مراكز العلاج والعناية</strong></button>
+      <button class="visual-category" onclick="categorySearch('رياضة')"><span>🏃</span><strong>الأندية الرياضية ومراكز اللياقة</strong></button>
+      <button class="visual-category" onclick="categorySearch('الكل')"><span>▦</span><strong>عرض جميع الأقسام</strong></button>
     </div>
   </div>
 </section>
@@ -511,11 +626,14 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
   </div>
 </section>
 
-<section class="merchant-invite" id="merchantJoin">
- <div class="wrap merchant-invite-inner">
+<section class="merchant-invite-section" id="merchantJoin">
+ <div class="wrap">
+  <div class="action-section-heading"><span>🌿</span><div><small>لأصحاب المشاريع والمتاجر</small><h2>الانضمام إلى باونتي كتاجر</h2></div></div>
+  <div class="merchant-invite merchant-invite-inner">
   <div class="merchant-invite-icon">🌿</div>
   <div class="merchant-invite-copy"><span>لأصحاب المشاريع والمتاجر</span><h2>هل ترغب بالانضمام إلى باونتي كتاجر؟</h2><p>قدّم طلبك، وسيراجع فريق باونتي بيانات نشاطك قبل اعتماده وإضافته إلى الدليل.</p></div>
   <button type="button" onclick="openMerchantForm()">قدّم طلب الانضمام ←</button>
+  </div>
  </div>
 </section>
 
@@ -579,14 +697,29 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
  </div>
 </section>
 
-<div class="wrap"><div class="join"><div><h2>هل لديك نشاط ترغب بإضافته للدليل؟</h2><p>يمكنك إرسال بيانات نشاطك لإضافته إلى دليل باونتي.</p></div><a href="#addActivity" onclick="openAddActivity(event)">أضف نشاطًا للدليل</a></div></div>
+<section class="add-activity-section" id="addActivitySection">
+ <div class="wrap">
+  <div class="action-section-heading"><span>✧</span><div><small>لأصحاب الأنشطة والمبادرات</small><h2>إضافة نشاط إلى دليل باونتي</h2></div></div>
+  <div class="join"><div><h2>هل لديك نشاط ترغب بإضافته للدليل؟</h2><p>يمكنك إرسال بيانات نشاطك لإضافته إلى دليل باونتي.</p></div><a href="#addActivity" onclick="openAddActivity(event)">أضف نشاطًا للدليل</a></div>
+ </div>
+</section>
+
+<section class="contact-page-section" id="contactPage">
+ <div class="wrap">
+  <div class="action-section-heading"><span>✉</span><div><small>نسعد بتواصلك</small><h2>تواصل معنا</h2></div></div>
+  <div class="contact-page-card">
+   <p>للاستفسارات أو الملاحظات، يسعدنا استقبال رسالتك عبر البريد الإلكتروني.</p>
+   <a href="mailto:bounty.ksa@outlook.com">bounty.ksa@outlook.com</a>
+  </div>
+ </div>
+</section>
+
 </main>
 
 <footer>
  <div class="wrap"><div class="footer-grid">
   <div><h3>باونتي 🌿</h3><p>دليلك للحياة الصحية. ابحث عن المنتجات والجهات والخيارات التي تناسب احتياجك، واكتشفها في مكان واحد.</p></div>
   <div><h4>روابط سريعة</h4><a href="#directory">اكتشف الدليل</a><a href="#categories">تصنيفات الدليل</a><a href="#blog">المدونة</a><a href="#about">من نحن</a></div>
-  <div><h4>تواصل معنا</h4><a href="mailto:bounty.ksa@outlook.com">bounty.ksa@outlook.com</a></div>
  </div><div class="copyright">© 2026 باونتي — جميع الحقوق محفوظة.</div></div>
 </footer>
 
@@ -822,6 +955,10 @@ function showPage(page){
   show('featured');
  }else if(page==='merchantJoin'){
   show('merchantJoin');
+ }else if(page==='addActivitySection'){
+  show('addActivitySection');
+ }else if(page==='contactPage'){
+  show('contactPage');
  }else if(page==='regions'){
   show('regions');
  }else if(page==='directory'){
@@ -834,6 +971,8 @@ function showPage(page){
  document.querySelectorAll('.side-drawer a').forEach(a=>{
   a.classList.toggle('active',a.getAttribute('href')==='#'+page);
  });
+ const footer=document.querySelector('footer');
+ if(footer)footer.style.display=(page==='home')?'block':'none';
  window.scrollTo({top:0,behavior:'instant'});
 }
 
