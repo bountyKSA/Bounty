@@ -142,7 +142,7 @@ a[href*="/cart"], a[href*="cart.html"], a[aria-label*="cart" i], button[aria-lab
 body{background:#fffdf9}
 .bounty-header{position:sticky;top:0;z-index:40;background:#fffaf7;border-bottom:1px solid #eee5df;box-shadow:0 2px 12px rgba(65,45,35,.05)}
 .utility-row{border-bottom:1px solid #f0e8e2}
-.utility-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.utility-inner{min-height:72px;display:flex;align-items:center;justify-content:flex-start;gap:18px}
 .utility-left,.social-mini{display:flex;align-items:center;gap:16px;color:#333;font-size:20px}
 .utility-left a,.social-mini a{color:#333;text-decoration:none}
 .lang-pill{font-size:11px!important;border:1px solid #ddd;border-radius:7px;padding:4px 7px}
@@ -322,6 +322,16 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
 .page-hidden{display:none!important}
 @media(max-width:650px){.utility-inner{min-height:64px}.brand-center img{width:150px;height:58px}.utility-left{gap:8px}.social-mini{gap:9px}.menu-caption{font-size:12px}}
 
+
+/* Clean single-section navigation */
+.side-drawer{right:0!important;left:auto!important;transform:translateX(110%)!important;visibility:hidden!important;pointer-events:none!important}
+.drawer-open .side-drawer{transform:translateX(0)!important;visibility:visible!important;pointer-events:auto!important}
+.drawer-backdrop{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+.drawer-open .drawer-backdrop{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+.page-hidden{display:none!important}
+.side-menu-inner{justify-content:flex-start!important}
+.brand-center{margin-left:auto!important;margin-right:0!important}
+
 </style>
 </head>
 <body>
@@ -329,21 +339,9 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
 <header class="bounty-header">
   <div class="utility-row">
     <div class="wrap utility-inner">
-      <div class="utility-left">
-        <a class="lang-pill" href="#home">EN</a>
-        <a href="#blog" aria-label="التنبيهات">♧</a>
-        <a href="#featured" aria-label="المفضلة">♡</a>
-        <a href="#about" aria-label="حسابي">♙</a>
-      </div>
       <a class="brand brand-center" href="#home" aria-label="باونتي الرئيسية">
         <img src="images/logo.png" alt="Bounty باونتي - دليلك للحياة الصحية">
       </a>
-      <div class="social-mini" aria-label="روابط التواصل">
-        <a href="#about" aria-label="TikTok">♪</a>
-        <a href="#about" aria-label="Instagram">◎</a>
-        <a href="#about" aria-label="Facebook">f</a>
-        <a href="#about" aria-label="X">𝕏</a>
-      </div>
     </div>
   </div>
   <div class="side-menu-bar">
@@ -370,7 +368,7 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
 <main id="home">
 <!-- الواجهة الرئيسية: البحث هو أول وأوضح عنصر -->
 
-<section class="visual-hero">
+<section class="visual-hero" id="homeHero">
   <div class="visual-hero-image">
     <div class="wrap visual-hero-content">
       <div class="hero-copy">
@@ -721,15 +719,20 @@ function showListing(id){const x=listings.find(v=>String(v.id)===String(id));if(
 function closeListing(){document.getElementById('listingModal').classList.remove('open');}
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500);}
 
+
 function openSideMenu(){
  document.body.classList.add('drawer-open');
- document.getElementById('menuToggle')?.setAttribute('aria-expanded','true');
- document.getElementById('sideDrawer')?.setAttribute('aria-hidden','false');
+ const toggle=document.getElementById('menuToggle');
+ if(toggle)toggle.setAttribute('aria-expanded','true');
+ const drawer=document.getElementById('sideDrawer');
+ if(drawer)drawer.setAttribute('aria-hidden','false');
 }
 function closeSideMenu(){
  document.body.classList.remove('drawer-open');
- document.getElementById('menuToggle')?.setAttribute('aria-expanded','false');
- document.getElementById('sideDrawer')?.setAttribute('aria-hidden','true');
+ const toggle=document.getElementById('menuToggle');
+ if(toggle)toggle.setAttribute('aria-expanded','false');
+ const drawer=document.getElementById('sideDrawer');
+ if(drawer)drawer.setAttribute('aria-hidden','true');
 }
 function showPage(page){
  closeSideMenu();
@@ -737,30 +740,32 @@ function showPage(page){
  if(!main)return;
  const sections=[...main.querySelectorAll(':scope > section')];
  sections.forEach(section=>section.classList.add('page-hidden'));
- const show=(selector)=>main.querySelectorAll(selector).forEach(el=>el.classList.remove('page-hidden'));
+ const show=(id)=>{const el=document.getElementById(id);if(el)el.classList.remove('page-hidden');};
  if(page==='home'){
-  show('.visual-hero');
-  show('.visual-benefits');
-  show('.visual-promos');
+  show('homeHero');
+  show('categories');
+  show('featured');
  }else if(page==='categories'){
-  show('#categories');
-  show('.visual-benefits');
+  show('categories');
  }else if(page==='featured'){
-  show('#featured');
+  show('featured');
  }else if(page==='merchantJoin'){
-  show('#merchantJoin');
+  show('merchantJoin');
  }else if(page==='regions'){
-  show('#regions');
+  show('regions');
  }else if(page==='directory'){
-  show('#directory');
+  show('directory');
  }else if(page==='blog'){
-  show('#blog');
+  show('blog');
  }else if(page==='about'){
-  show('#about');
+  show('about');
  }
- window.scrollTo({top:0,behavior:'smooth'});
- document.querySelectorAll('.side-drawer a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+page));
+ document.querySelectorAll('.side-drawer a').forEach(a=>{
+  a.classList.toggle('active',a.getAttribute('href')==='#'+page);
+ });
+ window.scrollTo({top:0,behavior:'instant'});
 }
+
 document.getElementById('menuToggle')?.addEventListener('click',openSideMenu);
 
 document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}));
