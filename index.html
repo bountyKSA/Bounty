@@ -559,6 +559,25 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
 .visual-search{margin-top:12px!important}
 @media(min-width:901px){.main-sections-grid{grid-template-columns:repeat(5,minmax(0,1fr))!important}.visual-category-grid{grid-template-columns:repeat(7,minmax(0,1fr))!important}}
 
+
+/* Social icons opposite the logo on the left side of the header */
+.bounty-header .utility-inner{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important}
+.bounty-header .bounty-social{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:17px!important;order:0!important;margin-right:auto!important;margin-left:0!important;flex:0 0 auto!important}
+.bounty-header .bounty-social a{width:30px;height:30px;display:grid;place-items:center;color:#333!important;text-decoration:none!important}
+.bounty-header .bounty-social svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.bounty-header .bounty-social svg .social-fill{fill:currentColor;stroke:none}
+@media(max-width:650px){.bounty-header .bounty-social{gap:9px!important}.bounty-header .bounty-social a{width:25px;height:25px}.bounty-header .bounty-social svg{width:21px;height:21px}.bounty-header .brand-center img{width:145px!important}}
+
+
+/* Social icons sit beside the hamburger on the right; logo stays in its original position */
+.bounty-header .side-menu-bar{position:absolute!important;top:15px!important;right:14px!important;left:auto!important;width:auto!important;z-index:100000!important;background:transparent!important;border:0!important}
+.bounty-header .side-menu-inner{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:12px!important;width:auto!important;min-height:0!important;padding:0!important;margin:0!important}
+.bounty-header .bounty-social{display:flex!important;align-items:center!important;gap:9px!important;margin:0!important;order:0!important}
+.bounty-header .bounty-social a{width:26px;height:26px;display:grid;place-items:center;color:#333!important}
+.bounty-header .bounty-social svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.bounty-header .bounty-social svg .social-fill{fill:currentColor;stroke:none}
+.bounty-header .side-menu-inner .menu{order:1!important;flex:0 0 44px!important}
+@media(max-width:650px){.bounty-header .side-menu-bar{top:13px!important;right:10px!important}.bounty-header .side-menu-inner{gap:7px!important}.bounty-header .bounty-social{gap:5px!important}.bounty-header .bounty-social a{width:22px;height:22px}.bounty-header .bounty-social svg{width:19px;height:19px}}
 </style>
 </head>
 <body>
@@ -566,13 +585,18 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
 <header class="bounty-header">
   <div class="utility-row">
     <div class="wrap utility-inner">
-      <a class="brand brand-center" href="#home" aria-label="باونتي الرئيسية" onclick="showPage('home');return false">
-        <img src="images/logo.png" alt="Bounty باونتي - دليلك للحياة الصحية">
-      </a>
+      <div class="social-mini bounty-social" aria-label="حسابات باونتي على التواصل الاجتماعي">
+        <a href="#" aria-label="إنستغرام" title="إنستغرام"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" class="social-fill"/></svg></a>
+        <a href="#" aria-label="واتساب" title="واتساب"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 11.8a8.2 8.2 0 0 1-12.1 7.1L3 20l1.2-4.9a8.2 8.2 0 1 1 16-3.3Z"/><path d="M8.4 7.8c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4 0 .6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.7.8c.3.1.4.3.4.5 0 .4-.2 1.2-.7 1.6-.5.5-1.2.7-1.9.6-1.1-.2-2.5-.9-3.8-2.1-1.4-1.3-2.3-2.8-2.5-3.9-.2-.9.1-1.7.8-2.1Z" class="social-fill"/></svg></a>
+        <a href="#" aria-label="تويتر" title="تويتر"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="social-fill" d="M22 5.9a8 8 0 0 1-2.4.7 4.2 4.2 0 0 0 1.8-2.3 8.4 8.4 0 0 1-2.7 1 4.2 4.2 0 0 0-7.2 3.8 12 12 0 0 1-8.7-4.4 4.2 4.2 0 0 0 1.3 5.6 4.1 4.1 0 0 1-1.9-.5v.1a4.2 4.2 0 0 0 3.4 4.1 4.2 4.2 0 0 1-1.9.1 4.2 4.2 0 0 0 3.9 2.9A8.4 8.4 0 0 1 1.4 19a11.9 11.9 0 0 0 6.4 1.9c7.7 0 11.9-6.4 11.9-11.9v-.5A8.5 8.5 0 0 0 22 5.9Z"/></svg></a>
+        <a href="#" aria-label="فيسبوك" title="فيسبوك"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="social-fill" d="M13.5 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.8v8h3.4Z"/></svg></a>
+      </div>
+
     </div>
   </div>
   <div class="side-menu-bar">
     <div class="wrap side-menu-inner">
+      <a class="brand brand-center" href="#home" aria-label="باونتي الرئيسية" onclick="showPage('home');return false"><img src="images/logo.png" alt="Bounty باونتي - دليلك للحياة الصحية"></a>
       <button class="menu" id="menuToggle" type="button" aria-expanded="false" aria-controls="sideDrawer" aria-label="فتح قائمة الأقسام">☰</button>
     </div>
   </div>
@@ -656,14 +680,6 @@ url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=90') 
       <button class="visual-category" onclick="categorySearch('علاج طبيعي')"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&q=85" alt=""><strong>مراكز العلاج<br>والعناية</strong></button>
       <button class="visual-category" onclick="categorySearch('رياضة')"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&q=85" alt=""><strong>الأندية الرياضية<br>ومراكز اللياقة</strong></button>
     </div>
-  </div>
-</section>
-
-<section class="visual-benefits" id="visualBenefits">
-  <div class="wrap benefits-row">
-    <div><span>✿</span><b>جهات مختارة<br>بعناية</b></div>
-    <div><span>♢</span><b>معلومات موثوقة<br>وشفافة</b></div>
-    <div><span>♧</span><b>دعم المشاريع المحلية<br>في جميع المدن</b></div>
   </div>
 </section>
 
@@ -1064,7 +1080,7 @@ function showPage(page){
  sections.forEach(section=>section.classList.add('page-hidden'));
  const show=(id)=>{const el=document.getElementById(id);if(el)el.classList.remove('page-hidden');};
  if(page==='home'){
-  ['homeHero','mainSectionsNav','categories','visualBenefits','featured','visualNew','visualPromos'].forEach(show);
+  ['homeHero','mainSectionsNav','categories','featured','visualNew','visualPromos'].forEach(show);
  }else if(page==='categories'){
   show('categories');
  }else if(page==='featured'){
