@@ -658,6 +658,27 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 .footer-grid{grid-template-columns:2fr 1fr!important}
 .footer-contact p{color:#d1e3d9;font-size:13px}
 
+
+/* Bounty requested refinements */
+.page-intro{color:var(--muted);line-height:1.9;margin:0 0 18px;font-size:15px}
+.store-options-page{padding:42px 0 65px;min-height:55vh;background:#fbfcf8}
+.store-options-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px}
+.store-options-actions button{min-width:180px;min-height:54px;font-weight:800;font-size:16px}
+.contact-methods{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px}
+.contact-methods a{display:flex;flex-direction:column;gap:7px;min-width:220px;padding:16px 18px;border:1px solid #e1ebe3;border-radius:13px;background:#fbfdfb;text-decoration:none}
+.contact-methods a span{font-size:13px;color:var(--muted);font-weight:500}
+.contact-methods a strong{font-size:15px;overflow-wrap:anywhere}
+.bounty-criteria{grid-column:1/-1;margin-top:22px;padding:22px;border:1px solid #e1ebe3;border-radius:16px;background:#fff}
+.bounty-criteria h3{color:var(--brand);margin:0 0 10px}
+.bounty-criteria p,.bounty-criteria li{color:var(--muted);line-height:1.9}
+.bounty-criteria ul{padding-right:22px;margin:8px 0}
+.bounty-criteria small{display:block;color:#8b7661;line-height:1.8;margin-top:12px}
+.promo-request>div{position:absolute!important;left:22px!important;right:auto!important;width:46%!important;max-width:none!important;text-align:left!important;direction:rtl!important}
+.promo-request img{right:0!important;left:auto!important;width:48%!important}
+.promo-request h2,.promo-request p{text-align:left!important}
+.promo-request a{float:left!important}
+@media(max-width:650px){.contact-methods{display:grid;grid-template-columns:1fr}.contact-methods a{min-width:0}.promo-request>div{left:14px!important;width:48%!important}.promo-request{min-height:190px!important}}
+
 </style>
 </head>
 <body>
@@ -734,8 +755,8 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
  <div class="wrap">
   <div class="main-sections-grid">
    <a href="#home" onclick="showPage('home');return false"><span>⌂</span>الرئيسية</a>
-   <a href="#categories" onclick="showPage('categories');return false"><span>▣</span>المتاجر والتصنيفات</a>
-   <a href="#directory" onclick="showPage('directory');return false"><span>♧</span>الدليل الشامل</a>
+   <a href="#categories" title="خيارات منتقاة وفق معايير باونتي" onclick="showPage('categories');return false"><span>▣</span>مختارات باونتي</a>
+   <a href="#directory" title="تعرّف على الجهات واستكشف خياراتك" onclick="showPage('directory');return false"><span>♧</span>الدليل الشامل</a>
    <a href="#regions" onclick="showPage('regions');return false"><span>⌖</span>المناطق</a>
    <a href="#featured" onclick="showPage('featured');return false"><span>♡</span>المتاجر المميزة</a>
    <a href="#addActivitySection" onclick="showPage('addActivitySection');return false"><span>✧</span>إضافة نشاط للدليل</a>
@@ -748,25 +769,17 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 
 <section class="visual-categories" id="categories">
   <div class="wrap">
-    <div class="visual-section-title"><h2>تصفح حسب الأقسام <span>♧</span></h2></div>
+    <div class="visual-section-title"><h2>مختارات باونتي <span>♧</span></h2></div>
+    <p class="page-intro">خيارات منتقاة وفق معايير باونتي.</p>
     <div class="visual-category-grid">
       <button class="visual-category" onclick="categorySearch('مزارع')"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=500&q=85" alt=""><strong>المزارع<br>والمنتجات المحلية</strong></button>
-      <button class="visual-category" onclick="openStoreTypeChoice()"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=85" alt=""><strong>متاجر<br>المنتجات الطبيعية</strong></button>
+      <button class="visual-category" onclick="showPage('storeOptions')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=85" alt=""><strong>متاجر<br>المنتجات الطبيعية</strong></button>
       <button class="visual-category" onclick="categorySearch('مخابز')"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=85" alt=""><strong>المخابز<br>الصحية</strong></button>
-      <button class="visual-category" onclick="categorySearch('مطاعم')"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=85" alt=""><strong>المطاعم<br>الصحية</strong></button>
-      <button class="visual-category" onclick="categorySearch('مقاهي')"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=85" alt=""><strong>المقاهي<br>الصحية</strong></button>
+      <button class="visual-category" onclick="categorySearch('مطاعم ومقاهٍ')"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=85" alt="مطاعم ومقاهٍ صحية"><strong>المطاعم والمقاهي<br>الصحية</strong></button>
       <button class="visual-category" onclick="categorySearch('علاج طبيعي')"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&q=85" alt=""><strong>مراكز العلاج<br>والعناية</strong></button>
       <button class="visual-category" onclick="categorySearch('رياضة')"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&q=85" alt=""><strong>الأندية الرياضية<br>ومراكز اللياقة</strong></button>
       <button class="visual-category" onclick="categorySearch('أسر منتجة')"><img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=500&q=85" alt=""><strong>الأسر<br>المنتجة</strong></button>
       <button class="visual-category" onclick="categorySearch('متفرقات')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=85" alt=""><strong>متفرقات</strong></button>
-    </div>
-    <div class="store-type-choice" id="storeTypeChoice" hidden>
-      <h3>متاجر المنتجات الطبيعية</h3>
-      <p>اختاري نوع المتاجر التي ترغبين في استكشافها:</p>
-      <div class="store-type-actions">
-        <button type="button" onclick="categorySearch('متاجر محلية')">متاجر محلية</button>
-        <button type="button" onclick="categorySearch('متاجر إلكترونية')">متاجر إلكترونية</button>
-      </div>
     </div>
     <div class="food-preferences" id="foodPreferences">
       <div class="visual-section-title"><h2>تصفح حسب التفضيلات الغذائية</h2></div>
@@ -779,6 +792,17 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
       </div>
     </div>
   </div>
+</section>
+
+<section class="store-options-page page-hidden" id="storeOptions">
+ <div class="wrap">
+  <div class="action-section-heading"><span>▣</span><div><small>مختارات باونتي</small><h2>متاجر المنتجات الطبيعية</h2></div></div>
+  <p class="page-intro">اختاري نوع المتاجر التي ترغبين في استكشافها.</p>
+  <div class="store-type-actions store-options-actions">
+   <button type="button" onclick="categorySearch('متاجر محلية')">متاجر محلية</button>
+   <button type="button" onclick="categorySearch('متاجر إلكترونية')">متاجر إلكترونية</button>
+  </div>
+ </div>
 </section>
 
 <section class="visual-new" id="visualNew">
@@ -831,7 +855,7 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 
 <section class="directory" id="directory">
  <div class="wrap">
-  <div class="section-head"><div class="section-kicker">دليل باونتي</div><h2 class="section-title">اكتشف الدليل</h2><p class="section-desc">ابحث بين الجهات والمنتجات، وصفِّ النتائج حسب نوع النشاط والمنطقة.</p></div>
+  <div class="section-head"><div class="section-kicker">دليل باونتي</div><h2 class="section-title">الدليل الشامل</h2><p class="section-desc">تعرّف على الجهات واستكشف خياراتك.</p><p class="page-intro">ابحث بين الجهات والمنتجات، وصفِّ النتائج حسب نوع النشاط والمنطقة.</p></div>
   <div class="directory-tools">
    <input id="directorySearch" type="search" placeholder="اسم منتج، متجر، كيتو..." oninput="renderListings()">
    <select id="regionFilter" onchange="renderListings()"><option value="">كل المناطق</option></select>
@@ -858,6 +882,7 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
  <div class="wrap about-grid">
   <div><div class="section-kicker">من نحن</div><h2 class="section-title">باونتي… دليلك للحياة الصحية</h2><p class="section-desc">باونتي دليل يساعدك على اكتشاف المنتجات والجهات المرتبطة بالغذاء والخيارات الصحية في مكان واحد. اكتب ما تبحث عنه، تعرّف على المتاجر والمزارع والمخابز والمطاعم وغيرها، ثم تواصل مع الجهة مباشرة. هدفنا تسهيل الوصول إلى المعلومات وتشجيع الاختيار الواعي ودعم الأنشطة المحلية.</p></div>
   <div class="about-mark"><strong>BOUNTY | باونتي</strong><span>نقرّب لك الخيارات… لتختار بوعي</span></div>
+  <div class="bounty-criteria"><h3>معايير باونتي</h3><p>نعمل على عرض الجهات والأنشطة التي ترتبط بالمنتجات والخيارات الصحية، مع الاهتمام بوضوح معلومات النشاط وسهولة التواصل معه.</p><ul><li>وضوح اسم النشاط ووصف منتجاته أو خدماته.</li><li>توفير معلومات تواصل وموقع أو رابط إلكتروني عند توفره.</li><li>ارتباط النشاط بمجالات الغذاء والمنتجات الطبيعية والصحة والعناية واللياقة.</li><li>عرض المعلومات بصورة واضحة ومساعدة الزائر على المقارنة والاستكشاف.</li></ul><small>إدراج النشاط في الدليل لا يعني إصدار شهادة صحية أو ضمانًا لجودة المنتجات؛ ننصح الزائر بالتحقق من التفاصيل مباشرة مع الجهة.</small></div>
  </div>
 </section>
 
@@ -872,8 +897,12 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
  <div class="wrap">
   <div class="action-section-heading"><span>✉</span><div><small>نسعد بتواصلك</small><h2>تواصل معنا</h2></div></div>
   <div class="contact-page-card">
-   <p>للاستفسارات والشكاوى والاقتراحات، يسعدنا تواصلك معنا عبر البريد الإلكتروني.</p>
-   <a href="mailto:bounty.ksa@outlook.sa">bounty.ksa@outlook.sa</a>
+   <p>للاستفسارات والشكاوى والاقتراحات، يسعدنا تواصلك معنا عبر الواتساب أو البريد الإلكتروني.</p>
+   <div class="contact-methods">
+    <a href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer"><span>واتساب</span><strong>0500633399</strong></a>
+    <a href="tel:+966500633399"><span>رقم التواصل</span><strong>+966 50 063 3399</strong></a>
+    <a href="mailto:bounty.ksa@outlook.sa"><span>البريد الإلكتروني</span><strong>bounty.ksa@outlook.sa</strong></a>
+   </div>
   </div>
  </div>
 </section>
@@ -883,7 +912,7 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 <footer>
  <div class="wrap"><div class="footer-grid">
   <div><h3>باونتي 🌿</h3><p>دليلك للحياة الصحية. ابحث عن المنتجات والجهات والخيارات التي تناسب احتياجك، واكتشفها في مكان واحد.</p></div>
-  <div class="footer-contact"><h4>تواصل معنا</h4><p>للاستفسارات والشكاوى والاقتراحات</p><a href="mailto:bounty.ksa@outlook.sa">bounty.ksa@outlook.sa</a></div>
+  <div class="footer-contact"><h4>تواصل معنا</h4><p>للاستفسارات والشكاوى والاقتراحات</p><a href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer">واتساب: 0500633399</a><a href="tel:+966500633399">+966 50 063 3399</a><a href="mailto:bounty.ksa@outlook.sa">bounty.ksa@outlook.sa</a></div>
  </div><div class="copyright">© 2026 باونتي — جميع الحقوق محفوظة.</div></div>
 </footer>
 
@@ -1112,8 +1141,9 @@ function categorySearch(term){
  if(region)region.value='';
  if(type)type.value='';
  renderListings();
+ showPage('directory');
  const target=document.getElementById('directory');
- if(target){target.classList.remove('page-hidden');target.scrollIntoView({behavior:'smooth',block:'start'});}
+ if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
 }
 function clearSearch(){['mainSearch','directorySearch','regionFilter','typeFilter'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});renderListings();}
 function readArticle(i){document.getElementById('articleTitle').textContent=articles[i].title;document.getElementById('articleText').textContent=articles[i].text;document.getElementById('articleModal').classList.add('open');}
@@ -1148,6 +1178,8 @@ function showPage(page){
   ['homeHero','mainSectionsNav','categories','featured','visualNew','visualPromos'].forEach(show);
  }else if(page==='categories'){
   show('categories');
+ }else if(page==='storeOptions'){
+  show('storeOptions');
  }else if(page==='featured'){
   show('featured');
   }else if(page==='addActivitySection'){
