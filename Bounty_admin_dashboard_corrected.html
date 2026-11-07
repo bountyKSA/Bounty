@@ -1243,7 +1243,7 @@ async function loadActivities(){
 function openAddActivity(event){if(event)event.preventDefault();document.getElementById('activityContactModal').classList.add('open');}
 function closeActivityContact(){document.getElementById('activityContactModal').classList.remove('open');}
 function closeAddActivity(){document.getElementById('addActivity').classList.remove('open');}
-async const ACTIVITY_CITIES={
+const ACTIVITY_CITIES={
  'الرياض':['الرياض','الخرج','الدرعية','المجمعة','الزلفي','شقراء','وادي الدواسر','الأفلاج','حوطة بني تميم','عفيف','القويعية','رماح'],
  'القصيم':['بريدة','عنيزة','الرس','المذنب','البكيرية','البدائع','رياض الخبراء','عيون الجواء','الأسياح','النبهانية'],
  'مكة المكرمة':['مكة المكرمة','جدة','الطائف','رابغ','القنفذة','الليث','خليص','الجموم','الكامل','تربة'],
@@ -1273,7 +1273,7 @@ function setupActivityLocation(){
  populateActivityCities();
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupActivityLocation);else setupActivityLocation();
-function submitActivity(event){
+async function submitActivity(event){
  event.preventDefault();
  const form=document.getElementById('activityForm');
  const button=document.getElementById('activitySubmit');
