@@ -856,6 +856,16 @@ main > #categories > .wrap > .bounty-picks-heading{
  #directory .detail-btn{min-width:0;min-height:40px;padding:8px 12px;font-size:12px;border-radius:12px}
 }
 
+
+/* التصنيفات الثمانية في الصفحة الرئيسية */
+.restored-directory-categories{padding:28px 0 34px;background:#fffdf9}
+.restored-category-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.restored-category-grid button{display:flex;align-items:center;gap:12px;min-height:76px;padding:14px 18px;border:1px solid #dce9e1;border-radius:15px;background:#f1f7f3;color:#174b3a;font-family:inherit;font-size:16px;text-align:right;cursor:pointer}
+.restored-category-grid button img{width:52px;height:48px;flex:0 0 52px;object-fit:cover;border-radius:10px;display:block}
+.restored-category-grid button strong{font-weight:800}
+.restored-category-grid button:hover{border-color:#9fc8b2;background:#e8f2eb}
+@media(max-width:700px){.restored-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.restored-category-grid button{min-height:62px;padding:10px;font-size:13px}}
+
 </style>
 </head>
 <body>
@@ -945,6 +955,22 @@ main > #categories > .wrap > .bounty-picks-heading{
  </div>
 </section>
 
+<section class="restored-directory-categories" id="directoryCategories">
+ <div class="wrap">
+  <div class="section-head"><h2 class="section-title">تصنيفات الدليل</h2></div>
+  <div class="restored-category-grid">
+   <button type="button" onclick="openDirectoryCategory('متاجر')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=240&h=160&fit=crop&q=80" alt="المتاجر"><strong>المتاجر</strong></button>
+   <button type="button" onclick="openDirectoryCategory('مزارع')"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=240&h=160&fit=crop&q=80" alt="المزارع"><strong>المزارع</strong></button>
+   <button type="button" onclick="openDirectoryCategory('مخابز')"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=240&h=160&fit=crop&q=80" alt="المخابز"><strong>المخابز</strong></button>
+   <button type="button" onclick="openDirectoryCategory('مطاعم ومقاهٍ')"><img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=240&h=160&fit=crop&q=80" alt="المطاعم والمقاهي"><strong>المطاعم والمقاهي</strong></button>
+   <button type="button" onclick="openDirectoryCategory('أسر منتجة')"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=240&h=160&fit=crop&q=80" alt="الأسر المنتجة"><strong>الأسر المنتجة</strong></button>
+   <button type="button" onclick="openDirectoryCategory('مكملات غذائية')"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=240&h=160&fit=crop&q=80" alt="المكملات الغذائية"><strong>المكملات الغذائية</strong></button>
+   <button type="button" onclick="openDirectoryCategory('علاج طبيعي')"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=240&h=160&fit=crop&q=80" alt="العلاج الطبيعي"><strong>العلاج الطبيعي</strong></button>
+   <button type="button" onclick="openDirectoryCategory('رياضة')"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=240&h=160&fit=crop&q=80" alt="الرياضة"><strong>الرياضة</strong></button>
+  </div>
+ </div>
+</section>
+
 <section class="visual-categories bounty-picks-page" id="categories">
  <div class="wrap">
   <div class="page-heading bounty-picks-heading"><h1>مختارات باونتي</h1><h2>اكتشف المنتجات اللي راجعناها</h2></div>
@@ -998,13 +1024,6 @@ main > #categories > .wrap > .bounty-picks-heading{
   <div class="wrap">
     <div class="visual-section-title"><h2>متاجر مميزة في باونتي <span>♧</span></h2><a href="#directory">عرض جميع المتاجر ←</a></div>
     <div class="visual-product-row" id="featuredListings"></div>
-  </div>
-</section>
-
-<section class="visual-community">
-  <div class="wrap community-inner">
-    <div><h2>انضم إلى مجتمع باونتي</h2><p>اكتشف، تعلّم، وشارك في بناء حياة صحية ومتوازنة.</p></div>
-    <a href="mailto:bounty.ksa@outlook.com?subject=%D8%A7%D9%84%D8%A7%D9%86%D8%B6%D9%85%D8%A7%D9%85%20%D8%A5%D9%84%D9%89%20%D9%85%D8%AC%D8%AA%D9%85%D8%B9%20%D8%A8%D8%A7%D9%88%D9%86%D8%AA%D9%8A">انضم الآن ←</a>
   </div>
 </section>
 
@@ -1380,6 +1399,18 @@ function openStoreTypeChoice(){
  const panel=document.getElementById('storeTypeChoice');
  if(panel){panel.hidden=false;panel.scrollIntoView({behavior:'smooth',block:'nearest'});}
 }
+function openDirectoryCategory(type){
+ const filter=document.getElementById('typeFilter');
+ const query=document.getElementById('directorySearch');
+ const region=document.getElementById('regionFilter');
+ if(filter)filter.value=type;
+ if(query)query.value='';
+ if(region)region.value='';
+ renderListings();
+ showPage('directory');
+ const target=document.getElementById('directory');
+ if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+}
 function categorySearch(term){
  const input=document.getElementById('mainSearch');
  const dir=document.getElementById('directorySearch');
@@ -1405,15 +1436,57 @@ function renderBlogPosts(rows){
   return `<article class="article"><div class="article-cover">${cover}</div><div class="article-content"><span class="article-tag">${blogEscape(post.category||'مقالات باونتي')} · ${Number(post.read_minutes)||3} دقائق قراءة</span><h3>${blogEscape(post.title)}</h3><p>${blogEscape(post.excerpt||'')}</p><button type="button" class="read-article-btn" data-article-index="${index}" aria-label="اقرأ مقتطف ${blogEscape(post.title)}">اقرأ المقتطف ←</button></div></article>`;
  }).join('');
 }
-function loadBlogPosts(){
- // Restore the original built-in Bounty editorial articles; do not wait for the optional blog_posts table.
- const excerpts=[
-  'نظرة تمهيدية على فكرة النظام، وأنواع المنتجات التي قد يبحث عنها المهتمون به، مثل بدائل الدقيق والوجبات منخفضة الكربوهيدرات. تختلف الاحتياجات الفردية، لذلك تحقّق من المكونات والملصق الغذائي.',
-  'قبل اختيار أي منتج، تعرّف على قائمة المكونات، وحجم الحصة، والسكريات المضافة، ومعلومات الحساسية. قراءة الملصق تساعدك على مقارنة الخيارات بطريقة أوضح.',
-  'تعرّف على معلومات العبوة، وتاريخ الإنتاج، وطريقة الحفظ، ومصدر المنتج. لا تعتمد على عبارة تسويقية واحدة؛ اجمع المعلومات قبل اتخاذ قرار الشراء.'
- ];
- bountyBlogPosts=articles.map((a,i)=>({title:a.title,excerpt:excerpts[i],content:a.text,category:['أنظمة غذائية','دليل المنتجات','اختيارات واعية'][i],read_minutes:[4,3,3][i],emoji:['🥑','🌾','🫒'][i]}));
- renderBlogPosts(bountyBlogPosts);
+async function loadBlogPosts(){
+ const grid=document.getElementById('blogGrid');
+ if(!grid)return;
+ grid.innerHTML='<div class="empty">جارٍ تحميل المقالات...</div>';
+ try{
+  // Fetch all columns so an optional column added later does not break the public blog.
+  const {data,error}=await supabaseClient
+   .from('blog_posts')
+   .select('*')
+   .eq('status','published')
+   .order('created_at',{ascending:false});
+  if(error)throw error;
+  bountyBlogPosts=(data||[]).map(post=>({
+   ...post,
+   title:post.title||'مقال من باونتي',
+   excerpt:post.excerpt||'',
+   content:post.content||post.excerpt||'',
+   category:post.category||'مقالات باونتي',
+   read_minutes:Number(post.read_minutes)||3,
+   emoji:post.emoji||'🌿'
+  }));
+  // Keep the three original Bounty articles visible alongside any articles added from the admin dashboard.
+  const originalEditorialPosts=articles.map((a,i)=>({
+   title:a.title,
+   excerpt:[
+    'نظرة تمهيدية على فكرة النظام، وأنواع المنتجات التي قد يبحث عنها المهتمون به، مثل بدائل الدقيق والوجبات منخفضة الكربوهيدرات. تختلف الاحتياجات الفردية، لذلك تحقّق من المكونات والملصق الغذائي.',
+    'قبل اختيار أي منتج، تعرّف على قائمة المكونات، وحجم الحصة، والسكريات المضافة، ومعلومات الحساسية. قراءة الملصق تساعدك على مقارنة الخيارات بطريقة أوضح.',
+    'تعرّف على معلومات العبوة، وتاريخ الإنتاج، وطريقة الحفظ، ومصدر المنتج. لا تعتمد على عبارة تسويقية واحدة؛ اجمع المعلومات قبل اتخاذ قرار الشراء.'
+   ][i],
+   content:a.text,
+   category:['أنظمة غذائية','دليل المنتجات','اختيارات واعية'][i],
+   read_minutes:[4,3,3][i],
+   emoji:['🥑','🌾','🫒'][i],
+   isOriginal:true
+  }));
+  const existingTitles=new Set(bountyBlogPosts.map(post=>normalizeSearchText(post.title)));
+  bountyBlogPosts=[...originalEditorialPosts.filter(post=>!existingTitles.has(normalizeSearchText(post.title))),...bountyBlogPosts];
+  renderBlogPosts(bountyBlogPosts);
+ }catch(error){
+  console.error('تعذر تحميل مقالات باونتي:',error);
+  // If the blog table is unavailable, preserve the built-in articles and their working excerpts.
+  bountyBlogPosts=articles.map((a,i)=>({
+   title:a.title,
+   excerpt:['نظرة تمهيدية على فكرة النظام والمنتجات المناسبة له.','إرشادات مبسطة لقراءة المكونات والقيم الغذائية.','معلومات تساعدك على اختيار زيت الزيتون وحفظه.'][i],
+   content:a.text,
+   category:['أنظمة غذائية','دليل المنتجات','اختيارات واعية'][i],
+   read_minutes:[4,3,3][i],
+   emoji:['🥑','🌾','🫒'][i]
+  }));
+  renderBlogPosts(bountyBlogPosts);
+ }
 }
 function readArticle(i){
  const post=bountyBlogPosts[Number(i)];
@@ -1514,11 +1587,26 @@ function renderBountyPicks(){
   return (terms[activeBountyPickFilter]||[activeBountyPickFilter]).some(term=>hay.includes(term.toLowerCase()));
  });
  if(!rows.length){grid.innerHTML='<div class="bounty-picks-empty">لا توجد حاليًا مختارات مسجلة تطابق هذا التصنيف. ستظهر هنا الخيارات عند توفرها.</div>';return;}
- const photos=['https://images.unsplash.com/photo-1509440159596-0249088772ff?w=700&q=85','https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=700&q=85','https://images.unsplash.com/photo-1542838132-92c53300491e?w=700&q=85','https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=700&q=85'];
- grid.innerHTML=rows.map((item,index)=>{
+ const pickPhotos={
+  bakery:'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=700&q=85',
+  oil:'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=700&q=85',
+  farm:'https://images.unsplash.com/photo-1542838132-92c53300491e?w=700&q=85',
+  natural:'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=700&q=85',
+  fruit:'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=700&q=85',
+  skincare:'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=700&q=85'
+ };
+ const pickPhotoFor=item=>{
+  const text=`${item.name||''} ${item.desc||''} ${item.tags||''} ${item.type||''} ${item.category||''}`.toLowerCase();
+  if(/زيت|زيتون|معصرة|olive|oil/.test(text))return pickPhotos.oil;
+  if(/مخبز|خبز|دقيق|مخبوز|معجن|bakery|bread/.test(text))return pickPhotos.bakery;
+  if(/مزرع|خضار|ورقيات|فاكه|ثمار|منتج زراع|farm|vegetable|fruit/.test(text))return /فاكه|ثمار|fruit/.test(text)?pickPhotos.fruit:pickPhotos.farm;
+  if(/عناي|بشرة|تجميل|شعر|صابون|skincare|beauty/.test(text))return pickPhotos.skincare;
+  return pickPhotos.natural;
+ };
+ grid.innerHTML=rows.map(item=>{
   const tags=String(item.tags||'').split(/[،,]/).map(t=>t.trim()).filter(Boolean).slice(0,3);
   const tagHtml=tags.length?`<div class="pick-tags">${tags.map(t=>`<span>${escapeHTML(t)}</span>`).join('')}</div>`:'';
-  return `<article class="bounty-pick-card"><img src="${photos[index%photos.length]}" alt="" loading="lazy"><div class="pick-copy"><h3>${escapeHTML(item.name)}</h3><p>${escapeHTML(item.desc||'جهة مدرجة في دليل باونتي')}<br>متوفر لدى: ${escapeHTML(item.name)}</p>${tagHtml}<button type="button" onclick="showListing('${escapeHTML(item.id)}')">لماذا اخترناه؟</button></div></article>`;
+  return `<article class="bounty-pick-card"><img src="${pickPhotoFor(item)}" alt="" loading="lazy"><div class="pick-copy"><h3>${escapeHTML(item.name)}</h3><p>${escapeHTML(item.desc||'جهة مدرجة في دليل باونتي')}<br>متوفر لدى: ${escapeHTML(item.name)}</p>${tagHtml}<button type="button" onclick="showListing('${escapeHTML(item.id)}')">لماذا اخترناه؟</button></div></article>`;
  }).join('');
 }
 function filterBountyPicks(filter,button){
@@ -1536,7 +1624,7 @@ function showPage(page){
  sections.forEach(section=>section.classList.add('page-hidden'));
  const show=(id)=>{const el=document.getElementById(id);if(el)el.classList.remove('page-hidden');};
  if(page==='home'){
-  ['homeHero','mainSectionsNav','categories','featured','visualNew','visualPromos'].forEach(show);
+  ['homeHero','mainSectionsNav','directoryCategories','categories','featured','visualNew','visualPromos'].forEach(show);
  }else if(page==='categories'){
   show('categories');
   renderBountyPicks();
@@ -1579,6 +1667,7 @@ renderListings();
 renderBountyPicks();
 showPage('home');
 loadActivities();
+loadBlogPosts();
 </script>
 </body>
 </html>
