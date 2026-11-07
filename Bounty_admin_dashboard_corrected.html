@@ -704,6 +704,9 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 .admin-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 @media(max-width:650px){.admin-shell{padding:16px}.admin-form-grid{grid-template-columns:1fr}.admin-field.full{grid-column:auto}.admin-item{align-items:flex-start}}
 
+
+#adminBlogForm .admin-form-grid textarea{min-height:100px}
+#adminBlogForm textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);outline-color:var(--brand2);resize:vertical}
 </style>
 </head>
 <body>
@@ -968,6 +971,25 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
     <hr style="border:0;border-top:1px solid #e5eee7;margin:26px 0">
     <div class="admin-top"><h3>الأنشطة المسجلة</h3><button class="admin-secondary" type="button" onclick="loadAdminActivities()">تحديث القائمة</button></div>
     <div class="admin-list" id="adminActivityList" aria-live="polite"></div>
+    <hr style="border:0;border-top:1px solid #e5eee7;margin:30px 0">
+    <div class="admin-top"><div><h3>إدارة المدونة</h3><p class="admin-muted">أضيفي المقالات وانشريها لتظهر تلقائيًا في مدونة باونتي.</p></div><button class="admin-secondary" type="button" onclick="loadAdminBlogPosts()">تحديث المقالات</button></div>
+    <h3 id="blogAdminFormTitle">إضافة مقال جديد</h3>
+    <form id="adminBlogForm">
+     <input type="hidden" id="blogRecordId">
+     <div class="admin-form-grid">
+      <div class="admin-field full"><label for="blogAdminTitle">عنوان المقال *</label><input id="blogAdminTitle" required maxlength="180"></div>
+      <div class="admin-field"><label for="blogAdminCategory">التصنيف *</label><input id="blogAdminCategory" required maxlength="80" placeholder="أنظمة غذائية، دليل المنتجات..."></div>
+      <div class="admin-field"><label for="blogAdminMinutes">مدة القراءة بالدقائق</label><input id="blogAdminMinutes" type="number" min="1" max="60" value="3"></div>
+      <div class="admin-field full"><label for="blogAdminImage">رابط صورة المقال (اختياري)</label><input id="blogAdminImage" type="url" maxlength="1000" placeholder="https://..."></div>
+      <div class="admin-field full"><label for="blogAdminExcerpt">مقدمة مختصرة تظهر في البطاقة *</label><textarea id="blogAdminExcerpt" required maxlength="500"></textarea></div>
+      <div class="admin-field full"><label for="blogAdminContent">محتوى المقال كاملًا *</label><textarea id="blogAdminContent" required style="min-height:220px"></textarea></div>
+      <div class="admin-field"><label for="blogAdminStatus">حالة المقال</label><select id="blogAdminStatus"><option value="published">نشر مباشرة</option><option value="draft">حفظ كمسودة</option></select></div>
+      <div class="admin-field"><label for="blogAdminEmoji">رمز بديل للصورة (اختياري)</label><input id="blogAdminEmoji" maxlength="8" placeholder="🌿"></div>
+     </div>
+     <div class="admin-actions"><button class="admin-primary" id="blogAdminSaveButton" type="submit">حفظ المقال</button><button class="admin-secondary" type="button" onclick="resetAdminBlogForm()">تفريغ الحقول</button></div>
+    </form>
+    <div class="admin-top" style="margin-top:25px"><h3>المقالات المسجلة</h3></div>
+    <div class="admin-list" id="adminBlogList" aria-live="polite"></div>
    </div>
   </div>
  </div>
@@ -1292,6 +1314,7 @@ async function initAdminPage(){
   adminInitialized=true;
   document.getElementById('adminLoginForm').addEventListener('submit',adminSignIn);
   document.getElementById('adminActivityForm').addEventListener('submit',saveAdminActivity);
+  document.getElementById('adminBlogForm').addEventListener('submit',saveAdminBlogPost);
  }
  try{
   const {data:{session},error}=await supabaseClient.auth.getSession();
@@ -1299,7 +1322,7 @@ async function initAdminPage(){
   const allowed=session?.user?.email?.toLowerCase()==='bounty.ksa@outlook.com';
   showAdminState(!!allowed);
   if(session&&!allowed){await supabaseClient.auth.signOut();showAdminState(false);setAdminLoginStatus('هذا الحساب غير مخوّل لإدارة باونتي.',true);return;}
-  if(allowed)await loadAdminActivities();
+  if(allowed){await loadAdminActivities();await loadAdminBlogPosts();}
  }catch(error){showAdminState(false);setAdminLoginStatus(error.message||'تعذر التحقق من جلسة الدخول.',true);}
 }
 async function adminSignIn(event){
@@ -1311,7 +1334,7 @@ async function adminSignIn(event){
   const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
   if(error)throw error;
   if(data.user?.email?.toLowerCase()!=='bounty.ksa@outlook.com'){await supabaseClient.auth.signOut();throw new Error('هذا الحساب غير مخوّل لإدارة باونتي.');}
-  document.getElementById('adminPassword').value='';showAdminState(true);setAdminStatus('مرحبًا بك. يمكنك الآن إدارة أنشطة باونتي.');await loadAdminActivities();
+  document.getElementById('adminPassword').value='';showAdminState(true);setAdminStatus('مرحبًا بك. يمكنك الآن إدارة أنشطة باونتي.');await loadAdminActivities();await loadAdminBlogPosts();
  }catch(error){setAdminLoginStatus(error.message||'تعذر تسجيل الدخول. تحققي من البريد وكلمة المرور.',true);}
  finally{button.disabled=false;button.textContent='دخول لوحة الإدارة';}
 }
@@ -1349,6 +1372,34 @@ async function deleteAdminActivity(id){
  try{const {error}=await supabaseClient.from('activities').delete().eq('id',id);if(error)throw error;await loadAdminActivities();await loadActivities();setAdminStatus('تم حذف النشاط.');}
  catch(error){setAdminStatus(error.message||'تعذر حذف النشاط.',true);}
 }
+
+
+let adminBlogRows=[];
+async function loadAdminBlogPosts(){
+ const box=document.getElementById('adminBlogList');if(!box)return;box.innerHTML='<p class="admin-muted">جارٍ تحميل المقالات...</p>';
+ try{
+  const {data,error}=await supabaseClient.from('blog_posts').select('id,title,category,status,read_minutes,created_at').order('created_at',{ascending:false});
+  if(error)throw error;adminBlogRows=data||[];
+  box.innerHTML=adminBlogRows.length?adminBlogRows.map(row=>`<div class="admin-item"><div><strong>${escapeHTML(row.title)}</strong><small>${escapeHTML(row.category||'بدون تصنيف')} · ${row.status==='published'?'منشور':'مسودة'} · ${Number(row.read_minutes)||3} دقائق</small></div><div class="admin-item-actions"><button class="admin-secondary" type="button" onclick="editAdminBlogPost('${String(row.id).replace(/'/g,'')}')">تعديل</button><button class="admin-danger" type="button" onclick="deleteAdminBlogPost('${String(row.id).replace(/'/g,'')}')">حذف</button></div></div>`).join(''):'<p class="admin-muted">لا توجد مقالات بعد. أضيفي أول مقال من النموذج أعلاه.</p>';
+ }catch(error){box.innerHTML='<p class="admin-muted">تعذر تحميل المقالات. شغّلي ملف إعداد جدول المدونة في Supabase أولًا.</p>';setAdminStatus(error.message||'تعذر تحميل المدونة.',true);}
+}
+function resetAdminBlogForm(){const f=document.getElementById('adminBlogForm');if(f)f.reset();document.getElementById('blogRecordId').value='';document.getElementById('blogAdminMinutes').value='3';document.getElementById('blogAdminFormTitle').textContent='إضافة مقال جديد';document.getElementById('blogAdminSaveButton').textContent='حفظ المقال';}
+function editAdminBlogPost(id){
+ const row=adminBlogRows.find(x=>String(x.id)===String(id));if(!row)return;
+ document.getElementById('blogRecordId').value=row.id;
+ const map={blogAdminTitle:row.title,blogAdminCategory:row.category,blogAdminMinutes:row.read_minutes,blogAdminImage:row.image_url,blogAdminExcerpt:row.excerpt,blogAdminContent:row.content,blogAdminStatus:row.status,blogAdminEmoji:row.emoji};
+ Object.entries(map).forEach(([k,v])=>document.getElementById(k).value=v??'');
+ document.getElementById('blogAdminFormTitle').textContent='تعديل المقال';document.getElementById('blogAdminSaveButton').textContent='حفظ التعديلات';document.getElementById('blogAdminFormTitle').scrollIntoView({behavior:'smooth',block:'center'});
+}
+async function saveAdminBlogPost(event){
+ event.preventDefault();const btn=document.getElementById('blogAdminSaveButton');btn.disabled=true;
+ const payload={title:document.getElementById('blogAdminTitle').value.trim(),category:document.getElementById('blogAdminCategory').value.trim(),read_minutes:Number(document.getElementById('blogAdminMinutes').value)||3,image_url:document.getElementById('blogAdminImage').value.trim()||null,excerpt:document.getElementById('blogAdminExcerpt').value.trim(),content:document.getElementById('blogAdminContent').value.trim(),status:document.getElementById('blogAdminStatus').value,emoji:document.getElementById('blogAdminEmoji').value.trim()||null,updated_at:new Date().toISOString()};
+ const id=document.getElementById('blogRecordId').value;
+ try{const result=id?await supabaseClient.from('blog_posts').update(payload).eq('id',id):await supabaseClient.from('blog_posts').insert(payload);if(result.error)throw result.error;resetAdminBlogForm();await loadAdminBlogPosts();setAdminStatus(id?'تم تحديث المقال.':'تمت إضافة المقال.');}
+ catch(error){setAdminStatus(error.message||'تعذر حفظ المقال. تحققي من إعداد جدول المدونة وصلاحياته.',true);}
+ finally{btn.disabled=false;btn.textContent=document.getElementById('blogRecordId').value?'حفظ التعديلات':'حفظ المقال';}
+}
+async function deleteAdminBlogPost(id){const row=adminBlogRows.find(x=>String(x.id)===String(id));if(!row||!confirm(`هل تريدين حذف مقال «${row.title}»؟ لا يمكن التراجع عن الحذف.`))return;try{const {error}=await supabaseClient.from('blog_posts').delete().eq('id',id);if(error)throw error;await loadAdminBlogPosts();setAdminStatus('تم حذف المقال.');}catch(error){setAdminStatus(error.message||'تعذر حذف المقال.',true);}}
 
 setupRegions();
 renderListings();
