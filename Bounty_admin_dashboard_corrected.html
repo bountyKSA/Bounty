@@ -995,8 +995,8 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
      <div class="admin-form-grid">
       <div class="admin-field"><label for="adminName">اسم النشاط *</label><input id="adminName" required maxlength="120"></div>
       <div class="admin-field"><label for="adminType">التصنيف *</label><select id="adminType" required><option value="">اختاري التصنيف</option><option>مزارع</option><option>متاجر</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option><option value="متفرقات">قسم الأواني والطهي</option></select></div>
-      <div class="admin-field"><label for="adminRegion">المنطقة *</label><select id="adminRegion" required><option value="">اختاري المنطقة</option></select></div>
-      <div class="admin-field"><label for="adminCity">المدينة *</label><select id="adminCity" required disabled><option value="">اختاري المنطقة أولاً</option></select></div>
+      <div class="admin-field"><label for="adminRegion">المنطقة *</label><input id="adminRegion" type="text" required maxlength="100" placeholder="اكتبي المنطقة"></div>
+      <div class="admin-field"><label for="adminCity">المدينة *</label><input id="adminCity" type="text" required maxlength="100" placeholder="اكتبي المدينة"></div>
       <div class="admin-field"><label for="adminPhone">رقم التواصل (يفتح واتساب)</label><input id="adminPhone" type="tel" maxlength="30" placeholder="05xxxxxxxx"></div>
       <div class="admin-field full"><label for="adminAddress">العنوان أو الموقع *</label><input id="adminAddress" required maxlength="250" placeholder="المدينة والحي أو وصف الموقع"></div>
       <div class="admin-field full"><label for="adminDescription">وصف النشاط *</label><textarea id="adminDescription" required maxlength="700"></textarea></div>
@@ -1429,8 +1429,7 @@ async function adminSignIn(event){
  }catch(error){setAdminLoginStatus(error.message||'تعذر تسجيل الدخول. تحققي من البريد وكلمة المرور.',true);}
  finally{button.disabled=false;button.textContent='دخول لوحة الإدارة';}
 }
-document.getElementById('adminRegion')?.addEventListener('change',handleAdminRegionChange);
-populateAdminRegions();
+
 async function adminSignOut(){await supabaseClient.auth.signOut();showAdminState(false);resetAdminForm();setAdminLoginStatus('تم تسجيل الخروج.');}
 async function loadAdminActivities(){
  const box=document.getElementById('adminActivityList');box.innerHTML='<p class="admin-muted">جارٍ تحميل الأنشطة...</p>';
@@ -1441,46 +1440,19 @@ async function loadAdminActivities(){
   setAdminStatus(`عدد الأنشطة المسجلة: ${adminRows.length}`);
  }catch(error){box.innerHTML='<p class="admin-muted">تعذر تحميل الأنشطة.</p>';setAdminStatus(error.message||'تحققي من إعدادات صلاحيات Supabase.',true);}
 }
-const SAUDI_REGION_CITIES={
- 'الرياض':['الرياض','الخرج','الدرعية','الدوادمي','المجمعة','القويعية','الأفلاج','وادي الدواسر','الزلفي','شقراء','عفيف','حوطة بني تميم','السليل','ضرما','المزاحمية','رماح','ثادق','حريملاء','الحريق','الغاط'],
- 'مكة المكرمة':['مكة المكرمة','جدة','الطائف','رابغ','القنفذة','الليث','الجموم','خليص','الكامل','الخرمة','رنية','تربة','ميسان','أضم','العرضيات','بحرة'],
- 'المدينة المنورة':['المدينة المنورة','ينبع','العلا','مهد الذهب','الحناكية','خيبر','بدر','العيص','وادي الفرع'],
- 'القصيم':['بريدة','عنيزة','الرس','المذنب','البكيرية','البدائع','رياض الخبراء','الأسياح','عيون الجواء','النبهانية','الشماسية','ضرية','عقلة الصقور'],
- 'المنطقة الشرقية':['الدمام','الخبر','الظهران','الأحساء','الهفوف','المبرز','الجبيل','القطيف','رأس تنورة','بقيق','الخفجي','حفر الباطن','النعيرية','قرية العليا','العديد'],
- 'عسير':['أبها','خميس مشيط','بيشة','محايل عسير','النماص','ظهران الجنوب','سراة عبيدة','رجال ألمع','أحد رفيدة','بلقرن','تثليث','البرك','بارق','المجاردة','تنومة'],
- 'تبوك':['تبوك','الوجه','ضباء','تيماء','أملج','حقل','البدع'],
- 'حائل':['حائل','بقعاء','الغزالة','الشنان','الشملي','موقق','سميراء','السليمي'],
- 'الحدود الشمالية':['عرعر','رفحاء','طريف','العويقيلة'],
- 'جازان':['جيزان','صبيا','أبو عريش','صامطة','أحد المسارحة','بيش','الدرب','العارضة','الريث','ضمد','فرسان','الحرث','فيفاء','هروب','الداير'],
- 'نجران':['نجران','شرورة','حبونا','بدر الجنوب','يدمة','ثار','خباش'],
- 'الباحة':['الباحة','بلجرشي','المندق','المخواة','قلوة','العقيق','القرى','بني حسن','الحجرة','غامد الزناد'],
- 'الجوف':['سكاكا','القريات','دومة الجندل','طبرجل']
-};
-function populateAdminRegions(selectedRegion='',selectedCity=''){
- const regionSelect=document.getElementById('adminRegion');
- const citySelect=document.getElementById('adminCity');
- if(!regionSelect||!citySelect)return;
- regionSelect.innerHTML='<option value="">اختاري المنطقة</option>'+Object.keys(SAUDI_REGION_CITIES).map(name=>`<option value="${escapeHTML(name)}">${escapeHTML(name)}</option>`).join('');
- regionSelect.value=selectedRegion||'';
- const cities=SAUDI_REGION_CITIES[regionSelect.value]||[];
- citySelect.innerHTML='<option value="">اختاري المدينة</option>'+cities.map(name=>`<option value="${escapeHTML(name)}">${escapeHTML(name)}</option>`).join('');
- citySelect.disabled=!cities.length;
- citySelect.value=cities.includes(selectedCity)?selectedCity:'';
-}
-function handleAdminRegionChange(){populateAdminRegions(document.getElementById('adminRegion').value,'');}
 function splitStoredRegion(value){
  const text=String(value||'').trim();
  const parts=text.split(/\s*[-–—]\s*/);
  if(parts.length>1)return {region:parts.shift().trim(),city:parts.join(' - ').trim()};
  return {region:text,city:''};
 }
-function resetAdminForm(){const form=document.getElementById('adminActivityForm');if(form)form.reset();populateAdminRegions();document.getElementById('adminRecordId').value='';document.getElementById('adminFormTitle').textContent='إضافة نشاط جديد';document.getElementById('adminSaveButton').textContent='حفظ النشاط';}
+function resetAdminForm(){const form=document.getElementById('adminActivityForm');if(form)form.reset();document.getElementById('adminRecordId').value='';document.getElementById('adminFormTitle').textContent='إضافة نشاط جديد';document.getElementById('adminSaveButton').textContent='حفظ النشاط';}
 function editAdminActivity(id){
  const row=adminRows.find(item=>String(item.id)===String(id));if(!row)return;
  document.getElementById('adminRecordId').value=row.id;
  const location=splitStoredRegion(row.region);
  const fields={adminName:row.name,adminType:row.type,adminRegion:location.region,adminCity:location.city,adminPhone:row.phone,adminAddress:row.address,adminDescription:row.description,adminTags:row.tags,adminWebsite:row.website,adminMaps:row.google_maps_url};
- Object.entries(fields).forEach(([key,value])=>{if(key!=='adminRegion'&&key!=='adminCity')document.getElementById(key).value=value||'';});populateAdminRegions(location.region,location.city);
+ Object.entries(fields).forEach(([key,value])=>{document.getElementById(key).value=value||'';});
  document.getElementById('adminFormTitle').textContent='تعديل بيانات النشاط';document.getElementById('adminSaveButton').textContent='حفظ التعديلات';
  document.getElementById('adminFormTitle').scrollIntoView({behavior:'smooth',block:'center'});
 }
