@@ -679,6 +679,29 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 .promo-request a{float:left!important}
 @media(max-width:650px){.contact-methods{display:grid;grid-template-columns:1fr}.contact-methods a{min-width:0}.promo-request>div{left:14px!important;width:48%!important}.promo-request{min-height:190px!important}}
 
+
+/* Bilingual interface */
+.language-toggle{height:44px;min-width:66px;padding:0 12px;border:1px solid #dce9df;border-radius:11px;background:#fff;color:#176b58;font:700 12px Arial,sans-serif;box-shadow:0 3px 10px rgba(20,75,60,.08)}
+.language-toggle:hover{background:#edf5ef}
+.side-menu-inner{gap:8px!important}
+#google_translate_element{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important}
+.goog-te-banner-frame,.skiptranslate iframe{display:none!important}
+body{top:0!important}
+html[lang="en"]{direction:ltr}
+html[lang="en"] body{direction:ltr;text-align:left}
+html[lang="en"] .hero-copy,html[lang="en"] .visual-section-title,
+html[lang="en"] .listing-body,html[lang="en"] .contact-page-card,
+html[lang="en"] .region-card,html[lang="en"] .side-drawer,
+html[lang="en"] .modal-box,html[lang="en"] .footer-grid,
+html[lang="en"] .home-search-results,html[lang="en"] .home-search-result{text-align:left!important;direction:ltr!important}
+html[lang="en"] .side-drawer{left:0!important;right:auto!important}
+html[lang="en"] .drawer-head{direction:ltr}
+html[lang="en"] .visual-hero-image:before{background:linear-gradient(90deg,rgba(255,250,243,.94) 0%,rgba(255,250,243,.76) 43%,rgba(255,250,243,.16) 100%)}
+html[lang="en"] .promo-card img{right:auto;left:0}
+html[lang="en"] .promo-stories img{left:auto;right:0}
+html[lang="en"] .listing-meta{direction:ltr}
+@media(max-width:650px){.language-toggle{height:42px;min-width:56px;padding:0 8px;font-size:11px}}
+
 </style>
 </head>
 <body>
@@ -698,6 +721,7 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
   <div class="side-menu-bar">
     <div class="wrap side-menu-inner">
       <button class="menu" id="menuToggle" type="button" aria-expanded="false" aria-controls="sideDrawer" aria-label="فتح قائمة الأقسام">☰</button>
+       <button class="language-toggle" id="languageToggle" type="button" onclick="toggleSiteLanguage()" aria-label="Switch to English">English</button>
     </div>
   </div>
   
@@ -945,6 +969,50 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
  </form>
 </div></div>
 <div class="toast" id="toast"></div>
+<div id="google_translate_element" aria-hidden="true"></div>
+
+
+<script>
+/* Google Website Translator: translates all visible text, including content loaded later from Supabase. */
+(function(){
+ const LANG_KEY='bounty_site_language';
+ function readLang(){return localStorage.getItem(LANG_KEY)||'ar';}
+ function setGoogleCookie(lang){
+   const value=lang==='en'?'/ar/en':'/ar/ar';
+   document.cookie='googtrans='+value+';path=/;max-age='+(lang==='en'?31536000:0)+';SameSite=Lax';
+   document.cookie='googtrans='+value+';path=/;domain='+location.hostname+';max-age='+(lang==='en'?31536000:0)+';SameSite=Lax';
+ }
+ window.googleTranslateElementInit=function(){
+   if(!window.google||!google.translate)return;
+   new google.translate.TranslateElement({pageLanguage:'ar',includedLanguages:'ar,en',autoDisplay:false,layout:google.translate.TranslateElement.InlineLayout.SIMPLE},'google_translate_element');
+   const desired=readLang();
+   if(desired==='en') setTimeout(()=>applyGoogleLanguage('en'),500);
+ };
+ window.applyGoogleLanguage=function(lang){
+   const combo=document.querySelector('.goog-te-combo');
+   if(combo){combo.value=lang;combo.dispatchEvent(new Event('change'));}
+ };
+ window.toggleSiteLanguage=function(){
+   const next=readLang()==='ar'?'en':'ar';
+   localStorage.setItem(LANG_KEY,next);
+   setGoogleCookie(next);
+   document.documentElement.lang=next;
+   document.documentElement.dir=next==='en'?'ltr':'rtl';
+   const btn=document.getElementById('languageToggle');
+   if(btn){btn.textContent=next==='ar'?'English':'عربي';btn.setAttribute('aria-label',next==='ar'?'Switch to English':'Switch to Arabic');}
+   // Reload makes the translator apply consistently to the entire page and newly loaded database content.
+   location.reload();
+ };
+ document.addEventListener('DOMContentLoaded',()=>{
+   const lang=readLang();
+   document.documentElement.lang=lang;
+   document.documentElement.dir=lang==='en'?'ltr':'rtl';
+   const btn=document.getElementById('languageToggle');
+   if(btn){btn.textContent=lang==='ar'?'English':'عربي';btn.setAttribute('aria-label',lang==='ar'?'Switch to English':'Switch to Arabic');}
+ });
+})();
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
