@@ -788,6 +788,34 @@ main > #categories > .wrap > .bounty-picks-heading{
 .bounty-pick-card .pick-copy button{border:0;border-radius:999px;background:#075239;color:#fff;padding:10px 15px;font-size:15px;font-weight:800;cursor:pointer}
 .bounty-picks-empty{grid-column:1/-1;text-align:center;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:16px;padding:25px;line-height:1.9}
 @media(max-width:680px){.bounty-picks-grid{grid-template-columns:1fr;gap:13px}.bounty-pick-card{min-height:165px;grid-template-columns:39% 1fr}.bounty-pick-card>img{min-height:165px}.bounty-pick-card .pick-copy{padding:12px}.bounty-pick-card .pick-copy h3{font-size:18px}.bounty-pick-card .pick-copy p{font-size:13px;margin-bottom:8px}.bounty-picks-filters{gap:8px}.bounty-picks-filters button{min-width:0;padding:9px 15px;font-size:14px}}
+
+/* صفحة تفاصيل الجهة */
+.listing-detail-page{background:#f1f6f2;min-height:75vh;padding:22px 0 42px}
+.listing-detail-shell{max-width:760px;margin:0 auto;background:#fff;border:1px solid #e5eee8;border-radius:34px;padding:18px 20px 24px;box-shadow:0 12px 35px rgba(19,65,47,.08);overflow:hidden}
+.listing-detail-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 4px 18px}
+.listing-detail-top h1{font-size:24px;color:#124b39;margin:0;font-weight:900}
+.listing-back{width:46px;height:46px;border:0;border-radius:50%;background:#edf5ef;color:#124b39;font-size:27px;cursor:pointer;display:grid;place-items:center}
+.listing-detail-cover{height:260px;border-radius:25px;overflow:hidden;background:#e8eee8}
+.listing-detail-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.listing-detail-brand{width:132px;height:132px;border-radius:28px;border:7px solid #fff;background:#f8f5eb;display:grid;place-items:center;margin:-62px auto 8px;position:relative;box-shadow:0 8px 20px rgba(0,0,0,.12);font-size:48px}
+.listing-detail-name{text-align:center;color:#104b39;font-size:30px;font-weight:900;margin:8px 0 2px}
+.listing-detail-kind{text-align:center;color:#66776e;font-size:18px;margin:0 0 18px}
+.listing-detail-desc{text-align:center;color:#344c40;font-size:18px;line-height:1.9;margin:0 auto 25px;max-width:620px}
+.listing-detail-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 24px}
+.listing-detail-fact{background:#f4f8f5;border-radius:22px;padding:17px 9px;text-align:center;color:#155b45;min-width:0}
+.listing-detail-fact .fact-icon{font-size:25px;display:block;margin-bottom:7px}
+.listing-detail-fact strong{display:block;font-size:15px;margin-bottom:5px}
+.listing-detail-fact span:last-child{display:block;color:#344d40;font-size:14px;overflow-wrap:anywhere}
+.listing-detail-links{border:1px solid #e4eae6;border-radius:22px;padding:0 15px;margin-bottom:22px}
+.listing-detail-links a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 4px;color:#183e30;text-decoration:none;font-size:17px;font-weight:800;border-bottom:1px solid #edf0ed}
+.listing-detail-links a:last-child{border-bottom:0}
+.listing-detail-links .link-icon{font-size:23px;color:#138566;min-width:34px;text-align:center}
+.listing-detail-actions{display:flex;gap:12px;align-items:center}
+.listing-detail-favorite{width:58px;height:58px;border:1px solid #dce7df;background:#fff;border-radius:18px;color:#174c39;font-size:27px;cursor:pointer;flex:0 0 58px}
+.listing-detail-favorite.active{color:#d64b69;background:#fff1f4}
+.listing-detail-whatsapp{flex:1;min-height:58px;border:0;border-radius:18px;background:#078568;color:#fff;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;font-size:19px;font-weight:900}
+@media(max-width:560px){.listing-detail-page{padding:12px 0 28px}.listing-detail-shell{border-radius:27px;padding:14px 13px 19px}.listing-detail-top h1{font-size:21px}.listing-detail-cover{height:205px}.listing-detail-brand{width:112px;height:112px;margin-top:-52px;font-size:40px}.listing-detail-name{font-size:25px}.listing-detail-desc{font-size:16px}.listing-detail-facts{gap:7px}.listing-detail-fact{padding:13px 6px}.listing-detail-fact strong{font-size:13px}.listing-detail-fact span:last-child{font-size:12px}.listing-detail-links a{font-size:15px;padding:14px 2px}.listing-detail-whatsapp{font-size:16px}}
+
 </style>
 </head>
 <body>
@@ -965,6 +993,29 @@ main > #categories > .wrap > .bounty-picks-heading{
  </div>
 </section>
 
+
+<section class="listing-detail-page page-hidden" id="listingDetailPage" aria-labelledby="listingDetailPageTitle">
+ <div class="wrap">
+  <article class="listing-detail-shell">
+   <div class="listing-detail-top">
+    <h1 id="listingDetailPageTitle">تفاصيل الجهة</h1>
+    <button class="listing-back" type="button" onclick="backFromListingDetail()" aria-label="رجوع">→</button>
+   </div>
+   <div class="listing-detail-cover"><img id="detailCoverImage" src="" alt="صورة الجهة"></div>
+   <div class="listing-detail-brand" id="detailBrandMark" aria-hidden="true">🌿</div>
+   <h2 class="listing-detail-name" id="detailName"></h2>
+   <p class="listing-detail-kind" id="detailKind"></p>
+   <p class="listing-detail-desc" id="detailDescription"></p>
+   <div class="listing-detail-facts" id="detailFacts"></div>
+   <div class="listing-detail-links" id="detailLinks"></div>
+   <div class="listing-detail-actions">
+    <button class="listing-detail-favorite" id="detailFavorite" type="button" aria-label="إضافة للمفضلة" aria-pressed="false" onclick="toggleDetailFavorite()">♡</button>
+    <a class="listing-detail-whatsapp" id="detailWhatsApp" href="#" target="_blank" rel="noopener noreferrer"><span>◉</span> تواصل عبر واتساب</a>
+   </div>
+  </article>
+ </div>
+</section>
+
 <section class="blog" id="blog">
  <div class="wrap">
   <div class="section-head"><div class="section-kicker">من مدونة باونتي</div><h2 class="section-title">مقالات وأفكار لحياة صحية</h2><p class="section-desc">مقتطفات مختارة تساعدك على التعرف على الأنظمة الغذائية والمنتجات وطرق الاختيار الواعي.</p></div>
@@ -1019,7 +1070,7 @@ main > #categories > .wrap > .bounty-picks-heading{
 
 <div class="modal" id="regionModal"><div class="modal-box" style="text-align:center"><div style="font-size:48px">🌿</div><h3 id="regionModalTitle" style="color:var(--brand);margin:5px 0 8px"></h3><p id="regionModalText" style="color:var(--muted);margin:0 0 18px"></p><button class="search-button" onclick="document.getElementById('regionModal').classList.remove('open')">بانتظاركم قريبًا</button></div></div>
 <div class="modal" id="articleModal"><div class="modal-box"><div class="modal-head"><h3 id="articleTitle"></h3><button class="close" onclick="closeArticle()">✕</button></div><div id="articleText" style="color:var(--muted);padding-top:12px"></div><p class="search-note">المحتوى توعوي عام ولا يُعد بديلاً عن استشارة مختص، خصوصاً عند اتباع نظام غذائي علاجي أو وجود حالة صحية.</p></div></div>
-<div class="modal" id="listingModal"><div class="modal-box"><div class="modal-head"><h3 id="listingTitle"></h3><button class="close" onclick="closeListing()">✕</button></div><div id="listingDetails" style="color:var(--muted);padding-top:12px"></div></div></div>
+
 <div class="modal" id="activityContactModal"><div class="modal-box" style="text-align:center;max-width:520px">
  <button class="close" type="button" onclick="closeActivityContact()" aria-label="إغلاق" style="float:left">✕</button>
  <div style="font-size:42px;margin:8px 0">🌿</div>
@@ -1319,8 +1370,44 @@ async function loadBlogPosts(){
 function readArticle(i){const post=bountyBlogPosts[i];if(!post)return;document.getElementById('articleTitle').textContent=post.title;document.getElementById('articleText').textContent=post.content||post.excerpt||'';document.getElementById('articleModal').classList.add('open');}
 function closeArticle(){document.getElementById('articleModal').classList.remove('open');}
 function toWhatsAppNumber(value){let digits=String(value||'').replace(/\\D/g,'');if(digits.startsWith('00'))digits=digits.slice(2);if(digits.startsWith('0'))digits='966'+digits.slice(1);else if(digits.startsWith('5'))digits='966'+digits;return digits;}
-function showListing(id){const x=listings.find(v=>String(v.id)===String(id));if(!x)return;document.getElementById('listingTitle').textContent=x.name;const waNumber=toWhatsAppNumber(x.phone);const phone=waNumber?`<p><b>التواصل عبر واتساب:</b> <a style="color:var(--brand)" href="https://wa.me/${waNumber}" target="_blank" rel="noopener noreferrer">${escapeHTML(x.phone)}</a></p>`:'';const website=x.website?`<p><b>الموقع الإلكتروني:</b> <a style="color:var(--brand)" href="${escapeHTML(x.website)}" target="_blank" rel="noopener">زيارة الموقع</a></p>`:'';const maps=x.google_maps_url?`<p><b>موقع المتجر:</b> <a style="color:var(--brand)" href="${escapeHTML(x.google_maps_url)}" target="_blank" rel="noopener">عرض على خرائط Google</a></p>`:'';document.getElementById('listingDetails').innerHTML=`<p>${escapeHTML(x.desc)}</p><p><b>التصنيف:</b> ${escapeHTML(x.type)}</p><p><b>المنطقة:</b> ${escapeHTML(x.region)}</p>${x.address?`<p><b>الموقع:</b> ${escapeHTML(x.address)}</p>`:''}${phone}${website}${maps}`;document.getElementById('listingModal').classList.add('open');}
-function closeListing(){document.getElementById('listingModal').classList.remove('open');}
+let pageBeforeListingDetail='directory';
+let currentBountyPage='home';
+function showListing(id){
+ const x=listings.find(v=>String(v.id)===String(id));if(!x)return;
+ pageBeforeListingDetail=currentBountyPage==='listingDetail'?'directory':currentBountyPage;
+ const name=x.name||'جهة في دليل باونتي';
+ const type=x.type||'جهة مدرجة';
+ const region=x.region||'غير محدد';
+ const phone=x.phone||'';
+ const waNumber=toWhatsAppNumber(phone);
+ const fallbackPhotos={
+  'مخابز':'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&q=88',
+  'مزارع':'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=88',
+  'أسر منتجة':'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&q=88',
+  'متاجر':'https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=88'
+ };
+ const cover=x.image_url||x.image||x.photo||fallbackPhotos[type]||fallbackPhotos['متاجر'];
+ const image=document.getElementById('detailCoverImage');image.src=cover;image.alt='صورة '+name;
+ document.getElementById('listingDetailPageTitle').textContent='تفاصيل '+(type==='متاجر'?'المتجر':type==='مزارع'?'المزرعة':type==='مخابز'?'المخبز':'النشاط');
+ document.getElementById('detailBrandMark').textContent=x.emoji||'🌿';
+ document.getElementById('detailName').textContent=name;
+ document.getElementById('detailKind').textContent=type;
+ document.getElementById('detailDescription').textContent=x.desc||'تعرف على هذه الجهة ومنتجاتها وخدماتها من خلال معلومات التواصل والموقع.';
+ document.getElementById('detailFacts').innerHTML=`<div class="listing-detail-fact"><span class="fact-icon">⌖</span><strong>المنطقة</strong><span>${escapeHTML(region)}</span></div><div class="listing-detail-fact"><span class="fact-icon">◇</span><strong>التصنيف</strong><span>${escapeHTML(type)}</span></div><div class="listing-detail-fact"><span class="fact-icon">▣</span><strong>نوع الجهة</strong><span>${escapeHTML(x.subtype||'منتجات وخدمات')}</span></div>`;
+ const links=[];
+ if(waNumber)links.push(`<a href="https://wa.me/${waNumber}" target="_blank" rel="noopener noreferrer"><span>التواصل عبر واتساب<br><b>${escapeHTML(phone)}</b></span><span class="link-icon">◉</span></a>`);
+ if(x.website)links.push(`<a href="${escapeHTML(x.website)}" target="_blank" rel="noopener noreferrer"><span>زيارة الموقع الإلكتروني</span><span class="link-icon">↗</span></a>`);
+ if(x.google_maps_url)links.push(`<a href="${escapeHTML(x.google_maps_url)}" target="_blank" rel="noopener noreferrer"><span>عرض الموقع على خرائط Google</span><span class="link-icon">⌖</span></a>`);
+ if(x.address)links.push(`<div style="padding:14px 4px;color:#183e30;font-weight:700">العنوان: ${escapeHTML(x.address)}</div>`);
+ document.getElementById('detailLinks').innerHTML=links.join('')||'<p style="padding:15px;color:#66776e;text-align:center">لا تتوفر روابط تواصل لهذه الجهة حاليًا.</p>';
+ const wa=document.getElementById('detailWhatsApp');
+ if(waNumber){wa.href=`https://wa.me/${waNumber}`;wa.style.display='flex';}else{wa.href='https://wa.me/966500633399';wa.style.display='flex';wa.innerHTML='<span>◉</span> تواصل مع باونتي';}
+ const fav=document.getElementById('detailFavorite');fav.classList.remove('active');fav.textContent='♡';fav.setAttribute('aria-pressed','false');
+ showPage('listingDetail');
+}
+function toggleDetailFavorite(){const b=document.getElementById('detailFavorite');const active=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',String(active));b.classList.toggle('active',active);b.textContent=active?'♥':'♡';}
+function backFromListingDetail(){showPage(pageBeforeListingDetail||'directory');}
+function closeListing(){backFromListingDetail();}
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500);}
 
 
@@ -1371,6 +1458,7 @@ function filterBountyPicks(filter,button){
 }
 
 function showPage(page){
+ if(page!=='listingDetail')currentBountyPage=page;
  closeSideMenu();
  const main=document.querySelector('main');
  if(!main)return;
@@ -1398,6 +1486,8 @@ function showPage(page){
   show('blog');
  }else if(page==='about'){
   show('about');
+ }else if(page==='listingDetail'){
+  show('listingDetailPage');
  }
  document.querySelectorAll('.side-drawer a').forEach(a=>{
   a.classList.toggle('active',a.getAttribute('href')==='#'+page);
