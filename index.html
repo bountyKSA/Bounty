@@ -816,6 +816,46 @@ main > #categories > .wrap > .bounty-picks-heading{
 .listing-detail-whatsapp{flex:1;min-height:58px;border:0;border-radius:18px;background:#078568;color:#fff;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;font-size:19px;font-weight:900}
 @media(max-width:560px){.listing-detail-page{padding:12px 0 28px}.listing-detail-shell{border-radius:27px;padding:14px 13px 19px}.listing-detail-top h1{font-size:21px}.listing-detail-cover{height:205px}.listing-detail-brand{width:112px;height:112px;margin-top:-52px;font-size:40px}.listing-detail-name{font-size:25px}.listing-detail-desc{font-size:16px}.listing-detail-facts{gap:7px}.listing-detail-fact{padding:13px 6px}.listing-detail-fact strong{font-size:13px}.listing-detail-fact span:last-child{font-size:12px}.listing-detail-links a{font-size:15px;padding:14px 2px}.listing-detail-whatsapp{font-size:16px}}
 
+
+/* تصميم الدليل الشامل وفق المرجع المرسل */
+#directory.directory{background:#fbf8ef!important;padding:42px 0 58px!important}
+#directory .wrap{max-width:1120px}
+#directory .directory-heading{width:100%!important;max-width:100%!important;margin:0 auto 24px!important;padding:0!important;text-align:center!important}
+#directory .directory-heading h1{font-size:clamp(38px,5vw,62px)!important;line-height:1.18!important;color:#075239!important;font-weight:900!important;letter-spacing:-.5px}
+#directory .directory-heading h2{font-size:clamp(22px,3vw,34px)!important;color:#164d38!important;font-weight:800!important;margin-top:8px!important}
+#directory .directory-tools{direction:rtl;display:grid;grid-template-columns:1.5fr 1fr 1fr auto;gap:10px;margin:28px 0 24px;align-items:stretch}
+#directory .directory-tools input,#directory .directory-tools select{min-height:58px;border:1.5px solid #d9d8c9;border-radius:18px;background:#fffdf7;color:#174b38;padding:12px 18px;font-family:inherit;font-size:17px;font-weight:700;box-shadow:0 3px 10px rgba(35,60,40,.04)}
+#directory .directory-tools input::placeholder{color:#59665c;opacity:1}
+#directory .directory-tools .reset{min-height:58px;border-radius:18px;padding:10px 18px;background:#e6ead5;border-color:#e6ead5;font-family:inherit;font-size:15px}
+#directory .results-meta{margin:0 0 12px;color:#68766c;font-size:13px}
+#directory .listing-grid{display:grid;grid-template-columns:1fr;gap:16px}
+#directory .listing{direction:ltr;display:grid;grid-template-columns:minmax(220px,42%) minmax(0,1fr);align-items:stretch;min-height:235px;border:1px solid #e7e0d5;border-radius:25px;overflow:hidden;background:#fffdf8;box-shadow:0 8px 25px rgba(72,58,37,.08);cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+#directory .listing:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(72,58,37,.12)}
+#directory .listing-art{height:100%;min-height:235px;display:grid;place-items:center;overflow:hidden;background:linear-gradient(135deg,#e7edda,#f6e9d5);font-size:76px}
+#directory .listing-art img{display:none!important}
+#directory .listing-body{direction:rtl;text-align:right;padding:24px 28px;display:flex;flex-direction:column;justify-content:center;align-items:stretch;min-width:0}
+#directory .listing-body h3{font-size:clamp(23px,3vw,34px);line-height:1.4;color:#075239;font-weight:900;margin:0 0 4px}
+#directory .listing-body p{font-size:17px;line-height:1.8;color:#59675e;margin:0 0 10px;min-height:0}
+#directory .listing-meta{border:0;padding:0;margin:0 0 16px;font-size:14px;color:#667568;gap:15px}
+#directory .detail-btn{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;min-height:52px;min-width:190px;border:0;border-radius:16px;background:#075239;color:#fff;padding:10px 25px;font-family:inherit;font-size:17px;font-weight:800;cursor:pointer}
+#directory .empty{direction:rtl;border:1px solid #e5e9df;border-radius:18px}
+@media(max-width:680px){
+ #directory.directory{padding:30px 0 42px!important}
+ #directory .directory-heading h1{font-size:37px!important}
+ #directory .directory-heading h2{font-size:22px!important}
+ #directory .directory-tools{grid-template-columns:1fr 1fr;gap:8px;margin:20px 0 18px}
+ #directory .directory-tools input{grid-column:1/-1;min-height:54px}
+ #directory .directory-tools select{min-height:50px;font-size:14px;padding:9px 10px}
+ #directory .directory-tools .reset{grid-column:1/-1;min-height:44px}
+ #directory .listing{grid-template-columns:42% minmax(0,1fr);min-height:170px;border-radius:19px}
+ #directory .listing-art,#directory .listing-art img{min-height:170px}
+ #directory .listing-body{padding:14px 13px}
+ #directory .listing-body h3{font-size:19px;line-height:1.45}
+ #directory .listing-body p{font-size:12px;line-height:1.65;margin-bottom:7px}
+ #directory .listing-meta{font-size:10px;gap:7px;margin-bottom:9px}
+ #directory .detail-btn{min-width:0;min-height:40px;padding:8px 12px;font-size:12px;border-radius:12px}
+}
+
 </style>
 </head>
 <body>
@@ -998,8 +1038,8 @@ main > #categories > .wrap > .bounty-picks-heading{
  <div class="wrap">
   <article class="listing-detail-shell">
    <div class="listing-detail-top">
-    <h1 id="listingDetailPageTitle">تفاصيل الجهة</h1>
     <button class="listing-back" type="button" onclick="backFromListingDetail()" aria-label="رجوع">→</button>
+    <h1 id="listingDetailPageTitle">تفاصيل الجهة</h1>
    </div>
    <div class="listing-detail-cover"><img id="detailCoverImage" src="" alt="صورة الجهة"></div>
    <div class="listing-detail-brand" id="detailBrandMark" aria-hidden="true">🌿</div>
@@ -1020,9 +1060,9 @@ main > #categories > .wrap > .bounty-picks-heading{
  <div class="wrap">
   <div class="section-head"><div class="section-kicker">من مدونة باونتي</div><h2 class="section-title">مقالات وأفكار لحياة صحية</h2><p class="section-desc">مقتطفات مختارة تساعدك على التعرف على الأنظمة الغذائية والمنتجات وطرق الاختيار الواعي.</p></div>
   <div class="blog-grid" id="blogGrid">
-   <article class="article"><div class="article-cover">🥑</div><div class="article-content"><span class="article-tag">أنظمة غذائية · 4 دقائق قراءة</span><h3>ما هو نظام الكيتو؟ وما المنتجات التي يبحث عنها متبعوه؟</h3><p>نظرة تمهيدية على فكرة النظام، وأنواع المنتجات التي قد يبحث عنها المهتمون به، مثل بدائل الدقيق والوجبات منخفضة الكربوهيدرات. تختلف الاحتياجات الفردية، لذلك تحقّق من المكونات والملصق الغذائي.</p><button type="button" onclick="readArticle(0)">اقرأ المقتطف ←</button></div></article>
-   <article class="article"><div class="article-cover">🌾</div><div class="article-content"><span class="article-tag">دليل المنتجات · 3 دقائق قراءة</span><h3>كيف تقرأ بطاقة المنتج الغذائي؟</h3><p>قبل اختيار أي منتج، تعرّف على قائمة المكونات، وحجم الحصة، والسكريات المضافة، ومعلومات الحساسية. قراءة الملصق تساعدك على مقارنة الخيارات بطريقة أوضح.</p><button type="button" onclick="readArticle(1)">اقرأ المقتطف ←</button></div></article>
-   <article class="article"><div class="article-cover">🫒</div><div class="article-content"><span class="article-tag">اختيارات واعية · 3 دقائق قراءة</span><h3>من أين أبدأ عند اختيار زيت الزيتون؟</h3><p>تعرّف على معلومات العبوة، وتاريخ الإنتاج، وطريقة الحفظ، ومصدر المنتج. لا تعتمد على عبارة تسويقية واحدة؛ اجمع المعلومات قبل اتخاذ قرار الشراء.</p><button type="button" onclick="readArticle(2)">اقرأ المقتطف ←</button></div></article>
+   <article class="article"><div class="article-cover">🥑</div><div class="article-content"><span class="article-tag">أنظمة غذائية · 4 دقائق قراءة</span><h3>ما هو نظام الكيتو؟ وما المنتجات التي يبحث عنها متبعوه؟</h3><p>نظرة تمهيدية على فكرة النظام، وأنواع المنتجات التي قد يبحث عنها المهتمون به، مثل بدائل الدقيق والوجبات منخفضة الكربوهيدرات. تختلف الاحتياجات الفردية، لذلك تحقّق من المكونات والملصق الغذائي.</p><button type="button" class="read-article-btn" data-article-index="0">اقرأ المقتطف ←</button></div></article>
+   <article class="article"><div class="article-cover">🌾</div><div class="article-content"><span class="article-tag">دليل المنتجات · 3 دقائق قراءة</span><h3>كيف تقرأ بطاقة المنتج الغذائي؟</h3><p>قبل اختيار أي منتج، تعرّف على قائمة المكونات، وحجم الحصة، والسكريات المضافة، ومعلومات الحساسية. قراءة الملصق تساعدك على مقارنة الخيارات بطريقة أوضح.</p><button type="button" class="read-article-btn" data-article-index="1">اقرأ المقتطف ←</button></div></article>
+   <article class="article"><div class="article-cover">🫒</div><div class="article-content"><span class="article-tag">اختيارات واعية · 3 دقائق قراءة</span><h3>من أين أبدأ عند اختيار زيت الزيتون؟</h3><p>تعرّف على معلومات العبوة، وتاريخ الإنتاج، وطريقة الحفظ، ومصدر المنتج. لا تعتمد على عبارة تسويقية واحدة؛ اجمع المعلومات قبل اتخاذ قرار الشراء.</p><button type="button" class="read-article-btn" data-article-index="2">اقرأ المقتطف ←</button></div></article>
   </div>
  </div>
 </section>
@@ -1050,7 +1090,7 @@ main > #categories > .wrap > .bounty-picks-heading{
    <p>سواء عندك استفسار، اقتراح، أو رغبة في التعاون، اختر موضوع رسالتك واكتب لنا.</p>
    <form class="contact-message-form" onsubmit="sendContactMessage(event)">
     <label for="contactTopic">موضوع الرسالة</label>
-    <select id="contactTopic" required><option value="">اختر موضوع الرسالة</option><option>استفسار</option><option>اقتراح</option><option>تعاون</option><option>إضافة جهة للدليل</option><option>تحديث معلومة</option></select>
+    <select id="contactTopic" required><option value="">اختر موضوع الرسالة</option><option>استفسار</option><option>اقتراح</option><option>تعاون</option><option>إضافة جهة للدليل</option><option>تحديث معلومة</option><option>أخرى</option></select>
     <label for="contactMessage">رسالتك</label>
     <textarea id="contactMessage" required rows="4" placeholder="اكتب رسالتك هنا"></textarea>
     <button class="search-button" type="submit">إرسال عبر واتساب</button>
@@ -1283,7 +1323,11 @@ function renderListings(){
  document.getElementById('resultCount').textContent=`${rows.length} جهة في الدليل`;
   renderRegionCards();
  renderHomeHighlights();
- document.getElementById('listingGrid').innerHTML=rows.length?rows.map(x=>`<article class="listing"><div class="listing-art">${escapeHTML(x.emoji||'🌿')}</div><div class="listing-body"><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.desc)}</p><div class="listing-meta"><span>📍 ${escapeHTML(x.region)}</span><span>▣ ${escapeHTML(x.type)}</span></div><button class="detail-btn" onclick="showListing('${escapeHTML(x.id)}')">عرض التفاصيل ←</button></div></article>`).join(''):'<div class="empty">تم تنفيذ البحث، لكن لا توجد جهات مسجلة تطابق هذه الكلمات حالياً. جرّب كلمة أخرى أو غيّر المنطقة أو القسم.</div>';
+ document.getElementById('listingGrid').innerHTML=rows.length?rows.map(x=>{
+  const kind=normalizeSearchText(x.type||x.category||'');
+  const visual=x.emoji||(kind.includes('مزرع')?'🌿':kind.includes('مخبز')||kind.includes('مخبوز')?'🥖':kind.includes('زيت')?'🫒':kind.includes('عسل')?'🍯':kind.includes('قهوة')?'☕':kind.includes('نادي')?'🏃':kind.includes('مطعم')?'🥗':kind.includes('متجر')?'🛍️':'🌱');
+  return `<article class="listing" role="button" tabindex="0" onclick="showListing('${escapeHTML(x.id)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showListing('${escapeHTML(x.id)}')}"><div class="listing-art" aria-hidden="true">${escapeHTML(visual)}</div><div class="listing-body"><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.desc||x.description||'')}</p><div class="listing-meta"><span>📍 ${escapeHTML(x.region||x.city||'')}</span><span>▣ ${escapeHTML(x.type||x.category||'')}</span></div><button type="button" class="detail-btn" onclick="event.stopPropagation();showListing('${escapeHTML(x.id)}')">الموقع والتواصل</button></div></article>`;
+ }).join(''):'<div class="empty">تم تنفيذ البحث، لكن لا توجد جهات مسجلة تطابق هذه الكلمات حالياً. جرّب كلمة أخرى أو غيّر المنطقة أو القسم.</div>';
 }
 async function loadActivities(){
  try{
@@ -1358,7 +1402,7 @@ function renderBlogPosts(rows){
  if(!rows.length){grid.innerHTML='<div class="empty">لا توجد مقالات منشورة حاليًا.</div>';return;}
  grid.innerHTML=rows.map((post,index)=>{
   const cover=post.image_url?`<img src="${blogEscape(post.image_url)}" alt="${blogEscape(post.title)}" loading="lazy">`:`<span>${blogEscape(post.emoji||'🌿')}</span>`;
-  return `<article class="article"><div class="article-cover">${cover}</div><div class="article-content"><span class="article-tag">${blogEscape(post.category||'مقالات باونتي')} · ${Number(post.read_minutes)||3} دقائق قراءة</span><h3>${blogEscape(post.title)}</h3><p>${blogEscape(post.excerpt||'')}</p><button type="button" onclick="readArticle(${index})">اقرأ المقتطف ←</button></div></article>`;
+  return `<article class="article"><div class="article-cover">${cover}</div><div class="article-content"><span class="article-tag">${blogEscape(post.category||'مقالات باونتي')} · ${Number(post.read_minutes)||3} دقائق قراءة</span><h3>${blogEscape(post.title)}</h3><p>${blogEscape(post.excerpt||'')}</p><button type="button" class="read-article-btn" data-article-index="${index}" aria-label="اقرأ مقتطف ${blogEscape(post.title)}">اقرأ المقتطف ←</button></div></article>`;
  }).join('');
 }
 function loadBlogPosts(){
@@ -1371,8 +1415,30 @@ function loadBlogPosts(){
  bountyBlogPosts=articles.map((a,i)=>({title:a.title,excerpt:excerpts[i],content:a.text,category:['أنظمة غذائية','دليل المنتجات','اختيارات واعية'][i],read_minutes:[4,3,3][i],emoji:['🥑','🌾','🫒'][i]}));
  renderBlogPosts(bountyBlogPosts);
 }
-function readArticle(i){const post=bountyBlogPosts[i];if(!post)return;document.getElementById('articleTitle').textContent=post.title;document.getElementById('articleText').textContent=post.content||post.excerpt||'';document.getElementById('articleModal').classList.add('open');}
-function closeArticle(){document.getElementById('articleModal').classList.remove('open');}
+function readArticle(i){
+ const post=bountyBlogPosts[Number(i)];
+ const modal=document.getElementById('articleModal');
+ if(!post||!modal)return;
+ const title=document.getElementById('articleTitle');
+ const text=document.getElementById('articleText');
+ if(title)title.textContent=post.title||'مقال من باونتي';
+ if(text)text.textContent=post.content||post.excerpt||'لا يتوفر مقتطف لهذا المقال حاليًا.';
+ modal.classList.add('open');
+ modal.setAttribute('aria-hidden','false');
+ document.body.classList.add('article-modal-open');
+}
+window.readArticle=readArticle;
+function closeArticle(){
+ const modal=document.getElementById('articleModal');
+ if(modal){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');}
+ document.body.classList.remove('article-modal-open');
+}
+// Delegated click handling keeps the article buttons working after cards are re-rendered.
+document.addEventListener('click',function(event){
+ const button=event.target.closest('.read-article-btn[data-article-index]');
+ if(button){event.preventDefault();event.stopPropagation();readArticle(button.dataset.articleIndex);return;}
+ if(event.target && event.target.id==='articleModal')closeArticle();
+});
 function toWhatsAppNumber(value){let digits=String(value||'').replace(/\\D/g,'');if(digits.startsWith('00'))digits=digits.slice(2);if(digits.startsWith('0'))digits='966'+digits.slice(1);else if(digits.startsWith('5'))digits='966'+digits;return digits;}
 let pageBeforeListingDetail='directory';
 let currentBountyPage='home';
@@ -1516,3 +1582,11 @@ loadActivities();
 </script>
 </body>
 </html>
+
+<style>
+#articleModal{z-index:100000!important;pointer-events:none!important}
+#articleModal.open{pointer-events:auto!important}
+#articleModal .modal-box{position:relative;z-index:1;pointer-events:auto!important}
+#articleModal .close{min-width:44px;min-height:44px;cursor:pointer}
+.read-article-btn{position:relative;z-index:2;display:inline-flex;align-items:center;min-height:44px;cursor:pointer;touch-action:manipulation;pointer-events:auto!important}
+</style>
