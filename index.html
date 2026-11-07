@@ -1029,11 +1029,14 @@ function renderHomeHighlights(){
 }
 
 function openRegion(name,isAvailable=true){
+ // أظهر صفحة الدليل أولاً؛ لأن قسم الدليل يكون مخفياً عند عرض صفحة المناطق.
+ showPage('directory');
  document.getElementById('regionFilter').value=name;
  document.getElementById('directorySearch').value='';
  document.getElementById('typeFilter').value='';
  renderListings();
- document.getElementById('directory').scrollIntoView({behavior:'smooth'});
+ const directory=document.getElementById('directory');
+ if(directory) directory.scrollIntoView({behavior:'smooth',block:'start'});
 }
 function escapeHTML(value){
  return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
