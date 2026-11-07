@@ -1019,7 +1019,11 @@ main > #categories > .wrap > .bounty-picks-heading{
 <section class="blog" id="blog">
  <div class="wrap">
   <div class="section-head"><div class="section-kicker">من مدونة باونتي</div><h2 class="section-title">مقالات وأفكار لحياة صحية</h2><p class="section-desc">مقتطفات مختارة تساعدك على التعرف على الأنظمة الغذائية والمنتجات وطرق الاختيار الواعي.</p></div>
-  <div class="blog-grid" id="blogGrid"><div class="empty">جارٍ تحميل المقالات...</div></div>
+  <div class="blog-grid" id="blogGrid">
+   <article class="article"><div class="article-cover">🥑</div><div class="article-content"><span class="article-tag">أنظمة غذائية · 4 دقائق قراءة</span><h3>ما هو نظام الكيتو؟ وما المنتجات التي يبحث عنها متبعوه؟</h3><p>نظرة تمهيدية على فكرة النظام، وأنواع المنتجات التي قد يبحث عنها المهتمون به، مثل بدائل الدقيق والوجبات منخفضة الكربوهيدرات. تختلف الاحتياجات الفردية، لذلك تحقّق من المكونات والملصق الغذائي.</p><button type="button" onclick="readArticle(0)">اقرأ المقتطف ←</button></div></article>
+   <article class="article"><div class="article-cover">🌾</div><div class="article-content"><span class="article-tag">دليل المنتجات · 3 دقائق قراءة</span><h3>كيف تقرأ بطاقة المنتج الغذائي؟</h3><p>قبل اختيار أي منتج، تعرّف على قائمة المكونات، وحجم الحصة، والسكريات المضافة، ومعلومات الحساسية. قراءة الملصق تساعدك على مقارنة الخيارات بطريقة أوضح.</p><button type="button" onclick="readArticle(1)">اقرأ المقتطف ←</button></div></article>
+   <article class="article"><div class="article-cover">🫒</div><div class="article-content"><span class="article-tag">اختيارات واعية · 3 دقائق قراءة</span><h3>من أين أبدأ عند اختيار زيت الزيتون؟</h3><p>تعرّف على معلومات العبوة، وتاريخ الإنتاج، وطريقة الحفظ، ومصدر المنتج. لا تعتمد على عبارة تسويقية واحدة؛ اجمع المعلومات قبل اتخاذ قرار الشراء.</p><button type="button" onclick="readArticle(2)">اقرأ المقتطف ←</button></div></article>
+  </div>
  </div>
 </section>
 
@@ -1357,15 +1361,15 @@ function renderBlogPosts(rows){
   return `<article class="article"><div class="article-cover">${cover}</div><div class="article-content"><span class="article-tag">${blogEscape(post.category||'مقالات باونتي')} · ${Number(post.read_minutes)||3} دقائق قراءة</span><h3>${blogEscape(post.title)}</h3><p>${blogEscape(post.excerpt||'')}</p><button type="button" onclick="readArticle(${index})">اقرأ المقتطف ←</button></div></article>`;
  }).join('');
 }
-async function loadBlogPosts(){
- const grid=document.getElementById('blogGrid');if(!grid)return;
- try{
-  const {data,error}=await supabaseClient.from('blog_posts').select('id,title,excerpt,content,category,read_minutes,image_url,emoji,created_at').eq('status','published').order('created_at',{ascending:false});
-  if(error)throw error;bountyBlogPosts=data||[];renderBlogPosts(bountyBlogPosts);
- }catch(error){
-  // Keep the original editorial cards visible if the optional blog table has not been configured yet.
-  bountyBlogPosts=articles.map((a,i)=>({title:a.title,excerpt:['نظرة تمهيدية على فكرة النظام والمنتجات المرتبطة به.','تعرف على المكونات وحجم الحصة والسكريات المضافة ومعلومات الحساسية.','تعرف على بيانات العبوة وتاريخ الإنتاج وطريقة الحفظ.'][i],content:a.text,category:['أنظمة غذائية','دليل المنتجات','اختيارات واعية'][i],read_minutes:[4,3,3][i],emoji:['🥑','🌾','🫒'][i]}));renderBlogPosts(bountyBlogPosts);
- }
+function loadBlogPosts(){
+ // Restore the original built-in Bounty editorial articles; do not wait for the optional blog_posts table.
+ const excerpts=[
+  'نظرة تمهيدية على فكرة النظام، وأنواع المنتجات التي قد يبحث عنها المهتمون به، مثل بدائل الدقيق والوجبات منخفضة الكربوهيدرات. تختلف الاحتياجات الفردية، لذلك تحقّق من المكونات والملصق الغذائي.',
+  'قبل اختيار أي منتج، تعرّف على قائمة المكونات، وحجم الحصة، والسكريات المضافة، ومعلومات الحساسية. قراءة الملصق تساعدك على مقارنة الخيارات بطريقة أوضح.',
+  'تعرّف على معلومات العبوة، وتاريخ الإنتاج، وطريقة الحفظ، ومصدر المنتج. لا تعتمد على عبارة تسويقية واحدة؛ اجمع المعلومات قبل اتخاذ قرار الشراء.'
+ ];
+ bountyBlogPosts=articles.map((a,i)=>({title:a.title,excerpt:excerpts[i],content:a.text,category:['أنظمة غذائية','دليل المنتجات','اختيارات واعية'][i],read_minutes:[4,3,3][i],emoji:['🥑','🌾','🫒'][i]}));
+ renderBlogPosts(bountyBlogPosts);
 }
 function readArticle(i){const post=bountyBlogPosts[i];if(!post)return;document.getElementById('articleTitle').textContent=post.title;document.getElementById('articleText').textContent=post.content||post.excerpt||'';document.getElementById('articleModal').classList.add('open');}
 function closeArticle(){document.getElementById('articleModal').classList.remove('open');}
