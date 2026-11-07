@@ -234,7 +234,18 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 .community-inner h2{margin:0;color:#214936;font-size:25px}
 .community-inner p{margin:5px 0 0;color:#516451;font-size:13px}
 .community-inner a{background:#985a78;color:#fff;text-decoration:none;border-radius:25px;padding:10px 25px;font-weight:700;font-size:13px}
-.regions-preserved{padding:36px 0;background:#fffdf9}
+.regions-preserved{padding:18px 0 24px;background:#fffdf9}
+.regions-preserved .section-head{margin-bottom:12px}
+.regions-preserved .section-kicker{font-size:11px}
+.regions-preserved .section-title{font-size:20px;margin:2px 0}
+.regions-preserved .section-desc{font-size:12px;margin:3px 0}
+.regions-preserved .region-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.regions-preserved .region-card{min-height:104px;padding:10px 12px;gap:3px;border-radius:12px}
+.regions-preserved .region-card>span{font-size:19px;margin-bottom:0}
+.regions-preserved .region-card strong{font-size:13px}
+.regions-preserved .region-card small{font-size:10px}
+.regions-preserved .region-card b{font-size:11px}
+@media(max-width:580px){.regions-preserved{padding:14px 0 18px}.regions-preserved .region-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.regions-preserved .region-card{min-height:96px;padding:9px}}
 .directory{padding-top:38px}
 @media(max-width:900px){
  .visual-nav{gap:5px}.visual-nav a{min-width:54px;font-size:17px}.visual-nav a span{font-size:10px}
@@ -955,6 +966,8 @@ main > #categories > .wrap > .bounty-picks-heading{
  </div>
 </section>
 
+
+
 <section class="restored-directory-categories" id="directoryCategories">
  <div class="wrap">
   <div class="section-head"><h2 class="section-title">تصنيفات الدليل</h2></div>
@@ -992,6 +1005,17 @@ main > #categories > .wrap > .bounty-picks-heading{
   <div class="bounty-picks-grid" id="bountyPicksGrid" aria-live="polite">
    <div class="empty">جارٍ تحميل مختارات باونتي...</div>
   </div>
+ </div>
+</section>
+
+<section id="regions" class="regions-preserved">
+ <div class="wrap">
+  <div class="section-head">
+   <div class="section-kicker">باونتي في المملكة</div>
+   <h2 class="section-title">اكتشف الخيارات حسب المنطقة</h2>
+   <p class="section-desc">اختر منطقتك لاستعراض الأنشطة المسجلة فيها. تتحدث أعداد الجهات تلقائيًا عند إضافة نشاط جديد.</p>
+  </div>
+  <div class="region-grid" id="regionGrid"></div>
  </div>
 </section>
 
@@ -1036,16 +1060,7 @@ main > #categories > .wrap > .bounty-picks-heading{
   </div>
 </section>
 
-<section id="regions" class="regions-preserved">
- <div class="wrap">
-  <div class="section-head">
-   <div class="section-kicker">باونتي في المملكة</div>
-   <h2 class="section-title">اكتشف الخيارات حسب المنطقة</h2>
-   <p class="section-desc">اختر منطقتك لاستعراض الأنشطة المسجلة فيها. تتحدث أعداد الجهات تلقائيًا عند إضافة نشاط جديد.</p>
-  </div>
-  <div class="region-grid" id="regionGrid"></div>
- </div>
-</section>
+
 
 <section class="directory" id="directory">
  <div class="wrap">
@@ -1243,6 +1258,15 @@ const REGIONS=[
  {name:'الحدود الشمالية',emoji:'❄️'},{name:'جازان',emoji:'🌴'},
  {name:'نجران',emoji:'🌵'},{name:'الباحة',emoji:'🌳'},{name:'الجوف',emoji:'🌱'}
 ];
+function splitActivityLocation(value){
+ const text=String(value||'').trim();
+ const parts=text.split(/\s*[-–—]\s*/).map(x=>x.trim()).filter(Boolean);
+ const known=REGIONS.map(r=>r.name);
+ const region=parts.find(part=>known.some(name=>normalizeSearchText(name)===normalizeSearchText(part)));
+ if(region)return {region,city:parts.filter(part=>normalizeSearchText(part)!==normalizeSearchText(region)).join(' - ')};
+ return {region:text,city:''};
+}
+function activityRegionName(item){return splitActivityLocation(item.region||'').region||String(item.city||'').trim();}
 function setupRegions(){
  refreshRegionFilter();
  renderRegionCards();
@@ -1252,18 +1276,18 @@ function refreshRegionFilter(){
  if(!filter)return;
  const selected=filter.value;
  filter.innerHTML='<option value="">كل المناطق</option>';
- const names=[...new Set([...REGIONS.map(r=>r.name),...listings.map(x=>(x.region||'').trim()).filter(Boolean)])];
+ const names=REGIONS.map(r=>r.name);
  names.forEach(name=>filter.add(new Option(name,name)));
  filter.value=names.includes(selected)?selected:'';
 }
 function renderRegionCards(){
  const grid=document.getElementById('regionGrid');
  if(!grid)return;
- const names=[...new Set([...REGIONS.map(r=>r.name),...listings.map(x=>(x.region||'').trim()).filter(Boolean)])];
+ const names=REGIONS.map(r=>r.name);
  grid.innerHTML=names.map(name=>{
   const predefined=REGIONS.find(r=>r.name===name);
   const emoji=predefined?.emoji||'📍';
-  const count=listings.filter(x=>(x.region||'').trim()===name).length;
+  const count=listings.filter(x=>activityRegionName(x)===name).length;
   const subtitle=count?`يوجد ${count} جهة في الدليل`:'ترقبونا قريباً';
   const action=count?'استكشف الدليل ←':'أضف أول نشاط ←';
   const safeName=escapeHTML(name).replace(/'/g,'&#39;');
@@ -1335,7 +1359,7 @@ function getMatchingListings(query,region='',type=''){
  return listings.filter(x=>{
   const searchable=listingSearchText(x);
   const matches=tokens.length===0||tokens.every(token=>searchable.includes(token));
-  const regionMatches=!region||normalizeSearchText(x.region||x.city)===normalizeSearchText(region);
+  const regionMatches=!region||normalizeSearchText(activityRegionName(x))===normalizeSearchText(region);
   const typeValue=x.type||x.category||'';
   const typeMatches=!type||(type==='رياضة ومراكز رياضية'?(normalizeSearchText(typeValue).includes(normalizeSearchText('رياضة'))||normalizeSearchText(typeValue).includes(normalizeSearchText('علاج طبيعي'))):normalizeSearchText(typeValue).includes(normalizeSearchText(type)));
   return matches&&regionMatches&&typeMatches;
@@ -1346,7 +1370,7 @@ function renderHomeSearchResults(rows,query){
  if(!box)return;
  box.hidden=false;
  const label=query?`نتائج البحث عن: ${escapeHTML(query)}`:'جميع الجهات';
- box.innerHTML=`<div class="home-search-results-head"><span>${label} · ${rows.length} نتيجة</span><button type="button" class="reset" onclick="clearHomeSearch()">مسح البحث</button></div>`+(rows.length?`<div class="home-search-results-grid">${rows.map(x=>`<article class="home-search-result" onclick="showListing('${escapeHTML(x.id)}')"><strong>${escapeHTML(x.name)}</strong><p>${escapeHTML(x.desc||'')}</p><small>${escapeHTML(x.type||x.category||'')} · ${escapeHTML(x.region||x.city||'')}</small></article>`).join('')}</div>`:'<div class="home-search-empty">لا توجد نتائج مطابقة. جرّب كلمة أخرى.</div>');
+ box.innerHTML=`<div class="home-search-results-head"><span>${label} · ${rows.length} نتيجة</span><button type="button" class="reset" onclick="clearHomeSearch()">مسح البحث</button></div>`+(rows.length?`<div class="home-search-results-grid">${rows.map(x=>`<article class="home-search-result" onclick="showListing('${escapeHTML(x.id)}')"><strong>${escapeHTML(x.name)}</strong><p>${escapeHTML(x.desc||'')}</p><small>${escapeHTML(x.type||x.category||'')} · ${escapeHTML(activityRegionName(x))}${splitActivityLocation(x.region).city?' · '+escapeHTML(splitActivityLocation(x.region).city):''}</small></article>`).join('')}</div>`:'<div class="home-search-empty">لا توجد نتائج مطابقة. جرّب كلمة أخرى.</div>');
 }
 function clearHomeSearch(){
  const input=document.getElementById('mainSearch');if(input)input.value='';
@@ -1363,7 +1387,7 @@ function renderListings(){
  document.getElementById('listingGrid').innerHTML=rows.length?rows.map(x=>{
   const kind=normalizeSearchText(x.type||x.category||'');
   const visual=x.emoji||(kind.includes('مزرع')?'🌿':kind.includes('مخبز')||kind.includes('مخبوز')?'🥖':kind.includes('زيت')?'🫒':kind.includes('عسل')?'🍯':kind.includes('قهوة')?'☕':kind.includes('نادي')?'🏃':kind.includes('مطعم')?'🥗':kind.includes('متجر')?'🛍️':'🌱');
-  return `<article class="listing" role="button" tabindex="0" onclick="showListing('${escapeHTML(x.id)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showListing('${escapeHTML(x.id)}')}"><div class="listing-art" aria-hidden="true">${escapeHTML(visual)}</div><div class="listing-body"><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.desc||x.description||'')}</p><div class="listing-meta"><span>📍 ${escapeHTML(x.region||x.city||'')}</span><span>▣ ${escapeHTML(x.type||x.category||'')}</span></div><button type="button" class="detail-btn" onclick="event.stopPropagation();showListing('${escapeHTML(x.id)}')">الموقع والتواصل</button></div></article>`;
+  return `<article class="listing" role="button" tabindex="0" onclick="showListing('${escapeHTML(x.id)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showListing('${escapeHTML(x.id)}')}"><div class="listing-art" aria-hidden="true">${escapeHTML(visual)}</div><div class="listing-body"><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.desc||x.description||'')}</p><div class="listing-meta"><span>📍 ${escapeHTML(activityRegionName(x))}${splitActivityLocation(x.region).city?' · '+escapeHTML(splitActivityLocation(x.region).city):''}</span><span>▣ ${escapeHTML(x.type||x.category||'')}</span></div><button type="button" class="detail-btn" onclick="event.stopPropagation();showListing('${escapeHTML(x.id)}')">الموقع والتواصل</button></div></article>`;
  }).join(''):'<div class="empty">تم تنفيذ البحث، لكن لا توجد جهات مسجلة تطابق هذه الكلمات حالياً. جرّب كلمة أخرى أو غيّر المنطقة أو القسم.</div>';
 }
 async function loadActivities(){
@@ -1658,7 +1682,7 @@ function showPage(page){
  sections.forEach(section=>section.classList.add('page-hidden'));
  const show=(id)=>{const el=document.getElementById(id);if(el)el.classList.remove('page-hidden');};
  if(page==='home'){
-  ['homeHero','mainSectionsNav','directoryCategories','categories','featured','visualNew','visualPromos'].forEach(show);
+  ['homeHero','mainSectionsNav','regions','directoryCategories','categories','featured','visualNew','visualPromos'].forEach(show);
  }else if(page==='categories'){
   show('categories');
   renderBountyPicks();
