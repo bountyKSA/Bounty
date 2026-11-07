@@ -923,7 +923,7 @@ main > #categories > .wrap > .bounty-picks-heading{
           <button onclick="searchAll()" aria-label="بحث">⌕</button>
         </div>
         <label class="visual-select"><span>⌖</span><select id="homeRegion"><option value="">جميع المدن</option><option>الرياض</option><option>القصيم</option><option>مكة المكرمة</option><option>المدينة المنورة</option><option>المنطقة الشرقية</option><option>عسير</option><option>تبوك</option><option>حائل</option><option>الحدود الشمالية</option><option>جازان</option><option>نجران</option><option>الباحة</option><option>الجوف</option></select></label>
-        <label class="visual-select"><span>▦</span><select id="homeType"><option value="">جميع الأقسام</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option><option value="متفرقات">قسم الأواني والطهي</option></select></label>
+        <label class="visual-select"><span>▦</span><select id="homeType"><option value="">جميع الأقسام</option><option>متاجر</option><option value="مزارع">المزارع المحلية</option><option value="مخابز">مخابز صحية</option><option value="مطاعم ومقاهٍ">المطاعم والمقاهي الصحية</option><option>أسر منتجة</option><option>مكملات غذائية</option><option value="علاج طبيعي">مراكز الرياضة والعلاج الطبيعي</option><option value="رياضة">الأندية الرياضية ومراكز الرياضة</option><option value="متفرقات">أدوات الطهي والمطبخ</option></select></label>
         <button type="button" class="visual-search-submit" id="homeSearchButton" onclick="searchAll()">ابدأ البحث</button>
       </div>
       <div class="hero-tags">
@@ -959,14 +959,14 @@ main > #categories > .wrap > .bounty-picks-heading{
  <div class="wrap">
   <div class="section-head"><h2 class="section-title">تصنيفات الدليل</h2></div>
   <div class="restored-category-grid">
-   <button type="button" onclick="openDirectoryCategory('متاجر')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=240&h=160&fit=crop&q=80" alt="المتاجر"><strong>المتاجر</strong></button>
-   <button type="button" onclick="openDirectoryCategory('مزارع')"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=240&h=160&fit=crop&q=80" alt="المزارع"><strong>المزارع</strong></button>
-   <button type="button" onclick="openDirectoryCategory('مخابز')"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=240&h=160&fit=crop&q=80" alt="المخابز"><strong>المخابز</strong></button>
-   <button type="button" onclick="openDirectoryCategory('مطاعم ومقاهٍ')"><img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=240&h=160&fit=crop&q=80" alt="المطاعم والمقاهي"><strong>المطاعم والمقاهي</strong></button>
+   <button type="button" onclick="showPage('storeOptions')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=240&h=160&fit=crop&q=80" alt="متاجر المنتجات الطبيعية"><strong>متاجر المنتجات الطبيعية</strong></button>
+   <button type="button" onclick="openDirectoryCategory('مزارع')"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=240&h=160&fit=crop&q=80" alt="المزارع المحلية"><strong>المزارع المحلية</strong></button>
+   <button type="button" onclick="openDirectoryCategory('مخابز')"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=240&h=160&fit=crop&q=80" alt="مخابز صحية"><strong>مخابز صحية</strong></button>
+   <button type="button" onclick="openDirectoryCategory('مطاعم ومقاهٍ')"><img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=240&h=160&fit=crop&q=80" alt="المطاعم والمقاهي الصحية"><strong>المطاعم والمقاهي الصحية</strong></button>
    <button type="button" onclick="openDirectoryCategory('أسر منتجة')"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=240&h=160&fit=crop&q=80" alt="الأسر المنتجة"><strong>الأسر المنتجة</strong></button>
-   <button type="button" onclick="openDirectoryCategory('مكملات غذائية')"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=240&h=160&fit=crop&q=80" alt="المكملات الغذائية"><strong>المكملات الغذائية</strong></button>
-   <button type="button" onclick="openDirectoryCategory('علاج طبيعي')"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=240&h=160&fit=crop&q=80" alt="العلاج الطبيعي"><strong>العلاج الطبيعي</strong></button>
-   <button type="button" onclick="openDirectoryCategory('رياضة')"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=240&h=160&fit=crop&q=80" alt="الرياضة"><strong>الرياضة</strong></button>
+   <button type="button" onclick="openDirectoryCategory('متفرقات')"><img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?w=240&h=160&fit=crop&q=80" alt="أدوات الطهي والمطبخ"><strong>أدوات الطهي والمطبخ</strong></button>
+   <button type="button" onclick="openDirectoryCategory('رياضة ومراكز رياضية')"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=240&h=160&fit=crop&q=80" alt="الأندية الرياضية ومراكز الرياضة"><strong>الأندية الرياضية ومراكز الرياضة</strong></button>
+   <button type="button" onclick="openDirectoryCategory('علاج طبيعي')"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=240&h=160&fit=crop&q=80" alt="مراكز العلاج والعناية"><strong>مراكز العلاج والعناية</strong></button>
   </div>
  </div>
 </section>
@@ -977,8 +977,17 @@ main > #categories > .wrap > .bounty-picks-heading{
   <div class="bounty-picks-filters" role="group" aria-label="تصفية مختارات باونتي">
    <button type="button" class="active" data-pick-filter="all" onclick="filterBountyPicks('all',this)">الكل</button>
    <button type="button" data-pick-filter="عضوي" onclick="filterBountyPicks('عضوي',this)">عضوي</button>
+   <button type="button" data-pick-filter="غير عضوي" onclick="filterBountyPicks('غير عضوي',this)">غير عضوي</button>
+   <button type="button" data-pick-filter="طبيعي" onclick="filterBountyPicks('طبيعي',this)">طبيعي</button>
+   <button type="button" data-pick-filter="غير معدل وراثياً" onclick="filterBountyPicks('غير معدل وراثياً',this)">غير معدل وراثيًا</button>
+   <button type="button" data-pick-filter="قليل المعالجة" onclick="filterBountyPicks('قليل المعالجة',this)">قليل المعالجة</button>
+   <button type="button" data-pick-filter="بدون إضافات ضارة" onclick="filterBountyPicks('بدون إضافات ضارة',this)">بدون إضافات ضارة</button>
    <button type="button" data-pick-filter="خالي من الجلوتين" onclick="filterBountyPicks('خالي من الجلوتين',this)">خالٍ من الجلوتين</button>
    <button type="button" data-pick-filter="مناسب للكيتو" onclick="filterBountyPicks('مناسب للكيتو',this)">مناسب للكيتو</button>
+   <button type="button" data-pick-filter="نظام الطيبات" onclick="filterBountyPicks('نظام الطيبات',this)">يتبع نظام الطيبات</button>
+   <button type="button" data-pick-filter="لا يتبع نظام الطيبات" onclick="filterBountyPicks('لا يتبع نظام الطيبات',this)">لا يتبع نظام الطيبات</button>
+   <button type="button" data-pick-filter="كارنيفور" onclick="filterBountyPicks('كارنيفور',this)">كارنيفور</button>
+   <button type="button" data-pick-filter="Zero Gl" onclick="filterBountyPicks('Zero Gl',this)">Zero Gl</button>
   </div>
   <div class="bounty-picks-grid" id="bountyPicksGrid" aria-live="polite">
    <div class="empty">جارٍ تحميل مختارات باونتي...</div>
@@ -1044,7 +1053,7 @@ main > #categories > .wrap > .bounty-picks-heading{
   <div class="directory-tools">
    <input id="directorySearch" type="search" placeholder="اسم منتج، متجر، كيتو..." oninput="renderListings()">
    <select id="regionFilter" onchange="renderListings()"><option value="">كل المناطق</option></select>
-   <select id="typeFilter" onchange="renderListings()"><option value="">كل التصنيفات</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option><option value="متفرقات">قسم الأواني والطهي</option></select>
+   <select id="typeFilter" onchange="renderListings()"><option value="">كل التصنيفات</option><option>متاجر</option><option value="مزارع">المزارع المحلية</option><option value="مخابز">مخابز صحية</option><option value="مطاعم ومقاهٍ">المطاعم والمقاهي الصحية</option><option>أسر منتجة</option><option>مكملات غذائية</option><option value="علاج طبيعي">مراكز الرياضة والعلاج الطبيعي</option><option value="رياضة">الأندية الرياضية ومراكز الرياضة</option><option value="متفرقات">أدوات الطهي والمطبخ</option></select>
    <button class="reset" onclick="clearSearch()">مسح البحث</button>
   </div>
   <div class="results-meta"><span id="resultCount">الجهات المتاحة</span><span>اختر بطاقة لمعرفة التفاصيل</span></div>
@@ -1122,6 +1131,15 @@ main > #categories > .wrap > .bounty-picks-heading{
  </div>
 </section>
 
+
+<div class="modal" id="bountyPickModal" role="dialog" aria-modal="true" aria-labelledby="bountyPickModalTitle">
+ <div class="modal-box" style="max-width:620px">
+  <div class="modal-head"><h3 id="bountyPickModalTitle"></h3><button class="close" type="button" onclick="closeBountyPickDetails()" aria-label="إغلاق">✕</button></div>
+  <img id="bountyPickModalImage" alt="" style="width:100%;max-height:280px;object-fit:cover;border-radius:16px;margin:12px 0">
+  <p id="bountyPickModalDescription" style="color:var(--muted);line-height:1.9"></p>
+  <div id="bountyPickModalLinks" class="listing-detail-links"></div>
+ </div>
+</div>
 </main>
 
 <footer>
@@ -1147,7 +1165,7 @@ main > #categories > .wrap > .bounty-picks-heading{
  <form id="activityForm" onsubmit="submitActivity(event)">
   <div class="form-grid">
    <div class="form-field"><label for="activityName">اسم النشاط *</label><input id="activityName" name="name" required minlength="2" maxlength="120" placeholder="اسم المتجر أو النشاط"></div>
-   <div class="form-field"><label for="activityType">نوع النشاط *</label><select id="activityType" name="type" required><option value="">اختر التصنيف</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option><option value="متفرقات">قسم الأواني والطهي</option></select></div>
+   <div class="form-field"><label for="activityType">نوع النشاط *</label><select id="activityType" name="type" required><option value="">اختر التصنيف</option><option>متاجر</option><option value="مزارع">المزارع المحلية</option><option value="مخابز">مخابز صحية</option><option value="مطاعم ومقاهٍ">المطاعم والمقاهي الصحية</option><option>أسر منتجة</option><option>مكملات غذائية</option><option value="علاج طبيعي">مراكز الرياضة والعلاج الطبيعي</option><option value="رياضة">الأندية الرياضية ومراكز الرياضة</option><option value="متفرقات">أدوات الطهي والمطبخ</option></select></div>
    <div class="form-field"><label for="activityRegion">المنطقة أو المدينة *</label><input id="activityRegion" name="region" type="text" required minlength="2" maxlength="100" placeholder="اكتب المنطقة أو المدينة، مثل جدة"></div>
    <div class="form-field"><label for="activityPhone">رقم التواصل</label><input id="activityPhone" name="phone" type="tel" maxlength="30" placeholder="05xxxxxxxx"></div>
    <div class="form-field full"><label for="activityAddress">عنوان النشاط أو موقعه *</label><input id="activityAddress" name="address" type="text" autocomplete="street-address" required minlength="3" maxlength="250" placeholder="اكتب المدينة والحي أو الصق رابط موقع Google Maps"><small style="color:var(--muted);font-size:11px">هذا الحقل مطلوب لحفظ النشاط في الدليل.</small></div>
@@ -1319,7 +1337,7 @@ function getMatchingListings(query,region='',type=''){
   const matches=tokens.length===0||tokens.every(token=>searchable.includes(token));
   const regionMatches=!region||normalizeSearchText(x.region||x.city)===normalizeSearchText(region);
   const typeValue=x.type||x.category||'';
-  const typeMatches=!type||normalizeSearchText(typeValue).includes(normalizeSearchText(type));
+  const typeMatches=!type||(type==='رياضة ومراكز رياضية'?(normalizeSearchText(typeValue).includes(normalizeSearchText('رياضة'))||normalizeSearchText(typeValue).includes(normalizeSearchText('علاج طبيعي'))):normalizeSearchText(typeValue).includes(normalizeSearchText(type)));
   return matches&&regionMatches&&typeMatches;
  });
 }
@@ -1578,35 +1596,32 @@ function sendContactMessage(event){
 }
 
 let activeBountyPickFilter='all';
+let bountyPickRows=[];
+const BOUNTY_PICK_CLASSIFICATIONS=[
+ 'عضوي','غير عضوي','طبيعي','غير معدل وراثياً','قليل المعالجة','بدون إضافات ضارة',
+ 'خالي من الجلوتين','مناسب للكيتو','نظام الطيبات','لا يتبع نظام الطيبات','كارنيفور','Zero Gl'
+];
+async function loadBountyPicks(){
+ const grid=document.getElementById('bountyPicksGrid');
+ if(grid)grid.innerHTML='<div class="bounty-picks-empty">جارٍ تحميل مختارات باونتي...</div>';
+ try{
+  const {data,error}=await supabaseClient.from('bounty_picks').select('*').eq('status','published').order('created_at',{ascending:false});
+  if(error)throw error;
+  bountyPickRows=(data||[]).map(row=>({...row,classifications:Array.isArray(row.classifications)?row.classifications:[]}));
+  renderBountyPicks();
+ }catch(error){
+  console.error('تعذر تحميل مختارات باونتي:',error);
+  if(grid)grid.innerHTML='<div class="bounty-picks-empty">تعذر تحميل المنتجات حاليًا. تحققي من إعداد جدول مختارات باونتي في Supabase.</div>';
+ }
+}
 function renderBountyPicks(){
  const grid=document.getElementById('bountyPicksGrid');if(!grid)return;
- const terms={ 'عضوي':['عضوي','organic'], 'خالي من الجلوتين':['خالي من الجلوتين','جلوتين','gluten'], 'مناسب للكيتو':['مناسب للكيتو','كيتو','keto'] };
- const rows=listings.filter(item=>{
-  if(activeBountyPickFilter==='all')return true;
-  const hay=`${item.name||''} ${item.desc||''} ${item.tags||''} ${item.type||''}`.toLowerCase();
-  return (terms[activeBountyPickFilter]||[activeBountyPickFilter]).some(term=>hay.includes(term.toLowerCase()));
- });
- if(!rows.length){grid.innerHTML='<div class="bounty-picks-empty">لا توجد حاليًا مختارات مسجلة تطابق هذا التصنيف. ستظهر هنا الخيارات عند توفرها.</div>';return;}
- const pickPhotos={
-  bakery:'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=700&q=85',
-  oil:'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=700&q=85',
-  farm:'https://images.unsplash.com/photo-1542838132-92c53300491e?w=700&q=85',
-  natural:'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=700&q=85',
-  fruit:'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=700&q=85',
-  skincare:'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=700&q=85'
- };
- const pickPhotoFor=item=>{
-  const text=`${item.name||''} ${item.desc||''} ${item.tags||''} ${item.type||''} ${item.category||''}`.toLowerCase();
-  if(/زيت|زيتون|معصرة|olive|oil/.test(text))return pickPhotos.oil;
-  if(/مخبز|خبز|دقيق|مخبوز|معجن|bakery|bread/.test(text))return pickPhotos.bakery;
-  if(/مزرع|خضار|ورقيات|فاكه|ثمار|منتج زراع|farm|vegetable|fruit/.test(text))return /فاكه|ثمار|fruit/.test(text)?pickPhotos.fruit:pickPhotos.farm;
-  if(/عناي|بشرة|تجميل|شعر|صابون|skincare|beauty/.test(text))return pickPhotos.skincare;
-  return pickPhotos.natural;
- };
+ const rows=bountyPickRows.filter(item=>activeBountyPickFilter==='all'||(item.classifications||[]).includes(activeBountyPickFilter));
+ if(!rows.length){grid.innerHTML='<div class="bounty-picks-empty">لا توجد منتجات مضافة حاليًا ضمن هذا التصنيف.</div>';return;}
  grid.innerHTML=rows.map(item=>{
-  const tags=String(item.tags||'').split(/[،,]/).map(t=>t.trim()).filter(Boolean).slice(0,3);
-  const tagHtml=tags.length?`<div class="pick-tags">${tags.map(t=>`<span>${escapeHTML(t)}</span>`).join('')}</div>`:'';
-  return `<article class="bounty-pick-card"><img src="${pickPhotoFor(item)}" alt="" loading="lazy"><div class="pick-copy"><h3>${escapeHTML(item.name)}</h3><p>${escapeHTML(item.desc||'جهة مدرجة في دليل باونتي')}<br>متوفر لدى: ${escapeHTML(item.name)}</p>${tagHtml}<button type="button" onclick="showListing('${escapeHTML(item.id)}')">لماذا اخترناه؟</button></div></article>`;
+  const tags=(item.classifications||[]).map(tag=>`<span>${escapeHTML(tag)}</span>`).join('');
+  const image=item.image_url?`<img src="${escapeHTML(item.image_url)}" alt="${escapeHTML(item.name)}" loading="lazy">`:'<div class="bounty-pick-image-placeholder" aria-label="لا توجد صورة">🌿</div>';
+  return `<article class="bounty-pick-card">${image}<div class="pick-copy"><h3>${escapeHTML(item.name)}</h3><p>${escapeHTML(item.description||'')}</p>${tags?`<div class="pick-tags">${tags}</div>`:''}<button type="button" onclick="showBountyPickDetails('${String(item.id).replace(/[^a-zA-Z0-9-]/g,'')}')">لماذا اخترناه؟</button></div></article>`;
  }).join('');
 }
 function filterBountyPicks(filter,button){
@@ -1614,6 +1629,25 @@ function filterBountyPicks(filter,button){
  document.querySelectorAll('.bounty-picks-filters button').forEach(btn=>btn.classList.toggle('active',btn===button));
  renderBountyPicks();
 }
+function showBountyPickDetails(id){
+ const item=bountyPickRows.find(row=>String(row.id)===String(id));if(!item)return;
+ const modal=document.getElementById('bountyPickModal');if(!modal)return;
+ document.getElementById('bountyPickModalTitle').textContent=item.name||'تفاصيل المنتج';
+ document.getElementById('bountyPickModalDescription').textContent=item.description||'';
+ const image=document.getElementById('bountyPickModalImage');
+ if(item.image_url){image.src=item.image_url;image.alt=item.name||'صورة المنتج';image.hidden=false;}else{image.hidden=true;}
+ const links=[];
+ if(item.phone){let digits=String(item.phone).replace(/[^0-9]/g,'');if(digits.startsWith('00'))digits=digits.slice(2);if(digits.startsWith('0'))digits='966'+digits.slice(1);else if(digits.startsWith('5'))digits='966'+digits;if(digits)links.push(`<a href="https://wa.me/${digits}" target="_blank" rel="noopener noreferrer">التواصل عبر واتساب</a>`);}
+ if(item.google_maps_url)links.push(`<a href="${escapeHTML(item.google_maps_url)}" target="_blank" rel="noopener noreferrer">الموقع على خرائط Google</a>`);
+ if(item.website)links.push(`<a href="${escapeHTML(item.website)}" target="_blank" rel="noopener noreferrer">زيارة الموقع الإلكتروني</a>`);
+ if(item.instagram_url)links.push(`<a href="${escapeHTML(item.instagram_url)}" target="_blank" rel="noopener noreferrer">Instagram</a>`);
+ if(item.tiktok_url)links.push(`<a href="${escapeHTML(item.tiktok_url)}" target="_blank" rel="noopener noreferrer">TikTok</a>`);
+ if(item.snapchat_url)links.push(`<a href="${escapeHTML(item.snapchat_url)}" target="_blank" rel="noopener noreferrer">Snapchat</a>`);
+ if(item.x_url)links.push(`<a href="${escapeHTML(item.x_url)}" target="_blank" rel="noopener noreferrer">X</a>`);
+ document.getElementById('bountyPickModalLinks').innerHTML=links.join('');
+ modal.classList.add('open');
+}
+function closeBountyPickDetails(){document.getElementById('bountyPickModal')?.classList.remove('open');}
 
 function showPage(page){
  if(page!=='listingDetail')currentBountyPage=page;
@@ -1628,6 +1662,7 @@ function showPage(page){
  }else if(page==='categories'){
   show('categories');
   renderBountyPicks();
+  loadBountyPicks();
  }else if(page==='storeOptions'){
   show('storeOptions');
  }else if(page==='featured'){
@@ -1666,9 +1701,17 @@ setupRegions();
 renderListings();
 renderBountyPicks();
 showPage('home');
+loadBountyPicks();
 loadActivities();
 loadBlogPosts();
 </script>
+
+<style>
+.bounty-pick-image-placeholder{width:100%;height:100%;min-height:220px;display:grid;place-items:center;background:#edf4ec;color:#17634f;font-size:58px}
+.bounty-picks-filters{flex-wrap:wrap}
+#bountyPickModal .listing-detail-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+#bountyPickModal .listing-detail-links a{display:inline-flex;padding:10px 14px;border-radius:12px;background:#eef5ef;color:#07553f;text-decoration:none;font-weight:700}
+</style>
 </body>
 </html>
 
