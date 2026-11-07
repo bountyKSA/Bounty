@@ -707,6 +707,38 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 
 #adminBlogForm .admin-form-grid textarea{min-height:100px}
 #adminBlogForm textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);outline-color:var(--brand2);resize:vertical}
+
+/* Bounty requested page refinements */
+.bounty-curated-intro{font-size:clamp(20px,2.5vw,30px)!important;font-weight:800!important;color:var(--ink)!important;margin:4px 0 18px!important}
+.bounty-choice-filters{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 22px;justify-content:flex-start}
+.bounty-choice-filters button{border:0;border-radius:999px;background:#e5edda;color:#183c32;padding:11px 24px;font:inherit;font-weight:800;cursor:pointer;box-shadow:0 3px 12px rgba(24,60,50,.07)}
+.bounty-choice-filters button:hover{background:#d5e4c9}
+.bounty-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.bounty-choice-card{display:grid;grid-template-columns: minmax(0,1fr) minmax(0,1fr);overflow:hidden;border:1px solid #e3e9df;border-radius:20px;background:#fff;box-shadow:0 8px 24px rgba(24,60,50,.07);min-height:220px}
+.bounty-choice-card>img{width:100%;height:100%;min-height:220px;object-fit:cover}
+.bounty-choice-copy{padding:20px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px}
+.bounty-choice-copy h3{margin:0;color:var(--brand);font-size:clamp(18px,2vw,25px)}
+.bounty-choice-copy p{margin:0;color:var(--muted)}
+.bounty-choice-copy details{width:100%;margin-top:8px}
+.bounty-choice-copy summary{cursor:pointer;background:var(--brand);color:#fff;border-radius:14px;padding:10px 16px;font-weight:800;list-style:none;text-align:center}
+.bounty-choice-copy details p{padding:10px 2px;line-height:1.8;font-size:14px}
+.bounty-choice-note{font-size:12px;color:#8a7853}
+.bounty-choice-disclaimer{color:var(--muted);font-size:13px;margin-top:14px}
+.contact-message-form{display:grid;gap:9px;margin:20px 0;padding:18px;border:1px solid var(--line);border-radius:16px;background:#fbfdf9}
+.contact-message-form label{font-weight:700;color:var(--ink)}
+.contact-message-form select,.contact-message-form textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px;font:inherit;background:#fff;color:var(--ink)}
+.contact-send-button{border:0;border-radius:12px;background:var(--brand);color:#fff;padding:12px 18px;font:inherit;font-weight:800;cursor:pointer}
+.admin-shortcuts{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 22px}
+.admin-shortcuts a{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:12px;background:#e8f1e8;color:var(--brand);font-weight:800;text-decoration:none}
+@media(max-width:700px){.bounty-choice-grid{grid-template-columns:1fr}.bounty-choice-card{grid-template-columns:42% 58%;min-height:180px}.bounty-choice-card>img{min-height:180px}.bounty-choice-copy{padding:13px}.bounty-choice-copy h3{font-size:17px}.bounty-choice-filters{gap:8px}.bounty-choice-filters button{padding:9px 15px;font-size:14px}}
+
+</style>
+
+<style>
+.pick-classification-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;padding:12px;background:#f5f8f5;border:1px solid #e4ece5;border-radius:12px}
+.pick-classification-options label{display:flex;align-items:center;gap:8px;font-weight:600;color:#315e4e}
+.pick-classification-options input{width:18px;height:18px;accent-color:#176b58}
+#pickAdminImagePreview img{max-width:140px;max-height:110px;object-fit:cover;border-radius:10px;margin-top:8px}
 </style>
 </head>
 <body>
@@ -718,7 +750,7 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
         <a href="#" aria-label="إنستغرام" title="إنستغرام"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" class="social-fill"/></svg></a>
         <a href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer" aria-label="واتساب" title="واتساب"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 11.8a8.2 8.2 0 0 1-12.1 7.1L3 20l1.2-4.9a8.2 8.2 0 1 1 16-3.3Z"/><path d="M8.4 7.8c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4 0 .6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.7.8c.3.1.4.3.4.5 0 .4-.2 1.2-.7 1.6-.5.5-1.2.7-1.9.6-1.1-.2-2.5-.9-3.8-2.1-1.4-1.3-2.3-2.8-2.5-3.9-.2-.9.1-1.7.8-2.1Z" class="social-fill"/></svg></a>
         <a href="#" aria-label="تيك توك" title="تيك توك"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="social-fill" d="M19.6 8.1a6.8 6.8 0 0 1-4.2-1.5v8.1a6.1 6.1 0 1 1-5.3-6.1v3.2a2.9 2.9 0 1 0 2.1 2.8V2.5h3.2c.2 2.2 1.8 4 4.2 4.3v3.3Z"/></svg></a>
-        <a href="mailto:bounty.ksa@outlook.sa" aria-label="البريد الإلكتروني" title="البريد الإلكتروني"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>
+        <a href="mailto:bounty.ksa@outlook.com" aria-label="البريد الإلكتروني" title="البريد الإلكتروني"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>
       </div>
       <a class="brand brand-center" href="#home" aria-label="باونتي الرئيسية" onclick="showPage('home');return false"><img src="images/logo.png" alt="Bounty باونتي - دليلك للحياة الصحية"></a>
     </div>
@@ -763,7 +795,7 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
           <button onclick="searchAll()" aria-label="بحث">⌕</button>
         </div>
         <label class="visual-select"><span>⌖</span><select id="homeRegion"><option value="">جميع المدن</option><option>الرياض</option><option>القصيم</option><option>مكة المكرمة</option><option>المدينة المنورة</option><option>المنطقة الشرقية</option><option>عسير</option><option>تبوك</option><option>حائل</option><option>الحدود الشمالية</option><option>جازان</option><option>نجران</option><option>الباحة</option><option>الجوف</option></select></label>
-        <label class="visual-select"><span>▦</span><select id="homeType"><option value="">جميع الأقسام</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option><option>متفرقات</option></select></label>
+        <label class="visual-select"><span>▦</span><select id="homeType"><option value="">جميع الأقسام</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option value="علاج طبيعي">مراكز العلاج والعناية</option><option>رياضة</option><option value="متفرقات">قسم الأواني والطهي</option></select></label>
         <button type="button" class="visual-search-submit" id="homeSearchButton" onclick="searchAll()">ابدأ البحث</button>
       </div>
       <div class="hero-tags">
@@ -796,30 +828,26 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 </section>
 
 <section class="visual-categories" id="categories">
-  <div class="wrap">
-    <div class="visual-section-title"><h2>مختارات باونتي <span>♧</span></h2></div>
-    <p class="page-intro">خيارات منتقاة وفق معايير باونتي.</p>
-    <div class="visual-category-grid">
-      <button class="visual-category" onclick="categorySearch('مزارع')"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=500&q=85" alt=""><strong>المزارع<br>والمنتجات المحلية</strong></button>
-      <button class="visual-category" onclick="showPage('storeOptions')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=85" alt=""><strong>متاجر<br>المنتجات الطبيعية</strong></button>
-      <button class="visual-category" onclick="categorySearch('مخابز')"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=85" alt=""><strong>المخابز<br>الصحية</strong></button>
-      <button class="visual-category" onclick="categorySearch('مطاعم ومقاهٍ')"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=85" alt="مطاعم ومقاهٍ صحية"><strong>المطاعم والمقاهي<br>الصحية</strong></button>
-      <button class="visual-category" onclick="categorySearch('علاج طبيعي')"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&q=85" alt=""><strong>مراكز العلاج<br>والعناية</strong></button>
-      <button class="visual-category" onclick="categorySearch('رياضة')"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&q=85" alt=""><strong>الأندية الرياضية<br>ومراكز اللياقة</strong></button>
-      <button class="visual-category" onclick="categorySearch('أسر منتجة')"><img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=500&q=85" alt=""><strong>الأسر<br>المنتجة</strong></button>
-      <button class="visual-category" onclick="categorySearch('متفرقات')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=85" alt=""><strong>متفرقات</strong></button>
-    </div>
-    <div class="food-preferences" id="foodPreferences">
-      <div class="visual-section-title"><h2>تصفح حسب التفضيلات الغذائية</h2></div>
-      <div class="preference-chips">
-        <button onclick="categorySearch('عضوي')">عضوي</button><button onclick="categorySearch('طبيعي')">طبيعي</button>
-        <button onclick="categorySearch('غير معدل وراثياً')">غير معدل وراثيًا</button><button onclick="categorySearch('قليل المعالجة')">قليل المعالجة</button>
-        <button onclick="categorySearch('بدون إضافات ضارة')">بدون إضافات ضارة</button><button onclick="categorySearch('خالي من الجلوتين')">خالٍ من الجلوتين</button>
-        <button onclick="categorySearch('مناسب للكيتو')">مناسب للكيتو</button><button onclick="categorySearch('نظام الطيبات')">نظام الطيبات</button>
-        <button onclick="categorySearch('كارنيفور')">كارنيفور</button><button onclick="categorySearch('Zero Gl')">Zero Gl</button>
-      </div>
-    </div>
+ <div class="wrap">
+  <div class="visual-section-title"><h2>مختارات باونتي <span>♧</span></h2></div>
+  <p class="page-intro bounty-curated-intro">اكتشف المنتجات اللي راجعناها</p>
+  <div class="bounty-choice-filters" aria-label="تصفية المختارات">
+   <button type="button" onclick="categorySearch('عضوي')">عضوي</button>
+   <button type="button" onclick="categorySearch('خالي من الجلوتين')">خالي من الجلوتين</button>
+   <button type="button" onclick="categorySearch('مناسب للكيتو')">مناسب للكيتو</button>
   </div>
+  <div class="bounty-choice-grid">
+   <article class="bounty-choice-card">
+    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=85" alt="خبز طازج مقطع">
+    <div class="bounty-choice-copy"><h3>خبز خالٍ من الجلوتين</h3><p>متوفر لدى مخبز محلي</p><details><summary>لماذا اخترناه؟</summary><p>مثال توضيحي لطريقة عرض المنتجات المختارة. تُضاف تفاصيل المنتج والجهة بعد مراجعتها واعتمادها.</p></details><span class="bounty-choice-note">مثال توضيحي</span></div>
+   </article>
+   <article class="bounty-choice-card">
+    <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=900&q=85" alt="زيت زيتون ومنتجات طبيعية">
+    <div class="bounty-choice-copy"><h3>زيت زيتون بكر</h3><p>منتج طبيعي من مصدر محلي</p><details><summary>لماذا اخترناه؟</summary><p>مثال توضيحي لطريقة عرض المنتجات المختارة. تُضاف تفاصيل المنتج والجهة بعد مراجعتها واعتمادها.</p></details><span class="bounty-choice-note">مثال توضيحي</span></div>
+   </article>
+  </div>
+  <p class="bounty-choice-disclaimer">أمثلة توضيحية للتصميم؛ لا تمثل منتجات معتمدة أو مراجعة حاليًا.</p>
+ </div>
 </section>
 
 <section class="store-options-page page-hidden" id="storeOptions">
@@ -850,7 +878,7 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
       <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700&q=85" alt="مزرعة ومنتجات محلية">
     </article>
     <article class="promo-card promo-request">
-      <div><span class="promo-eyebrow">💡 اطلب ما تحتاجه</span><h2>ما المنتج أو الخدمة التي تبحث عنها؟</h2><p>أرسل طلبك إلى باونتي، وسنعمل على مساعدتك في الوصول إلى ما تحتاجه.</p><a href="mailto:bounty.ksa@outlook.sa?subject=%D8%B7%D9%84%D8%A8%20%D8%AA%D9%88%D9%81%D9%8A%D8%B1%20%D9%85%D9%86%D8%AA%D8%AC%20%D8%A3%D9%88%20%D8%AE%D8%AF%D9%85%D8%A9">أرسل طلبك ←</a></div>
+      <div><span class="promo-eyebrow">💡 اطلب ما تحتاجه</span><h2>ما المنتج أو الخدمة التي تبحث عنها؟</h2><p>أرسل طلبك إلى باونتي، وسنعمل على مساعدتك في الوصول إلى ما تحتاجه.</p><a href="mailto:bounty.ksa@outlook.com?subject=%D8%B7%D9%84%D8%A8%20%D8%AA%D9%88%D9%81%D9%8A%D8%B1%20%D9%85%D9%86%D8%AA%D8%AC%20%D8%A3%D9%88%20%D8%AE%D8%AF%D9%85%D8%A9">أرسل طلبك ←</a></div>
       <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=700&q=85" alt="تشكيلة متنوعة من المنتجات والأطعمة الصحية">
     </article>
   </div>
@@ -866,7 +894,7 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 <section class="visual-community">
   <div class="wrap community-inner">
     <div><h2>انضم إلى مجتمع باونتي</h2><p>اكتشف، تعلّم، وشارك في بناء حياة صحية ومتوازنة.</p></div>
-    <a href="mailto:bounty.ksa@outlook.sa?subject=%D8%A7%D9%84%D8%A7%D9%86%D8%B6%D9%85%D8%A7%D9%85%20%D8%A5%D9%84%D9%89%20%D9%85%D8%AC%D8%AA%D9%85%D8%B9%20%D8%A8%D8%A7%D9%88%D9%86%D8%AA%D9%8A">انضم الآن ←</a>
+    <a href="mailto:bounty.ksa@outlook.com?subject=%D8%A7%D9%84%D8%A7%D9%86%D8%B6%D9%85%D8%A7%D9%85%20%D8%A5%D9%84%D9%89%20%D9%85%D8%AC%D8%AA%D9%85%D8%B9%20%D8%A8%D8%A7%D9%88%D9%86%D8%AA%D9%8A">انضم الآن ←</a>
   </div>
 </section>
 
@@ -883,11 +911,11 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 
 <section class="directory" id="directory">
  <div class="wrap">
-  <div class="section-head"><div class="section-kicker">دليل باونتي</div><h2 class="section-title">الدليل الشامل</h2><p class="section-desc">تعرّف على الجهات واستكشف خياراتك.</p><p class="page-intro">ابحث بين الجهات والمنتجات، وصفِّ النتائج حسب نوع النشاط والمنطقة.</p></div>
+  <div class="section-head"><div class="section-kicker">دليل باونتي</div><h2 class="section-title">ابحث عن جهة قريبة منك</h2><p class="section-desc">في الدليل الشامل تتعرّف على الجهات المدرجة، وفي مختارات باونتي تكتشف متاجر ومنتجات راجعناها وفق معاييرنا. وجود الجهة في الدليل يساعدك في العثور عليها، والاعتماد له شارة خاصة. نبدأ من الرياض والقصيم، وهدفنا نتوسّع تدريجيًا في السعودية، عشان يصير العثور على خيارات تناسب حياتك أسهل.</p></div>
   <div class="directory-tools">
    <input id="directorySearch" type="search" placeholder="اسم منتج، متجر، كيتو..." oninput="renderListings()">
    <select id="regionFilter" onchange="renderListings()"><option value="">كل المناطق</option></select>
-   <select id="typeFilter" onchange="renderListings()"><option value="">كل التصنيفات</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option><option>متفرقات</option></select>
+   <select id="typeFilter" onchange="renderListings()"><option value="">كل التصنيفات</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option><option value="متفرقات">قسم الأواني والطهي</option></select>
    <button class="reset" onclick="clearSearch()">مسح البحث</button>
   </div>
   <div class="results-meta"><span id="resultCount">الجهات المتاحة</span><span>اختر بطاقة لمعرفة التفاصيل</span></div>
@@ -908,7 +936,7 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 
 <section class="about" id="about">
  <div class="wrap about-grid">
-  <div><div class="section-kicker">من نحن</div><h2 class="section-title">باونتي… دليلك للحياة الصحية</h2><p class="section-desc">باونتي دليل يساعدك على اكتشاف المنتجات والجهات المرتبطة بالغذاء والخيارات الصحية في مكان واحد. اكتب ما تبحث عنه، تعرّف على المتاجر والمزارع والمخابز والمطاعم وغيرها، ثم تواصل مع الجهة مباشرة. هدفنا تسهيل الوصول إلى المعلومات وتشجيع الاختيار الواعي ودعم الأنشطة المحلية.</p></div>
+  <div><div class="section-kicker">من نحن</div><h2 class="section-title">باونتي… دليلك للحياة الصحية</h2><p class="section-desc">بدأ باونتي من سؤال بسيط: وين ألقى الخيارات الصحية اللي تناسبني؟ باونتي دليل سعودي يسهّل عليك اكتشاف المنتجات والأماكن والخدمات اللي تناسب أسلوب حياتك. من المزارع والمخابز والأسر المنتجة إلى متاجر المنتجات الطبيعية والأندية ومراكز العلاج الطبيعي، تقدر تتصفح حسب مدينتك واهتماماتك.</p></div>
   <div class="about-mark"><strong>BOUNTY | باونتي</strong><span>نقرّب لك الخيارات… لتختار بوعي</span></div>
   <div class="bounty-criteria"><h3>معايير باونتي</h3><p>نعمل على عرض الجهات والأنشطة التي ترتبط بالمنتجات والخيارات الصحية، مع الاهتمام بوضوح معلومات النشاط وسهولة التواصل معه.</p><ul><li>وضوح اسم النشاط ووصف منتجاته أو خدماته.</li><li>توفير معلومات تواصل وموقع أو رابط إلكتروني عند توفره.</li><li>ارتباط النشاط بمجالات الغذاء والمنتجات الطبيعية والصحة والعناية واللياقة.</li><li>عرض المعلومات بصورة واضحة ومساعدة الزائر على المقارنة والاستكشاف.</li></ul><small>إدراج النشاط في الدليل لا يعني إصدار شهادة صحية أو ضمانًا لجودة المنتجات؛ ننصح الزائر بالتحقق من التفاصيل مباشرة مع الجهة.</small></div>
  </div>
@@ -925,10 +953,18 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
  <div class="wrap">
   <div class="action-section-heading"><span>✉</span><div><small>نسعد بتواصلك</small><h2>تواصل معنا</h2></div></div>
   <div class="contact-page-card">
-   <p>للاستفسارات والشكاوى والاقتراحات، يسعدنا تواصلك معنا عبر الواتساب أو البريد الإلكتروني.</p>
+   <p>تعرف جهة تستحق تكون في دليل باونتي؟ أو لاحظت معلومة تحتاج تحديث؟ يسعدنا نسمع منك.</p>
+   <p>سواء عندك استفسار، اقتراح، أو رغبة في التعاون، اختر موضوع رسالتك واكتب لنا.</p>
+   <div class="contact-message-form">
+    <label for="contactTopic">موضوع الرسالة</label>
+    <select id="contactTopic"><option>استفسار</option><option>اقتراح</option><option>إضافة جهة إلى الدليل</option><option>تحديث معلومة</option><option>تعاون</option><option>أخرى</option></select>
+    <label for="contactMessage">رسالتك</label>
+    <textarea id="contactMessage" rows="4" placeholder="اكتب رسالتك هنا..."></textarea>
+    <button type="button" class="contact-send-button" onclick="sendBountyContactMessage()">إرسال عبر واتساب</button>
+   </div>
    <div class="contact-methods">
     <a href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer"><span>واتساب</span><strong>0500633399</strong></a>
-    <a href="mailto:bounty.ksa@outlook.sa"><span>البريد الإلكتروني</span><strong>bounty.ksa@outlook.sa</strong></a>
+    <a href="mailto:bounty.ksa@outlook.com"><span>البريد الإلكتروني</span><strong>bounty.ksa@outlook.com</strong></a>
    </div>
   </div>
  </div>
@@ -941,7 +977,7 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
   <div class="admin-shell">
    <div id="adminLoginPanel" class="admin-login">
     <h2>تسجيل الدخول</h2>
-    <p class="admin-muted">هذه الصفحة مخصصة لإدارة أنشطة باونتي. سجّلي الدخول بحساب الإدارة المعتمد.</p>
+    <p class="admin-muted">هذه الصفحة مخصصة لإدارة أنشطة باونتي ومدونتها. سجّلي الدخول بحساب الإدارة المعتمد.</p>
     <form id="adminLoginForm">
      <div class="admin-field"><label for="adminEmail">البريد الإلكتروني</label><input id="adminEmail" type="email" autocomplete="username" value="bounty.ksa@outlook.com" required></div>
      <div class="admin-field"><label for="adminPassword">كلمة المرور</label><input id="adminPassword" type="password" autocomplete="current-password" required></div>
@@ -952,13 +988,15 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
    <div id="adminDashboard" hidden>
     <div class="admin-top"><div><h2>لوحة التحكم</h2><p class="admin-muted">أضيفي الأنشطة وعدّلي بياناتها أو احذفيها. تحفظ التغييرات مباشرة في الدليل.</p></div><button class="admin-secondary" type="button" onclick="adminSignOut()">تسجيل الخروج</button></div>
     <div class="admin-status" id="adminStatus" aria-live="polite">تم تسجيل الدخول.</div>
+    <div class="admin-shortcuts"><a href="#adminActivityForm" onclick="document.getElementById('adminActivityForm').scrollIntoView({behavior:'smooth'});return false">إضافة نشاط</a><a href="#adminPickForm" onclick="document.getElementById('adminPickForm').scrollIntoView({behavior:'smooth'});return false">إضافة منتج لمختارات باونتي</a><a href="#adminBlogForm" onclick="document.getElementById('adminBlogForm').scrollIntoView({behavior:'smooth'});return false">إدارة المدونة</a></div>
     <h3 id="adminFormTitle">إضافة نشاط جديد</h3>
     <form id="adminActivityForm">
      <input type="hidden" id="adminRecordId">
      <div class="admin-form-grid">
       <div class="admin-field"><label for="adminName">اسم النشاط *</label><input id="adminName" required maxlength="120"></div>
-      <div class="admin-field"><label for="adminType">التصنيف *</label><select id="adminType" required><option value="">اختاري التصنيف</option><option>مزارع</option><option>متاجر</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option><option>متفرقات</option></select></div>
-      <div class="admin-field"><label for="adminRegion">المنطقة أو المدينة *</label><input id="adminRegion" required maxlength="100"></div>
+      <div class="admin-field"><label for="adminType">التصنيف *</label><select id="adminType" required><option value="">اختاري التصنيف</option><option>مزارع</option><option>متاجر</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option><option value="متفرقات">قسم الأواني والطهي</option></select></div>
+      <div class="admin-field"><label for="adminRegion">المنطقة *</label><input id="adminRegion" required maxlength="60" placeholder="مثال: القصيم"></div>
+      <div class="admin-field"><label for="adminCity">المدينة *</label><input id="adminCity" required maxlength="60" placeholder="مثال: الرس"></div>
       <div class="admin-field"><label for="adminPhone">رقم التواصل (يفتح واتساب)</label><input id="adminPhone" type="tel" maxlength="30" placeholder="05xxxxxxxx"></div>
       <div class="admin-field full"><label for="adminAddress">العنوان أو الموقع *</label><input id="adminAddress" required maxlength="250" placeholder="المدينة والحي أو وصف الموقع"></div>
       <div class="admin-field full"><label for="adminDescription">وصف النشاط *</label><textarea id="adminDescription" required maxlength="700"></textarea></div>
@@ -971,6 +1009,28 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
     <hr style="border:0;border-top:1px solid #e5eee7;margin:26px 0">
     <div class="admin-top"><h3>الأنشطة المسجلة</h3><button class="admin-secondary" type="button" onclick="loadAdminActivities()">تحديث القائمة</button></div>
     <div class="admin-list" id="adminActivityList" aria-live="polite"></div>
+    <hr style="border:0;border-top:1px solid #e5eee7;margin:30px 0">
+    <div class="admin-top"><div><h3>مختارات باونتي</h3><p class="admin-muted">أضيفي المنتجات التي تمت مراجعتها لتظهر في صفحة مختارات باونتي بنفس تصميم البطاقات الحالي.</p></div><button class="admin-secondary" type="button" onclick="loadAdminPicks()">تحديث المنتجات</button></div>
+    <h3 id="adminPickFormTitle">إضافة منتج جديد</h3>
+    <form id="adminPickForm" novalidate>
+     <input type="hidden" id="pickRecordId">
+     <input type="hidden" id="pickExistingImageUrl">
+     <input type="hidden" id="pickExistingImagePath">
+     <div class="admin-form-grid">
+      <div class="admin-field full"><label for="pickAdminName">اسم المنتج أو اسم المتجر *</label><input id="pickAdminName" required maxlength="180" placeholder="اكتبي اسم المنتج أو المتجر"></div>
+      <div class="admin-field full"><label for="pickAdminImage">صورة المنتج *</label><input id="pickAdminImage" type="file" accept="image/*"><small class="admin-muted">ارفعي صورة واضحة للمنتج. الحد الأقصى 5 ميجابايت.</small><div id="pickAdminImagePreview" class="admin-muted"></div></div>
+      <div class="admin-field full"><label for="pickAdminDescription">شرح بسيط عن المنتج *</label><textarea id="pickAdminDescription" required maxlength="700" placeholder="نبذة مختصرة عن المنتج"></textarea></div>
+      <div class="admin-field"><label for="pickAdminPhone">رقم التواصل</label><input id="pickAdminPhone" type="tel" maxlength="30" placeholder="05xxxxxxxx"></div>
+      <div class="admin-field"><label for="pickAdminMaps">رابط موقع Google Maps</label><input id="pickAdminMaps" type="url" maxlength="700" placeholder="https://maps.google.com/..."></div>
+      <div class="admin-field full"><label for="pickAdminWebsite">رابط الموقع الإلكتروني</label><input id="pickAdminWebsite" type="url" maxlength="700" placeholder="https://..."></div>
+      <div class="admin-field full"><label>تصنيفات المنتج (يمكن اختيار أكثر من تصنيف) *</label><div class="pick-classification-options" id="pickAdminClassifications">
+       <label><input type="checkbox" value="عضوي"> عضوي</label><label><input type="checkbox" value="غير عضوي"> غير عضوي</label><label><input type="checkbox" value="طبيعي"> طبيعي</label><label><input type="checkbox" value="غير معدل وراثياً"> غير معدل وراثيًا</label><label><input type="checkbox" value="قليل المعالجة"> قليل المعالجة</label><label><input type="checkbox" value="بدون إضافات ضارة"> بدون إضافات ضارة</label><label><input type="checkbox" value="خالي من الجلوتين"> خالٍ من الجلوتين</label><label><input type="checkbox" value="مناسب للكيتو"> مناسب للكيتو</label><label><input type="checkbox" value="نظام الطيبات"> يتبع نظام الطيبات</label><label><input type="checkbox" value="لا يتبع نظام الطيبات"> لا يتبع نظام الطيبات</label><label><input type="checkbox" value="كارنيفور"> كارنيفور</label><label><input type="checkbox" value="Zero Gl"> Zero Gl</label>
+      </div></div>
+     </div>
+     <div class="admin-actions"><button class="admin-primary" id="pickAdminSaveButton" type="submit">حفظ المنتج ونشره</button><button class="admin-secondary" type="button" onclick="resetAdminPickForm()">تفريغ الحقول</button></div>
+    </form>
+    <div class="admin-top" style="margin-top:25px"><h3>المنتجات المسجلة في مختارات باونتي</h3></div>
+    <div class="admin-list" id="adminPickList" aria-live="polite"></div>
     <hr style="border:0;border-top:1px solid #e5eee7;margin:30px 0">
     <div class="admin-top"><div><h3>إدارة المدونة</h3><p class="admin-muted">أضيفي المقالات وانشريها لتظهر تلقائيًا في مدونة باونتي.</p></div><button class="admin-secondary" type="button" onclick="loadAdminBlogPosts()">تحديث المقالات</button></div>
     <h3 id="blogAdminFormTitle">إضافة مقال جديد</h3>
@@ -1000,7 +1060,7 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 <footer>
  <div class="wrap"><div class="footer-grid">
   <div><h3>باونتي 🌿</h3><p>دليلك للحياة الصحية. ابحث عن المنتجات والجهات والخيارات التي تناسب احتياجك، واكتشفها في مكان واحد.</p></div>
-  <div class="footer-contact"><h4>تواصل معنا</h4><p>للاستفسارات والشكاوى والاقتراحات</p><a href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer">واتساب: 0500633399</a><a href="mailto:bounty.ksa@outlook.sa">bounty.ksa@outlook.sa</a></div>
+  <div class="footer-contact"><h4>تواصل معنا</h4><p>للاستفسارات والشكاوى والاقتراحات</p><a href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer">واتساب: 0500633399</a><a href="mailto:bounty.ksa@outlook.com">bounty.ksa@outlook.com</a></div>
  </div><div class="copyright">© 2026 باونتي — جميع الحقوق محفوظة. <a href="#adminPage" onclick="showPage('adminPage');return false" style="color:inherit;opacity:.65;text-decoration:none;margin-right:10px">دخول الإدارة</a></div></div>
 </footer>
 
@@ -1020,7 +1080,7 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
  <form id="activityForm" onsubmit="submitActivity(event)">
   <div class="form-grid">
    <div class="form-field"><label for="activityName">اسم النشاط *</label><input id="activityName" name="name" required minlength="2" maxlength="120" placeholder="اسم المتجر أو النشاط"></div>
-   <div class="form-field"><label for="activityType">نوع النشاط *</label><select id="activityType" name="type" required><option value="">اختر التصنيف</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option><option>متفرقات</option></select></div>
+   <div class="form-field"><label for="activityType">نوع النشاط *</label><select id="activityType" name="type" required><option value="">اختر التصنيف</option><option>متاجر</option><option>مزارع</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option><option value="متفرقات">قسم الأواني والطهي</option></select></div>
    <div class="form-field"><label for="activityRegion">المنطقة أو المدينة *</label><input id="activityRegion" name="region" type="text" required minlength="2" maxlength="100" placeholder="اكتب المنطقة أو المدينة، مثل جدة"></div>
    <div class="form-field"><label for="activityPhone">رقم التواصل</label><input id="activityPhone" name="phone" type="tel" maxlength="30" placeholder="05xxxxxxxx"></div>
    <div class="form-field full"><label for="activityAddress">عنوان النشاط أو موقعه *</label><input id="activityAddress" name="address" type="text" autocomplete="street-address" required minlength="3" maxlength="250" placeholder="اكتب المدينة والحي أو الصق رابط موقع Google Maps"><small style="color:var(--muted);font-size:11px">هذا الحقل مطلوب لحفظ النشاط في الدليل.</small></div>
@@ -1315,6 +1375,7 @@ async function initAdminPage(){
   document.getElementById('adminLoginForm').addEventListener('submit',adminSignIn);
   document.getElementById('adminActivityForm').addEventListener('submit',saveAdminActivity);
   document.getElementById('adminBlogForm').addEventListener('submit',saveAdminBlogPost);
+  document.getElementById('adminPickForm').addEventListener('submit',saveAdminPick);
  }
  try{
   const {data:{session},error}=await supabaseClient.auth.getSession();
@@ -1322,7 +1383,7 @@ async function initAdminPage(){
   const allowed=session?.user?.email?.toLowerCase()==='bounty.ksa@outlook.com';
   showAdminState(!!allowed);
   if(session&&!allowed){await supabaseClient.auth.signOut();showAdminState(false);setAdminLoginStatus('هذا الحساب غير مخوّل لإدارة باونتي.',true);return;}
-  if(allowed){await loadAdminActivities();await loadAdminBlogPosts();}
+  if(allowed){await loadAdminActivities();await loadAdminPicks();await loadAdminBlogPosts();}
  }catch(error){showAdminState(false);setAdminLoginStatus(error.message||'تعذر التحقق من جلسة الدخول.',true);}
 }
 async function adminSignIn(event){
@@ -1334,7 +1395,7 @@ async function adminSignIn(event){
   const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
   if(error)throw error;
   if(data.user?.email?.toLowerCase()!=='bounty.ksa@outlook.com'){await supabaseClient.auth.signOut();throw new Error('هذا الحساب غير مخوّل لإدارة باونتي.');}
-  document.getElementById('adminPassword').value='';showAdminState(true);setAdminStatus('مرحبًا بك. يمكنك الآن إدارة أنشطة باونتي.');await loadAdminActivities();await loadAdminBlogPosts();
+  document.getElementById('adminPassword').value='';showAdminState(true);setAdminStatus('مرحبًا بك. يمكنك الآن إدارة أنشطة باونتي.');await loadAdminActivities();await loadAdminPicks();await loadAdminBlogPosts();
  }catch(error){setAdminLoginStatus(error.message||'تعذر تسجيل الدخول. تحققي من البريد وكلمة المرور.',true);}
  finally{button.disabled=false;button.textContent='دخول لوحة الإدارة';}
 }
@@ -1348,18 +1409,27 @@ async function loadAdminActivities(){
   setAdminStatus(`عدد الأنشطة المسجلة: ${adminRows.length}`);
  }catch(error){box.innerHTML='<p class="admin-muted">تعذر تحميل الأنشطة.</p>';setAdminStatus(error.message||'تحققي من إعدادات صلاحيات Supabase.',true);}
 }
+function splitStoredRegion(value){
+ const text=String(value||'').trim();
+ const parts=text.split(/\s*[-–—]\s*/);
+ if(parts.length>1)return {region:parts.shift().trim(),city:parts.join(' - ').trim()};
+ return {region:text,city:''};
+}
 function resetAdminForm(){const form=document.getElementById('adminActivityForm');if(form)form.reset();document.getElementById('adminRecordId').value='';document.getElementById('adminFormTitle').textContent='إضافة نشاط جديد';document.getElementById('adminSaveButton').textContent='حفظ النشاط';}
 function editAdminActivity(id){
  const row=adminRows.find(item=>String(item.id)===String(id));if(!row)return;
  document.getElementById('adminRecordId').value=row.id;
- const fields={adminName:row.name,adminType:row.type,adminRegion:row.region,adminPhone:row.phone,adminAddress:row.address,adminDescription:row.description,adminTags:row.tags,adminWebsite:row.website,adminMaps:row.google_maps_url};
+ const location=splitStoredRegion(row.region);
+ const fields={adminName:row.name,adminType:row.type,adminRegion:location.region,adminCity:location.city,adminPhone:row.phone,adminAddress:row.address,adminDescription:row.description,adminTags:row.tags,adminWebsite:row.website,adminMaps:row.google_maps_url};
  Object.entries(fields).forEach(([key,value])=>document.getElementById(key).value=value||'');
  document.getElementById('adminFormTitle').textContent='تعديل بيانات النشاط';document.getElementById('adminSaveButton').textContent='حفظ التعديلات';
  document.getElementById('adminFormTitle').scrollIntoView({behavior:'smooth',block:'center'});
 }
 async function saveAdminActivity(event){
  event.preventDefault();const button=document.getElementById('adminSaveButton');button.disabled=true;
- const payload={name:document.getElementById('adminName').value.trim(),type:document.getElementById('adminType').value,region:document.getElementById('adminRegion').value.trim(),phone:document.getElementById('adminPhone').value.trim()||null,address:document.getElementById('adminAddress').value.trim(),description:document.getElementById('adminDescription').value.trim(),tags:document.getElementById('adminTags').value.trim()||null,website:document.getElementById('adminWebsite').value.trim()||null,google_maps_url:document.getElementById('adminMaps').value.trim()||null};
+ const region=document.getElementById('adminRegion').value.trim();
+ const city=document.getElementById('adminCity').value.trim();
+ const payload={name:document.getElementById('adminName').value.trim(),type:document.getElementById('adminType').value,region:`${region} - ${city}`,phone:document.getElementById('adminPhone').value.trim()||null,address:document.getElementById('adminAddress').value.trim(),description:document.getElementById('adminDescription').value.trim(),tags:document.getElementById('adminTags').value.trim()||null,website:document.getElementById('adminWebsite').value.trim()||null,google_maps_url:document.getElementById('adminMaps').value.trim()||null};
  const id=document.getElementById('adminRecordId').value;
  try{
   const result=id?await supabaseClient.from('activities').update(payload).eq('id',id):await supabaseClient.from('activities').insert(payload);
@@ -1375,10 +1445,89 @@ async function deleteAdminActivity(id){
 
 
 let adminBlogRows=[];
+let adminPickRows=[];
+const PICK_IMAGE_BUCKET='bounty-pick-images';
+function selectedPickClassifications(){return [...document.querySelectorAll('#pickAdminClassifications input[type="checkbox"]:checked')].map(el=>el.value);}
+function setPickClassifications(values=[]){const chosen=new Set(values||[]);document.querySelectorAll('#pickAdminClassifications input[type="checkbox"]').forEach(el=>el.checked=chosen.has(el.value));}
+function resetAdminPickForm(){
+ const form=document.getElementById('adminPickForm');if(form)form.reset();
+ ['pickRecordId','pickExistingImageUrl','pickExistingImagePath'].forEach(id=>document.getElementById(id).value='');
+ document.getElementById('pickAdminImagePreview').textContent='';
+ document.getElementById('adminPickFormTitle').textContent='إضافة منتج جديد';
+ document.getElementById('pickAdminSaveButton').textContent='حفظ المنتج ونشره';
+ setPickClassifications([]);
+}
+async function loadAdminPicks(){
+ const box=document.getElementById('adminPickList');if(!box)return;
+ box.innerHTML='<p class="admin-muted">جارٍ تحميل المنتجات...</p>';
+ try{
+  const {data,error}=await supabaseClient.from('bounty_picks').select('*').order('created_at',{ascending:false});
+  if(error)throw error;adminPickRows=data||[];
+  box.innerHTML=adminPickRows.length?adminPickRows.map(row=>`<div class="admin-item"><div><strong>${escapeHTML(row.name)}</strong><small>${escapeHTML((row.classifications||[]).join('، '))}</small></div><div class="admin-item-actions"><button class="admin-secondary" type="button" onclick="editAdminPick('${String(row.id).replace(/'/g,'')}')">تعديل</button><button class="admin-danger" type="button" onclick="deleteAdminPick('${String(row.id).replace(/'/g,'')}')">حذف</button></div></div>`).join(''):'<p class="admin-muted">لا توجد منتجات مضافة إلى مختارات باونتي حتى الآن.</p>';
+ }catch(error){box.innerHTML='<p class="admin-muted">تعذر تحميل المنتجات. شغّلي ملف إعداد مختارات باونتي في Supabase أولًا.</p>';setAdminStatus(error.message||'تعذر تحميل المنتجات.',true);}
+}
+function editAdminPick(id){
+ const row=adminPickRows.find(item=>String(item.id)===String(id));if(!row)return;
+ document.getElementById('pickRecordId').value=row.id;
+ document.getElementById('pickExistingImageUrl').value=row.image_url||'';
+ document.getElementById('pickExistingImagePath').value=row.image_path||'';
+ const map={pickAdminName:row.name,pickAdminDescription:row.description,pickAdminPhone:row.phone,pickAdminMaps:row.google_maps_url,pickAdminWebsite:row.website};
+ Object.entries(map).forEach(([key,value])=>document.getElementById(key).value=value||'');
+ setPickClassifications(row.classifications||[]);
+ document.getElementById('pickAdminImagePreview').innerHTML=row.image_url?`الصورة الحالية:<br><img src="${escapeHTML(row.image_url)}" alt="الصورة الحالية">`:'لا توجد صورة محفوظة.';
+ document.getElementById('adminPickFormTitle').textContent='تعديل بيانات المنتج';
+ document.getElementById('pickAdminSaveButton').textContent='حفظ التعديلات';
+ document.getElementById('adminPickFormTitle').scrollIntoView({behavior:'smooth',block:'center'});
+}
+async function saveAdminPick(event){
+ event.preventDefault();
+ const button=document.getElementById('pickAdminSaveButton');
+ button.disabled=true;button.textContent='جارٍ الحفظ...';
+ setAdminStatus('جارٍ حفظ المنتج، يرجى الانتظار...');
+ const id=document.getElementById('pickRecordId').value;
+ const file=document.getElementById('pickAdminImage').files[0];
+ const classifications=selectedPickClassifications();
+ const productName=document.getElementById('pickAdminName').value.trim();
+ const productDescription=document.getElementById('pickAdminDescription').value.trim();
+ let imageUrl=document.getElementById('pickExistingImageUrl').value||'';
+ let imagePath=document.getElementById('pickExistingImagePath').value||'';
+ try{
+  if(!productName)throw new Error('اكتبي اسم المنتج أو المتجر أولًا.');
+  if(!productDescription)throw new Error('اكتبي شرحًا بسيطًا عن المنتج أولًا.');
+  if(!id&&!file)throw new Error('أرفقي صورة المنتج أولًا.');
+  if(!classifications.length)throw new Error('اختاري نوع تصنيف واحدًا على الأقل.');
+  if(file){
+   if(!file.type.startsWith('image/'))throw new Error('الملف المرفق يجب أن يكون صورة.');
+   if(file.size>5*1024*1024)throw new Error('حجم الصورة يجب ألا يتجاوز 5 ميجابايت.');
+   const extension=(file.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'')||'jpg';
+   const uniqueId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():`${Date.now()}-${Math.random().toString(16).slice(2)}`;
+   imagePath=`${uniqueId}.${extension}`;
+   const {error:uploadError}=await supabaseClient.storage.from(PICK_IMAGE_BUCKET).upload(imagePath,file,{cacheControl:'3600',upsert:false,contentType:file.type});
+   if(uploadError)throw uploadError;
+   const {data:publicData}=supabaseClient.storage.from(PICK_IMAGE_BUCKET).getPublicUrl(imagePath);
+   imageUrl=publicData.publicUrl;
+  }
+  if(!imageUrl)throw new Error('أرفقي صورة المنتج أولًا.');
+  const payload={name:productName,description:productDescription,image_url:imageUrl,image_path:imagePath||null,phone:document.getElementById('pickAdminPhone').value.trim()||null,google_maps_url:document.getElementById('pickAdminMaps').value.trim()||null,website:document.getElementById('pickAdminWebsite').value.trim()||null,classifications,status:'published',updated_at:new Date().toISOString()};
+  const result=id?await supabaseClient.from('bounty_picks').update(payload).eq('id',id):await supabaseClient.from('bounty_picks').insert(payload);
+  if(result.error)throw result.error;
+  resetAdminPickForm();await loadAdminPicks();setAdminStatus(id?'تم تحديث المنتج في مختارات باونتي.':'تمت إضافة المنتج إلى مختارات باونتي ونشره.');
+ }catch(error){console.error('Bounty pick save failed:',error);setAdminStatus(error.message||'تعذر حفظ المنتج. تحققي من إعدادات قاعدة البيانات والتخزين.',true);}
+ finally{button.disabled=false;button.textContent=document.getElementById('pickRecordId').value?'حفظ التعديلات':'حفظ المنتج ونشره';}
+}
+async function deleteAdminPick(id){
+ const row=adminPickRows.find(item=>String(item.id)===String(id));if(!row||!confirm(`هل تريدين حذف المنتج «${row.name}» من مختارات باونتي؟`))return;
+ try{
+  const {error}=await supabaseClient.from('bounty_picks').delete().eq('id',id);if(error)throw error;
+  if(row.image_path)await supabaseClient.storage.from(PICK_IMAGE_BUCKET).remove([row.image_path]);
+  await loadAdminPicks();setAdminStatus('تم حذف المنتج من مختارات باونتي.');
+ }catch(error){setAdminStatus(error.message||'تعذر حذف المنتج.',true);}
+}
+
 async function loadAdminBlogPosts(){
  const box=document.getElementById('adminBlogList');if(!box)return;box.innerHTML='<p class="admin-muted">جارٍ تحميل المقالات...</p>';
  try{
-  const {data,error}=await supabaseClient.from('blog_posts').select('id,title,category,status,read_minutes,created_at').order('created_at',{ascending:false});
+  const {data,error}=await supabaseClient.from('blog_posts').select('*').order('created_at',{ascending:false});
   if(error)throw error;adminBlogRows=data||[];
   box.innerHTML=adminBlogRows.length?adminBlogRows.map(row=>`<div class="admin-item"><div><strong>${escapeHTML(row.title)}</strong><small>${escapeHTML(row.category||'بدون تصنيف')} · ${row.status==='published'?'منشور':'مسودة'} · ${Number(row.read_minutes)||3} دقائق</small></div><div class="admin-item-actions"><button class="admin-secondary" type="button" onclick="editAdminBlogPost('${String(row.id).replace(/'/g,'')}')">تعديل</button><button class="admin-danger" type="button" onclick="deleteAdminBlogPost('${String(row.id).replace(/'/g,'')}')">حذف</button></div></div>`).join(''):'<p class="admin-muted">لا توجد مقالات بعد. أضيفي أول مقال من النموذج أعلاه.</p>';
  }catch(error){box.innerHTML='<p class="admin-muted">تعذر تحميل المقالات. شغّلي ملف إعداد جدول المدونة في Supabase أولًا.</p>';setAdminStatus(error.message||'تعذر تحميل المدونة.',true);}
@@ -1395,8 +1544,21 @@ async function saveAdminBlogPost(event){
  event.preventDefault();const btn=document.getElementById('blogAdminSaveButton');btn.disabled=true;
  const payload={title:document.getElementById('blogAdminTitle').value.trim(),category:document.getElementById('blogAdminCategory').value.trim(),read_minutes:Number(document.getElementById('blogAdminMinutes').value)||3,image_url:document.getElementById('blogAdminImage').value.trim()||null,excerpt:document.getElementById('blogAdminExcerpt').value.trim(),content:document.getElementById('blogAdminContent').value.trim(),status:document.getElementById('blogAdminStatus').value,emoji:document.getElementById('blogAdminEmoji').value.trim()||null,updated_at:new Date().toISOString()};
  const id=document.getElementById('blogRecordId').value;
- try{const result=id?await supabaseClient.from('blog_posts').update(payload).eq('id',id):await supabaseClient.from('blog_posts').insert(payload);if(result.error)throw result.error;resetAdminBlogForm();await loadAdminBlogPosts();setAdminStatus(id?'تم تحديث المقال.':'تمت إضافة المقال.');}
- catch(error){setAdminStatus(error.message||'تعذر حفظ المقال. تحققي من إعداد جدول المدونة وصلاحياته.',true);}
+ try{
+  let result;
+  if(id){
+   result=await supabaseClient.from('blog_posts').update(payload).eq('id',id).select('*').single();
+  }else{
+   result=await supabaseClient.from('blog_posts').insert(payload).select('*').single();
+  }
+  if(result.error)throw result.error;
+  resetAdminBlogForm();
+  await loadAdminBlogPosts();
+  setAdminStatus(id?'تم تحديث المقال.':'تمت إضافة المقال ونشره بنجاح.');
+ }catch(error){
+  console.error('Blog save failed:',error);
+  setAdminStatus((error.message||'تعذر حفظ المقال.')+' — تحققي من تشغيل إعداد المدونة وصلاحيات الحساب.',true);
+ }
  finally{btn.disabled=false;btn.textContent=document.getElementById('blogRecordId').value?'حفظ التعديلات':'حفظ المقال';}
 }
 async function deleteAdminBlogPost(id){const row=adminBlogRows.find(x=>String(x.id)===String(id));if(!row||!confirm(`هل تريدين حذف مقال «${row.title}»؟ لا يمكن التراجع عن الحذف.`))return;try{const {error}=await supabaseClient.from('blog_posts').delete().eq('id',id);if(error)throw error;await loadAdminBlogPosts();setAdminStatus('تم حذف المقال.');}catch(error){setAdminStatus(error.message||'تعذر حذف المقال.',true);}}
@@ -1405,6 +1567,15 @@ setupRegions();
 renderListings();
 showPage('home');
 loadActivities();
+
+function sendBountyContactMessage(){
+ const topic=document.getElementById('contactTopic')?.value||'رسالة';
+ const message=document.getElementById('contactMessage')?.value.trim()||'';
+ if(!message){alert('اكتب رسالتك أولًا.');document.getElementById('contactMessage')?.focus();return;}
+ const text=encodeURIComponent('موضوع الرسالة: '+topic+'\n'+message);
+ window.open('https://wa.me/966500633399?text='+text,'_blank','noopener');
+}
+
 </script>
 </body>
 </html>
