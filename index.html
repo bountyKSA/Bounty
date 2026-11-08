@@ -912,6 +912,7 @@ main > #categories > .wrap > .bounty-picks-heading{
     <a href="#regions" onclick="showPage('regions');return false">⌖ المناطق</a>
     <a href="#featured" onclick="showPage('featured');return false">♡ المتاجر المميزة</a>
     <a href="#addActivitySection" onclick="showPage('addActivitySection');return false">✧ إضافة نشاط للدليل</a>
+    <a href="#storiesPage" onclick="showPage('storiesPage');return false">▶ قصص باونتي</a>
     <a href="#blog" onclick="showPage('blog');return false">▤ المدونة</a>
     <a href="#about" onclick="showPage('about');return false">ⓘ من نحن</a>
     <a href="#contactPage" onclick="showPage('contactPage');return false">✉ تواصل معنا</a>
@@ -961,7 +962,7 @@ main > #categories > .wrap > .bounty-picks-heading{
    <a href="#regions" onclick="showPage('regions');return false"><span>⌖</span>المناطق</a>
    <a href="#featured" onclick="showPage('featured');return false"><span>♡</span>المتاجر المميزة</a>
    <a href="#addActivitySection" onclick="showPage('addActivitySection');return false"><span>✧</span>إضافة نشاط للدليل</a>
-   <a href="#blog" onclick="showPage('blog');return false"><span>▤</span>المدونة</a>
+   <a href="#storiesPage" onclick="showPage('storiesPage');return false"><span>▶</span>قصص باونتي</a><a href="#blog" onclick="showPage('blog');return false"><span>▤</span>المدونة</a>
    <a href="#about" onclick="showPage('about');return false"><span>ⓘ</span>من نحن</a>
    <a href="#contactPage" onclick="showPage('contactPage');return false"><span>✉</span>تواصل معنا</a>
   </div>
@@ -988,11 +989,14 @@ main > #categories > .wrap > .bounty-picks-heading{
 
 <section class="visual-categories bounty-picks-page" id="categories">
  <div class="wrap">
-  <div class="page-heading bounty-picks-heading"><h1>مختارات باونتي</h1><h2>اكتشف المنتجات اللي راجعناها</h2></div>
-  <div class="bounty-picks-filters" role="group" aria-label="تصفية مختارات باونتي">
+  <div class="page-heading bounty-picks-heading"><h1>اختيارات باونتي</h1><h2>متاجر ومنتجات اخترناها بعناية</h2></div>
+  <div class="bounty-pick-modes" role="tablist" aria-label="نوع الاختيارات">
+   <button type="button" class="active" onclick="setBountyPickMode('stores',this)">▣ متاجر مختارة</button>
+   <button type="button" onclick="setBountyPickMode('products',this)">✧ منتجات مختارة</button>
+  </div>
+  <div class="bounty-picks-filters" id="bountyProductFilters" role="group" aria-label="تصفية المنتجات المختارة">
    <button type="button" class="active" data-pick-filter="all" onclick="filterBountyPicks('all',this)">الكل</button>
    <button type="button" data-pick-filter="عضوي" onclick="filterBountyPicks('عضوي',this)">عضوي</button>
-   <button type="button" data-pick-filter="غير عضوي" onclick="filterBountyPicks('غير عضوي',this)">غير عضوي</button>
    <button type="button" data-pick-filter="طبيعي" onclick="filterBountyPicks('طبيعي',this)">طبيعي</button>
    <button type="button" data-pick-filter="غير معدل وراثياً" onclick="filterBountyPicks('غير معدل وراثياً',this)">غير معدل وراثيًا</button>
    <button type="button" data-pick-filter="قليل المعالجة" onclick="filterBountyPicks('قليل المعالجة',this)">قليل المعالجة</button>
@@ -1000,13 +1004,10 @@ main > #categories > .wrap > .bounty-picks-heading{
    <button type="button" data-pick-filter="خالي من الجلوتين" onclick="filterBountyPicks('خالي من الجلوتين',this)">خالٍ من الجلوتين</button>
    <button type="button" data-pick-filter="مناسب للكيتو" onclick="filterBountyPicks('مناسب للكيتو',this)">مناسب للكيتو</button>
    <button type="button" data-pick-filter="نظام الطيبات" onclick="filterBountyPicks('نظام الطيبات',this)">يتبع نظام الطيبات</button>
-   <button type="button" data-pick-filter="لا يتبع نظام الطيبات" onclick="filterBountyPicks('لا يتبع نظام الطيبات',this)">لا يتبع نظام الطيبات</button>
    <button type="button" data-pick-filter="كارنيفور" onclick="filterBountyPicks('كارنيفور',this)">كارنيفور</button>
    <button type="button" data-pick-filter="Zero Gl" onclick="filterBountyPicks('Zero Gl',this)">Zero Gl</button>
   </div>
-  <div class="bounty-picks-grid" id="bountyPicksGrid" aria-live="polite">
-   <div class="empty">جارٍ تحميل مختارات باونتي...</div>
-  </div>
+  <div class="bounty-picks-grid" id="bountyPicksGrid" aria-live="polite"><div class="empty">جارٍ تحميل مختارات باونتي...</div></div>
  </div>
 </section>
 
@@ -1045,7 +1046,7 @@ main > #categories > .wrap > .bounty-picks-heading{
 <section class="visual-promos" id="visualPromos">
   <div class="wrap promo-grid">
     <article class="promo-card promo-stories">
-      <div><span class="promo-eyebrow">▶ قصص باونتي</span><h2>تعرّف على أصحاب المشاريع والمزارع</h2><p>والخبراء في اللقاءات الملهمة.</p><a href="#blog" onclick="showPage('blog');return false">شاهد القصص ←</a></div>
+      <div><span class="promo-eyebrow">▶ قصص باونتي</span><h2>تعرّف على أصحاب المشاريع والمزارع</h2><p>والخبراء في اللقاءات الملهمة.</p><a href="#blog" onclick="showPage('storiesPage');return false">شاهد القصص ←</a></div>
       <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700&q=85" alt="مزرعة ومنتجات محلية">
     </article>
     <article class="promo-card promo-request">
@@ -1112,6 +1113,24 @@ main > #categories > .wrap > .bounty-picks-heading{
  </div>
 </section>
 
+<section class="home-latest-articles page-hidden" id="homeLatestArticles">
+ <div class="wrap">
+  <div class="visual-section-title"><h2>آخر مقالات باونتي</h2><a href="#blog" onclick="showPage('blog');return false">عرض جميع المقالات ←</a></div>
+  <div class="home-article-links" id="homeArticleLinks"></div>
+ </div>
+</section>
+<section class="stories-page page-hidden" id="storiesPage">
+ <div class="wrap">
+  <div class="page-heading"><h1>قصص باونتي</h1><h2>حكايات وتجارب ملهمة من أصحاب المشاريع والمتاجر</h2></div>
+  <div class="blog-grid" id="storiesGrid"><div class="empty">جارٍ تحميل القصص...</div></div>
+ </div>
+</section>
+<section class="article-detail-page page-hidden" id="articleDetailPage">
+ <div class="wrap">
+  <button type="button" class="article-back" onclick="showPage(articleReturnPage)">← العودة</button>
+  <article class="article-full" id="articleFullContent"></article>
+ </div>
+</section>
 <section class="about" id="about">
  <div class="wrap about-grid">
   <div><div class="section-kicker">من نحن</div><h2 class="section-title">باونتي… دليلك للحياة الصحية</h2><p class="section-desc">بدأ باونتي من سؤال بسيط: وين ألقى الخيارات الصحية اللي تناسبني؟<br><br>باونتي دليل سعودي يسهّل عليك اكتشاف المنتجات والأماكن والخدمات اللي تناسب أسلوب حياتك. من المزارع والمخابز والأسر المنتجة إلى متاجر المنتجات الطبيعية والأندية ومراكز العلاج الطبيعي، تقدر تتصفح حسب مدينتك واهتماماتك.</p><p class="section-desc">في الدليل الشامل تتعرّف على الجهات المدرجة، وفي مختارات باونتي تكتشف متاجر ومنتجات راجعناها وفق معاييرنا. وجود الجهة في الدليل يساعدك في العثور عليها، والاعتماد له شارة خاصة.<br><br>نبدأ من الرياض والقصيم، وهدفنا نتوسّع تدريجيًا في السعودية، عشان يصير العثور على خيارات تناسب حياتك أسهل.</p></div>
@@ -1167,7 +1186,7 @@ main > #categories > .wrap > .bounty-picks-heading{
 <footer>
  <div class="wrap"><div class="footer-grid">
   <div><h3>باونتي 🌿</h3><p>دليلك للحياة الصحية. ابحث عن المنتجات والجهات والخيارات التي تناسب احتياجك، واكتشفها في مكان واحد.</p></div>
-  <div class="footer-contact"><h4>تواصل معنا</h4><p>للاستفسارات والشكاوى والاقتراحات</p><a href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer">واتساب: 0500633399</a><a href="mailto:bounty.ksa@outlook.com">bounty.ksa@outlook.com</a></div>
+  <div class="footer-contact"><h4>تواصل معنا للشكاوى والاستفسارات</h4><a href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer">واتساب: 0500633399</a><a href="mailto:bounty.ksa@outlook.com">bounty.ksa@outlook.com</a></div>
  </div><div class="copyright">© 2026 باونتي — جميع الحقوق محفوظة.</div></div>
 </footer>
 
@@ -1632,8 +1651,8 @@ function sendContactMessage(event){
 let activeBountyPickFilter='all';
 let bountyPickRows=[];
 const BOUNTY_PICK_CLASSIFICATIONS=[
- 'عضوي','غير عضوي','طبيعي','غير معدل وراثياً','قليل المعالجة','بدون إضافات ضارة',
- 'خالي من الجلوتين','مناسب للكيتو','نظام الطيبات','لا يتبع نظام الطيبات','كارنيفور','Zero Gl'
+ 'عضوي','طبيعي','غير معدل وراثياً','قليل المعالجة','بدون إضافات ضارة',
+ 'خالي من الجلوتين','مناسب للكيتو','نظام الطيبات','كارنيفور','Zero Gl'
 ];
 async function loadBountyPicks(){
  const grid=document.getElementById('bountyPicksGrid');
@@ -1666,7 +1685,8 @@ function filterBountyPicks(filter,button){
 function showBountyPickDetails(id){
  const item=bountyPickRows.find(row=>String(row.id)===String(id));if(!item)return;
  const modal=document.getElementById('bountyPickModal');if(!modal)return;
- document.getElementById('bountyPickModalTitle').textContent=item.name||'تفاصيل المنتج';
+ const pickMeta=bountyPickMetaPublic(item);
+ document.getElementById('bountyPickModalTitle').textContent=pickMeta.kind==='store'?'لماذا اخترنا هذا المتجر؟':(item.name||'تفاصيل المنتج');
  document.getElementById('bountyPickModalDescription').textContent=item.description||'';
  const image=document.getElementById('bountyPickModalImage');
  if(item.image_url){image.src=item.image_url;image.alt=item.name||'صورة المنتج';image.hidden=false;}else{image.hidden=true;}
@@ -1803,7 +1823,141 @@ loadBlogPosts();
  });
  window.addEventListener('scroll',()=>{if(activePage==='home')savePosition('home');},{passive:true});
 })();
-</script>
+
+/* ===== تجربة اختيارات باونتي والقصص والمدونة ===== */
+let activeBountyPickMode='stores';
+let activeBountyStoreName='';
+function bountyPickMetaPublic(item){
+ const cls=Array.isArray(item.classifications)?item.classifications:[];
+ return {kind:(cls.includes('__kind:store')||normalizeSearchText(item.name||'').includes('حلزونه'))?'store':'product',storeName:(cls.find(v=>String(v).startsWith('__store:'))||'').slice(8),clean:cls.filter(v=>!String(v).startsWith('__')&&v!=='غير عضوي'&&v!=='لا يتبع نظام الطيبات')};
+}
+function setBountyPickMode(mode,button){
+ activeBountyPickMode=mode;activeBountyStoreName='';activeBountyPickFilter='all';
+ document.querySelectorAll('.bounty-pick-modes button').forEach(b=>b.classList.toggle('active',b===button));
+ const filters=document.getElementById('bountyProductFilters');if(filters)filters.style.setProperty('display',mode==='products'?'flex':'none','important');
+ document.querySelectorAll('.bounty-picks-filters button').forEach(b=>b.classList.toggle('active',b.dataset.pickFilter==='all'));
+ renderBountyPicks();
+}
+function filterBountyPicks(filter,button){
+ activeBountyPickFilter=filter;activeBountyPickMode='products';activeBountyStoreName='';
+ document.querySelectorAll('.bounty-pick-modes button').forEach((b,i)=>b.classList.toggle('active',i===1));
+ document.getElementById('bountyProductFilters').style.setProperty('display','flex','important');
+ document.querySelectorAll('.bounty-picks-filters button').forEach(btn=>btn.classList.toggle('active',btn===button));
+ renderBountyPicks();
+}
+function showProductsForStore(name){
+ activeBountyPickMode='products';activeBountyPickFilter='all';activeBountyStoreName=name;
+ document.querySelectorAll('.bounty-pick-modes button').forEach((b,i)=>b.classList.toggle('active',i===1));
+ document.getElementById('bountyProductFilters').style.setProperty('display','flex','important');
+ document.querySelectorAll('.bounty-picks-filters button').forEach(btn=>btn.classList.toggle('active',btn.dataset.pickFilter==='all'));
+ renderBountyPicks();showPage('categories');
+ const heading=document.querySelector('.bounty-picks-heading h2');if(heading)heading.textContent=`المنتجات المختارة من متجر ${name}`;
+}
+function renderBountyPicks(){
+ const grid=document.getElementById('bountyPicksGrid');if(!grid)return;
+ const rows=bountyPickRows.filter(item=>{
+  const meta=bountyPickMetaPublic(item);
+  if(activeBountyPickMode==='stores')return meta.kind==='store';
+  if(meta.kind==='store')return false;
+  const storeOk=!activeBountyStoreName||meta.storeName===activeBountyStoreName;
+  const filterOk=activeBountyPickFilter==='all'||meta.clean.includes(activeBountyPickFilter);
+  return storeOk&&filterOk;
+ });
+ if(!rows.length){grid.innerHTML=`<div class="bounty-picks-empty">${activeBountyPickMode==='stores'?'لا توجد متاجر مختارة مضافة حاليًا.':'لا توجد منتجات مختارة ضمن هذا التصنيف حاليًا.'}</div>`;return;}
+ grid.innerHTML=rows.map(item=>{
+  const meta=bountyPickMetaPublic(item);
+  const tags=meta.clean.map(tag=>`<span>${escapeHTML(tag)}</span>`).join('');
+  const image=item.image_url?`<img src="${escapeHTML(item.image_url)}" alt="${escapeHTML(item.name)}" loading="lazy">`:'<div class="bounty-pick-image-placeholder">🌿</div>';
+  if(meta.kind==='store')return `<article class="bounty-pick-card bounty-store-card">${image}<div class="pick-copy"><h3>${escapeHTML(item.name)}</h3><p>${escapeHTML(item.description||'')}</p><button type="button" onclick="showBountyPickDetails('${String(item.id).replace(/[^a-zA-Z0-9-]/g,'')}')">لماذا اخترناه؟</button><a class="store-products-link" href="#categories" onclick="showProductsForStore(${JSON.stringify(item.name).replace(/"/g,'&quot;')});return false">شاهد المنتجات المختارة ←</a></div></article>`;
+  return `<article class="bounty-pick-card">${image}<div class="pick-copy"><h3>${escapeHTML(item.name)}</h3><p>${escapeHTML(item.description||'')}</p>${tags?`<div class="pick-tags">${tags}</div>`:''}${meta.storeName?`<small class="pick-store-name">المتجر: ${escapeHTML(meta.storeName)}</small>`:''}<button type="button" onclick="showBountyPickDetails('${String(item.id).replace(/[^a-zA-Z0-9-]/g,'')}')">لماذا اخترناه؟</button></div></article>`;
+ }).join('');
+}
+function renderRegionCards(){
+ const grid=document.getElementById('regionGrid');if(!grid)return;
+ grid.innerHTML=REGIONS.map(r=>{
+  const name=r.name,count=listings.filter(x=>activityRegionName(x)===name).length;
+  const safe=escapeHTML(name).replace(/'/g,'&#39;');
+  return `<button class="region-card ${count?'active':''}" type="button" onclick="${count?`openRegion('${safe}',true)`:'openAddActivity()'}"><strong>${escapeHTML(name)}</strong><small>${count?`يوجد ${count} جهة في الدليل`:'ترقبونا قريبًا'}</small><b>${count?'استكشف الدليل ←':'أضف أول نشاط ←'}</b></button>`;
+ }).join('');
+}
+function showPage(page){
+ if(page!=='listingDetail')currentBountyPage=page;
+ closeSideMenu();
+ const main=document.querySelector('main');if(!main)return;
+ [...main.querySelectorAll(':scope > section')].forEach(section=>section.classList.add('page-hidden'));
+ const show=id=>document.getElementById(id)?.classList.remove('page-hidden');
+ if(page==='home'){['homeHero','mainSectionsNav','regions','directoryCategories','categories','featured','visualNew','visualPromos','homeLatestArticles'].forEach(show);}
+ else if(page==='categories'){show('categories');renderBountyPicks();loadBountyPicks();}
+ else if(page==='storiesPage'){show('storiesPage');renderStories();}
+ else if(page==='blog'){show('blog');renderBlogPosts(bountyBlogPosts.filter(p=>!(p.category||'').includes('قصص باونتي')));}
+ else if(page==='articleDetailPage'){show('articleDetailPage');}
+ else if(page==='storeOptions')show('storeOptions');
+ else if(page==='featured')show('featured');
+ else if(page==='addActivitySection')show('addActivitySection');
+ else if(page==='contactPage')show('contactPage');
+ else if(page==='regions')show('regions');
+ else if(page==='directory')show('directory');
+ else if(page==='about')show('about');
+ else if(page==='listingDetail')show('listingDetailPage');
+ document.querySelectorAll('.side-drawer a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+page));
+ const footer=document.querySelector('footer');if(footer)footer.style.display=page==='home'?'block':'none';
+ window.scrollTo({top:0,behavior:'instant'});
+}
+function renderArticleCard(post,index){
+ const cover=post.image_url?`<img src="${blogEscape(post.image_url)}" alt="${blogEscape(post.title)}" loading="lazy">`:'';
+ return `<article class="article"><div class="article-cover">${cover}</div><div class="article-content"><span class="article-tag">${blogEscape(post.category||'مقالات باونتي')} · ${Number(post.read_minutes)||3} دقائق قراءة</span><h3>${blogEscape(post.title)}</h3><p>${blogEscape(post.excerpt||'')}</p><button type="button" class="read-article-btn" onclick="openFullArticle(${index})">اقرأ المزيد ←</button></div></article>`;
+}
+function renderBlogPosts(rows){
+ const grid=document.getElementById('blogGrid');if(!grid)return;
+ const articlesOnly=(rows||[]).filter(p=>!(p.category||'').includes('قصص باونتي'));
+ grid.innerHTML=articlesOnly.length?articlesOnly.map(p=>renderArticleCard(p,bountyBlogPosts.indexOf(p))).join(''):'<div class="empty">لا توجد مقالات منشورة حاليًا.</div>';
+ renderHomeArticleTitles();
+ renderStories();
+}
+function renderHomeArticleTitles(){
+ const box=document.getElementById('homeArticleLinks');if(!box)return;
+ const rows=bountyBlogPosts.filter(p=>!(p.category||'').includes('قصص باونتي')).slice(0,5);
+ box.innerHTML=rows.length?rows.map(p=>`<a href="#blog" onclick="showPage('blog');return false">${blogEscape(p.title)} <span>←</span></a>`).join(''):'<p class="empty">لا توجد مقالات منشورة حاليًا.</p>';
+}
+function renderStories(){
+ const box=document.getElementById('storiesGrid');if(!box)return;
+ const rows=bountyBlogPosts.filter(p=>(p.category||'').includes('قصص باونتي'));
+ box.innerHTML=rows.length?rows.map(p=>renderArticleCard(p,bountyBlogPosts.indexOf(p))).join(''):'<div class="empty">لا توجد قصص منشورة حاليًا.</div>';
+}
+let articleReturnPage='blog';
+function openFullArticle(index){
+ articleReturnPage=(currentBountyPage==='storiesPage')?'storiesPage':'blog';
+ const post=bountyBlogPosts[Number(index)];if(!post)return;
+ const box=document.getElementById('articleFullContent');if(!box)return;
+ box.innerHTML=`${post.image_url?`<img class="article-full-image" src="${blogEscape(post.image_url)}" alt="${blogEscape(post.title)}">`:''}<span class="article-tag">${blogEscape(post.category||'مقالات باونتي')} · ${Number(post.read_minutes)||3} دقائق قراءة</span><h1>${blogEscape(post.title)}</h1><p class="article-full-excerpt">${blogEscape(post.excerpt||'')}</p><div class="article-full-text">${blogEscape(post.content||post.excerpt||'').replace(/\n/g,'<br>')}</div>`;
+ showPage('articleDetailPage');
+}
+function readArticle(index){openFullArticle(index);}
+async function loadBlogPosts(){
+ const grid=document.getElementById('blogGrid');if(grid)grid.innerHTML='<div class="empty">جارٍ تحميل المقالات...</div>';
+ try{
+  const {data,error}=await supabaseClient.from('blog_posts').select('*').eq('status','published').order('created_at',{ascending:false});
+  if(error)throw error;
+  bountyBlogPosts=(data||[]).map(p=>({...p,title:p.title||'محتوى من باونتي',excerpt:p.excerpt||'',content:p.content||p.excerpt||'',category:p.category||'مقالات باونتي',read_minutes:Number(p.read_minutes)||3,image_url:p.image_url||''}));
+  const orig=articles.map((a,i)=>({title:a.title,excerpt:['نظرة تمهيدية على فكرة النظام والمنتجات المناسبة له.','إرشادات مبسطة لقراءة المكونات والقيم الغذائية.','معلومات تساعدك على اختيار زيت الزيتون وحفظه.'][i],content:a.text,category:['أنظمة غذائية','دليل المنتجات','اختيارات واعية'][i],read_minutes:[4,3,3][i],image_url:''}));
+  const titles=new Set(bountyBlogPosts.map(p=>normalizeSearchText(p.title)));
+  bountyBlogPosts=[...orig.filter(p=>!titles.has(normalizeSearchText(p.title))),...bountyBlogPosts];
+  renderBlogPosts(bountyBlogPosts);
+ }catch(error){
+  console.warn('تعذر تحميل المقالات:',error);
+  bountyBlogPosts=articles.map((a,i)=>({title:a.title,excerpt:['نظرة تمهيدية على فكرة النظام والمنتجات المناسبة له.','إرشادات مبسطة لقراءة المكونات والقيم الغذائية.','معلومات تساعدك على اختيار زيت الزيتون وحفظه.'][i],content:a.text,category:['أنظمة غذائية','دليل المنتجات','اختيارات واعية'][i],read_minutes:[4,3,3][i]}));
+  renderBlogPosts(bountyBlogPosts);
+ }
+}
+document.addEventListener('click',function(event){
+ const button=event.target.closest('.read-article-btn[data-article-index]');
+ if(button){event.preventDefault();openFullArticle(button.dataset.articleIndex);}
+});
+
+setBountyPickMode('stores',document.querySelector('.bounty-pick-modes button'));
+loadBlogPosts();
+loadBountyPicks();
+showPage('home');</script>
 <style id="bounty-professional-redesign">
 /* BOUNTY — professional visual refresh. Content, data, section order and existing actions are preserved. */
 :root{--bounty-forest:#174c3c;--bounty-leaf:#6d8e55;--bounty-rose:#a8667d;--bounty-sand:#f5f0e8;--bounty-paper:#fffdf9;--bounty-line:#e9e3d9;--bounty-text:#203d32;--bounty-muted:#758078;--shadow-soft:0 12px 34px rgba(29,61,47,.09);--shadow-card:0 6px 20px rgba(29,61,47,.07)}
@@ -2034,6 +2188,49 @@ footer{margin-top:0!important;background:#123e32!important;padding:48px 0 22px!i
 @media(max-width:700px){.restored-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}.restored-category-grid button{min-height:62px!important;padding:10px!important;font-size:13px!important}.restored-category-grid button img{width:52px!important;height:48px!important;flex-basis:52px!important}}
 @media(max-width:680px){.bounty-picks-grid{grid-template-columns:1fr!important;gap:13px!important}.bounty-pick-card{min-height:165px!important;grid-template-columns:39% 1fr!important}.bounty-pick-card>img,.bounty-pick-image-placeholder{min-height:165px!important}.bounty-pick-card .pick-copy{padding:12px!important}.bounty-pick-card .pick-copy h3{font-size:18px!important}.bounty-pick-card .pick-copy p{font-size:13px!important;margin-bottom:8px!important}.bounty-picks-filters{gap:8px!important}.bounty-picks-filters button{min-width:0!important;padding:9px 15px!important;font-size:14px!important}}
 </style>
+
+<style>
+/* تنسيق التعديلات المطلوبة */
+.regions-preserved .region-card>span{display:none!important}
+.region-card>span{display:none!important}
+.visual-featured .product-badge{display:none!important}
+.region-card{gap:7px!important}
+.bounty-pick-modes{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 20px}
+.bounty-pick-modes button{border:1px solid #cfe2d8;background:#fff;color:#17624e;border-radius:13px;padding:13px 22px;font:inherit;font-weight:800;min-width:180px}
+.bounty-pick-modes button.active{background:#176b58;color:#fff;border-color:#176b58}
+.bounty-picks-filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px}
+.bounty-picks-filters button{border:1px solid #d5e4da;background:#fff;color:#17624e;border-radius:22px;padding:8px 14px;font:inherit;font-size:13px}
+.bounty-picks-filters button.active{background:#176b58;color:#fff}
+.bounty-pick-card .pick-copy>button{display:inline-block;margin-top:10px}
+.store-products-link{display:block;color:#176b58;font-weight:800;margin-top:10px}
+.pick-store-name{display:block;color:#68776f;margin-top:7px}
+.article-cover{overflow:hidden}
+.article-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.article-detail-page{padding:45px 0 70px;min-height:65vh;background:#fff}
+.article-back{border:0;background:#eef5ef;color:#176b58;padding:10px 15px;border-radius:10px;font:inherit;font-weight:700;margin-bottom:20px}
+.article-full{max-width:850px;margin:auto;background:#fff}
+.article-full-image{width:100%;max-height:420px;object-fit:cover;border-radius:18px;margin-bottom:22px}
+.article-full h1{font-size:clamp(26px,4vw,38px);line-height:1.45;color:#173f33}
+.article-full-excerpt{font-size:18px;color:#52675c;font-weight:600}
+.article-full-text{font-size:16px;line-height:2.2;color:#33483d;white-space:normal}
+.home-latest-articles{padding:35px 0;background:#fbf8f2}
+.home-article-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.home-article-links a{display:flex;justify-content:space-between;gap:10px;padding:13px 16px;background:#fff;border:1px solid #eee5dc;border-radius:12px;color:#174b3a;font-weight:700}
+.home-article-links a span{color:#987a35}
+.stories-page{padding:45px 0 70px;min-height:60vh}
+@media(max-width:650px){.bounty-pick-modes button{flex:1;min-width:0;padding:11px 9px;font-size:13px}.home-article-links{grid-template-columns:1fr}}
+</style>
+
+
+<style id="bounty-final-requested-adjustments">
+/* مختارات باونتي: الفلاتر للمنتجات فقط، وبطاقات المتاجر مستقلة */
+#bountyProductFilters{display:none!important}
+#bountyProductFilters[style*="display: flex"]{display:flex!important}
+.regions-preserved .region-card>span{display:none!important}
+.store-products-link{display:block!important;margin-top:12px!important;text-align:right!important}
+.bounty-store-card .pick-copy>button{margin-top:0!important}
+</style>
+
 </body>
 </html>
 
