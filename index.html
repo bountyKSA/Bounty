@@ -1130,19 +1130,24 @@ main > #categories > .wrap > .bounty-picks-heading{
 <section class="contact-page-section" id="contactPage">
  <div class="wrap">
   <div class="action-section-heading"><span>✉</span><div><small>نسعد بتواصلك</small><h2>تواصل معنا</h2></div></div>
-  <div class="contact-page-card">
-   <p>تعرف جهة تستحق تكون في دليل باونتي؟ أو لاحظت معلومة تحتاج تحديث؟ يسعدنا نسمع منك.</p>
-   <p>سواء عندك استفسار، اقتراح، أو رغبة في التعاون، اختر موضوع رسالتك واكتب لنا.</p>
+  <div class="contact-page-card contact-redesign">
+   <div class="contact-welcome"><span class="contact-welcome-icon">✉</span><div><h3>يسعدنا نسمع منك</h3><p>عندك استفسار أو اقتراح؟ أو تعرف جهة تستحق تكون في دليل باونتي؟ اكتب لنا، وفريقنا يسعده التواصل معك.</p></div></div>
    <form class="contact-message-form" onsubmit="sendContactMessage(event)">
+    <div class="contact-form-heading"><strong>أرسل رسالتك</strong><small>اختر الموضوع واكتب التفاصيل في المساحة المخصصة</small></div>
     <label for="contactTopic">موضوع الرسالة</label>
     <select id="contactTopic" required><option value="">اختر موضوع الرسالة</option><option>استفسار</option><option>اقتراح</option><option>تعاون</option><option>إضافة جهة للدليل</option><option>تحديث معلومة</option><option>أخرى</option></select>
     <label for="contactMessage">رسالتك</label>
-    <textarea id="contactMessage" required rows="4" placeholder="اكتب رسالتك هنا"></textarea>
-    <button class="search-button" type="submit">إرسال عبر واتساب</button>
+    <textarea id="contactMessage" required rows="8" placeholder="اكتب رسالتك بالتفصيل هنا..."></textarea>
+    <button class="contact-send-button" type="submit"><span>➤</span> إرسال الرسالة عبر واتساب</button>
    </form>
-   <div class="contact-methods">
-    <a href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer"><span>واتساب</span><strong>0500633399</strong></a>
-    <a href="mailto:bounty.ksa@outlook.com"><span>البريد الإلكتروني</span><strong>bounty.ksa@outlook.com</strong></a>
+   <div class="contact-social-area">
+    <div class="contact-social-title"><strong>أو تواصل معنا عبر</strong><span>اختر التطبيق المناسب لك</span></div>
+    <div class="contact-social-grid">
+     <a class="contact-social instagram" href="https://www.instagram.com/bounty.ksa/" target="_blank" rel="noopener noreferrer"><span class="contact-social-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></span><span><b>إنستغرام</b><small>تابعنا على إنستغرام</small></span><i>↗</i></a>
+     <a class="contact-social tiktok" href="https://www.tiktok.com/@bounty.ksa?_r=1&_t=ZS-9BCn7ljBEbE" target="_blank" rel="noopener noreferrer"><span class="contact-social-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v10.2a4.2 4.2 0 1 1-3.2-4.1v3.2a1.2 1.2 0 1 0 .2.9V3h3c.3 2.1 1.5 3.4 4 3.8v3.1C16 9.7 14.8 9 14 8"/></svg></span><span><b>تيك توك</b><small>شاهد محتوى باونتي</small></span><i>↗</i></a>
+     <a class="contact-social whatsapp" href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer"><span class="contact-social-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.3-4A8 8 0 1 1 20 11.6Z"/><path d="M8.5 8c.3-.5.5-.5.8-.5h.4c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.5.8 1.2 1.4 2 1.9.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.5.7c.3.1.4.3.4.5 0 .4-.2 1.1-.7 1.5-.5.4-1.1.6-1.8.5-1-.2-2.3-.8-3.5-1.9-1.3-1.2-2.1-2.6-2.3-3.6-.2-.8.1-1.5.7-1.9Z"/></svg></span><span><b>واتساب</b><small>0500633399</small></span><i>↗</i></a>
+     <a class="contact-social email" href="mailto:bounty.ksa@outlook.com"><span class="contact-social-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span><span><b>البريد الإلكتروني</b><small>bounty.ksa@outlook.com</small></span><i>↗</i></a>
+    </div>
    </div>
   </div>
  </div>
@@ -2052,4 +2057,29 @@ footer{margin-top:0!important;background:#123e32!important;padding:48px 0 22px!i
 .clickable-text, a, button, .visual-category, .visual-product, .listing, .category, .region-card, .new-mini{ -webkit-tap-highlight-color:rgba(109,142,85,.22)!important }
 a:active,button:active,.visual-category:active,.visual-product:active,.listing:active,.category:active,.region-card:active,.new-mini:active{background-color:#e8f2e8!important;outline:2px solid rgba(109,142,85,.28)!important;outline-offset:1px!important}
 @media(max-width:580px){.page-navigation{right:10px!important;bottom:12px!important;left:10px!important;justify-content:center!important}.page-navigation button{flex:1!important;max-width:180px!important;min-width:0!important}}
+</style>
+
+<style id="bounty-contact-page-redesign">
+.contact-page-section{padding:48px 0 70px!important;background:linear-gradient(180deg,#fbfaf6 0%,#f4f7f1 100%)!important}
+.contact-page-section>.wrap{max-width:980px!important}
+.contact-redesign{padding:clamp(24px,4vw,48px)!important;border:1px solid #e6e9df!important;border-radius:26px!important;box-shadow:0 16px 42px rgba(25,75,57,.09)!important}
+.contact-welcome{display:flex;align-items:center;gap:18px;padding:0 0 25px;border-bottom:1px solid #edf0e9;margin-bottom:27px}
+.contact-welcome-icon{width:62px;height:62px;flex:0 0 62px;display:grid;place-items:center;border-radius:19px;background:#e9f3ec;color:#08745d;font-size:30px}
+.contact-welcome h3{margin:0 0 5px;color:#174b3a;font-size:23px}.contact-welcome p{margin:0!important;color:#738078;font-size:15px;line-height:1.9}
+.contact-message-form{display:flex;flex-direction:column;gap:11px;max-width:100%!important}
+.contact-form-heading{display:flex;flex-direction:column;gap:3px;margin-bottom:7px}.contact-form-heading strong{font-size:20px;color:#174b3a}.contact-form-heading small{font-size:13px;color:#89938c}
+.contact-message-form label{font-size:14px;font-weight:700;color:#365849;margin-top:5px}
+.contact-message-form select{width:100%;min-height:58px;padding:13px 17px;border:1px solid #dfe8e0;border-radius:13px;background:#fbfcf9;color:#38574a;font:inherit;outline-color:#16856b}
+.contact-message-form textarea{width:100%;min-height:230px;padding:18px;border:1px solid #dfe8e0;border-radius:15px;background:#fbfcf9;color:#24483a;font:inherit;line-height:1.9;resize:vertical;outline-color:#16856b}
+.contact-message-form textarea::placeholder{color:#a3ada5}
+.contact-send-button{align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;margin-top:8px;padding:12px 25px;border:0;border-radius:13px;background:#08745d;color:#fff;font:inherit;font-weight:800;box-shadow:0 6px 15px rgba(8,116,93,.18);transition:.2s}
+.contact-send-button:hover{background:#075e4c;transform:translateY(-2px)}.contact-send-button span{font-size:19px}
+.contact-social-area{margin-top:35px;padding-top:25px;border-top:1px solid #edf0e9}.contact-social-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.contact-social-title strong{font-size:18px;color:#174b3a}.contact-social-title>span{font-size:12px;color:#8a958d}
+.contact-social-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.contact-social{display:flex;align-items:center;gap:12px;min-width:0;padding:15px;border:1px solid #e6ebe4;border-radius:15px;background:#fff;color:#24483a;text-decoration:none;transition:.2s}
+.contact-social:hover{transform:translateY(-2px);border-color:#b8d4c2;box-shadow:0 7px 18px rgba(20,75,55,.07)}
+.contact-social-icon{width:46px;height:46px;flex:0 0 46px;display:grid;place-items:center;border-radius:13px;background:#f0f5ef;color:#176b58}.contact-social-icon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.contact-social.tiktok .contact-social-icon svg{fill:currentColor;stroke:none}
+.contact-social>span:nth-child(2){display:flex;flex-direction:column;min-width:0}.contact-social b{font-size:14px;color:#174b3a}.contact-social small{font-size:11px;color:#829087;overflow-wrap:anywhere}.contact-social i{margin-right:auto;color:#9aaa9f;font-style:normal;font-size:18px}
+.contact-social.instagram .contact-social-icon{background:#f9edf2;color:#a44c77}.contact-social.tiktok .contact-social-icon{background:#f0eff3;color:#25232a}.contact-social.whatsapp .contact-social-icon{background:#e9f5ed;color:#16834d}.contact-social.email .contact-social-icon{background:#eef2f8;color:#52729a}
+@media(max-width:650px){.contact-page-section{padding:28px 0 48px!important}.contact-redesign{padding:20px!important;border-radius:19px!important}.contact-welcome{align-items:flex-start;gap:12px}.contact-welcome-icon{width:48px;height:48px;flex-basis:48px;border-radius:14px;font-size:24px}.contact-welcome h3{font-size:19px}.contact-welcome p{font-size:13px}.contact-message-form textarea{min-height:200px}.contact-send-button{width:100%;align-self:stretch}.contact-social-grid{grid-template-columns:1fr}.contact-social-title{align-items:flex-start;flex-direction:column;gap:2px}}
 </style>
