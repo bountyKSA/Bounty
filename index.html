@@ -898,6 +898,11 @@ main > #categories > .wrap > .bounty-picks-heading{
  #visualPromos .promo-request p{font-size:11px!important;line-height:1.7!important}
 }
 
+
+/* أيقونة كتاب باونتي: خطية شفافة ومتناسقة مع رموز الأقسام */
+.bounty-book-icon{width:1em;height:1em;display:inline-block;vertical-align:-.16em;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round}
+.main-sections-grid a .bounty-book-icon{width:1em;height:1em}
+.visual-section-title h2 .bounty-book-icon{width:.9em;height:.9em}
 </style>
 </head>
 <body>
@@ -931,7 +936,8 @@ main > #categories > .wrap > .bounty-picks-heading{
     <a href="#regions" onclick="showPage('regions');return false">⌖ المناطق</a>
     <a href="#featured" onclick="showPage('featured');return false">♡ المتاجر المميزة</a>
     <a href="#addActivitySection" onclick="showPage('addActivitySection');return false">✧ إضافة نشاط للدليل</a>
-    <a href="#blog" onclick="showPage('blog');return false">▤ المدونة</a>
+    <a href="#storiesPage" onclick="showPage('storiesPage');return false"><span><svg class="bounty-book-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 5.5A2.5 2.5 0 0 1 7 3h12.5v16H7a2.5 2.5 0 0 0-2.5 2.5z"/><path d="M4.5 5.5v16M7 3v16M9.5 7h7M9.5 10h7"/></svg></span>قصص باونتي</a>
+     <a href="#blog" onclick="showPage('blog');return false">▤ المدونة</a>
     <a href="#about" onclick="showPage('about');return false">ⓘ من نحن</a>
     <a href="#contactPage" onclick="showPage('contactPage');return false">✉ تواصل معنا</a>
   </aside>
@@ -980,7 +986,7 @@ main > #categories > .wrap > .bounty-picks-heading{
    <a href="#regions" onclick="showPage('regions');return false"><span>⌖</span>المناطق</a>
    <a href="#featured" onclick="showPage('featured');return false"><span>♡</span>المتاجر المميزة</a>
    <a href="#addActivitySection" onclick="showPage('addActivitySection');return false"><span>✧</span>إضافة نشاط للدليل</a>
-   <a href="#storiesPage" onclick="showPage('storiesPage');return false"><span>▶</span>قصص باونتي</a><a href="#blog" onclick="showPage('blog');return false"><span>▤</span>المدونة</a>
+   <a href="#storiesPage" onclick="showPage('storiesPage');return false"><span><svg class="bounty-book-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 5.5A2.5 2.5 0 0 1 7 3h12.5v16H7a2.5 2.5 0 0 0-2.5 2.5z"/><path d="M4.5 5.5v16M7 3v16M9.5 7h7M9.5 10h7"/></svg></span>قصص باونتي</a><a href="#blog" onclick="showPage('blog');return false"><span>▤</span>المدونة</a>
    <a href="#about" onclick="showPage('about');return false"><span>ⓘ</span>من نحن</a>
    <a href="#contactPage" onclick="showPage('contactPage');return false"><span>✉</span>تواصل معنا</a>
   </div>
@@ -1065,7 +1071,7 @@ main > #categories > .wrap > .bounty-picks-heading{
 
 <section class="home-stories-section" id="homeStoriesSection">
  <div class="wrap">
-  <div class="visual-section-title"><div><span class="home-stories-kicker">حكايات وتجارب ملهمة</span><h2>قصص باونتي <span>▶</span></h2></div><a href="#storiesPage" onclick="showPage('storiesPage');return false">عرض جميع القصص ←</a></div>
+  <div class="visual-section-title"><div><span class="home-stories-kicker">حكايات وتجارب ملهمة</span><h2>قصص باونتي <span><svg class="bounty-book-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 5.5A2.5 2.5 0 0 1 7 3h12.5v16H7a2.5 2.5 0 0 0-2.5 2.5z"/><path d="M4.5 5.5v16M7 3v16M9.5 7h7M9.5 10h7"/></svg></span></h2></div><a href="#storiesPage" onclick="showPage('storiesPage');return false">عرض جميع القصص ←</a></div>
   <div class="home-stories-grid blog-grid" id="homeStoriesGrid"><div class="empty">جارٍ تحميل القصص...</div></div>
  </div>
 </section>
@@ -1736,6 +1742,7 @@ function showPage(page){
  const show=(id)=>{const el=document.getElementById(id);if(el)el.classList.remove('page-hidden');};
  if(page==='home'){
   ['homeHero','mainSectionsNav','regions','directoryCategories','categories','featured','visualNew','homeStoriesSection','visualPromos'].forEach(show);
+  if(typeof renderStories==='function')renderStories();
  }else if(page==='categories'){
   show('categories');
   renderBountyPicks();
@@ -1909,7 +1916,7 @@ function showPage(page){
  const main=document.querySelector('main');if(!main)return;
  [...main.querySelectorAll(':scope > section')].forEach(section=>section.classList.add('page-hidden'));
  const show=id=>document.getElementById(id)?.classList.remove('page-hidden');
- if(page==='home'){['homeHero','mainSectionsNav','regions','directoryCategories','categories','featured','visualNew','homeStoriesSection','visualPromos','homeLatestArticles'].forEach(show);}
+ if(page==='home'){['homeHero','mainSectionsNav','regions','directoryCategories','categories','featured','visualNew','homeStoriesSection','visualPromos','homeLatestArticles'].forEach(show); if(typeof renderStories==='function')renderStories();}
  else if(page==='categories'){show('categories');renderBountyPicks();loadBountyPicks();}
  else if(page==='storiesPage'){show('storiesPage');renderStories();}
  else if(page==='blog'){show('blog');renderBlogPosts(bountyBlogPosts.filter(p=>!(p.category||'').includes('قصص باونتي')));}
