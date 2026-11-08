@@ -1487,9 +1487,9 @@ async function loadBlogPosts(){
  try{
   // Fetch all columns so an optional column added later does not break the public blog.
   const {data,error}=await supabaseClient
-   .from('blog_posts')
+   .from('bounty_articles')
    .select('*')
-   .eq('status','published')
+   .eq('is_published',true)
    .order('created_at',{ascending:false});
   if(error)throw error;
   bountyBlogPosts=(data||[]).map(post=>({
