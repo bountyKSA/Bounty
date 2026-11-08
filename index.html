@@ -1485,13 +1485,14 @@ async function loadBlogPosts(){
  if(!grid)return;
  grid.innerHTML='<div class="empty">جارٍ تحميل المقالات...</div>';
  try{
-  // Fetch all columns so an optional column added later does not break the public blog.
+  // اقرأ من نفس الجدول الذي تحفظ فيه لوحة الإدارة المقالات: blog_posts.
   const {data,error}=await supabaseClient
-   .from('bounty_articles')
+   .from('blog_posts')
    .select('*')
-   .eq('is_published',true)
+   .eq('status','published')
    .order('created_at',{ascending:false});
   if(error)throw error;
+
   bountyBlogPosts=(data||[]).map(post=>({
    ...post,
    title:post.title||'مقال من باونتي',
@@ -1499,9 +1500,11 @@ async function loadBlogPosts(){
    content:post.content||post.excerpt||'',
    category:post.category||'مقالات باونتي',
    read_minutes:Number(post.read_minutes)||3,
-   emoji:post.emoji||'🌿'
+   emoji:post.emoji||'🌿',
+   image_url:post.image_url||''
   }));
-  // Keep the three original Bounty articles visible alongside any articles added from the admin dashboard.
+
+  // أبقِ المقالات الأصلية الثلاث ظاهرة إذا لم تكن موجودة بالفعل في قاعدة البيانات.
   const originalEditorialPosts=articles.map((a,i)=>({
    title:a.title,
    excerpt:[
@@ -1520,7 +1523,7 @@ async function loadBlogPosts(){
   renderBlogPosts(bountyBlogPosts);
  }catch(error){
   console.error('تعذر تحميل مقالات باونتي:',error);
-  // If the blog table is unavailable, preserve the built-in articles and their working excerpts.
+  // عند تعذر الاتصال بقاعدة البيانات، اعرض المقالات الأصلية بدل اختفاء قسم المدونة.
   bountyBlogPosts=articles.map((a,i)=>({
    title:a.title,
    excerpt:['نظرة تمهيدية على فكرة النظام والمنتجات المناسبة له.','إرشادات مبسطة لقراءة المكونات والقيم الغذائية.','معلومات تساعدك على اختيار زيت الزيتون وحفظه.'][i],
