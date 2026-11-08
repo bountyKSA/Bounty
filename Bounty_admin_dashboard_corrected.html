@@ -741,7 +741,8 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 .admin-accordion-section>summary::before{display:grid;place-items:center;width:86px;height:86px;border-radius:25px;background:#fff;font-size:43px;box-shadow:0 5px 18px rgba(18,75,62,.09)}
 .admin-accordion-section:nth-child(1)>summary::before{content:"🌿"}
 .admin-accordion-section:nth-child(2)>summary::before{content:"🛍️"}
-.admin-accordion-section:nth-child(3)>summary::before{content:"📝"}\n.admin-accordion-section:nth-child(4)>summary::before{content:"▶️"}
+.admin-accordion-section:nth-child(3)>summary::before{content:"📝"}
+.admin-accordion-section:nth-child(4)>summary::before{content:"▶️"}
 .admin-article-preview{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid #e5eee7;border-radius:13px;background:#fbfdfb;margin:10px 0}
 .admin-article-preview>div:first-child{font-size:27px;min-width:42px;text-align:center}
 .admin-article-preview strong{display:block;color:#174b3a}
@@ -2179,26 +2180,27 @@ document.getElementById('adminArticleForm')?.addEventListener('submit',saveAdmin
 </script>
 
 <style id="admin-four-sections-final-fix">
-/* Ensure all four independent administration sections are visible. */
+/* Four independent cards on the existing admin URL. */
 body.admin-only-mode #adminDashboard .admin-accordion{
   display:grid!important;
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-auto-flow:row!important;
   gap:22px!important;
   align-items:stretch!important;
 }
-body.admin-only-mode #adminDashboard #adminStoriesSection{
+body.admin-only-mode #adminDashboard .admin-accordion > details.admin-accordion-section{
   display:block!important;
   visibility:visible!important;
+  position:relative!important;
   grid-column:auto!important;
   grid-row:auto!important;
   min-width:0!important;
+  opacity:1!important;
 }
-body.admin-only-mode #adminDashboard .admin-accordion-section:not([open])>summary{
-  min-height:clamp(230px,38vh,360px)!important;
-}
+body.admin-only-mode #adminDashboard .admin-accordion > #adminStoriesSection{display:block!important;visibility:visible!important;}
+body.admin-only-mode #adminDashboard .admin-accordion-section:not([open])>summary{min-height:clamp(230px,38vh,360px)!important;}
 @media(max-width:700px){
- body.admin-only-mode #adminDashboard .admin-accordion{grid-template-columns:1fr!important;gap:16px!important}
- body.admin-only-mode #adminDashboard #adminStoriesSection{grid-column:1!important}
+ body.admin-only-mode #adminDashboard .admin-accordion{grid-template-columns:1fr!important;gap:16px!important;}
 }
 </style>
 
