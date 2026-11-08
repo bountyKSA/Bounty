@@ -1030,7 +1030,7 @@ body.admin-only-mode .admin-status {margin:16px 0 22px;}
     <form id="adminLoginForm">
      <div class="admin-field"><label for="adminEmail">البريد الإلكتروني</label><input id="adminEmail" type="email" autocomplete="username" value="bounty.ksa@outlook.com" required></div>
      <div class="admin-field"><label for="adminPassword">كلمة المرور</label><input id="adminPassword" type="password" autocomplete="current-password" required></div>
-     <button class="admin-primary" id="adminLoginButton" type="submit">دخول لوحة الإدارة</button>
+     <button class="admin-primary" id="adminLoginButton" type="submit" onclick="adminSignIn(event)">دخول لوحة الإدارة</button>
     </form>
     <div class="admin-status" id="adminLoginStatus" aria-live="polite">الدخول متاح لحساب الإدارة فقط.</div>
    </div>
@@ -1169,7 +1169,30 @@ body.admin-only-mode .admin-status {margin:16px 0 22px;}
 <script>
 const SUPABASE_URL='https://ikwmjhedttsnutkvdjmu.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_359DzNNCBvFtFp3HaLZmBA_JQ9DFt5L';
-const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+let supabaseClient = null;
+function createSupabaseClientIfReady(){
+ if(!supabaseClient && window.supabase && typeof window.supabase.createClient === 'function'){
+  supabaseClient = window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+ }
+ return supabaseClient;
+}
+async function ensureSupabaseClient(){
+ if(createSupabaseClientIfReady()) return supabaseClient;
+ const sources = [
+  'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2',
+  'https://unpkg.com/@supabase/supabase-js@2'
+ ];
+ for(const src of sources){
+  await new Promise(resolve=>{
+   const script=document.createElement('script');
+   script.src=src; script.async=true;
+   script.onload=resolve; script.onerror=resolve;
+   document.head.appendChild(script);
+  });
+  if(createSupabaseClientIfReady()) return supabaseClient;
+ }
+ throw new Error('تعذر تحميل خدمة تسجيل الدخول. تحققي من اتصال الإنترنت ثم أعيدي المحاولة.');
+}
 const seedListings=[
  {id:1,name:"متجر حلزونة الإلكتروني",type:"متاجر",region:"الرياض",desc:"متجر إلكتروني متخصص في المنتجات الطبيعية، ويوفر الدقيق والمنتجات الغذائية والمكملات ومنتجات العناية الشخصية.",tags:"منتجات طبيعية دقيق أغذية مكملات كيتو",emoji:"🐌",phone:"0506517579",address:"متجر إلكتروني"},
  {id:2,name:"معصرة السيف رويال",type:"متاجر",region:"الرياض",desc:"زيوت طبيعية خام، معصورة على البارد، مع معلومات عن المنتج وطريقة استخراجه.",tags:"زيت زيتون زيوت طبيعية عصرة باردة",emoji:"🫒",phone:"0501006340",address:"الرياض، الدائري الشرقي، مخرج 10"}
@@ -1478,6 +1501,7 @@ async function initAdminPage(){
   document.getElementById('adminPickForm').addEventListener('submit',saveAdminPick);
  }
  try{
+  await ensureSupabaseClient();
   const {data:{session},error}=await supabaseClient.auth.getSession();
   if(error)throw error;
   const allowed=session?.user?.email?.toLowerCase()==='bounty.ksa@outlook.com';
@@ -1501,6 +1525,7 @@ async function adminSignIn(event){
  const email=document.getElementById('adminEmail').value.trim().toLowerCase();
  const password=document.getElementById('adminPassword').value;
  try{
+  await ensureSupabaseClient();
   const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
   if(error)throw error;
   if(data.user?.email?.toLowerCase()!=='bounty.ksa@outlook.com'){await supabaseClient.auth.signOut();throw new Error('هذا الحساب غير مخوّل لإدارة باونتي.');}
