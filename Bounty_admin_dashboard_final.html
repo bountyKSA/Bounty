@@ -705,8 +705,6 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 @media(max-width:650px){.admin-shell{padding:16px}.admin-form-grid{grid-template-columns:1fr}.admin-field.full{grid-column:auto}.admin-item{align-items:flex-start}}
 
 
-#adminBlogForm .admin-form-grid textarea{min-height:100px}
-#adminBlogForm textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);outline-color:var(--brand2);resize:vertical}
 
 /* Bounty requested page refinements */
 .bounty-curated-intro{font-size:clamp(20px,2.5vw,30px)!important;font-weight:800!important;color:var(--ink)!important;margin:4px 0 18px!important}
@@ -744,6 +742,12 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 .admin-accordion-section:nth-child(1)>summary::before{content:"🌿"}
 .admin-accordion-section:nth-child(2)>summary::before{content:"🛍️"}
 .admin-accordion-section:nth-child(3)>summary::before{content:"📝"}
+.admin-article-preview{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid #e5eee7;border-radius:13px;background:#fbfdfb;margin:10px 0}
+.admin-article-preview>div:first-child{font-size:27px;min-width:42px;text-align:center}
+.admin-article-preview strong{display:block;color:#174b3a}
+.admin-article-preview small{display:block;color:#71857a;margin-top:4px}
+.admin-article-preview .admin-item-actions{margin-right:auto;display:flex;gap:7px;flex-wrap:wrap}
+.admin-article-help{padding:12px 14px;background:#f6f8ef;border:1px solid #e7eadb;border-radius:12px;color:#68776f;font-size:12px;line-height:1.8;margin:12px 0}
 .admin-accordion-section>summary::after{content:"اضغطي لفتح القسم  ＋";display:block;color:#54766a;font-size:14px;font-weight:700;margin-top:2px}
 .admin-accordion-section[open]{grid-column:1/-1;border-color:#9bc9ad;box-shadow:0 10px 30px rgba(18,75,62,.11)}
 .admin-accordion-section[open]>summary{min-height:76px;flex-direction:row;justify-content:space-between;text-align:right;padding:18px 24px;background:#eaf4ed;border-bottom:1px solid #dce9df;font-size:20px}
@@ -755,6 +759,9 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 @media(max-width:650px){.admin-page .wrap{width:94%}.admin-shell{padding:14px}.admin-accordion-section>summary{min-height:135px;padding:18px;font-size:18px}.admin-accordion-content{padding:14px}.admin-accordion-section[open]>summary{padding:13px;font-size:17px}}
 @media(max-width:650px){.admin-accordion-section>summary{padding:14px;font-size:15px}.admin-accordion-content{padding:13px}}
 
+
+@media(min-width:851px){.admin-accordion{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(min-width:851px){body.admin-only-mode .admin-accordion{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 </style>
 
 <style>
@@ -775,16 +782,19 @@ body.admin-only-mode main > section:not(#adminPage) {display:none !important;}
 body.admin-only-mode #adminPage {display:block !important; min-height:100vh; padding:clamp(26px,5vh,64px) 0 48px; background:var(--cream,#fbfcf8);}
 body.admin-only-mode .admin-page .wrap {width:min(1600px,96%);}
 body.admin-only-mode .admin-shell {max-width:none; width:100%; min-height:calc(100vh - 170px); padding:clamp(20px,3vw,42px);}
-body.admin-only-mode .admin-accordion {grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(14px,2vw,26px);}
-body.admin-only-mode .admin-accordion-section > summary {min-height:clamp(300px,48vh,520px); padding:clamp(24px,3vw,44px) 20px; font-size:clamp(20px,2.2vw,29px);}
-body.admin-only-mode .admin-accordion-section > summary::before {width:clamp(82px,8vw,112px); height:clamp(82px,8vw,112px); font-size:clamp(42px,4vw,58px);}
+body.admin-only-mode .admin-accordion {grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(16px,2.2vw,30px); align-items:stretch;}
+body.admin-only-mode .admin-accordion-section > summary {min-height:clamp(360px,58vh,680px); height:100%; padding:clamp(28px,4vw,54px) 22px; font-size:clamp(22px,2.5vw,32px);}
+body.admin-only-mode .admin-accordion-section > summary::before {width:clamp(96px,10vw,140px); height:clamp(96px,10vw,140px); font-size:clamp(48px,5vw,68px);}
 body.admin-only-mode .admin-accordion-section[open] {grid-column:1/-1;}
+body.admin-only-mode .admin-accordion-section:not([open]) {min-height:clamp(360px,58vh,680px);}
+body.admin-only-mode .admin-accordion-section:not([open]) > summary {min-height:clamp(360px,58vh,680px);}
+body.admin-only-mode .admin-accordion-section[open] > summary {min-height:76px; height:auto;}
 body.admin-only-mode .admin-accordion-content {padding:clamp(18px,3vw,36px);}
 body.admin-only-mode .admin-top {align-items:center;}
 body.admin-only-mode .admin-status {margin:16px 0 22px;}
-@media(max-width:850px){
- body.admin-only-mode .admin-accordion {grid-template-columns:1fr; gap:14px;}
- body.admin-only-mode .admin-accordion-section > summary {min-height:clamp(150px,22vh,230px);}
+@media(max-width:700px){
+ body.admin-only-mode .admin-accordion {grid-template-columns:1fr; gap:16px;}
+ body.admin-only-mode .admin-accordion-section > summary {min-height:clamp(230px,38vh,360px); height:auto;}
  body.admin-only-mode .admin-shell {min-height:0;}
 }
 </style>
@@ -1035,7 +1045,7 @@ body.admin-only-mode .admin-status {margin:16px 0 22px;}
     <div class="admin-status" id="adminLoginStatus" aria-live="polite">الدخول متاح لحساب الإدارة فقط.</div>
    </div>
    <div id="adminDashboard" hidden>
-    <div class="admin-top"><div><h2>لوحة التحكم</h2><p class="admin-muted">اختاري أحد القسمين لإضافة البيانات أو تعديلها أو حذفها. تُحفظ التغييرات مباشرة في موقع باونتي.</p></div><button class="admin-secondary" type="button" onclick="adminSignOut()">تسجيل الخروج</button></div>
+    <div class="admin-top"><div><h2>لوحة التحكم</h2><p class="admin-muted">اختاري القسم المناسب لإضافة البيانات أو تعديلها أو حذفها. تُحفظ التغييرات مباشرة في موقع باونتي.</p></div><button class="admin-secondary" type="button" onclick="adminSignOut()">تسجيل الخروج</button></div>
     <div class="admin-status" id="adminStatus" aria-live="polite">تم تسجيل الدخول.</div>
     <div class="admin-shortcuts">
      <a href="#adminActivityForm" onclick="openAdminSection('adminActivitiesSection','adminActivityForm');return false">إضافة نشاط</a>
@@ -1093,6 +1103,29 @@ body.admin-only-mode .admin-status {margin:16px 0 22px;}
     <div class="admin-top" style="margin-top:25px"><h3>المنتجات المسجلة في مختارات باونتي</h3></div>
     <div class="admin-list" id="adminPickList" aria-live="polite"></div>
 
+      </div>
+     </details>
+     <details class="admin-accordion-section" id="adminArticlesSection">
+      <summary>إدارة المدونات</summary>
+      <div class="admin-accordion-content">
+       <div class="admin-top"><div><h3>إدارة مدونات باونتي</h3><p class="admin-muted">أضيفي المقالات وعدّليها أو احذفيها، وحددي ما يظهر للزوار في المدونة.</p></div><button class="admin-secondary" type="button" onclick="loadAdminArticles()">تحديث المقالات</button></div>
+       <h3 id="adminArticleFormTitle">إضافة مقال جديد</h3>
+       <form id="adminArticleForm">
+        <input type="hidden" id="articleRecordId">
+        <div class="admin-form-grid">
+         <div class="admin-field full"><label for="articleAdminTitle">عنوان المقال *</label><input id="articleAdminTitle" required maxlength="180" placeholder="اكتبي عنوان المقال"></div>
+         <div class="admin-field"><label for="articleAdminCategory">تصنيف المقال *</label><input id="articleAdminCategory" required maxlength="80" placeholder="مثل: التغذية، المنتجات"></div>
+         <div class="admin-field"><label for="articleAdminEmoji">رمز المقال</label><input id="articleAdminEmoji" maxlength="8" value="📝" placeholder="🌿"></div>
+         <div class="admin-field"><label for="articleAdminReadMinutes">مدة القراءة بالدقائق</label><input id="articleAdminReadMinutes" type="number" min="1" max="60" value="3"></div>
+         <div class="admin-field full"><label for="articleAdminExcerpt">مقتطف يظهر في بطاقة المدونة *</label><textarea id="articleAdminExcerpt" required maxlength="500" placeholder="اكتبي نبذة قصيرة تشجع القارئ على فتح المقال"></textarea></div>
+         <div class="admin-field full"><label for="articleAdminContent">محتوى المقال الكامل *</label><textarea id="articleAdminContent" required maxlength="12000" style="min-height:190px" placeholder="اكتبي نص المقال هنا"></textarea></div>
+         <div class="admin-field full"><label style="display:flex;align-items:center;gap:9px"><input id="articleAdminPublished" type="checkbox" checked style="width:auto"> نشر المقال للزوار</label></div>
+        </div>
+        <div class="admin-actions"><button class="admin-primary" id="adminArticleSaveButton" type="submit">حفظ المقال</button><button class="admin-secondary" type="button" onclick="resetAdminArticleForm()">تفريغ الحقول</button></div>
+       </form>
+       <hr style="border:0;border-top:1px solid #e5eee7;margin:26px 0">
+       <div class="admin-top"><h3>المقالات المسجلة</h3><span class="admin-muted" id="adminArticleCount"></span></div>
+       <div class="admin-list" id="adminArticleList" aria-live="polite"></div>
       </div>
      </details>
     </div>
@@ -1217,7 +1250,18 @@ const articles=[
  {title:"ما هو نظام الكيتو؟ وما المنتجات التي يبحث عنها متبعوه؟",text:"نظام الكيتو نمط غذائي يعتمد على تقليل الكربوهيدرات بدرجة كبيرة وزيادة الاعتماد على الدهون، مع تناول كمية مناسبة من البروتين. عند البحث عن منتجات تناسب هذا النمط، من المهم قراءة الملصق الغذائي والتحقق من كمية الكربوهيدرات في الحصة الواحدة، والانتباه إلى أحجام الحصص والمكونات. لا يعني وصف المنتج بأنه «كيتو» أنه مناسب للجميع؛ فاختيار النظام الغذائي يعتمد على الحالة الصحية والاحتياجات الفردية، ومن الأفضل استشارة مختص قبل البدء."},
  {title:"كيف تقرأ بطاقة المنتج الغذائي؟",text:"ابدأ بحجم الحصة، ثم راجع السعرات والمكونات والعناصر الغذائية. اقرأ قائمة المكونات بترتيب تنازلي حسب الوزن، وانتبه للسكريات المضافة ومعلومات الحساسية. قارن المنتجات على أساس حجم الحصة نفسه، ولا تعتمد على الواجهة الأمامية للعبوة وحدها."},
  {title:"من أين أبدأ عند اختيار زيت الزيتون؟",text:"اقرأ بيانات العبوة وتاريخ الإنتاج وبلد المنشأ وطريقة الحفظ. احفظ الزيت بعيداً عن الضوء والحرارة، وتحقق من سلامة العبوة ومصدرها. قد تختلف الجودة والخصائص بين المنتجات، لذلك تساعدك المعلومات الواضحة على المقارنة."}
-];
+ ];
+let liveArticles=articles.map((a,i)=>({...a,category:['أنظمة غذائية','دليل المنتجات','اختيارات واعية'][i]||'مقالات باونتي',excerpt:a.text.slice(0,190),emoji:['🥑','🌾','🫒'][i]||'📝',read_minutes:[4,3,3][i]||3}));
+function renderBlogArticles(rows){
+ const grid=document.querySelector('#blog .blog-grid');if(!grid)return;
+ if(!rows||!rows.length)return;
+ liveArticles=rows;
+ grid.innerHTML=rows.map((a,i)=>`<article class="article"><div class="article-cover">${escapeHTML(a.emoji||'📝')}</div><div class="article-content"><span class="article-tag">${escapeHTML(a.category||'مقالات باونتي')} · ${Number(a.read_minutes)||3} دقائق قراءة</span><h3>${escapeHTML(a.title)}</h3><p>${escapeHTML(a.excerpt||'')}</p><button type="button" onclick="readArticle(${i})">اقرأ المقال ←</button></div></article>`).join('');
+}
+async function loadPublicArticles(){
+ try{await ensureSupabaseClient();const {data,error}=await supabaseClient.from('blog_posts').select('id,title,category,excerpt,content,emoji,read_minutes').eq('status','published').order('created_at',{ascending:false});if(error)throw error;if(data&&data.length){const original=liveArticles.filter(a=>!data.some(b=>b.title===a.title));renderBlogArticles([...original,...data]);}}
+ catch(error){console.warn('مدونة باونتي تستخدم المقالات الافتراضية حتى يتم إعداد جدول المقالات:',error.message||error);}
+}
 
 function renderHomeHighlights(){
  const featured=document.getElementById('featuredListings');
@@ -1393,7 +1437,84 @@ function categorySearch(term){
  if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
 }
 function clearSearch(){['mainSearch','directorySearch','regionFilter','typeFilter'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});renderListings();}
-function readArticle(i){document.getElementById('articleTitle').textContent=articles[i].title;document.getElementById('articleText').textContent=articles[i].text;document.getElementById('articleModal').classList.add('open');}
+
+let adminArticleRows=[];
+async function loadAdminArticles(){
+ const box=document.getElementById('adminArticleList');if(!box)return;
+ box.innerHTML='<p class="admin-muted">جارٍ تحميل المقالات...</p>';
+ try{
+  const {data,error}=await supabaseClient.from('blog_posts').select('*').order('created_at',{ascending:false});
+  if(error)throw error;adminArticleRows=data||[];
+  const count=document.getElementById('adminArticleCount');if(count)count.textContent=`${adminArticleRows.length} مقال`;
+  box.innerHTML=adminArticleRows.length?adminArticleRows.map(row=>`<div class="admin-article-preview"><div>${escapeHTML(row.emoji||'📝')}</div><div style="flex:1;min-width:0"><strong>${escapeHTML(row.title)}</strong><small>${escapeHTML(row.category||'بدون تصنيف')} · ${row.status==='published'?'منشور':'مسودة'} · ${Number(row.read_minutes)||3} دقائق</small></div><div class="admin-item-actions"><button class="admin-secondary" type="button" onclick="editAdminArticle('${String(row.id).replace(/'/g,'')}')">تعديل</button><button class="admin-danger" type="button" onclick="deleteAdminArticle('${String(row.id).replace(/'/g,'')}')">حذف</button></div></div>`).join(''):'<p class="admin-muted">لا توجد مقالات محفوظة حتى الآن. أضيفي أول مقال من النموذج أعلاه.</p>';
+ }catch(error){box.innerHTML='<p class="admin-muted">تعذر تحميل المقالات. تأكدي من تشغيل ملف إعداد مدونات باونتي في Supabase.</p>';setAdminStatus(error.message||'تعذر تحميل المقالات.',true);}
+}
+function resetAdminArticleForm(){const form=document.getElementById('adminArticleForm');if(form)form.reset();document.getElementById('articleRecordId').value='';document.getElementById('articleAdminEmoji').value='📝';document.getElementById('articleAdminReadMinutes').value='3';document.getElementById('articleAdminPublished').checked=true;document.getElementById('adminArticleFormTitle').textContent='إضافة مقال جديد';document.getElementById('adminArticleSaveButton').textContent='حفظ المقال';}
+function editAdminArticle(id){
+ const row=adminArticleRows.find(x=>String(x.id)===String(id));if(!row)return;
+ document.getElementById('articleRecordId').value=row.id;
+ const fields={articleAdminTitle:row.title,articleAdminCategory:row.category,articleAdminEmoji:row.emoji||'📝',articleAdminReadMinutes:row.read_minutes||3,articleAdminExcerpt:row.excerpt,articleAdminContent:row.content};
+ Object.entries(fields).forEach(([key,value])=>document.getElementById(key).value=value??'');
+ document.getElementById('articleAdminPublished').checked=row.status==='published';
+ document.getElementById('adminArticleFormTitle').textContent='تعديل المقال';document.getElementById('adminArticleSaveButton').textContent='حفظ التعديلات';
+ document.getElementById('adminArticleFormTitle').scrollIntoView({behavior:'smooth',block:'center'});
+}
+async function saveAdminArticle(event){
+  if(event){event.preventDefault();event.stopPropagation();}
+  const form=document.getElementById('adminArticleForm');
+  const button=document.getElementById('adminArticleSaveButton');
+  if(!form||!button)return;
+  if(!form.reportValidity())return;
+  if(button.dataset.saving==='1')return;
+  button.dataset.saving='1';button.disabled=true;
+  const originalText=button.textContent;button.textContent='جارٍ الحفظ...';
+  const id=document.getElementById('articleRecordId').value;
+  const payload={
+   title:document.getElementById('articleAdminTitle').value.trim(),
+   category:document.getElementById('articleAdminCategory').value.trim(),
+   emoji:document.getElementById('articleAdminEmoji').value.trim()||'📝',
+   read_minutes:Math.max(1,Math.min(60,Number(document.getElementById('articleAdminReadMinutes').value)||3)),
+   excerpt:document.getElementById('articleAdminExcerpt').value.trim(),
+   content:document.getElementById('articleAdminContent').value.trim(),
+   status:document.getElementById('articleAdminPublished').checked?'published':'draft',
+   updated_at:new Date().toISOString()
+  };
+  try{
+   setAdminStatus('جارٍ حفظ المقال في قاعدة البيانات...');
+   await ensureSupabaseClient();
+   const {data:{session},error:sessionError}=await supabaseClient.auth.getSession();
+   if(sessionError)throw sessionError;
+   if(session?.user?.email?.toLowerCase()!=='bounty.ksa@outlook.com')
+    throw new Error('انتهت جلسة الإدارة أو لم يتم تسجيل الدخول بالحساب المعتمد. سجّلي الدخول مرة أخرى.');
+   const result=id
+    ? await supabaseClient.from('blog_posts').update(payload).eq('id',id)
+    : await supabaseClient.from('blog_posts').insert(payload);
+   if(result.error)throw result.error;
+   resetAdminArticleForm();
+   await loadAdminArticles();
+   await loadPublicArticles();
+   setAdminStatus(id?'تم تحديث المقال بنجاح.':'تمت إضافة المقال بنجاح.');
+  }catch(error){
+   console.error('Bounty article save failed:',error);
+   const message=error?.message||'تعذر حفظ المقال.';
+   const setupHint=/blog_posts|permission|policy|schema cache|relation|does not exist|not found/i.test(message)
+    ? ' تأكدي من تشغيل ملف Bounty_blog_fix.sql في Supabase SQL Editor ثم اضغطي Run.'
+    : '';
+   setAdminStatus(message+setupHint,true);
+  }finally{
+   button.disabled=false;button.dataset.saving='0';button.textContent=originalText;
+  }
+}
+
+async function deleteAdminArticle(id){
+ const row=adminArticleRows.find(x=>String(x.id)===String(id));if(!row||!confirm(`هل تريدين حذف مقال «${row.title}»؟ لا يمكن التراجع عن الحذف.`))return;
+ try{const {error}=await supabaseClient.from('blog_posts').delete().eq('id',id);if(error)throw error;await loadAdminArticles();await loadPublicArticles();setAdminStatus('تم حذف المقال.');}
+ catch(error){setAdminStatus(error.message||'تعذر حذف المقال.',true);}
+}
+
+function readArticle(i){const article=liveArticles[i]||articles[i];document.getElementById('articleTitle').textContent=article.title;document.getElementById('articleText').textContent=article.content||article.text||'';document.getElementById('articleModal').classList.add('open');}
+// legacy readArticle implementation removed
+function _legacyReadArticle(i){const a=articles[i];if(a)readArticle(i);}
 function closeArticle(){document.getElementById('articleModal').classList.remove('open');}
 function toWhatsAppNumber(value){let digits=String(value||'').replace(/\\D/g,'');if(digits.startsWith('00'))digits=digits.slice(2);if(digits.startsWith('0'))digits='966'+digits.slice(1);else if(digits.startsWith('5'))digits='966'+digits;return digits;}
 function showListing(id){const x=listings.find(v=>String(v.id)===String(id));if(!x)return;document.getElementById('listingTitle').textContent=x.name;const waNumber=toWhatsAppNumber(x.phone);const phone=waNumber?`<p><b>التواصل عبر واتساب:</b> <a style="color:var(--brand)" href="https://wa.me/${waNumber}" target="_blank" rel="noopener noreferrer">${escapeHTML(x.phone)}</a></p>`:'';const website=x.website?`<p><b>الموقع الإلكتروني:</b> <a style="color:var(--brand)" href="${escapeHTML(x.website)}" target="_blank" rel="noopener">زيارة الموقع</a></p>`:'';const maps=x.google_maps_url?`<p><b>موقع المتجر:</b> <a style="color:var(--brand)" href="${escapeHTML(x.google_maps_url)}" target="_blank" rel="noopener">عرض على خرائط Google</a></p>`:'';document.getElementById('listingDetails').innerHTML=`<p>${escapeHTML(x.desc)}</p><p><b>التصنيف:</b> ${escapeHTML(x.type)}</p><p><b>المنطقة:</b> ${escapeHTML(x.region)}</p>${x.address?`<p><b>الموقع:</b> ${escapeHTML(x.address)}</p>`:''}${phone}${website}${maps}`;document.getElementById('listingModal').classList.add('open');}
@@ -1482,7 +1603,7 @@ async function initAdminPage(){
   const allowed=session?.user?.email?.toLowerCase()==='bounty.ksa@outlook.com';
   showAdminState(!!allowed);
   if(session&&!allowed){await supabaseClient.auth.signOut();showAdminState(false);setAdminLoginStatus('هذا الحساب غير مخوّل لإدارة باونتي.',true);return;}
-  if(allowed){await loadAdminActivities();await loadAdminPicks();}
+  if(allowed){await loadAdminActivities();await loadAdminPicks();await loadAdminArticles();}
  }catch(error){showAdminState(false);setAdminLoginStatus(error.message||'تعذر التحقق من جلسة الدخول.',true);}
 }
 
@@ -1494,6 +1615,13 @@ function openAdminSection(sectionId,targetId){
   if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
  });
 }
+document.querySelectorAll('.admin-accordion-section').forEach(section=>{
+ section.addEventListener('toggle',()=>{
+  if(section.open){
+   document.querySelectorAll('.admin-accordion-section').forEach(other=>{if(other!==section)other.open=false;});
+  }
+ });
+});
 async function adminSignIn(event){
  event.preventDefault();
  const button=document.getElementById('adminLoginButton');button.disabled=true;button.textContent='جارٍ التحقق...';
@@ -1504,7 +1632,7 @@ async function adminSignIn(event){
   const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
   if(error)throw error;
   if(data.user?.email?.toLowerCase()!=='bounty.ksa@outlook.com'){await supabaseClient.auth.signOut();throw new Error('هذا الحساب غير مخوّل لإدارة باونتي.');}
-  document.getElementById('adminPassword').value='';showAdminState(true);setAdminStatus('مرحبًا بك. يمكنك الآن إدارة أنشطة باونتي.');await loadAdminActivities();await loadAdminPicks();
+  document.getElementById('adminPassword').value='';showAdminState(true);setAdminStatus('مرحبًا بك. يمكنك الآن إدارة أنشطة باونتي.');await loadAdminActivities();await loadAdminPicks();await loadAdminArticles();
  }catch(error){setAdminLoginStatus(error.message||'تعذر تسجيل الدخول. تحققي من البريد وكلمة المرور.',true);}
  finally{button.disabled=false;button.textContent='دخول لوحة الإدارة';}
 }
@@ -1519,33 +1647,13 @@ async function loadAdminActivities(){
   setAdminStatus(`عدد الأنشطة المسجلة: ${adminRows.length}`);
  }catch(error){box.innerHTML='<p class="admin-muted">تعذر تحميل الأنشطة.</p>';setAdminStatus(error.message||'تحققي من إعدادات صلاحيات Supabase.',true);}
 }
-const SAUDI_REGION_CITIES={
- 'الرياض':['الرياض','الخرج','الدرعية','الدوادمي','المجمعة','القويعية','الأفلاج','وادي الدواسر','الزلفي','شقراء','عفيف','حوطة بني تميم','السليل','ضرما','المزاحمية','رماح','ثادق','حريملاء','الحريق','الغاط'],
- 'مكة المكرمة':['مكة المكرمة','جدة','الطائف','رابغ','القنفذة','الليث','الجموم','خليص','الكامل','الخرمة','رنية','تربة','ميسان','أضم','العرضيات','بحرة'],
- 'المدينة المنورة':['المدينة المنورة','ينبع','العلا','مهد الذهب','الحناكية','خيبر','بدر','العيص','وادي الفرع'],
- 'القصيم':['بريدة','عنيزة','الرس','المذنب','البكيرية','البدائع','رياض الخبراء','الأسياح','عيون الجواء','النبهانية','الشماسية','ضرية','عقلة الصقور'],
- 'المنطقة الشرقية':['الدمام','الخبر','الظهران','الأحساء','الهفوف','المبرز','الجبيل','القطيف','رأس تنورة','بقيق','الخفجي','حفر الباطن','النعيرية','قرية العليا','العديد'],
- 'عسير':['أبها','خميس مشيط','بيشة','محايل عسير','النماص','ظهران الجنوب','سراة عبيدة','رجال ألمع','أحد رفيدة','بلقرن','تثليث','البرك','بارق','المجاردة','تنومة'],
- 'تبوك':['تبوك','الوجه','ضباء','تيماء','أملج','حقل','البدع'],
- 'حائل':['حائل','بقعاء','الغزالة','الشنان','الشملي','موقق','سميراء','السليمي'],
- 'الحدود الشمالية':['عرعر','رفحاء','طريف','العويقيلة'],
- 'جازان':['جيزان','صبيا','أبو عريش','صامطة','أحد المسارحة','بيش','الدرب','العارضة','الريث','ضمد','فرسان','الحرث','فيفاء','هروب','الداير'],
- 'نجران':['نجران','شرورة','حبونا','بدر الجنوب','يدمة','ثار','خباش'],
- 'الباحة':['الباحة','بلجرشي','المندق','المخواة','قلوة','العقيق','القرى','بني حسن','الحجرة','غامد الزناد'],
- 'الجوف':['سكاكا','القريات','دومة الجندل','طبرجل']
-};
 function populateAdminRegions(selectedRegion='',selectedCity=''){
- const regionSelect=document.getElementById('adminRegion');
- const citySelect=document.getElementById('adminCity');
- if(!regionSelect||!citySelect)return;
- regionSelect.innerHTML='<option value="">اختاري المنطقة</option>'+Object.keys(SAUDI_REGION_CITIES).map(name=>`<option value="${escapeHTML(name)}">${escapeHTML(name)}</option>`).join('');
- regionSelect.value=selectedRegion||'';
- const cities=SAUDI_REGION_CITIES[regionSelect.value]||[];
- citySelect.innerHTML='<option value="">اختاري المدينة</option>'+cities.map(name=>`<option value="${escapeHTML(name)}">${escapeHTML(name)}</option>`).join('');
- citySelect.disabled=!cities.length;
- citySelect.value=cities.includes(selectedCity)?selectedCity:'';
+ const regionField=document.getElementById('adminRegion');
+ const cityField=document.getElementById('adminCity');
+ if(regionField)regionField.value=selectedRegion||'';
+ if(cityField)cityField.value=selectedCity||'';
 }
-function handleAdminRegionChange(){populateAdminRegions(document.getElementById('adminRegion').value,'');}
+function handleAdminRegionChange(){}
 function splitStoredRegion(value){
  const text=String(value||'').trim();
  const parts=text.split(/\s*[-–—]\s*/);
@@ -1581,7 +1689,6 @@ async function deleteAdminActivity(id){
 }
 
 
-let adminBlogRows=[];
 let adminPickRows=[];
 const PICK_IMAGE_BUCKET='bounty-pick-images';
 function selectedPickClassifications(){return [...document.querySelectorAll('#pickAdminClassifications input[type="checkbox"]:checked')].map(el=>el.value);}
@@ -1661,48 +1768,15 @@ async function deleteAdminPick(id){
  }catch(error){setAdminStatus(error.message||'تعذر حذف المنتج.',true);}
 }
 
-async function loadAdminBlogPosts(){
- const box=document.getElementById('adminBlogList');if(!box)return;box.innerHTML='<p class="admin-muted">جارٍ تحميل المقالات...</p>';
- try{
-  const {data,error}=await supabaseClient.from('blog_posts').select('*').order('created_at',{ascending:false});
-  if(error)throw error;adminBlogRows=data||[];
-  box.innerHTML=adminBlogRows.length?adminBlogRows.map(row=>`<div class="admin-item"><div><strong>${escapeHTML(row.title)}</strong><small>${escapeHTML(row.category||'بدون تصنيف')} · ${row.status==='published'?'منشور':'مسودة'} · ${Number(row.read_minutes)||3} دقائق</small></div><div class="admin-item-actions"><button class="admin-secondary" type="button" onclick="editAdminBlogPost('${String(row.id).replace(/'/g,'')}')">تعديل</button><button class="admin-danger" type="button" onclick="deleteAdminBlogPost('${String(row.id).replace(/'/g,'')}')">حذف</button></div></div>`).join(''):'<p class="admin-muted">لا توجد مقالات بعد. أضيفي أول مقال من النموذج أعلاه.</p>';
- }catch(error){box.innerHTML='<p class="admin-muted">تعذر تحميل المقالات. شغّلي ملف إعداد جدول المدونة في Supabase أولًا.</p>';setAdminStatus(error.message||'تعذر تحميل المدونة.',true);}
+const adminArticleFormElement=document.getElementById('adminArticleForm');
+if(adminArticleFormElement){
+ adminArticleFormElement.addEventListener('submit',saveAdminArticle);
 }
-function resetAdminBlogForm(){const f=document.getElementById('adminBlogForm');if(f)f.reset();document.getElementById('blogRecordId').value='';document.getElementById('blogAdminMinutes').value='3';document.getElementById('blogAdminFormTitle').textContent='إضافة مقال جديد';document.getElementById('blogAdminSaveButton').textContent='حفظ المقال';}
-function editAdminBlogPost(id){
- const row=adminBlogRows.find(x=>String(x.id)===String(id));if(!row)return;
- document.getElementById('blogRecordId').value=row.id;
- const map={blogAdminTitle:row.title,blogAdminCategory:row.category,blogAdminMinutes:row.read_minutes,blogAdminImage:row.image_url,blogAdminExcerpt:row.excerpt,blogAdminContent:row.content,blogAdminStatus:row.status,blogAdminEmoji:row.emoji};
- Object.entries(map).forEach(([k,v])=>document.getElementById(k).value=v??'');
- document.getElementById('blogAdminFormTitle').textContent='تعديل المقال';document.getElementById('blogAdminSaveButton').textContent='حفظ التعديلات';document.getElementById('blogAdminFormTitle').scrollIntoView({behavior:'smooth',block:'center'});
-}
-async function saveAdminBlogPost(event){
- event.preventDefault();const btn=document.getElementById('blogAdminSaveButton');btn.disabled=true;
- const payload={title:document.getElementById('blogAdminTitle').value.trim(),category:document.getElementById('blogAdminCategory').value.trim(),read_minutes:Number(document.getElementById('blogAdminMinutes').value)||3,image_url:document.getElementById('blogAdminImage').value.trim()||null,excerpt:document.getElementById('blogAdminExcerpt').value.trim(),content:document.getElementById('blogAdminContent').value.trim(),status:document.getElementById('blogAdminStatus').value,emoji:document.getElementById('blogAdminEmoji').value.trim()||null,updated_at:new Date().toISOString()};
- const id=document.getElementById('blogRecordId').value;
- try{
-  let result;
-  if(id){
-   result=await supabaseClient.from('blog_posts').update(payload).eq('id',id).select('*').single();
-  }else{
-   result=await supabaseClient.from('blog_posts').insert(payload).select('*').single();
-  }
-  if(result.error)throw result.error;
-  resetAdminBlogForm();
-  await loadAdminBlogPosts();
-  setAdminStatus(id?'تم تحديث المقال.':'تمت إضافة المقال ونشره بنجاح.');
- }catch(error){
-  console.error('Blog save failed:',error);
-  setAdminStatus((error.message||'تعذر حفظ المقال.')+' — تحققي من تشغيل إعداد المدونة وصلاحيات الحساب.',true);
- }
- finally{btn.disabled=false;btn.textContent=document.getElementById('blogRecordId').value?'حفظ التعديلات':'حفظ المقال';}
-}
-async function deleteAdminBlogPost(id){const row=adminBlogRows.find(x=>String(x.id)===String(id));if(!row||!confirm(`هل تريدين حذف مقال «${row.title}»؟ لا يمكن التراجع عن الحذف.`))return;try{const {error}=await supabaseClient.from('blog_posts').delete().eq('id',id);if(error)throw error;await loadAdminBlogPosts();setAdminStatus('تم حذف المقال.');}catch(error){setAdminStatus(error.message||'تعذر حذف المقال.',true);}}
 
 setupRegions();
 renderListings();
 showPage('adminPage');
+loadPublicArticles();
 
 function sendBountyContactMessage(){
  const topic=document.getElementById('contactTopic')?.value||'رسالة';
