@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#08745d">
 <meta name="description" content="باونتي دليلك للحياة الصحية. ابحث عن المنتجات والجهات والخيارات الصحية في مكان واحد.">
-<title>باونتي | دليلك للحياة الصحية</title>
+<title>إدارة باونتي | لوحة الإدارة</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
 :root{
@@ -728,9 +728,32 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 .contact-message-form label{font-weight:700;color:var(--ink)}
 .contact-message-form select,.contact-message-form textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px;font:inherit;background:#fff;color:var(--ink)}
 .contact-send-button{border:0;border-radius:12px;background:var(--brand);color:#fff;padding:12px 18px;font:inherit;font-weight:800;cursor:pointer}
-.admin-shortcuts{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 22px}
+.admin-shortcuts{display:none!important;gap:10px;flex-wrap:wrap;margin:14px 0 22px}
 .admin-shortcuts a{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:12px;background:#e8f1e8;color:var(--brand);font-weight:800;text-decoration:none}
 @media(max-width:700px){.bounty-choice-grid{grid-template-columns:1fr}.bounty-choice-card{grid-template-columns:42% 58%;min-height:180px}.bounty-choice-card>img{min-height:180px}.bounty-choice-copy{padding:13px}.bounty-choice-copy h3{font-size:17px}.bounty-choice-filters{gap:8px}.bounty-choice-filters button{padding:9px 15px;font-size:14px}}
+
+
+/* لوحة الإدارة: بطاقات كبيرة تملأ المساحة، والنموذج يظهر عند اختيار البطاقة */
+.admin-page .wrap{width:min(1500px,96%)}
+.admin-shell{max-width:none;width:100%;padding:clamp(18px,3vw,36px)}
+.admin-accordion{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:24px;align-items:start}
+.admin-accordion-section{border:1px solid #dce9df;border-radius:24px;background:#fff;overflow:hidden;box-shadow:0 8px 24px rgba(18,75,62,.08);min-width:0;transition:box-shadow .2s,border-color .2s}
+.admin-accordion-section>summary{list-style:none;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px;padding:32px 20px;cursor:pointer;background:linear-gradient(145deg,#f4faf5,#e7f2e9);color:#176b58;font-weight:900;font-size:clamp(19px,2vw,25px);min-height:250px;position:relative}
+.admin-accordion-section>summary::-webkit-details-marker{display:none}
+.admin-accordion-section>summary::before{display:grid;place-items:center;width:86px;height:86px;border-radius:25px;background:#fff;font-size:43px;box-shadow:0 5px 18px rgba(18,75,62,.09)}
+.admin-accordion-section:nth-child(1)>summary::before{content:"🌿"}
+.admin-accordion-section:nth-child(2)>summary::before{content:"🛍️"}
+.admin-accordion-section:nth-child(3)>summary::before{content:"📝"}
+.admin-accordion-section>summary::after{content:"اضغطي لفتح القسم  ＋";display:block;color:#54766a;font-size:14px;font-weight:700;margin-top:2px}
+.admin-accordion-section[open]{grid-column:1/-1;border-color:#9bc9ad;box-shadow:0 10px 30px rgba(18,75,62,.11)}
+.admin-accordion-section[open]>summary{min-height:76px;flex-direction:row;justify-content:space-between;text-align:right;padding:18px 24px;background:#eaf4ed;border-bottom:1px solid #dce9df;font-size:20px}
+.admin-accordion-section[open]>summary::before{width:42px;height:42px;border-radius:12px;font-size:23px;box-shadow:none}
+.admin-accordion-section[open]>summary::after{content:"إغلاق القسم  −";margin:0;font-size:13px}
+.admin-accordion-content{padding:clamp(16px,2.5vw,30px)}
+.admin-accordion-content>h3:first-child{margin-top:0}
+@media(max-width:850px){.admin-accordion{grid-template-columns:1fr;gap:14px}.admin-accordion-section>summary{min-height:150px;flex-direction:row;justify-content:flex-start;text-align:right;padding:22px}.admin-accordion-section>summary::before{width:66px;height:66px;border-radius:19px;font-size:34px}.admin-accordion-section>summary::after{margin-right:auto}.admin-accordion-section[open]{grid-column:1}}
+@media(max-width:650px){.admin-page .wrap{width:94%}.admin-shell{padding:14px}.admin-accordion-section>summary{min-height:135px;padding:18px;font-size:18px}.admin-accordion-content{padding:14px}.admin-accordion-section[open]>summary{padding:13px;font-size:17px}}
+@media(max-width:650px){.admin-accordion-section>summary{padding:14px;font-size:15px}.admin-accordion-content{padding:13px}}
 
 </style>
 
@@ -740,8 +763,34 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 .pick-classification-options input{width:18px;height:18px;accent-color:#176b58}
 #pickAdminImagePreview img{max-width:140px;max-height:110px;object-fit:cover;border-radius:10px;margin-top:8px}
 </style>
+
+<style id="admin-only-portal-overrides">
+/* Admin-only portal: public publishing pages stay in the public site, not this URL. */
+body.admin-only-mode > header,
+body.admin-only-mode > .drawer-backdrop,
+body.admin-only-mode > .side-drawer,
+body.admin-only-mode > footer,
+body.admin-only-mode > .modal {display:none !important;}
+body.admin-only-mode main > section:not(#adminPage) {display:none !important;}
+body.admin-only-mode #adminPage {display:block !important; min-height:100vh; padding:clamp(26px,5vh,64px) 0 48px; background:var(--cream,#fbfcf8);}
+body.admin-only-mode .admin-page .wrap {width:min(1600px,96%);}
+body.admin-only-mode .admin-shell {max-width:none; width:100%; min-height:calc(100vh - 170px); padding:clamp(20px,3vw,42px);}
+body.admin-only-mode .admin-accordion {grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(14px,2vw,26px);}
+body.admin-only-mode .admin-accordion-section > summary {min-height:clamp(300px,48vh,520px); padding:clamp(24px,3vw,44px) 20px; font-size:clamp(20px,2.2vw,29px);}
+body.admin-only-mode .admin-accordion-section > summary::before {width:clamp(82px,8vw,112px); height:clamp(82px,8vw,112px); font-size:clamp(42px,4vw,58px);}
+body.admin-only-mode .admin-accordion-section[open] {grid-column:1/-1;}
+body.admin-only-mode .admin-accordion-content {padding:clamp(18px,3vw,36px);}
+body.admin-only-mode .admin-top {align-items:center;}
+body.admin-only-mode .admin-status {margin:16px 0 22px;}
+@media(max-width:850px){
+ body.admin-only-mode .admin-accordion {grid-template-columns:1fr; gap:14px;}
+ body.admin-only-mode .admin-accordion-section > summary {min-height:clamp(150px,22vh,230px);}
+ body.admin-only-mode .admin-shell {min-height:0;}
+}
+</style>
+
 </head>
-<body>
+<body class="admin-only-mode">
 
 <header class="bounty-header">
   <div class="utility-row">
@@ -973,11 +1022,11 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 
 <section class="admin-page page-hidden" id="adminPage">
  <div class="wrap">
-  <div class="action-section-heading"><span>⚙</span><div><small>مساحة خاصة بإدارة الموقع</small><h2>إدارة باونتي</h2></div></div>
+  <div class="action-section-heading"><span>⚙</span><div><small>بوابة إدارة ونشر بيانات باونتي</small><h2>إدارة باونتي</h2></div></div>
   <div class="admin-shell">
    <div id="adminLoginPanel" class="admin-login">
     <h2>تسجيل الدخول</h2>
-    <p class="admin-muted">هذه الصفحة مخصصة لإدارة أنشطة باونتي ومدونتها. سجّلي الدخول بحساب الإدارة المعتمد.</p>
+    <p class="admin-muted">هذه البوابة مخصصة لإضافة وتعديل وحذف الأنشطة ومنتجات مختارات باونتي وإدارة المقالات. سجّلي الدخول بحساب الإدارة المعتمد.</p>
     <form id="adminLoginForm">
      <div class="admin-field"><label for="adminEmail">البريد الإلكتروني</label><input id="adminEmail" type="email" autocomplete="username" value="bounty.ksa@outlook.com" required></div>
      <div class="admin-field"><label for="adminPassword">كلمة المرور</label><input id="adminPassword" type="password" autocomplete="current-password" required></div>
@@ -986,17 +1035,25 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
     <div class="admin-status" id="adminLoginStatus" aria-live="polite">الدخول متاح لحساب الإدارة فقط.</div>
    </div>
    <div id="adminDashboard" hidden>
-    <div class="admin-top"><div><h2>لوحة التحكم</h2><p class="admin-muted">أضيفي الأنشطة وعدّلي بياناتها أو احذفيها. تحفظ التغييرات مباشرة في الدليل.</p></div><button class="admin-secondary" type="button" onclick="adminSignOut()">تسجيل الخروج</button></div>
+    <div class="admin-top"><div><h2>لوحة التحكم</h2><p class="admin-muted">أضيفي البيانات أو عدّليها أو احذفيها. تُحفظ التغييرات مباشرة في موقع باونتي.</p></div><button class="admin-secondary" type="button" onclick="adminSignOut()">تسجيل الخروج</button></div>
     <div class="admin-status" id="adminStatus" aria-live="polite">تم تسجيل الدخول.</div>
-    <div class="admin-shortcuts"><a href="#adminActivityForm" onclick="document.getElementById('adminActivityForm').scrollIntoView({behavior:'smooth'});return false">إضافة نشاط</a><a href="#adminPickForm" onclick="document.getElementById('adminPickForm').scrollIntoView({behavior:'smooth'});return false">إضافة منتج لمختارات باونتي</a><a href="#adminBlogForm" onclick="document.getElementById('adminBlogForm').scrollIntoView({behavior:'smooth'});return false">إدارة المدونة</a></div>
+    <div class="admin-shortcuts">
+     <a href="#adminActivityForm" onclick="openAdminSection('adminActivitiesSection','adminActivityForm');return false">إضافة نشاط</a>
+     <a href="#adminPickForm" onclick="openAdminSection('adminPicksSection','adminPickForm');return false">إضافة منتج لمختارات باونتي</a>
+     <a href="#adminBlogForm" onclick="openAdminSection('adminBlogSection','adminBlogForm');return false">إدارة المدونة</a>
+    </div>
+    <div class="admin-accordion">
+     <details class="admin-accordion-section" id="adminActivitiesSection">
+      <summary>إدارة الأنشطة والدليل</summary>
+      <div class="admin-accordion-content">
     <h3 id="adminFormTitle">إضافة نشاط جديد</h3>
     <form id="adminActivityForm">
      <input type="hidden" id="adminRecordId">
      <div class="admin-form-grid">
       <div class="admin-field"><label for="adminName">اسم النشاط *</label><input id="adminName" required maxlength="120"></div>
       <div class="admin-field"><label for="adminType">التصنيف *</label><select id="adminType" required><option value="">اختاري التصنيف</option><option>مزارع</option><option>متاجر</option><option>مخابز</option><option>مطاعم ومقاهٍ</option><option>أسر منتجة</option><option>مكملات غذائية</option><option>علاج طبيعي</option><option>رياضة</option><option value="متفرقات">قسم الأواني والطهي</option></select></div>
-      <div class="admin-field"><label for="adminRegion">المنطقة *</label><input id="adminRegion" type="text" required maxlength="100" placeholder="اكتبي المنطقة"></div>
-      <div class="admin-field"><label for="adminCity">المدينة *</label><input id="adminCity" type="text" required maxlength="100" placeholder="اكتبي المدينة"></div>
+      <div class="admin-field"><label for="adminRegion">المنطقة *</label><select id="adminRegion" required><option value="">اختاري المنطقة</option></select></div>
+      <div class="admin-field"><label for="adminCity">المدينة *</label><select id="adminCity" required disabled><option value="">اختاري المنطقة أولاً</option></select></div>
       <div class="admin-field"><label for="adminPhone">رقم التواصل (يفتح واتساب)</label><input id="adminPhone" type="tel" maxlength="30" placeholder="05xxxxxxxx"></div>
       <div class="admin-field full"><label for="adminAddress">العنوان أو الموقع *</label><input id="adminAddress" required maxlength="250" placeholder="المدينة والحي أو وصف الموقع"></div>
       <div class="admin-field full"><label for="adminDescription">وصف النشاط *</label><textarea id="adminDescription" required maxlength="700"></textarea></div>
@@ -1009,7 +1066,12 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
     <hr style="border:0;border-top:1px solid #e5eee7;margin:26px 0">
     <div class="admin-top"><h3>الأنشطة المسجلة</h3><button class="admin-secondary" type="button" onclick="loadAdminActivities()">تحديث القائمة</button></div>
     <div class="admin-list" id="adminActivityList" aria-live="polite"></div>
-    <hr style="border:0;border-top:1px solid #e5eee7;margin:30px 0">
+
+      </div>
+     </details>
+     <details class="admin-accordion-section" id="adminPicksSection">
+      <summary>مختارات باونتي</summary>
+      <div class="admin-accordion-content">
     <div class="admin-top"><div><h3>مختارات باونتي</h3><p class="admin-muted">أضيفي المنتجات التي تمت مراجعتها لتظهر في صفحة مختارات باونتي بنفس تصميم البطاقات الحالي.</p></div><button class="admin-secondary" type="button" onclick="loadAdminPicks()">تحديث المنتجات</button></div>
     <h3 id="adminPickFormTitle">إضافة منتج جديد</h3>
     <form id="adminPickForm" novalidate>
@@ -1031,7 +1093,12 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
     </form>
     <div class="admin-top" style="margin-top:25px"><h3>المنتجات المسجلة في مختارات باونتي</h3></div>
     <div class="admin-list" id="adminPickList" aria-live="polite"></div>
-    <hr style="border:0;border-top:1px solid #e5eee7;margin:30px 0">
+
+      </div>
+     </details>
+     <details class="admin-accordion-section" id="adminBlogSection">
+      <summary>إدارة المدونة</summary>
+      <div class="admin-accordion-content">
     <div class="admin-top"><div><h3>إدارة المدونة</h3><p class="admin-muted">أضيفي المقالات وانشريها لتظهر تلقائيًا في مدونة باونتي.</p></div><button class="admin-secondary" type="button" onclick="loadAdminBlogPosts()">تحديث المقالات</button></div>
     <h3 id="blogAdminFormTitle">إضافة مقال جديد</h3>
     <form id="adminBlogForm">
@@ -1050,6 +1117,9 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
     </form>
     <div class="admin-top" style="margin-top:25px"><h3>المقالات المسجلة</h3></div>
     <div class="admin-list" id="adminBlogList" aria-live="polite"></div>
+      </div>
+     </details>
+    </div>
    </div>
   </div>
  </div>
@@ -1416,6 +1486,15 @@ async function initAdminPage(){
   if(allowed){await loadAdminActivities();await loadAdminPicks();await loadAdminBlogPosts();}
  }catch(error){showAdminState(false);setAdminLoginStatus(error.message||'تعذر التحقق من جلسة الدخول.',true);}
 }
+
+function openAdminSection(sectionId,targetId){
+ const section=document.getElementById(sectionId);
+ if(section) section.open=true;
+ requestAnimationFrame(()=>{
+  const target=document.getElementById(targetId);
+  if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+ });
+}
 async function adminSignIn(event){
  event.preventDefault();
  const button=document.getElementById('adminLoginButton');button.disabled=true;button.textContent='جارٍ التحقق...';
@@ -1429,7 +1508,8 @@ async function adminSignIn(event){
  }catch(error){setAdminLoginStatus(error.message||'تعذر تسجيل الدخول. تحققي من البريد وكلمة المرور.',true);}
  finally{button.disabled=false;button.textContent='دخول لوحة الإدارة';}
 }
-
+document.getElementById('adminRegion')?.addEventListener('change',handleAdminRegionChange);
+populateAdminRegions();
 async function adminSignOut(){await supabaseClient.auth.signOut();showAdminState(false);resetAdminForm();setAdminLoginStatus('تم تسجيل الخروج.');}
 async function loadAdminActivities(){
  const box=document.getElementById('adminActivityList');box.innerHTML='<p class="admin-muted">جارٍ تحميل الأنشطة...</p>';
@@ -1440,19 +1520,46 @@ async function loadAdminActivities(){
   setAdminStatus(`عدد الأنشطة المسجلة: ${adminRows.length}`);
  }catch(error){box.innerHTML='<p class="admin-muted">تعذر تحميل الأنشطة.</p>';setAdminStatus(error.message||'تحققي من إعدادات صلاحيات Supabase.',true);}
 }
+const SAUDI_REGION_CITIES={
+ 'الرياض':['الرياض','الخرج','الدرعية','الدوادمي','المجمعة','القويعية','الأفلاج','وادي الدواسر','الزلفي','شقراء','عفيف','حوطة بني تميم','السليل','ضرما','المزاحمية','رماح','ثادق','حريملاء','الحريق','الغاط'],
+ 'مكة المكرمة':['مكة المكرمة','جدة','الطائف','رابغ','القنفذة','الليث','الجموم','خليص','الكامل','الخرمة','رنية','تربة','ميسان','أضم','العرضيات','بحرة'],
+ 'المدينة المنورة':['المدينة المنورة','ينبع','العلا','مهد الذهب','الحناكية','خيبر','بدر','العيص','وادي الفرع'],
+ 'القصيم':['بريدة','عنيزة','الرس','المذنب','البكيرية','البدائع','رياض الخبراء','الأسياح','عيون الجواء','النبهانية','الشماسية','ضرية','عقلة الصقور'],
+ 'المنطقة الشرقية':['الدمام','الخبر','الظهران','الأحساء','الهفوف','المبرز','الجبيل','القطيف','رأس تنورة','بقيق','الخفجي','حفر الباطن','النعيرية','قرية العليا','العديد'],
+ 'عسير':['أبها','خميس مشيط','بيشة','محايل عسير','النماص','ظهران الجنوب','سراة عبيدة','رجال ألمع','أحد رفيدة','بلقرن','تثليث','البرك','بارق','المجاردة','تنومة'],
+ 'تبوك':['تبوك','الوجه','ضباء','تيماء','أملج','حقل','البدع'],
+ 'حائل':['حائل','بقعاء','الغزالة','الشنان','الشملي','موقق','سميراء','السليمي'],
+ 'الحدود الشمالية':['عرعر','رفحاء','طريف','العويقيلة'],
+ 'جازان':['جيزان','صبيا','أبو عريش','صامطة','أحد المسارحة','بيش','الدرب','العارضة','الريث','ضمد','فرسان','الحرث','فيفاء','هروب','الداير'],
+ 'نجران':['نجران','شرورة','حبونا','بدر الجنوب','يدمة','ثار','خباش'],
+ 'الباحة':['الباحة','بلجرشي','المندق','المخواة','قلوة','العقيق','القرى','بني حسن','الحجرة','غامد الزناد'],
+ 'الجوف':['سكاكا','القريات','دومة الجندل','طبرجل']
+};
+function populateAdminRegions(selectedRegion='',selectedCity=''){
+ const regionSelect=document.getElementById('adminRegion');
+ const citySelect=document.getElementById('adminCity');
+ if(!regionSelect||!citySelect)return;
+ regionSelect.innerHTML='<option value="">اختاري المنطقة</option>'+Object.keys(SAUDI_REGION_CITIES).map(name=>`<option value="${escapeHTML(name)}">${escapeHTML(name)}</option>`).join('');
+ regionSelect.value=selectedRegion||'';
+ const cities=SAUDI_REGION_CITIES[regionSelect.value]||[];
+ citySelect.innerHTML='<option value="">اختاري المدينة</option>'+cities.map(name=>`<option value="${escapeHTML(name)}">${escapeHTML(name)}</option>`).join('');
+ citySelect.disabled=!cities.length;
+ citySelect.value=cities.includes(selectedCity)?selectedCity:'';
+}
+function handleAdminRegionChange(){populateAdminRegions(document.getElementById('adminRegion').value,'');}
 function splitStoredRegion(value){
  const text=String(value||'').trim();
  const parts=text.split(/\s*[-–—]\s*/);
  if(parts.length>1)return {region:parts.shift().trim(),city:parts.join(' - ').trim()};
  return {region:text,city:''};
 }
-function resetAdminForm(){const form=document.getElementById('adminActivityForm');if(form)form.reset();document.getElementById('adminRecordId').value='';document.getElementById('adminFormTitle').textContent='إضافة نشاط جديد';document.getElementById('adminSaveButton').textContent='حفظ النشاط';}
+function resetAdminForm(){const form=document.getElementById('adminActivityForm');if(form)form.reset();populateAdminRegions();document.getElementById('adminRecordId').value='';document.getElementById('adminFormTitle').textContent='إضافة نشاط جديد';document.getElementById('adminSaveButton').textContent='حفظ النشاط';}
 function editAdminActivity(id){
  const row=adminRows.find(item=>String(item.id)===String(id));if(!row)return;
  document.getElementById('adminRecordId').value=row.id;
  const location=splitStoredRegion(row.region);
  const fields={adminName:row.name,adminType:row.type,adminRegion:location.region,adminCity:location.city,adminPhone:row.phone,adminAddress:row.address,adminDescription:row.description,adminTags:row.tags,adminWebsite:row.website,adminMaps:row.google_maps_url};
- Object.entries(fields).forEach(([key,value])=>{document.getElementById(key).value=value||'';});
+ Object.entries(fields).forEach(([key,value])=>{if(key!=='adminRegion'&&key!=='adminCity')document.getElementById(key).value=value||'';});populateAdminRegions(location.region,location.city);
  document.getElementById('adminFormTitle').textContent='تعديل بيانات النشاط';document.getElementById('adminSaveButton').textContent='حفظ التعديلات';
  document.getElementById('adminFormTitle').scrollIntoView({behavior:'smooth',block:'center'});
 }
@@ -1597,7 +1704,6 @@ async function deleteAdminBlogPost(id){const row=adminBlogRows.find(x=>String(x.
 setupRegions();
 renderListings();
 showPage('adminPage');
-loadActivities();
 
 function sendBountyContactMessage(){
  const topic=document.getElementById('contactTopic')?.value||'رسالة';
