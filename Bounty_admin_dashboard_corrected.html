@@ -741,7 +741,7 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 .admin-accordion-section>summary::before{display:grid;place-items:center;width:86px;height:86px;border-radius:25px;background:#fff;font-size:43px;box-shadow:0 5px 18px rgba(18,75,62,.09)}
 .admin-accordion-section:nth-child(1)>summary::before{content:"🌿"}
 .admin-accordion-section:nth-child(2)>summary::before{content:"🛍️"}
-.admin-accordion-section:nth-child(3)>summary::before{content:"📝"}
+.admin-accordion-section:nth-child(3)>summary::before{content:"📝"}\n.admin-accordion-section:nth-child(4)>summary::before{content:"▶️"}
 .admin-article-preview{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid #e5eee7;border-radius:13px;background:#fbfdfb;margin:10px 0}
 .admin-article-preview>div:first-child{font-size:27px;min-width:42px;text-align:center}
 .admin-article-preview strong{display:block;color:#174b3a}
@@ -760,8 +760,8 @@ url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85'),u
 @media(max-width:650px){.admin-accordion-section>summary{padding:14px;font-size:15px}.admin-accordion-content{padding:13px}}
 
 
-@media(min-width:851px){.admin-accordion{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
-@media(min-width:851px){body.admin-only-mode .admin-accordion{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(min-width:851px){.admin-accordion{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+@media(min-width:851px){body.admin-only-mode .admin-accordion{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
 </style>
 
 <style>
@@ -1036,7 +1036,7 @@ body.admin-only-mode .admin-status {margin:16px 0 22px;}
   <div class="admin-shell">
    <div id="adminLoginPanel" class="admin-login">
     <h2>تسجيل الدخول</h2>
-    <p class="admin-muted">هذه البوابة مخصصة لإضافة وتعديل وحذف الأنشطة ومنتجات مختارات باونتي فقط. سجّلي الدخول بحساب الإدارة المعتمد.</p>
+    <p class="admin-muted">هذه البوابة مخصصة لإدارة الأنشطة والمتاجر والمنتجات المختارة ومقالات المدونة وقصص باونتي في أقسام مستقلة. سجّلي الدخول بحساب الإدارة المعتمد.</p>
     <form id="adminLoginForm">
      <div class="admin-field"><label for="adminEmail">البريد الإلكتروني</label><input id="adminEmail" type="email" autocomplete="username" value="bounty.ksa@outlook.com" required></div>
      <div class="admin-field"><label for="adminPassword">كلمة المرور</label><input id="adminPassword" type="password" autocomplete="current-password" required></div>
@@ -1049,7 +1049,7 @@ body.admin-only-mode .admin-status {margin:16px 0 22px;}
     <div class="admin-status" id="adminStatus" aria-live="polite">تم تسجيل الدخول.</div>
     <div class="admin-shortcuts">
      <a href="#adminActivityForm" onclick="openAdminSection('adminActivitiesSection','adminActivityForm');return false">إضافة نشاط</a>
-     <a href="#adminPickForm" onclick="openAdminSection('adminPicksSection','adminPickForm');return false">إضافة منتج لمختارات باونتي</a>
+     <a href="#adminPickForm" onclick="openAdminSection('adminPicksSection','adminPickForm');return false">إضافة منتج أو متجر مختار</a><a href="#adminArticleForm" onclick="openAdminStoryForm();return false">إضافة قصة باونتي</a>
     </div>
     <div class="admin-accordion">
      <details class="admin-accordion-section" id="adminActivitiesSection">
@@ -1088,14 +1088,14 @@ body.admin-only-mode .admin-status {margin:16px 0 22px;}
      <input type="hidden" id="pickExistingImageUrl">
      <input type="hidden" id="pickExistingImagePath">
      <div class="admin-form-grid">
-      <div class="admin-field full"><label for="pickAdminName">اسم المنتج أو اسم المتجر *</label><input id="pickAdminName" required maxlength="180" placeholder="اكتبي اسم المنتج أو المتجر"></div>
-      <div class="admin-field full"><label for="pickAdminImage">صورة المنتج *</label><input id="pickAdminImage" type="file" accept="image/*"><small class="admin-muted">ارفعي صورة واضحة للمنتج. الحد الأقصى 5 ميجابايت.</small><div id="pickAdminImagePreview" class="admin-muted"></div></div>
-      <div class="admin-field full"><label for="pickAdminDescription">شرح بسيط عن المنتج *</label><textarea id="pickAdminDescription" required maxlength="700" placeholder="نبذة مختصرة عن المنتج"></textarea></div>
+      <div class="admin-field"><label for="pickAdminKind">نوع المختار *</label><select id="pickAdminKind" required><option value="product">منتج مختار</option><option value="store">متجر مختار</option></select></div><div class="admin-field"><label for="pickAdminStoreName">اسم المتجر المرتبط بالمنتج</label><input id="pickAdminStoreName" maxlength="180" placeholder="اكتبي اسم المتجر إذا كان هذا منتجًا تابعًا له"></div><div class="admin-field full"><label for="pickAdminName">اسم المنتج أو اسم المتجر *</label><input id="pickAdminName" required maxlength="180" placeholder="اكتبي اسم المنتج أو المتجر"></div>
+      <div class="admin-field full"><label for="pickAdminImage" id="pickAdminImageLabel">صورة المنتج أو المتجر *</label><input id="pickAdminImage" type="file" accept="image/*"><small class="admin-muted">ارفعي صورة واضحة للمنتج. الحد الأقصى 5 ميجابايت.</small><div id="pickAdminImagePreview" class="admin-muted"></div></div>
+      <div class="admin-field full"><label for="pickAdminDescription" id="pickAdminDescriptionLabel">شرح بسيط عن المنتج *</label><textarea id="pickAdminDescription" required maxlength="700" placeholder="نبذة مختصرة عن المنتج"></textarea></div>
       <div class="admin-field"><label for="pickAdminPhone">رقم التواصل</label><input id="pickAdminPhone" type="tel" maxlength="30" placeholder="05xxxxxxxx"></div>
       <div class="admin-field"><label for="pickAdminMaps">رابط موقع Google Maps</label><input id="pickAdminMaps" type="url" maxlength="700" placeholder="https://maps.google.com/..."></div>
       <div class="admin-field full"><label for="pickAdminWebsite">رابط الموقع الإلكتروني</label><input id="pickAdminWebsite" type="url" maxlength="700" placeholder="https://..."></div>
-      <div class="admin-field full"><label>تصنيفات المنتج (يمكن اختيار أكثر من تصنيف) *</label><div class="pick-classification-options" id="pickAdminClassifications">
-       <label><input type="checkbox" value="عضوي"> عضوي</label><label><input type="checkbox" value="غير عضوي"> غير عضوي</label><label><input type="checkbox" value="طبيعي"> طبيعي</label><label><input type="checkbox" value="غير معدل وراثياً"> غير معدل وراثيًا</label><label><input type="checkbox" value="قليل المعالجة"> قليل المعالجة</label><label><input type="checkbox" value="بدون إضافات ضارة"> بدون إضافات ضارة</label><label><input type="checkbox" value="خالي من الجلوتين"> خالٍ من الجلوتين</label><label><input type="checkbox" value="مناسب للكيتو"> مناسب للكيتو</label><label><input type="checkbox" value="نظام الطيبات"> يتبع نظام الطيبات</label><label><input type="checkbox" value="لا يتبع نظام الطيبات"> لا يتبع نظام الطيبات</label><label><input type="checkbox" value="كارنيفور"> كارنيفور</label><label><input type="checkbox" value="Zero Gl"> Zero Gl</label>
+      <div class="admin-field full"><label>تصنيفات المنتج (اختياري؛ اتركيها فارغة إذا لم تُتحقق صفة محددة)</label><div class="pick-classification-options" id="pickAdminClassifications">
+       <label><input type="checkbox" value="عضوي"> عضوي</label><label><input type="checkbox" value="طبيعي"> طبيعي</label><label><input type="checkbox" value="غير معدل وراثياً"> غير معدل وراثيًا</label><label><input type="checkbox" value="قليل المعالجة"> قليل المعالجة</label><label><input type="checkbox" value="بدون إضافات ضارة"> بدون إضافات ضارة</label><label><input type="checkbox" value="خالي من الجلوتين"> خالٍ من الجلوتين</label><label><input type="checkbox" value="مناسب للكيتو"> مناسب للكيتو</label><label><input type="checkbox" value="نظام الطيبات"> يتبع نظام الطيبات</label><label><input type="checkbox" value="كارنيفور"> كارنيفور</label><label><input type="checkbox" value="Zero Gl"> Zero Gl</label>
       </div></div>
      </div>
      <div class="admin-actions"><button class="admin-primary" id="pickAdminSaveButton" type="submit">حفظ المنتج ونشره</button><button class="admin-secondary" type="button" onclick="resetAdminPickForm()">تفريغ الحقول</button></div>
@@ -1106,26 +1106,48 @@ body.admin-only-mode .admin-status {margin:16px 0 22px;}
       </div>
      </details>
      <details class="admin-accordion-section" id="adminArticlesSection">
-      <summary>إدارة المدونات</summary>
+      <summary>إدارة المدونة</summary>
       <div class="admin-accordion-content">
-       <div class="admin-top"><div><h3>إدارة مدونات باونتي</h3><p class="admin-muted">أضيفي المقالات وعدّليها أو احذفيها، وحددي ما يظهر للزوار في المدونة.</p></div><button class="admin-secondary" type="button" onclick="loadAdminArticles()">تحديث المقالات</button></div>
+       <div class="admin-top"><div><h3>إدارة المدونة</h3><p class="admin-muted">هذا القسم خاص بمقالات المدونة فقط. كل ما تضيفينه هنا يظهر في المدونة ولا يُضاف إلى قصص باونتي.</p></div><button class="admin-secondary" type="button" onclick="loadAdminArticles()">تحديث المقالات</button></div>
        <h3 id="adminArticleFormTitle">إضافة مقال جديد</h3>
        <form id="adminArticleForm">
         <input type="hidden" id="articleRecordId">
         <div class="admin-form-grid">
-         <div class="admin-field full"><label for="articleAdminTitle">عنوان المقال *</label><input id="articleAdminTitle" required maxlength="180" placeholder="اكتبي عنوان المقال"></div>
-         <div class="admin-field"><label for="articleAdminCategory">تصنيف المقال *</label><input id="articleAdminCategory" required maxlength="80" placeholder="مثل: التغذية، المنتجات"></div>
-         <div class="admin-field"><label for="articleAdminEmoji">رمز المقال</label><input id="articleAdminEmoji" maxlength="8" value="📝" placeholder="🌿"></div>
+         <div class="admin-field full"><label for="articleAdminTitle" id="articleAdminTitleLabel">عنوان المقال *</label><input id="articleAdminTitle" required maxlength="180" placeholder="اكتبي عنوان المقال"></div>
+         <div class="admin-field"><label for="articleAdminCategory">تصنيف المقال *</label><input id="articleAdminCategory" maxlength="80" placeholder="مثل: التغذية، المنتجات"></div>
+         <div class="admin-field full"><label for="articleAdminImage">صورة المقال</label><input id="articleAdminImage" type="file" accept="image/*"><input type="hidden" id="articleAdminImageUrl"><div id="articleAdminImagePreview" class="admin-muted"></div></div>
          <div class="admin-field"><label for="articleAdminReadMinutes">مدة القراءة بالدقائق</label><input id="articleAdminReadMinutes" type="number" min="1" max="60" value="3"></div>
-         <div class="admin-field full"><label for="articleAdminExcerpt">مقتطف يظهر في بطاقة المدونة *</label><textarea id="articleAdminExcerpt" required maxlength="500" placeholder="اكتبي نبذة قصيرة تشجع القارئ على فتح المقال"></textarea></div>
-         <div class="admin-field full"><label for="articleAdminContent">محتوى المقال الكامل *</label><textarea id="articleAdminContent" required maxlength="12000" style="min-height:190px" placeholder="اكتبي نص المقال هنا"></textarea></div>
+         <div class="admin-field full"><label for="articleAdminExcerpt" id="articleAdminExcerptLabel">نبذة مختصرة تظهر في البطاقة *</label><textarea id="articleAdminExcerpt" required maxlength="500" placeholder="اكتبي نبذة قصيرة تشجع القارئ على فتح المقال"></textarea></div>
+         <div class="admin-field full"><label for="articleAdminContent" id="articleAdminContentLabel">المحتوى الكامل *</label><textarea id="articleAdminContent" required maxlength="12000" style="min-height:190px" placeholder="اكتبي محتوى المقال هنا"></textarea></div>
          <div class="admin-field full"><label style="display:flex;align-items:center;gap:9px"><input id="articleAdminPublished" type="checkbox" checked style="width:auto"> نشر المقال للزوار</label></div>
         </div>
-        <div class="admin-actions"><button class="admin-primary" id="adminArticleSaveButton" type="submit">حفظ المقال</button><button class="admin-secondary" type="button" onclick="resetAdminArticleForm()">تفريغ الحقول</button></div>
+        <div class="admin-actions"><button class="admin-primary" id="adminArticleSaveButton" type="submit">حفظ المحتوى ونشره</button><button class="admin-secondary" type="button" onclick="resetAdminArticleForm()">تفريغ الحقول</button></div>
        </form>
        <hr style="border:0;border-top:1px solid #e5eee7;margin:26px 0">
-       <div class="admin-top"><h3>المقالات المسجلة</h3><span class="admin-muted" id="adminArticleCount"></span></div>
+       <div class="admin-top"><h3>المقالات المسجلة في المدونة</h3><span class="admin-muted" id="adminArticleCount"></span></div>
        <div class="admin-list" id="adminArticleList" aria-live="polite"></div>
+      </div>
+     </details>
+     <details class="admin-accordion-section" id="adminStoriesSection">
+      <summary>قصص باونتي</summary>
+      <div class="admin-accordion-content">
+       <div class="admin-top"><div><h3>إدارة قصص باونتي</h3><p class="admin-muted">هذا القسم مخصص لقصص باونتي فقط. القصص التي تضيفينها هنا تظهر في صفحة قصص باونتي، ولا تُضاف إلى المدونة.</p></div><button class="admin-secondary" type="button" onclick="adminArticleRows=[];loadAdminStories()">تحديث القصص</button></div>
+       <h3 id="adminStoryFormTitle">إضافة قصة باونتي جديدة</h3>
+       <form id="adminStoryForm">
+        <input type="hidden" id="storyRecordId">
+        <input type="hidden" id="storyAdminImageUrl">
+        <div class="admin-form-grid">
+         <div class="admin-field full"><label for="storyAdminTitle">عنوان القصة *</label><input id="storyAdminTitle" required maxlength="180" placeholder="اكتبي عنوان القصة"></div>
+         <div class="admin-field full"><label for="storyAdminImage">صورة القصة</label><input id="storyAdminImage" type="file" accept="image/*"><div id="storyAdminImagePreview" class="admin-muted"></div></div>
+         <div class="admin-field"><label for="storyAdminReadMinutes">مدة القراءة بالدقائق</label><input id="storyAdminReadMinutes" type="number" min="1" max="60" value="3"></div>
+         <div class="admin-field full"><label for="storyAdminExcerpt">نبذة مختصرة عن القصة *</label><textarea id="storyAdminExcerpt" required maxlength="500" placeholder="اكتبي نبذة قصيرة عن القصة"></textarea></div>
+         <div class="admin-field full"><label for="storyAdminContent">تفاصيل القصة *</label><textarea id="storyAdminContent" required maxlength="12000" style="min-height:190px" placeholder="اكتبي تفاصيل القصة هنا"></textarea></div>
+         <div class="admin-field full"><label style="display:flex;align-items:center;gap:9px"><input id="storyAdminPublished" type="checkbox" checked style="width:auto"> نشر القصة للزوار</label></div>
+        </div>
+        <div class="admin-actions"><button class="admin-primary" id="adminStorySaveButton" type="submit">حفظ القصة ونشرها</button><button class="admin-secondary" type="button" onclick="resetAdminStoryForm()">تفريغ الحقول</button></div>
+       </form>
+       <h3 style="margin-top:24px">القصص المسجلة في قصص باونتي</h3>
+       <div class="admin-list" id="adminStoryList" aria-live="polite"></div>
       </div>
      </details>
     </div>
@@ -1139,7 +1161,7 @@ body.admin-only-mode .admin-status {margin:16px 0 22px;}
 <footer>
  <div class="wrap"><div class="footer-grid">
   <div><h3>باونتي 🌿</h3><p>دليلك للحياة الصحية. ابحث عن المنتجات والجهات والخيارات التي تناسب احتياجك، واكتشفها في مكان واحد.</p></div>
-  <div class="footer-contact"><h4>تواصل معنا</h4><p>للاستفسارات والشكاوى والاقتراحات</p><a href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer">واتساب: 0500633399</a><a href="mailto:bounty.ksa@outlook.com">bounty.ksa@outlook.com</a></div>
+  <div class="footer-contact"><h4>تواصل معنا للشكاوى والاستفسارات</h4><p>للاستفسارات والشكاوى والاقتراحات</p><a href="https://wa.me/966500633399" target="_blank" rel="noopener noreferrer">واتساب: 0500633399</a><a href="mailto:bounty.ksa@outlook.com">bounty.ksa@outlook.com</a></div>
  </div><div class="copyright">© 2026 باونتي — جميع الحقوق محفوظة. <a href="#adminPage" onclick="showPage('adminPage');return false" style="color:inherit;opacity:.65;text-decoration:none;margin-right:10px">دخول الإدارة</a></div></div>
 </footer>
 
@@ -1445,8 +1467,9 @@ async function loadAdminArticles(){
  try{
   const {data,error}=await supabaseClient.from('blog_posts').select('*').order('created_at',{ascending:false});
   if(error)throw error;adminArticleRows=data||[];
-  const count=document.getElementById('adminArticleCount');if(count)count.textContent=`${adminArticleRows.length} مقال`;
-  box.innerHTML=adminArticleRows.length?adminArticleRows.map(row=>`<div class="admin-article-preview"><div>${escapeHTML(row.emoji||'📝')}</div><div style="flex:1;min-width:0"><strong>${escapeHTML(row.title)}</strong><small>${escapeHTML(row.category||'بدون تصنيف')} · ${row.status==='published'?'منشور':'مسودة'} · ${Number(row.read_minutes)||3} دقائق</small></div><div class="admin-item-actions"><button class="admin-secondary" type="button" onclick="editAdminArticle('${String(row.id).replace(/'/g,'')}')">تعديل</button><button class="admin-danger" type="button" onclick="deleteAdminArticle('${String(row.id).replace(/'/g,'')}')">حذف</button></div></div>`).join(''):'<p class="admin-muted">لا توجد مقالات محفوظة حتى الآن. أضيفي أول مقال من النموذج أعلاه.</p>';
+  const count=document.getElementById('adminArticleCount');if(count){const stories=adminArticleRows.filter(r=>(r.category||'').includes('قصص باونتي')).length;const articles=adminArticleRows.length-stories;count.textContent=`${articles} مقال في المدونة`;}
+  const articleRows=adminArticleRows.filter(row=>!(row.category||'').includes('قصص باونتي'));
+  box.innerHTML=articleRows.length?articleRows.map(row=>`<div class="admin-article-preview"><div>${row.image_url?`<img src="${escapeHTML(row.image_url)}" alt="" style="width:58px;height:58px;object-fit:cover;border-radius:10px">`:'📝'}</div><div style="flex:1;min-width:0"><strong>${escapeHTML(row.title)}</strong><small>${(row.category||'').includes('قصص باونتي')?'قصة باونتي':'مقال مدونة'} · ${row.status==='published'?'منشور':'مسودة'} · ${Number(row.read_minutes)||3} دقائق</small></div><div class="admin-item-actions"><button class="admin-secondary" type="button" onclick="editAdminArticle('${String(row.id).replace(/'/g,'')}')">تعديل</button><button class="admin-danger" type="button" onclick="deleteAdminArticle('${String(row.id).replace(/'/g,'')}')">حذف</button></div></div>`).join(''):'<p class="admin-muted">لا توجد مقالات محفوظة حتى الآن. أضيفي أول مقال من النموذج أعلاه.</p>';
  }catch(error){box.innerHTML='<p class="admin-muted">تعذر تحميل المقالات. تأكدي من تشغيل ملف إعداد مدونات باونتي في Supabase.</p>';setAdminStatus(error.message||'تعذر تحميل المقالات.',true);}
 }
 function resetAdminArticleForm(){const form=document.getElementById('adminArticleForm');if(form)form.reset();document.getElementById('articleRecordId').value='';document.getElementById('articleAdminEmoji').value='📝';document.getElementById('articleAdminReadMinutes').value='3';document.getElementById('articleAdminPublished').checked=true;document.getElementById('adminArticleFormTitle').textContent='إضافة مقال جديد';document.getElementById('adminArticleSaveButton').textContent='حفظ المقال';}
@@ -1471,7 +1494,7 @@ async function saveAdminArticle(event){
   const id=document.getElementById('articleRecordId').value;
   const payload={
    title:document.getElementById('articleAdminTitle').value.trim(),
-   category:document.getElementById('articleAdminCategory').value.trim(),
+   category:(document.getElementById('articleAdminCategory').value.trim()||'مقالات باونتي'),
    emoji:document.getElementById('articleAdminEmoji').value.trim()||'📝',
    read_minutes:Math.max(1,Math.min(60,Number(document.getElementById('articleAdminReadMinutes').value)||3)),
    excerpt:document.getElementById('articleAdminExcerpt').value.trim(),
@@ -1491,7 +1514,7 @@ async function saveAdminArticle(event){
     : await supabaseClient.from('blog_posts').insert(payload);
    if(result.error)throw result.error;
    resetAdminArticleForm();
-   await loadAdminArticles();
+   await loadAdminArticles();await loadAdminStories();
    await loadPublicArticles();
    setAdminStatus(id?'تم تحديث المقال بنجاح.':'تمت إضافة المقال بنجاح.');
   }catch(error){
@@ -1508,10 +1531,63 @@ async function saveAdminArticle(event){
 
 async function deleteAdminArticle(id){
  const row=adminArticleRows.find(x=>String(x.id)===String(id));if(!row||!confirm(`هل تريدين حذف مقال «${row.title}»؟ لا يمكن التراجع عن الحذف.`))return;
- try{const {error}=await supabaseClient.from('blog_posts').delete().eq('id',id);if(error)throw error;await loadAdminArticles();await loadPublicArticles();setAdminStatus('تم حذف المقال.');}
+ try{const {error}=await supabaseClient.from('blog_posts').delete().eq('id',id);if(error)throw error;await loadAdminArticles();await loadAdminStories();await loadPublicArticles();setAdminStatus('تم حذف المقال.');}
  catch(error){setAdminStatus(error.message||'تعذر حذف المقال.',true);}
 }
 
+
+async function loadAdminStories(){
+ const box=document.getElementById('adminStoryList');if(!box)return;
+ box.innerHTML='<p class="admin-muted">جارٍ تحميل القصص...</p>';
+ try{
+  if(!adminArticleRows.length){const {data,error}=await supabaseClient.from('blog_posts').select('*').order('created_at',{ascending:false});if(error)throw error;adminArticleRows=data||[];}
+  const rows=adminArticleRows.filter(r=>(r.category||'').includes('قصص باونتي'));
+  box.innerHTML=rows.length?rows.map(row=>`<div class="admin-article-preview"><div>${row.image_url?`<img src="${escapeHTML(row.image_url)}" alt="" style="width:58px;height:58px;object-fit:cover;border-radius:10px">`:'▶'}</div><div style="flex:1;min-width:0"><strong>${escapeHTML(row.title)}</strong><small>قصة باونتي · ${row.status==='published'?'منشورة':'مسودة'} · ${Number(row.read_minutes)||3} دقائق</small></div><div class="admin-item-actions"><button class="admin-secondary" type="button" onclick="editAdminStory('${String(row.id).replace(/'/g,'')}')">تعديل</button><button class="admin-danger" type="button" onclick="deleteAdminStory('${String(row.id).replace(/'/g,'')}')">حذف</button></div></div>`).join(''):'<p class="admin-muted">لا توجد قصص حتى الآن. أضيفي أول قصة من النموذج أعلاه.</p>';
+ }catch(error){box.innerHTML='<p class="admin-muted">تعذر تحميل القصص.</p>';setAdminStatus(error.message||'تعذر تحميل القصص.',true);}
+}
+function resetAdminStoryForm(){
+ const form=document.getElementById('adminStoryForm');if(form)form.reset();
+ const id=document.getElementById('storyRecordId');if(id)id.value='';
+ const category=document.getElementById('storyAdminCategory');if(category)category.value='قصص باونتي';
+ const emoji=document.getElementById('storyAdminEmoji');if(emoji)emoji.value='▶';
+ const minutes=document.getElementById('storyAdminReadMinutes');if(minutes)minutes.value='3';
+ const published=document.getElementById('storyAdminPublished');if(published)published.checked=true;
+ document.getElementById('adminStoryFormTitle').textContent='إضافة قصة باونتي جديدة';
+ document.getElementById('adminStorySaveButton').textContent='حفظ القصة ونشرها';
+}
+function editAdminStory(id){
+ const row=adminArticleRows.find(x=>String(x.id)===String(id)&&(x.category||'').includes('قصص باونتي'));if(!row)return;
+ document.getElementById('storyRecordId').value=row.id;
+ const fields={storyAdminTitle:row.title,storyAdminEmoji:row.emoji||'▶',storyAdminReadMinutes:row.read_minutes||3,storyAdminExcerpt:row.excerpt,storyAdminContent:row.content};
+ Object.entries(fields).forEach(([key,value])=>document.getElementById(key).value=value??'');
+ document.getElementById('storyAdminPublished').checked=row.status==='published';
+ document.getElementById('adminStoryFormTitle').textContent='تعديل قصة باونتي';
+ document.getElementById('adminStorySaveButton').textContent='حفظ تعديلات القصة';
+ document.getElementById('adminStoryFormTitle').scrollIntoView({behavior:'smooth',block:'center'});
+}
+async function saveAdminStory(event){
+ if(event){event.preventDefault();event.stopPropagation();}
+ const form=document.getElementById('adminStoryForm'),button=document.getElementById('adminStorySaveButton');
+ if(!form||!button||!form.reportValidity()||button.dataset.saving==='1')return;
+ button.dataset.saving='1';button.disabled=true;const old=button.textContent;button.textContent='جارٍ حفظ القصة...';
+ const id=document.getElementById('storyRecordId').value;
+ const payload={title:document.getElementById('storyAdminTitle').value.trim(),category:'قصص باونتي',emoji:document.getElementById('storyAdminEmoji').value.trim()||'▶',read_minutes:Math.max(1,Math.min(60,Number(document.getElementById('storyAdminReadMinutes').value)||3)),excerpt:document.getElementById('storyAdminExcerpt').value.trim(),content:document.getElementById('storyAdminContent').value.trim(),status:document.getElementById('storyAdminPublished').checked?'published':'draft',updated_at:new Date().toISOString()};
+ try{
+  await ensureSupabaseClient();
+  const {data:{session},error:sessionError}=await supabaseClient.auth.getSession();if(sessionError)throw sessionError;
+  if(session?.user?.email?.toLowerCase()!=='bounty.ksa@outlook.com')throw new Error('انتهت جلسة الإدارة أو لم يتم تسجيل الدخول بالحساب المعتمد.');
+  const result=id?await supabaseClient.from('blog_posts').update(payload).eq('id',id):await supabaseClient.from('blog_posts').insert(payload);
+  if(result.error)throw result.error;
+  resetAdminStoryForm();adminArticleRows=[];await loadAdminArticles();await loadAdminStories();await loadAdminStories();await loadPublicArticles();
+  setAdminStatus(id?'تم تحديث قصة باونتي.':'تمت إضافة قصة باونتي بنجاح.');
+ }catch(error){console.error(error);setAdminStatus(error.message||'تعذر حفظ القصة.',true);}
+ finally{button.disabled=false;button.dataset.saving='0';button.textContent=old;}
+}
+async function deleteAdminStory(id){
+ const row=adminArticleRows.find(x=>String(x.id)===String(id)&&(x.category||'').includes('قصص باونتي'));if(!row||!confirm(`هل تريدين حذف قصة «${row.title}»؟`))return;
+ try{const {error}=await supabaseClient.from('blog_posts').delete().eq('id',id);if(error)throw error;adminArticleRows=[];await loadAdminArticles();await loadAdminStories();await loadAdminStories();await loadPublicArticles();setAdminStatus('تم حذف القصة.');}
+ catch(error){setAdminStatus(error.message||'تعذر حذف القصة.',true);}
+}
 function readArticle(i){const article=liveArticles[i]||articles[i];document.getElementById('articleTitle').textContent=article.title;document.getElementById('articleText').textContent=article.content||article.text||'';document.getElementById('articleModal').classList.add('open');}
 // legacy readArticle implementation removed
 function _legacyReadArticle(i){const a=articles[i];if(a)readArticle(i);}
@@ -1603,7 +1679,7 @@ async function initAdminPage(){
   const allowed=session?.user?.email?.toLowerCase()==='bounty.ksa@outlook.com';
   showAdminState(!!allowed);
   if(session&&!allowed){await supabaseClient.auth.signOut();showAdminState(false);setAdminLoginStatus('هذا الحساب غير مخوّل لإدارة باونتي.',true);return;}
-  if(allowed){await loadAdminActivities();await loadAdminPicks();await loadAdminArticles();}
+  if(allowed){await loadAdminActivities();await loadAdminPicks();await loadAdminArticles();await loadAdminStories();}
  }catch(error){showAdminState(false);setAdminLoginStatus(error.message||'تعذر التحقق من جلسة الدخول.',true);}
 }
 
@@ -1632,7 +1708,7 @@ async function adminSignIn(event){
   const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
   if(error)throw error;
   if(data.user?.email?.toLowerCase()!=='bounty.ksa@outlook.com'){await supabaseClient.auth.signOut();throw new Error('هذا الحساب غير مخوّل لإدارة باونتي.');}
-  document.getElementById('adminPassword').value='';showAdminState(true);setAdminStatus('مرحبًا بك. يمكنك الآن إدارة أنشطة باونتي.');await loadAdminActivities();await loadAdminPicks();await loadAdminArticles();
+  document.getElementById('adminPassword').value='';showAdminState(true);setAdminStatus('مرحبًا بك. يمكنك الآن إدارة أنشطة باونتي.');await loadAdminActivities();await loadAdminPicks();await loadAdminArticles();await loadAdminStories();
  }catch(error){setAdminLoginStatus(error.message||'تعذر تسجيل الدخول. تحققي من البريد وكلمة المرور.',true);}
  finally{button.disabled=false;button.textContent='دخول لوحة الإدارة';}
 }
@@ -1786,6 +1862,345 @@ function sendBountyContactMessage(){
  window.open('https://wa.me/966500633399?text='+text,'_blank','noopener');
 }
 
+
+/* ===== التعديلات المطلوبة لباونتي: إدارة القصص والمتاجر والمنتجات والمقالات ===== */
+function bountyPickMeta(classifications){
+ const values=Array.isArray(classifications)?classifications:[];
+ return {
+  kind:values.includes('__kind:store')?'store':'product',
+  storeName:(values.find(v=>String(v).startsWith('__store:'))||'').slice(8),
+  clean:values.filter(v=>!String(v).startsWith('__')&&v!=='غير عضوي'&&v!=='لا يتبع نظام الطيبات')
+ };
+}
+function setAdminPickKindUI(){
+ const kind=document.getElementById('pickAdminKind')?.value||'product';
+ const label=document.querySelector('#pickAdminClassifications')?.closest('.admin-field');
+ if(label)label.style.display=kind==='store'?'none':'';
+ const descriptionLabel=document.getElementById('pickAdminDescriptionLabel');
+ const description=document.getElementById('pickAdminDescription');
+ if(descriptionLabel)descriptionLabel.textContent=kind==='store'?'سبب اختيار المتجر *':'شرح بسيط عن المنتج *';
+ if(description)description.placeholder=kind==='store'?'اكتبي سبب اختيار المتجر الفعلي والمعايير التي راجعتِها.':'نبذة مختصرة عن المنتج';
+ const imageLabel=document.getElementById('pickAdminImageLabel');
+ if(imageLabel)imageLabel.textContent=kind==='store'?'صورة المتجر المختار *':'صورة المنتج المختار *';
+ const storeField=document.getElementById('pickAdminStoreName')?.closest('.admin-field');
+ if(storeField)storeField.style.display=kind==='product'?'':'none';
+}
+document.getElementById('pickAdminKind')?.addEventListener('change',setAdminPickKindUI);
+function resetAdminPickForm(){
+ const form=document.getElementById('adminPickForm');if(form)form.reset();
+ ['pickRecordId','pickExistingImageUrl','pickExistingImagePath'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+ const preview=document.getElementById('pickAdminImagePreview');if(preview)preview.textContent='';
+ const kind=document.getElementById('pickAdminKind');if(kind)kind.value='product';
+ const name=document.getElementById('pickAdminStoreName');if(name)name.value='';
+ setPickClassifications([]);
+ const title=document.getElementById('adminPickFormTitle');if(title)title.textContent='إضافة منتج أو متجر مختار';
+ const button=document.getElementById('pickAdminSaveButton');if(button)button.textContent='حفظ المختار ونشره';
+ setAdminPickKindUI();
+}
+function editAdminPick(id){
+ const row=adminPickRows.find(item=>String(item.id)===String(id));if(!row)return;
+ const meta=bountyPickMeta(row.classifications);if(normalizeSearchText(row.name||'').includes('حلزونه'))meta.kind='store';
+ document.getElementById('pickRecordId').value=row.id;
+ document.getElementById('pickAdminName').value=row.name||'';
+ document.getElementById('pickAdminDescription').value=row.description||'';
+ document.getElementById('pickAdminPhone').value=row.phone||'';
+ document.getElementById('pickAdminMaps').value=row.google_maps_url||'';
+ document.getElementById('pickAdminWebsite').value=row.website||'';
+ document.getElementById('pickExistingImageUrl').value=row.image_url||'';
+ document.getElementById('pickExistingImagePath').value=row.image_path||'';
+ document.getElementById('pickAdminKind').value=meta.kind;
+ document.getElementById('pickAdminStoreName').value=meta.storeName;
+ setPickClassifications(meta.clean);
+ document.getElementById('pickAdminImagePreview').innerHTML=row.image_url?`الصورة الحالية:<br><img src="${escapeHTML(row.image_url)}" alt="الصورة الحالية" style="max-width:130px;border-radius:10px">`:'لا توجد صورة محفوظة.';
+ document.getElementById('adminPickFormTitle').textContent=meta.kind==='store'?'تعديل بيانات المتجر':'تعديل بيانات المنتج';
+ document.getElementById('pickAdminSaveButton').textContent='حفظ التعديلات';
+ setAdminPickKindUI();
+ document.getElementById('adminPickFormTitle').scrollIntoView({behavior:'smooth',block:'center'});
+}
+async function saveAdminPick(event){
+ event.preventDefault();
+ const button=document.getElementById('pickAdminSaveButton');if(button.disabled)return;
+ button.disabled=true;button.textContent='جارٍ الحفظ...';
+ const id=document.getElementById('pickRecordId').value;
+ const file=document.getElementById('pickAdminImage').files[0];
+ const kind=document.getElementById('pickAdminKind').value||'product';
+ const classifications=selectedPickClassifications().filter(v=>v!=='غير عضوي'&&v!=='لا يتبع نظام الطيبات');
+ const storeName=document.getElementById('pickAdminStoreName').value.trim();
+ let imageUrl=document.getElementById('pickExistingImageUrl').value||'';
+ let imagePath=document.getElementById('pickExistingImagePath').value||'';
+ try{
+  const name=document.getElementById('pickAdminName').value.trim();
+  const description=document.getElementById('pickAdminDescription').value.trim();
+  if(!name)throw new Error('اكتبي الاسم أولًا.');
+  if(!description)throw new Error('اكتبي وصفًا مختصرًا.');
+  // التصنيفات اختيارية: المنتج غير المصنّف يبقى ظاهرًا ضمن فلتر (الكل) دون شارة.
+  if(kind==='product'&&storeName&&!adminPickRows.some(r=>r.name===storeName&&bountyPickMeta(r.classifications).kind==='store')&&!confirm('لم يتم العثور على متجر بهذا الاسم ضمن المتاجر المختارة. هل تريدين المتابعة؟'))throw new Error('ألغيت عملية الحفظ.');
+  if(file){
+   if(!file.type.startsWith('image/'))throw new Error('الملف المرفق يجب أن يكون صورة.');
+   if(file.size>5*1024*1024)throw new Error('حجم الصورة يجب ألا يتجاوز 5 ميجابايت.');
+   const ext=(file.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'')||'jpg';
+   imagePath=`${crypto.randomUUID?crypto.randomUUID():Date.now()}.${ext}`;
+   const {error}=await supabaseClient.storage.from(PICK_IMAGE_BUCKET).upload(imagePath,file,{cacheControl:'3600',upsert:false,contentType:file.type});
+   if(error)throw error;
+   imageUrl=supabaseClient.storage.from(PICK_IMAGE_BUCKET).getPublicUrl(imagePath).data.publicUrl;
+  }
+  if(!imageUrl)throw new Error('أرفقي صورة واضحة.');
+  const savedClassifications=[...(kind==='store'?['__kind:store']:['__kind:product']),...(kind==='product'&&storeName?[`__store:${storeName}`]:[]),...(kind==='product'?classifications:[])];
+  const payload={name,description,image_url:imageUrl,image_path:imagePath||null,phone:document.getElementById('pickAdminPhone').value.trim()||null,google_maps_url:document.getElementById('pickAdminMaps').value.trim()||null,website:document.getElementById('pickAdminWebsite').value.trim()||null,classifications:savedClassifications,status:'published',updated_at:new Date().toISOString()};
+  const result=id?await supabaseClient.from('bounty_picks').update(payload).eq('id',id):await supabaseClient.from('bounty_picks').insert(payload);
+  if(result.error)throw result.error;
+  resetAdminPickForm();await loadAdminPicks();setAdminStatus(kind==='store'?'تم حفظ المتجر المختار ونشره.':'تم حفظ المنتج المختار ونشره.');
+ }catch(error){console.error(error);setAdminStatus(error.message||'تعذر حفظ البيانات.',true);}
+ finally{button.disabled=false;button.textContent=document.getElementById('pickRecordId').value?'حفظ التعديلات':'حفظ المختار ونشره';}
+}
+function resetAdminArticleForm(){
+ const form=document.getElementById('adminArticleForm');if(form)form.reset();
+ ['articleRecordId','articleAdminImageUrl'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+ const preview=document.getElementById('articleAdminImagePreview');if(preview)preview.textContent='';
+ document.getElementById('articleAdminReadMinutes').value='3';
+ document.getElementById('articleAdminPublished').checked=true;
+ document.getElementById('articleAdminKind').value='article';
+ document.getElementById('articleAdminKind').dispatchEvent(new Event('change'));
+ document.getElementById('adminArticleFormTitle').textContent='إضافة مقال جديد';
+ document.getElementById('adminArticleSaveButton').textContent='حفظ المقال ونشره';
+ updateAdminArticleKindUI();
+}
+function editAdminArticle(id){
+ const row=adminArticleRows.find(x=>String(x.id)===String(id));if(!row)return;
+ document.getElementById('articleRecordId').value=row.id;
+ document.getElementById('articleAdminTitle').value=row.title||'';
+ document.getElementById('articleAdminCategory').value=row.category||'';
+ document.getElementById('articleAdminReadMinutes').value=row.read_minutes||3;
+ document.getElementById('articleAdminExcerpt').value=row.excerpt||'';
+ document.getElementById('articleAdminContent').value=row.content||'';
+ const isStory=(row.category||'').includes('قصص باونتي');
+ document.getElementById('articleAdminKind').value=isStory?'story':'article';
+ document.getElementById('articleAdminKind').dispatchEvent(new Event('change'));
+ updateAdminArticleKindUI();
+ document.getElementById('articleAdminImageUrl').value=row.image_url||'';
+ document.getElementById('articleAdminImagePreview').innerHTML=row.image_url?`الصورة الحالية:<br><img src="${escapeHTML(row.image_url)}" style="max-width:150px;border-radius:10px">`:'';
+ document.getElementById('articleAdminPublished').checked=row.status==='published';
+ document.getElementById('adminArticleFormTitle').textContent=isStory?'تعديل قصة باونتي':'تعديل المقال';
+ document.getElementById('adminArticleSaveButton').textContent='حفظ التعديلات';
+ document.getElementById('adminArticleFormTitle').scrollIntoView({behavior:'smooth',block:'center'});
+}
+async function saveAdminArticle(event){
+ if(event){event.preventDefault();event.stopPropagation();}
+ const form=document.getElementById('adminArticleForm'),button=document.getElementById('adminArticleSaveButton');
+ if(!form||!button||!form.reportValidity()||button.dataset.saving==='1')return;
+ button.dataset.saving='1';button.disabled=true;const original=button.textContent;button.textContent='جارٍ الحفظ...';
+ const id=document.getElementById('articleRecordId').value;
+ let imageUrl=document.getElementById('articleAdminImageUrl').value||'';
+ try{
+  const file=document.getElementById('articleAdminImage')?.files?.[0];
+  if(file){
+   if(!file.type.startsWith('image/'))throw new Error('أرفقي ملف صورة صالحًا.');
+   if(file.size>5*1024*1024)throw new Error('حجم الصورة يجب ألا يتجاوز 5 ميجابايت.');
+   const ext=(file.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'')||'jpg';
+   const path=`article-${crypto.randomUUID?crypto.randomUUID():Date.now()}.${ext}`;
+   const {error}=await supabaseClient.storage.from(PICK_IMAGE_BUCKET).upload(path,file,{cacheControl:'3600',upsert:false,contentType:file.type});
+   if(error)throw error;
+   imageUrl=supabaseClient.storage.from(PICK_IMAGE_BUCKET).getPublicUrl(path).data.publicUrl;
+  }
+  const isStory=document.getElementById('articleAdminKind').value==='story';
+  if(!isStory&&!document.getElementById('articleAdminCategory').value.trim())throw new Error('اكتبي تصنيف المقال أولًا.');
+  const payload={title:document.getElementById('articleAdminTitle').value.trim(),category:isStory?'قصص باونتي':document.getElementById('articleAdminCategory').value.trim(),emoji:'',image_url:imageUrl,read_minutes:Math.max(1,Math.min(60,Number(document.getElementById('articleAdminReadMinutes').value)||3)),excerpt:document.getElementById('articleAdminExcerpt').value.trim(),content:document.getElementById('articleAdminContent').value.trim(),status:document.getElementById('articleAdminPublished').checked?'published':'draft',updated_at:new Date().toISOString()};
+  await ensureSupabaseClient();
+  const {data:{session},error:sessionError}=await supabaseClient.auth.getSession();if(sessionError)throw sessionError;
+  if(session?.user?.email?.toLowerCase()!=='bounty.ksa@outlook.com')throw new Error('انتهت جلسة الإدارة أو لم يتم تسجيل الدخول بالحساب المعتمد.');
+  const result=id?await supabaseClient.from('blog_posts').update(payload).eq('id',id):await supabaseClient.from('blog_posts').insert(payload);
+  if(result.error)throw result.error;
+  resetAdminArticleForm();await loadAdminArticles();await loadAdminStories();await loadPublicArticles();
+  setAdminStatus(isStory?'تمت إضافة قصة باونتي بنجاح.':'تم حفظ المقال بنجاح.');
+ }catch(error){console.error(error);setAdminStatus(error.message||'تعذر حفظ المحتوى.',true);}
+ finally{button.disabled=false;button.dataset.saving='0';button.textContent=original;}
+}
+document.getElementById('articleAdminKind')?.addEventListener('change',function(){
+ const field=document.getElementById('articleAdminCategory')?.closest('.admin-field');
+ if(field)field.style.display=this.value==='story'?'none':'';
+});
+function updateAdminArticleKindUI(){
+ const story=document.getElementById('articleAdminKind')?.value==='story';
+ const title=document.getElementById('adminArticleFormTitle');
+ const save=document.getElementById('adminArticleSaveButton');
+ const titleLabel=document.getElementById('articleAdminTitleLabel');
+ const excerptLabel=document.getElementById('articleAdminExcerptLabel');
+ const contentLabel=document.getElementById('articleAdminContentLabel');
+ if(titleLabel)titleLabel.textContent=story?'عنوان القصة *':'عنوان المقال *';
+ if(excerptLabel)excerptLabel.textContent=story?'نبذة القصة التي تظهر في البطاقة *':'نبذة مختصرة تظهر في البطاقة *';
+ if(contentLabel)contentLabel.textContent=story?'تفاصيل القصة كاملة *':'المحتوى الكامل *';
+ if(save&&!document.getElementById('articleRecordId')?.value)save.textContent=story?'حفظ القصة ونشرها':'حفظ المقال ونشره';
+ if(title&&!document.getElementById('articleRecordId')?.value)title.textContent=story?'إضافة قصة باونتي جديدة':'إضافة مقال جديد';
+}
+function openAdminStoryForm(){
+ openAdminSection('adminArticlesSection','adminArticleForm');
+ resetAdminArticleForm();
+ document.getElementById('articleAdminKind').value='story';
+ document.getElementById('articleAdminKind').dispatchEvent(new Event('change'));
+ updateAdminArticleKindUI();
+ document.getElementById('adminArticleFormTitle').scrollIntoView({behavior:'smooth',block:'center'});
+}
+document.getElementById('articleAdminKind')?.addEventListener('change',updateAdminArticleKindUI);
+document.getElementById('articleAdminKind')?.dispatchEvent(new Event('change'));
+updateAdminArticleKindUI();
+document.getElementById('articleAdminImage')?.addEventListener('change',function(){
+ const f=this.files?.[0],box=document.getElementById('articleAdminImagePreview');
+ if(!box)return;if(!f){box.textContent='';return;}if(!f.type.startsWith('image/')){box.textContent='الملف المحدد ليس صورة.';return;}const reader=new FileReader();reader.onload=()=>{box.innerHTML=`الصورة المحددة: ${escapeHTML(f.name)}<br><img src="${reader.result}" alt="معاينة صورة المقال" style="max-width:150px;max-height:110px;object-fit:cover;border-radius:10px;margin-top:7px">`;};reader.readAsDataURL(f);
+});
+setAdminPickKindUI();
+
+
+async function loadAdminPicks(){
+ const box=document.getElementById('adminPickList');if(!box)return;
+ box.innerHTML='<p class="admin-muted">جارٍ تحميل المختارات...</p>';
+ try{
+  const {data,error}=await supabaseClient.from('bounty_picks').select('*').order('created_at',{ascending:false});
+  if(error)throw error;adminPickRows=data||[];
+  box.innerHTML=adminPickRows.length?adminPickRows.map(row=>{
+   const meta=bountyPickMeta(row.classifications);if(normalizeSearchText(row.name||'').includes('حلزونه'))meta.kind='store';
+   return `<div class="admin-item"><div><strong>${escapeHTML(row.name)}</strong><small>${meta.kind==='store'?'متجر مختار':'منتج مختار'}${meta.storeName?' · متجر: '+escapeHTML(meta.storeName):''} · ${escapeHTML(meta.clean.join('، '))}</small></div><div class="admin-item-actions"><button class="admin-secondary" type="button" onclick="editAdminPick('${String(row.id).replace(/'/g,'')}')">تعديل</button><button class="admin-danger" type="button" onclick="deleteAdminPick('${String(row.id).replace(/'/g,'')}')">حذف</button></div></div>`;
+  }).join(''):'<p class="admin-muted">لا توجد متاجر أو منتجات مسجلة حتى الآن.</p>';
+ }catch(error){box.innerHTML='<p class="admin-muted">تعذر تحميل المختارات.</p>';setAdminStatus(error.message||'تعذر تحميل المختارات.',true);}
+}
+
+// === فصل نهائي بين المدونة وقصص باونتي ===
+function resetAdminArticleForm(){
+ const f=document.getElementById('adminArticleForm'); if(f) f.reset();
+ ['articleRecordId','articleAdminImageUrl'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+ const p=document.getElementById('articleAdminImagePreview');if(p)p.textContent='';
+ document.getElementById('articleAdminReadMinutes').value='3';
+ document.getElementById('articleAdminPublished').checked=true;
+ document.getElementById('adminArticleFormTitle').textContent='إضافة مقال جديد';
+ document.getElementById('adminArticleSaveButton').textContent='حفظ المقال ونشره';
+}
+function editAdminArticle(id){
+ const row=adminArticleRows.find(x=>String(x.id)===String(id)&&!(x.category||'').includes('قصص باونتي'));if(!row)return;
+ document.getElementById('articleRecordId').value=row.id;
+ document.getElementById('articleAdminTitle').value=row.title||'';
+ document.getElementById('articleAdminCategory').value=row.category||'';
+ document.getElementById('articleAdminReadMinutes').value=row.read_minutes||3;
+ document.getElementById('articleAdminExcerpt').value=row.excerpt||'';
+ document.getElementById('articleAdminContent').value=row.content||'';
+ document.getElementById('articleAdminImageUrl').value=row.image_url||'';
+ document.getElementById('articleAdminImagePreview').innerHTML=row.image_url?`الصورة الحالية:<br><img src="${escapeHTML(row.image_url)}" style="max-width:150px;border-radius:10px">`:'';
+ document.getElementById('articleAdminPublished').checked=row.status==='published';
+ document.getElementById('adminArticleFormTitle').textContent='تعديل المقال';
+ document.getElementById('adminArticleSaveButton').textContent='حفظ التعديلات';
+ document.getElementById('adminArticleFormTitle').scrollIntoView({behavior:'smooth',block:'center'});
+}
+async function saveAdminArticle(event){
+ if(event){event.preventDefault();event.stopPropagation();}
+ const form=document.getElementById('adminArticleForm'),button=document.getElementById('adminArticleSaveButton');
+ if(!form||!button||!form.reportValidity()||button.dataset.saving==='1')return;
+ button.dataset.saving='1';button.disabled=true;const old=button.textContent;button.textContent='جارٍ حفظ المقال...';
+ const id=document.getElementById('articleRecordId').value;let imageUrl=document.getElementById('articleAdminImageUrl').value||'';
+ try{
+  const file=document.getElementById('articleAdminImage')?.files?.[0];
+  if(file){
+   if(!file.type.startsWith('image/'))throw new Error('أرفقي صورة صالحة للمقال.');
+   if(file.size>5*1024*1024)throw new Error('حجم الصورة يجب ألا يتجاوز 5 ميجابايت.');
+   const ext=(file.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'')||'jpg';
+   const path=`article-${crypto.randomUUID?crypto.randomUUID():Date.now()}.${ext}`;
+   const {error}=await supabaseClient.storage.from(PICK_IMAGE_BUCKET).upload(path,file,{cacheControl:'3600',upsert:false,contentType:file.type});if(error)throw error;
+   imageUrl=supabaseClient.storage.from(PICK_IMAGE_BUCKET).getPublicUrl(path).data.publicUrl;
+  }
+  const category=document.getElementById('articleAdminCategory').value.trim();if(!category)throw new Error('اكتبي تصنيف المقال.');
+  await ensureSupabaseClient();
+  const {data:{session},error:se}=await supabaseClient.auth.getSession();if(se)throw se;
+  if(session?.user?.email?.toLowerCase()!=='bounty.ksa@outlook.com')throw new Error('انتهت جلسة الإدارة أو لم يتم تسجيل الدخول بالحساب المعتمد.');
+  const payload={title:document.getElementById('articleAdminTitle').value.trim(),category,emoji:'📝',image_url:imageUrl,read_minutes:Math.max(1,Math.min(60,Number(document.getElementById('articleAdminReadMinutes').value)||3)),excerpt:document.getElementById('articleAdminExcerpt').value.trim(),content:document.getElementById('articleAdminContent').value.trim(),status:document.getElementById('articleAdminPublished').checked?'published':'draft',updated_at:new Date().toISOString()};
+  const result=id?await supabaseClient.from('blog_posts').update(payload).eq('id',id):await supabaseClient.from('blog_posts').insert(payload);if(result.error)throw result.error;
+  resetAdminArticleForm();adminArticleRows=[];await loadAdminArticles();await loadPublicArticles();setAdminStatus(id?'تم تحديث المقال في المدونة.':'تمت إضافة المقال إلى المدونة فقط.');
+ }catch(err){console.error(err);setAdminStatus(err.message||'تعذر حفظ المقال.',true);}
+ finally{button.disabled=false;button.dataset.saving='0';button.textContent=old;}
+}
+async function loadAdminStories(){
+ const box=document.getElementById('adminStoryList');if(!box)return;box.innerHTML='<p class="admin-muted">جارٍ تحميل القصص...</p>';
+ try{
+  const {data,error}=await supabaseClient.from('blog_posts').select('*').ilike('category','%قصص باونتي%').order('created_at',{ascending:false});if(error)throw error;
+  const rows=data||[];adminArticleRows=[...(adminArticleRows||[]).filter(r=>!(r.category||'').includes('قصص باونتي')),...rows];
+  box.innerHTML=rows.length?rows.map(row=>`<div class="admin-article-preview"><div>${row.image_url?`<img src="${escapeHTML(row.image_url)}" alt="" style="width:58px;height:58px;object-fit:cover;border-radius:10px">`:'▶️'}</div><div style="flex:1;min-width:0"><strong>${escapeHTML(row.title)}</strong><small>قصة باونتي · ${row.status==='published'?'منشورة':'مسودة'} · ${Number(row.read_minutes)||3} دقائق</small></div><div class="admin-item-actions"><button class="admin-secondary" type="button" onclick="editAdminStory('${String(row.id).replace(/'/g,'')}')">تعديل</button><button class="admin-danger" type="button" onclick="deleteAdminStory('${String(row.id).replace(/'/g,'')}')">حذف</button></div></div>`).join(''):'<p class="admin-muted">لا توجد قصص حتى الآن. أضيفي أول قصة من النموذج أعلاه.</p>';
+ }catch(err){box.innerHTML='<p class="admin-muted">تعذر تحميل القصص.</p>';setAdminStatus(err.message||'تعذر تحميل القصص.',true);}
+}
+function resetAdminStoryForm(){
+ const f=document.getElementById('adminStoryForm');if(f)f.reset();
+ ['storyRecordId','storyAdminImageUrl'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+ document.getElementById('storyAdminReadMinutes').value='3';document.getElementById('storyAdminPublished').checked=true;
+ document.getElementById('storyAdminImagePreview').textContent='';
+ document.getElementById('adminStoryFormTitle').textContent='إضافة قصة باونتي جديدة';document.getElementById('adminStorySaveButton').textContent='حفظ القصة ونشرها';
+}
+function editAdminStory(id){
+ const row=adminArticleRows.find(x=>String(x.id)===String(id)&&(x.category||'').includes('قصص باونتي'));if(!row)return;
+ document.getElementById('storyRecordId').value=row.id;document.getElementById('storyAdminTitle').value=row.title||'';
+ document.getElementById('storyAdminReadMinutes').value=row.read_minutes||3;document.getElementById('storyAdminExcerpt').value=row.excerpt||'';
+ document.getElementById('storyAdminContent').value=row.content||'';document.getElementById('storyAdminImageUrl').value=row.image_url||'';
+ document.getElementById('storyAdminImagePreview').innerHTML=row.image_url?`الصورة الحالية:<br><img src="${escapeHTML(row.image_url)}" style="max-width:150px;border-radius:10px">`:'';
+ document.getElementById('storyAdminPublished').checked=row.status==='published';
+ document.getElementById('adminStoryFormTitle').textContent='تعديل قصة باونتي';document.getElementById('adminStorySaveButton').textContent='حفظ تعديلات القصة';
+ document.getElementById('adminStoryFormTitle').scrollIntoView({behavior:'smooth',block:'center'});
+}
+async function saveAdminStory(event){
+ if(event){event.preventDefault();event.stopPropagation();}
+ const form=document.getElementById('adminStoryForm'),button=document.getElementById('adminStorySaveButton');
+ if(!form||!button||!form.reportValidity()||button.dataset.saving==='1')return;
+ button.dataset.saving='1';button.disabled=true;const old=button.textContent;button.textContent='جارٍ حفظ القصة...';
+ const id=document.getElementById('storyRecordId').value;let imageUrl=document.getElementById('storyAdminImageUrl').value||'';
+ try{
+  const file=document.getElementById('storyAdminImage')?.files?.[0];
+  if(file){
+   if(!file.type.startsWith('image/'))throw new Error('أرفقي صورة صالحة للقصة.');
+   if(file.size>5*1024*1024)throw new Error('حجم الصورة يجب ألا يتجاوز 5 ميجابايت.');
+   const ext=(file.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'')||'jpg';
+   const path=`story-${crypto.randomUUID?crypto.randomUUID():Date.now()}.${ext}`;
+   const {error}=await supabaseClient.storage.from(PICK_IMAGE_BUCKET).upload(path,file,{cacheControl:'3600',upsert:false,contentType:file.type});if(error)throw error;
+   imageUrl=supabaseClient.storage.from(PICK_IMAGE_BUCKET).getPublicUrl(path).data.publicUrl;
+  }
+  await ensureSupabaseClient();const {data:{session},error:se}=await supabaseClient.auth.getSession();if(se)throw se;
+  if(session?.user?.email?.toLowerCase()!=='bounty.ksa@outlook.com')throw new Error('انتهت جلسة الإدارة أو لم يتم تسجيل الدخول بالحساب المعتمد.');
+  const payload={title:document.getElementById('storyAdminTitle').value.trim(),category:'قصص باونتي',emoji:'▶️',image_url:imageUrl,read_minutes:Math.max(1,Math.min(60,Number(document.getElementById('storyAdminReadMinutes').value)||3)),excerpt:document.getElementById('storyAdminExcerpt').value.trim(),content:document.getElementById('storyAdminContent').value.trim(),status:document.getElementById('storyAdminPublished').checked?'published':'draft',updated_at:new Date().toISOString()};
+  const result=id?await supabaseClient.from('blog_posts').update(payload).eq('id',id):await supabaseClient.from('blog_posts').insert(payload);if(result.error)throw result.error;
+  resetAdminStoryForm();adminArticleRows=[];await loadAdminStories();await loadAdminArticles();await loadPublicArticles();setAdminStatus(id?'تم تحديث قصة باونتي.':'تمت إضافة القصة إلى قصص باونتي فقط.');
+ }catch(err){console.error(err);setAdminStatus(err.message||'تعذر حفظ القصة.',true);}
+ finally{button.disabled=false;button.dataset.saving='0';button.textContent=old;}
+}
+async function deleteAdminStory(id){
+ const row=adminArticleRows.find(x=>String(x.id)===String(id)&&(x.category||'').includes('قصص باونتي'));if(!row||!confirm(`هل تريدين حذف قصة «${row.title}»؟`))return;
+ try{const {error}=await supabaseClient.from('blog_posts').delete().eq('id',id);if(error)throw error;adminArticleRows=[];await loadAdminStories();await loadAdminArticles();await loadPublicArticles();setAdminStatus('تم حذف القصة من قصص باونتي.');}
+ catch(err){setAdminStatus(err.message||'تعذر حذف القصة.',true);}
+}
+document.getElementById('adminStoryForm')?.addEventListener('submit',saveAdminStory);
+document.getElementById('storyAdminImage')?.addEventListener('change',function(){
+ const f=this.files?.[0],box=document.getElementById('storyAdminImagePreview');if(!box)return;if(!f){box.textContent='';return;}
+ if(!f.type.startsWith('image/')){box.textContent='الملف المحدد ليس صورة.';return;}
+ const reader=new FileReader();reader.onload=()=>{box.innerHTML=`معاينة الصورة:<br><img src="${reader.result}" alt="" style="max-width:150px;max-height:110px;object-fit:cover;border-radius:10px;margin-top:7px">`;};reader.readAsDataURL(f);
+});
+document.getElementById('adminArticleForm')?.addEventListener('submit',saveAdminArticle);
+
 </script>
+
+<style id="admin-four-sections-final-fix">
+/* Ensure all four independent administration sections are visible. */
+body.admin-only-mode #adminDashboard .admin-accordion{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:22px!important;
+  align-items:stretch!important;
+}
+body.admin-only-mode #adminDashboard #adminStoriesSection{
+  display:block!important;
+  visibility:visible!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  min-width:0!important;
+}
+body.admin-only-mode #adminDashboard .admin-accordion-section:not([open])>summary{
+  min-height:clamp(230px,38vh,360px)!important;
+}
+@media(max-width:700px){
+ body.admin-only-mode #adminDashboard .admin-accordion{grid-template-columns:1fr!important;gap:16px!important}
+ body.admin-only-mode #adminDashboard #adminStoriesSection{grid-column:1!important}
+}
+</style>
+
 </body>
 </html>
