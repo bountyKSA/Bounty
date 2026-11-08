@@ -879,6 +879,25 @@ main > #categories > .wrap > .bounty-picks-heading{
 .restored-category-grid button:hover{border-color:#9fc8b2;background:#e8f2eb}
 @media(max-width:700px){.restored-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.restored-category-grid button{min-height:62px;padding:10px;font-size:13px}}
 
+
+/* طلبات باونتي: شريط مستقل أسفل قصص باونتي */
+#visualPromos{padding:0 0 34px!important}
+#visualPromos .promo-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:0!important}
+#visualPromos .promo-request{width:100%;min-height:150px!important;padding:22px 30px!important;border-radius:22px!important;display:flex!important;align-items:center!important;}
+#visualPromos .promo-request>div{position:relative!important;inset:auto!important;width:68%!important;max-width:none!important;text-align:right!important;direction:rtl!important;margin:0 0 0 auto!important}
+#visualPromos .promo-request img{right:auto!important;left:0!important;width:27%!important;height:100%!important;object-fit:cover!important}
+#visualPromos .promo-request h2,#visualPromos .promo-request p{text-align:right!important}
+#visualPromos .promo-request a{float:none!important;margin-top:2px!important}
+@media(max-width:650px){
+ #visualPromos{padding-bottom:24px!important}
+ #visualPromos .promo-request{min-height:165px!important;padding:16px!important}
+ #visualPromos .promo-request>div{width:69%!important}
+ #visualPromos .promo-request img{width:27%!important}
+ #visualPromos .promo-request .promo-eyebrow{font-size:15px!important}
+ #visualPromos .promo-request h2{font-size:14px!important}
+ #visualPromos .promo-request p{font-size:11px!important;line-height:1.7!important}
+}
+
 </style>
 </head>
 <body>
@@ -912,7 +931,6 @@ main > #categories > .wrap > .bounty-picks-heading{
     <a href="#regions" onclick="showPage('regions');return false">⌖ المناطق</a>
     <a href="#featured" onclick="showPage('featured');return false">♡ المتاجر المميزة</a>
     <a href="#addActivitySection" onclick="showPage('addActivitySection');return false">✧ إضافة نشاط للدليل</a>
-    <a href="#storiesPage" onclick="showPage('storiesPage');return false">▶ قصص باونتي</a>
     <a href="#blog" onclick="showPage('blog');return false">▤ المدونة</a>
     <a href="#about" onclick="showPage('about');return false">ⓘ من نحن</a>
     <a href="#contactPage" onclick="showPage('contactPage');return false">✉ تواصل معنا</a>
@@ -1043,12 +1061,17 @@ main > #categories > .wrap > .bounty-picks-heading{
   </div>
 </section>
 
+
+
+<section class="home-stories-section" id="homeStoriesSection">
+ <div class="wrap">
+  <div class="visual-section-title"><div><span class="home-stories-kicker">حكايات وتجارب ملهمة</span><h2>قصص باونتي <span>▶</span></h2></div><a href="#storiesPage" onclick="showPage('storiesPage');return false">عرض جميع القصص ←</a></div>
+  <div class="home-stories-grid blog-grid" id="homeStoriesGrid"><div class="empty">جارٍ تحميل القصص...</div></div>
+ </div>
+</section>
+
 <section class="visual-promos" id="visualPromos">
   <div class="wrap promo-grid">
-    <article class="promo-card promo-stories">
-      <div><span class="promo-eyebrow">▶ قصص باونتي</span><h2>تعرّف على أصحاب المشاريع والمزارع</h2><p>والخبراء في اللقاءات الملهمة.</p><a href="#blog" onclick="showPage('storiesPage');return false">شاهد القصص ←</a></div>
-      <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700&q=85" alt="مزرعة ومنتجات محلية">
-    </article>
     <article class="promo-card promo-request">
       <div><span class="promo-eyebrow">💡 اطلب ما تحتاجه</span><h2>ما المنتج أو الخدمة التي تبحث عنها؟</h2><p>أرسل طلبك إلى باونتي، وسنعمل على مساعدتك في الوصول إلى ما تحتاجه.</p><a href="mailto:bounty.ksa@outlook.com?subject=%D8%B7%D9%84%D8%A8%20%D8%AA%D9%88%D9%81%D9%8A%D8%B1%20%D9%85%D9%86%D8%AA%D8%AC%20%D8%A3%D9%88%20%D8%AE%D8%AF%D9%85%D8%A9">أرسل طلبك ←</a></div>
       <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=700&q=85" alt="تشكيلة متنوعة من المنتجات والأطعمة الصحية">
@@ -1712,7 +1735,7 @@ function showPage(page){
  sections.forEach(section=>section.classList.add('page-hidden'));
  const show=(id)=>{const el=document.getElementById(id);if(el)el.classList.remove('page-hidden');};
  if(page==='home'){
-  ['homeHero','mainSectionsNav','regions','directoryCategories','categories','featured','visualNew','visualPromos'].forEach(show);
+  ['homeHero','mainSectionsNav','regions','directoryCategories','categories','featured','visualNew','homeStoriesSection','visualPromos'].forEach(show);
  }else if(page==='categories'){
   show('categories');
   renderBountyPicks();
@@ -1886,7 +1909,7 @@ function showPage(page){
  const main=document.querySelector('main');if(!main)return;
  [...main.querySelectorAll(':scope > section')].forEach(section=>section.classList.add('page-hidden'));
  const show=id=>document.getElementById(id)?.classList.remove('page-hidden');
- if(page==='home'){['homeHero','mainSectionsNav','regions','directoryCategories','categories','featured','visualNew','visualPromos','homeLatestArticles'].forEach(show);}
+ if(page==='home'){['homeHero','mainSectionsNav','regions','directoryCategories','categories','featured','visualNew','homeStoriesSection','visualPromos','homeLatestArticles'].forEach(show);}
  else if(page==='categories'){show('categories');renderBountyPicks();loadBountyPicks();}
  else if(page==='storiesPage'){show('storiesPage');renderStories();}
  else if(page==='blog'){show('blog');renderBlogPosts(bountyBlogPosts.filter(p=>!(p.category||'').includes('قصص باونتي')));}
@@ -1920,9 +1943,11 @@ function renderHomeArticleTitles(){
  box.innerHTML=rows.length?rows.map(p=>`<a href="#blog" onclick="showPage('blog');return false">${blogEscape(p.title)} <span>←</span></a>`).join(''):'<p class="empty">لا توجد مقالات منشورة حاليًا.</p>';
 }
 function renderStories(){
- const box=document.getElementById('storiesGrid');if(!box)return;
  const rows=bountyBlogPosts.filter(p=>(p.category||'').includes('قصص باونتي'));
- box.innerHTML=rows.length?rows.map(p=>renderArticleCard(p,bountyBlogPosts.indexOf(p))).join(''):'<div class="empty">لا توجد قصص منشورة حاليًا.</div>';
+ const fullBox=document.getElementById('storiesGrid');
+ if(fullBox)fullBox.innerHTML=rows.length?rows.map(p=>renderArticleCard(p,bountyBlogPosts.indexOf(p))).join(''):'<div class="empty">لا توجد قصص منشورة حاليًا.</div>';
+ const homeBox=document.getElementById('homeStoriesGrid');
+ if(homeBox)homeBox.innerHTML=rows.length?rows.slice(0,3).map(p=>renderArticleCard(p,bountyBlogPosts.indexOf(p))).join(''):'<div class="home-stories-empty">ستظهر هنا قصص باونتي الجديدة والتجارب الملهمة عند نشرها.</div>';
 }
 let articleReturnPage='blog';
 function openFullArticle(index){
@@ -2229,6 +2254,38 @@ footer{margin-top:0!important;background:#123e32!important;padding:48px 0 22px!i
 .regions-preserved .region-card>span{display:none!important}
 .store-products-link{display:block!important;margin-top:12px!important;text-align:right!important}
 .bounty-store-card .pick-copy>button{margin-top:0!important}
+</style>
+
+
+<style id="bounty-home-stories-polish">
+.home-stories-section{padding:28px 0 34px;background:linear-gradient(180deg,#fbfaf6 0%,#f5f7ef 100%)}
+.home-stories-section .visual-section-title{align-items:end;margin-bottom:18px}
+.home-stories-section .visual-section-title h2{font-size:25px;margin:3px 0 0;color:#174c3c}
+.home-stories-kicker{font-size:12px;font-weight:700;color:#9a7180}
+.home-stories-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.home-stories-grid .article{border:1px solid #e5e9df;box-shadow:0 7px 22px rgba(34,65,48,.07);border-radius:18px;background:#fff;min-width:0}
+.home-stories-grid .article-cover{height:165px;background:#edf3e9}
+.home-stories-grid .article-content{padding:15px 17px}
+.home-stories-grid .article-content h3{font-size:17px;line-height:1.55}
+.home-stories-grid .article-content p{font-size:12px;line-height:1.8;min-height:44px}
+.home-stories-grid .read-article-btn{background:#eaf2e9!important;color:#245b43!important;border-radius:22px;padding:8px 14px!important;margin-top:8px;font-family:inherit}
+.home-stories-empty{grid-column:1/-1;text-align:center;padding:25px;border:1px dashed #cbd8c8;border-radius:16px;background:#fff;color:#738176;font-size:13px}
+@media(max-width:650px){.home-stories-section{padding:22px 0 28px}.home-stories-section .visual-section-title h2{font-size:20px}.home-stories-grid{grid-template-columns:1fr!important;gap:12px}.home-stories-grid .article{display:grid;grid-template-columns:112px 1fr;min-height:132px}.home-stories-grid .article-cover{height:100%;min-height:132px}.home-stories-grid .article-content{padding:11px}.home-stories-grid .article-content h3{font-size:14px;margin:4px 0}.home-stories-grid .article-content p{font-size:11px;min-height:0;margin-bottom:5px}.home-stories-grid .article-tag{font-size:9px}.home-stories-grid .read-article-btn{font-size:11px!important;padding:6px 10px!important}}
+</style>
+
+
+<style id="bounty-regions-compact-final">
+/* Compact region cards: keep the same palette and interactions, reduce visual height */
+.regions-preserved{padding:24px 0 30px!important}
+.regions-preserved .section-head{margin-bottom:12px!important}
+.regions-preserved .section-title{font-size:23px!important}
+.regions-preserved .region-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:9px!important}
+.regions-preserved .region-card{min-height:82px!important;height:auto!important;padding:8px 11px!important;gap:2px!important;border-radius:12px!important}
+.regions-preserved .region-card strong{font-size:12px!important;line-height:1.45!important}
+.regions-preserved .region-card small{font-size:9px!important;line-height:1.4!important}
+.regions-preserved .region-card b{font-size:10px!important;line-height:1.35!important}
+@media(max-width:900px){.regions-preserved .region-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:580px){.regions-preserved{padding:18px 0 22px!important}.regions-preserved .region-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important}.regions-preserved .region-card{min-height:72px!important;padding:7px 9px!important}.regions-preserved .region-card strong{font-size:11px!important}.regions-preserved .region-card small{font-size:9px!important}.regions-preserved .region-card b{font-size:9px!important}}
 </style>
 
 </body>
