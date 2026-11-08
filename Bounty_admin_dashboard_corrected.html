@@ -1461,13 +1461,52 @@ function editAdminArticle(id){
  document.getElementById('adminArticleFormTitle').scrollIntoView({behavior:'smooth',block:'center'});
 }
 async function saveAdminArticle(event){
- event.preventDefault();const button=document.getElementById('adminArticleSaveButton');button.disabled=true;
- const id=document.getElementById('articleRecordId').value;
- const payload={title:document.getElementById('articleAdminTitle').value.trim(),category:document.getElementById('articleAdminCategory').value.trim(),emoji:document.getElementById('articleAdminEmoji').value.trim()||'📝',read_minutes:Math.max(1,Math.min(60,Number(document.getElementById('articleAdminReadMinutes').value)||3)),excerpt:document.getElementById('articleAdminExcerpt').value.trim(),content:document.getElementById('articleAdminContent').value.trim(),is_published:document.getElementById('articleAdminPublished').checked,updated_at:new Date().toISOString()};
- try{const result=id?await supabaseClient.from('bounty_articles').update(payload).eq('id',id):await supabaseClient.from('bounty_articles').insert(payload);if(result.error)throw result.error;resetAdminArticleForm();await loadAdminArticles();await loadPublicArticles();setAdminStatus(id?'تم تحديث المقال بنجاح.':'تمت إضافة المقال بنجاح.');}
- catch(error){setAdminStatus(error.message||'تعذر حفظ المقال. تحققي من إعدادات جدول المقالات وصلاحياته.',true);}
- finally{button.disabled=false;}
+  if(event){event.preventDefault();event.stopPropagation();}
+  const form=document.getElementById('adminArticleForm');
+  const button=document.getElementById('adminArticleSaveButton');
+  if(!form||!button)return;
+  if(!form.reportValidity())return;
+  if(button.dataset.saving==='1')return;
+  button.dataset.saving='1';button.disabled=true;
+  const originalText=button.textContent;button.textContent='جارٍ الحفظ...';
+  const id=document.getElementById('articleRecordId').value;
+  const payload={
+   title:document.getElementById('articleAdminTitle').value.trim(),
+   category:document.getElementById('articleAdminCategory').value.trim(),
+   emoji:document.getElementById('articleAdminEmoji').value.trim()||'📝',
+   read_minutes:Math.max(1,Math.min(60,Number(document.getElementById('articleAdminReadMinutes').value)||3)),
+   excerpt:document.getElementById('articleAdminExcerpt').value.trim(),
+   content:document.getElementById('articleAdminContent').value.trim(),
+   is_published:document.getElementById('articleAdminPublished').checked,
+   updated_at:new Date().toISOString()
+  };
+  try{
+   setAdminStatus('جارٍ حفظ المقال في قاعدة البيانات...');
+   await ensureSupabaseClient();
+   const {data:{session},error:sessionError}=await supabaseClient.auth.getSession();
+   if(sessionError)throw sessionError;
+   if(session?.user?.email?.toLowerCase()!=='bounty.ksa@outlook.com')
+    throw new Error('انتهت جلسة الإدارة أو لم يتم تسجيل الدخول بالحساب المعتمد. سجّلي الدخول مرة أخرى.');
+   const result=id
+    ? await supabaseClient.from('bounty_articles').update(payload).eq('id',id)
+    : await supabaseClient.from('bounty_articles').insert(payload);
+   if(result.error)throw result.error;
+   resetAdminArticleForm();
+   await loadAdminArticles();
+   await loadPublicArticles();
+   setAdminStatus(id?'تم تحديث المقال بنجاح.':'تمت إضافة المقال بنجاح.');
+  }catch(error){
+   console.error('Bounty article save failed:',error);
+   const message=error?.message||'تعذر حفظ المقال.';
+   const setupHint=/bounty_articles|permission|policy|schema cache|relation|does not exist|not found/i.test(message)
+    ? ' تأكدي من تشغيل ملف Bounty_blog_setup.sql في Supabase SQL Editor ثم اضغطي Run.'
+    : '';
+   setAdminStatus(message+setupHint,true);
+  }finally{
+   button.disabled=false;button.dataset.saving='0';button.textContent=originalText;
+  }
 }
+
 async function deleteAdminArticle(id){
  const row=adminArticleRows.find(x=>String(x.id)===String(id));if(!row||!confirm(`هل تريدين حذف مقال «${row.title}»؟ لا يمكن التراجع عن الحذف.`))return;
  try{const {error}=await supabaseClient.from('bounty_articles').delete().eq('id',id);if(error)throw error;await loadAdminArticles();await loadPublicArticles();setAdminStatus('تم حذف المقال.');}
@@ -1557,7 +1596,6 @@ async function initAdminPage(){
   document.getElementById('adminLoginForm').addEventListener('submit',adminSignIn);
   document.getElementById('adminActivityForm').addEventListener('submit',saveAdminActivity);
   document.getElementById('adminPickForm').addEventListener('submit',saveAdminPick);
-  document.getElementById('adminArticleForm').addEventListener('submit',saveAdminArticle);
  }
  try{
   await ensureSupabaseClient();
@@ -1729,6 +1767,11 @@ async function deleteAdminPick(id){
   if(row.image_path)await supabaseClient.storage.from(PICK_IMAGE_BUCKET).remove([row.image_path]);
   await loadAdminPicks();setAdminStatus('تم حذف المنتج من مختارات باونتي.');
  }catch(error){setAdminStatus(error.message||'تعذر حذف المنتج.',true);}
+}
+
+const adminArticleFormElement=document.getElementById('adminArticleForm');
+if(adminArticleFormElement){
+ adminArticleFormElement.addEventListener('submit',saveAdminArticle);
 }
 
 setupRegions();
