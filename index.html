@@ -1445,17 +1445,53 @@ function renderListings(){
   return `<article class="listing" role="button" tabindex="0" onclick="showListing('${escapeHTML(x.id)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showListing('${escapeHTML(x.id)}')}"><div class="listing-art" aria-hidden="true">${escapeHTML(visual)}</div><div class="listing-body"><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.desc||x.description||'')}</p><div class="listing-meta"><span>📍 ${escapeHTML(activityRegionName(x))}${splitActivityLocation(x.region).city?' · '+escapeHTML(splitActivityLocation(x.region).city):''}</span><span>▣ ${escapeHTML(x.type||x.category||'')}</span></div><button type="button" class="detail-btn" onclick="event.stopPropagation();showListing('${escapeHTML(x.id)}')">الموقع والتواصل</button></div></article>`;
  }).join(''):'<div class="empty">تم تنفيذ البحث، لكن لا توجد جهات مسجلة تطابق هذه الكلمات حالياً. جرّب كلمة أخرى أو غيّر المنطقة أو القسم.</div>';
 }
+let activitiesRealtimeChannel=null;
+let activitiesLoadInProgress=false;
 async function loadActivities(){
+ if(activitiesLoadInProgress)return;
+ activitiesLoadInProgress=true;
  try{
-  const {data,error}=await supabaseClient.from('activities').select('id,name,type,region,phone,address,description,tags,website,google_maps_url,created_at').order('created_at',{ascending:false});
+  // قراءة كل أعمدة جدول الأنشطة حتى لا تُستبعد الأنشطة التي أضافتها لوحة الإدارة.
+  const {data,error}=await supabaseClient.from('activities').select('*').order('created_at',{ascending:false});
   if(error) throw error;
-  const fromDatabase=(data||[]).map(row=>({id:'db_'+row.id,name:row.name,type:row.type,region:row.region,phone:row.phone||'',desc:row.description||'',tags:row.tags||'',website:row.website||'',google_maps_url:row.google_maps_url||'',address:row.address||'',emoji:'🌿'}));
+  const fromDatabase=(data||[]).map(row=>({
+   id:'db_'+row.id,
+   name:row.name||row.title||row.activity_name||'نشاط جديد',
+   type:row.type||row.category||row.activity_type||'متفرقات',
+   region:row.region||row.city||row.location||'',
+   phone:row.phone||row.contact_phone||row.whatsapp||'',
+   desc:row.description||row.desc||row.details||'',
+   tags:row.tags||row.keywords||'',
+   website:row.website||row.website_url||'',
+   google_maps_url:row.google_maps_url||row.maps_url||row.map_url||'',
+   address:row.address||row.location_text||'',
+   image_url:row.image_url||row.image||row.photo||'',
+   emoji:row.emoji||'🌿'
+  })).filter(row=>row.name);
+  // بيانات قاعدة البيانات أولاً، مع الإبقاء على الجهات الأساسية الموجودة مسبقاً.
   listings=[...fromDatabase,...seedListings];
   refreshRegionFilter();
   renderListings();
   renderBountyPicks();
- }catch(error){console.error('تعذر تحميل الأنشطة من Supabase:',error);}
+ }catch(error){
+  console.error('تعذر تحميل الأنشطة من Supabase:',error);
+ }finally{
+  activitiesLoadInProgress=false;
+ }
 }
+function subscribeToActivityChanges(){
+ if(activitiesRealtimeChannel)return;
+ activitiesRealtimeChannel=supabaseClient
+  .channel('bounty-activities-directory-sync')
+  .on('postgres_changes',{event:'*',schema:'public',table:'activities'},()=>loadActivities())
+  .subscribe();
+}
+// تحديث الدليل عند العودة إلى الصفحة حتى لو لم يكن Realtime مفعّلاً في Supabase.
+window.addEventListener('focus',()=>loadActivities());
+document.addEventListener('visibilitychange',()=>{
+ if(!document.hidden)loadActivities();
+});
+
 function openAddActivity(event){if(event)event.preventDefault();document.getElementById('activityContactModal').classList.add('open');}
 function closeActivityContact(){document.getElementById('activityContactModal').classList.remove('open');}
 function closeAddActivity(){document.getElementById('addActivity').classList.remove('open');}
@@ -1759,6 +1795,7 @@ function showPage(page){
   show('regions');
  }else if(page==='directory'){
   show('directory');
+  loadActivities();
  }else if(page==='blog'){
   show('blog');
  }else if(page==='about'){
@@ -1786,6 +1823,7 @@ renderListings();
 renderBountyPicks();
 showPage('home');
 loadBountyPicks();
+subscribeToActivityChanges();
 loadActivities();
 loadBlogPosts();
 </script>
